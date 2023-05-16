@@ -34,8 +34,8 @@ public class Porder {
     private String customerName;
 
     //입고일
-    @Column(name="arrval_date", nullable = false, columnDefinition = "date")
-    private LocalDateTime arrvalDate;
+    @Column(name="arrival_date", nullable = false, columnDefinition = "date")
+    private LocalDateTime arrivalDate;
 
     //품목 수량
     @Column(name="p_orer_cnt", nullable = false, columnDefinition = "nunmber(10)")
