@@ -24,8 +24,8 @@ public class Materials {
     @Column(name="mtr_location", nullable = false, columnDefinition = "varchar2(20)")
     private String location;    //창고위치
 
-    @Column(name="mtr_price", nullable = false, columnDefinition = "varchar2(20)")
-    private String price;    //구매단가
+    @Column(name="mtr_price", nullable = false, columnDefinition = "number(10)")
+    private Long price;    //구매단가
 
     @Column(name="mtr_unit", nullable = false, columnDefinition = "varchar2(10)")
     private String unit;    //단위

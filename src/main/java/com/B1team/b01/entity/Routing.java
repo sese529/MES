@@ -16,5 +16,5 @@ public class Routing {
     @Column(name = "routing_id", nullable = false, columnDefinition = "number")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "routing_seq_generator")
     @SequenceGenerator(name = "routing_seq_generator", sequenceName = "ROUTING_SEQ", initialValue = 1, allocationSize = 1)
-    private Long id;        //원자재 고유번호
+    private Long id;        //라우팅 고유번호
 }
