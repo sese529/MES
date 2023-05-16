@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="PROCUCT")
+@Table(name="PRODUCT")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,7 +15,7 @@ public class Product {
     @Id
     @Column(name = "product_id", nullable = false, columnDefinition = "number")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq_generator")
-    @SequenceGenerator(name = "product_seq_generator", sequenceName = "PROCESS_SEQ", initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name = "product_seq_generator", sequenceName = "PRODUCT_SEQ", initialValue = 1, allocationSize = 1)
     private Long id;        //제품 고유번호
 
     @Column(name="product_name", nullable = false, columnDefinition = "varchar2(15)")

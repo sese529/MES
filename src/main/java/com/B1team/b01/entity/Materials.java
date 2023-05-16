@@ -15,7 +15,7 @@ public class Materials {
     @Id
     @Column(name = "mtr_id", nullable = false, columnDefinition = "number")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mtr_seq_generator")
-    @SequenceGenerator(name = "mtr_seq_generator", sequenceName = "PROCESS_SEQ", initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name = "mtr_seq_generator", sequenceName = "MTR_SEQ", initialValue = 1, allocationSize = 1)
     private Long id;        //원자재 고유번호
 
     @Column(name="mtr_name", nullable = false, columnDefinition = "varchar2(20)")
