@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Facility {
     @Id
-    @Column(name = "facility_id", nullable = false, columnDefinition = "number")
+    @Column(name = "facility_id", nullable = false, columnDefinition = "number(10)")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "facility_seq_generator")
     @SequenceGenerator(name = "facility_seq_generator", sequenceName = "FACILITY_SEQ", initialValue = 1, allocationSize = 1)
     private Long id;        //설비 고유번호
