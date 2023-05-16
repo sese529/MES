@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class stock {
+public class Stock {
     @Id
     @Column(name = "stock_id", nullable = false, columnDefinition = "number(10)")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_seq_generator")
