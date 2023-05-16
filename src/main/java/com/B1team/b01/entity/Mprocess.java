@@ -21,10 +21,10 @@ public class Mprocess {
     private String name;
 
     @Column(name="process_min_cnt", nullable = false, columnDefinition = "number")
-    private Long min;
+    private Long minCnt;
 
     @Column(name="process_max_cnt", nullable = false, columnDefinition = "number")
-    private Long max;
+    private Long maxCnt;
 
     @Column(name="process_leadtime", nullable = false, columnDefinition = "number")
     private Long leadtime;
