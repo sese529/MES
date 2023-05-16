@@ -29,10 +29,10 @@ public class BOM {
 
     //자재명
     @Column(name="mtr_name", nullable = false, columnDefinition = "number(10)")
-    private Long name;
+    private Long mtrName;
 
     //용량
-    @Column(name="volume", nullable = false, columnDefinition = "number(10)")
+    @Column(name="bom_volume", nullable = false, columnDefinition = "number(10)")
     private Long volume;
 
 }
