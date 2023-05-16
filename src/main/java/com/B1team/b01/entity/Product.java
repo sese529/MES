@@ -22,7 +22,7 @@ public class Product {
     private String name;    //제품명
 
     @Column(name="product_price", nullable = false, columnDefinition = "number(10)")
-    private int price;    //가격
+    private Long price;    //가격
 
     @Column(name="product_sort", nullable = false, columnDefinition = "varchar2(15)")
     private String sort;    //분류
