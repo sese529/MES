@@ -43,7 +43,7 @@ public class Porder {
 
     //품목 단위
     @Column(name="mtr_unit", nullable = false, columnDefinition = "varchar2(3)")
-    private String unit;
+    private String mtrUnit;
 
     //발주 금액
     @Column(name="porder_amount", nullable = false, columnDefinition = "number(10)")
