@@ -20,8 +20,12 @@ public class Stock {
     private Long id;
 
     //제품 고유번호
-    @Column(name="product_id", nullable = false, columnDefinition = "number(10)")
+    @Column(name="product_id", columnDefinition = "number(10)")
     private Long productId;
+
+    //원자재 고유번호
+    @Column(name="mtr_id", columnDefinition = "number(10)")
+    private Long mtrId;
 
     //창고위치
     @Column(name="location", nullable = false, columnDefinition = "varchar2(20)")
@@ -30,10 +34,6 @@ public class Stock {
     //잔여수량
     @Column(name="mtr_ea", nullable = false, columnDefinition = "number(10)")
     private Long mtrEa;
-
-    //원자재 고유번호
-    @Column(name="mtr_id", nullable = false, columnDefinition = "number(10)")
-    private Long mtrId;
 
     //단위
     @Column(name="mtr_unit", nullable = false, columnDefinition = "varchar2(10)")
