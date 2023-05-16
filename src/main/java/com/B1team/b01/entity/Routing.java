@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Routing {
     @Id
-    @Column(name = "routing_id", nullable = false, columnDefinition = "number")
+    @Column(name = "routing_id", nullable = false, columnDefinition = "number(10)")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "routing_seq_generator")
     @SequenceGenerator(name = "routing_seq_generator", sequenceName = "ROUTING_SEQ", initialValue = 1, allocationSize = 1)
     private Long id;        //라우팅 고유번호
