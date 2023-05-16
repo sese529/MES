@@ -34,7 +34,7 @@ public class Facility {
     @Column(name="facility_location", nullable = false, columnDefinition = "varchar2(30)")
     private String location;    //설비위치
 
-    @Column(name="facility_inspection_dt", nullable = false, columnDefinition = "DATE")
+    @Column(name="facility_inspection_date", nullable = false, columnDefinition = "DATE")
     private LocalDateTime inspectionDate;    //최근 점검 일자
 
     @Column(name="facility_leadtime", nullable = false, columnDefinition = "NUMBER(10)")
