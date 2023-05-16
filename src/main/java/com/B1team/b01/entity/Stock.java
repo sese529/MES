@@ -37,5 +37,5 @@ public class Stock {
 
     //단위
     @Column(name="mtr_unit", nullable = false, columnDefinition = "varchar2(10)")
-    private String unit;
+    private String mtrUnit;
 }
