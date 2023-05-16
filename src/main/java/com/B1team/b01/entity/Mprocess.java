@@ -6,11 +6,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 @Entity
-@Table(name="mprocess")
+@Table(name="MPROCESS")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Process {
+public class Mprocess {
     @Id
     @Column(name = "process_id", nullable = false, columnDefinition = "number")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "process_seq_generator")
