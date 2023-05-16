@@ -15,14 +15,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Porder {
     @Id
-    @Column(name = "p_order_id", nullable = false, columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "p_order_seq_generator")
-    @SequenceGenerator(name = "p_order_seq_generator", sequenceName = "p_order_seq", initialValue = 1, allocationSize = 1)
+    @Column(name = "porder_id", nullable = false, columnDefinition = "number(10)")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "porder_seq_generator")
+    @SequenceGenerator(name = "porder_seq_generator", sequenceName = "porder_seq", initialValue = 1, allocationSize = 1)
     //발주 고유번호
     private Long id;
 
     //발주일
-    @Column(name="p_order_date", nullable = false, columnDefinition = "date")
+    @Column(name="porder_date", nullable = false, columnDefinition = "date")
     private LocalDateTime orderDate;
 
     //거래처 고유번호
@@ -38,7 +38,7 @@ public class Porder {
     private LocalDateTime arrvalDate;
 
     //품목 수량
-    @Column(name="p_orer_cnt", nullable = false, columnDefinition = "nunmber(10)")
+    @Column(name="porder_cnt", nullable = false, columnDefinition = "number(10)")
     private Long cnt;
 
     //품목 단위
@@ -58,13 +58,11 @@ public class Porder {
     private Long mtrId;
 
     //구매 단가
-    @Column(name="mtr_price", nullable = false, columnDefinition = "varchar2(20)")
-    private String mtrPrice;
+    @Column(name="mtr_price", nullable = false, columnDefinition = "number(10)")
+    private Long mtrPrice;
 
     //품목명
     @Column(name="mtr_name", nullable = false, columnDefinition = "varchar2(15)")
     private String mtrName;
-
-
 
     }
