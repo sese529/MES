@@ -31,7 +31,7 @@ public class Facility {
     @Column(name="facility_model", nullable = false, columnDefinition = "varchar2(30)")
     private String model;    //모델명
 
-    @Column(name="facility_location", nullable = false, columnDefinition = "varchar2(30)")
+    @Column(name="facility_location", nullable = false, columnDefinition = "varchar2(20)")
     private String location;    //설비위치
 
     @Column(name="facility_inspection_date", nullable = false, columnDefinition = "DATE")
