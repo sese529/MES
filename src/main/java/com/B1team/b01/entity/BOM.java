@@ -31,4 +31,8 @@ public class BOM {
     @Column(name="mtr_name", nullable = false, columnDefinition = "number(10)")
     private Long name;
 
+    //용량
+    @Column(name="volume", nullable = false, columnDefinition = "number(10)")
+    private Long volume;
+
 }
