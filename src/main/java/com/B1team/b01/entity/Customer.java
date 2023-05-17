@@ -25,9 +25,6 @@ public class Customer {
     @Column(name="customer_name", nullable = false, columnDefinition = "varchar2(50)")
     private String name;
 
-    @Column(name="customer_code", nullable = false, columnDefinition = "varchar2(10)")
-    private String code;
-
     @Column(name="customer_address", nullable = false, columnDefinition = "varchar2(100)")
     private String address;
 
