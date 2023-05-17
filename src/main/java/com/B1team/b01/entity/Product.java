@@ -18,7 +18,7 @@ public class Product {
     @SequenceGenerator(name = "product_seq_generator", sequenceName = "PRODUCT_SEQ", initialValue = 1, allocationSize = 1)
     private Long id;        //제품 고유번호
 
-    @Column(name="product_name", nullable = false, columnDefinition = "varchar2(15)")
+    @Column(name="product_name", nullable = false, columnDefinition = "varchar2(50)")
     private String name;    //제품명
 
     @Column(name="product_price", nullable = false, columnDefinition = "number(10)")
