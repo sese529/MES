@@ -18,6 +18,7 @@ public class MaterialsService {
         //매개변수 orderDate : 발주 주문 시간 / materialId : 원자재 고유 번호
         Optional<Materials> optional = materialsRepository.findById(materialId);
         Materials materials = optional.get();
+        //TODO : optional이 비었을 시(nullException) 처리
 
         //실질 발주 주문 날짜 (발주 처리 기준 시간 이전에 발주 시 당일, 이후 발주 시 다음날)
         LocalDateTime date = orderDate.getHour() < materials.getCutoffTime() ? orderDate : orderDate.plusDays(1);
