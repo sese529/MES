@@ -15,17 +15,17 @@ public class BOM {
     @Id
     @Column(name = "bom_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bom_seq_generator")
-//    @SequenceGenerator(name = "bom_seq_generator", sequenceName = "bom_seq", initialValue = 1, allocationSize = 1)
+//    @SequenceGenerator(name = "bom_seq_generator", sequenceName = "bom_seq", initialValue = 10001, allocationSize = 1)
     //bom 고유번호
     private String id;
 
     //원자재 고유번호
-    @Column(name="mtr_id", nullable = false, columnDefinition = "number(10)")
-    private Long mtrId;
+    @Column(name="mtr_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String mtrId;
 
     //제품 고유번호
-    @Column(name="product_id", nullable = false, columnDefinition = "number(10)")
-    private Long productId;
+    @Column(name="product_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String productId;
 
     //자재명
     @Column(name="mtr_name", nullable = false, columnDefinition = "varchar2(50)")
