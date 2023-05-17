@@ -16,11 +16,11 @@ public class MaterialsRepositoryTests {
     @Test
     void 레포지토리테스트() {
         //양배추 불러오기
-        Optional<Materials> optional = materialsRepository.findById(1L);
+        Optional<Materials> optional = materialsRepository.findById("MTR27");
 
         //비었는지 테스트
         if(optional.isPresent()) {
-            Materials materials = materialsRepository.findById(1L).get();
+            Materials materials = optional.get();
             System.out.println(materials.toString());
         } else {
             System.out.println("비었습니다.");
