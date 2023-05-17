@@ -61,8 +61,8 @@ public class Porder {
     @Column(name="mtr_price", nullable = false, columnDefinition = "number(10)")
     private Long mtrPrice;
 
-    //품목명
-    @Column(name="mtr_name", nullable = false, columnDefinition = "varchar2(15)")
+    //원자재명
+    @Column(name="mtr_name", nullable = false, columnDefinition = "varchar2(50)")
     private String mtrName;
 
     }

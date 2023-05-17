@@ -34,6 +34,6 @@ public class Wplan {
     @Column(name="wplan_end_date", nullable = false, columnDefinition = "date")
     private LocalDateTime endDate;
 
-    @Column(name="wplan_state", nullable = false, columnDefinition = "varchar2(5)")
+    @Column(name="wplan_state", nullable = false, columnDefinition = "varchar2(15)")
     private LocalDateTime state;
 }

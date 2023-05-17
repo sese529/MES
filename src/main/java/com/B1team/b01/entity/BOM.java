@@ -28,8 +28,8 @@ public class BOM {
     private Long productId;
 
     //자재명
-    @Column(name="mtr_name", nullable = false, columnDefinition = "number(10)")
-    private Long mtrName;
+    @Column(name="mtr_name", nullable = false, columnDefinition = "varchar2(50)")
+    private String mtrName;
 
     //용량
     @Column(name="bom_volume", nullable = false, columnDefinition = "number(10)")

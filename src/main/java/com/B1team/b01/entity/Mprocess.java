@@ -17,7 +17,7 @@ public class Mprocess {
     @SequenceGenerator(name = "process_seq_generator", sequenceName = "PROCESS_SEQ", initialValue = 1, allocationSize = 1)
     private Long id;    //공정 고유번호
 
-    @Column(name="process_name", nullable = false, columnDefinition = "varchar2(20)")
+    @Column(name="process_name", nullable = false, columnDefinition = "varchar2(50)")
     private String name;    //공정명
 
     @Column(name="process_min_cnt", nullable = false, columnDefinition = "number(10)")

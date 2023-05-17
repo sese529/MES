@@ -20,7 +20,7 @@ public class Materials {
     @SequenceGenerator(name = "mtr_seq_generator", sequenceName = "MTR_SEQ", initialValue = 1, allocationSize = 1)
     private Long id;        //원자재 고유번호
 
-    @Column(name="mtr_name", nullable = false, columnDefinition = "varchar2(20)")
+    @Column(name="mtr_name", nullable = false, columnDefinition = "varchar2(50)")
     private String name;    //자재명
 
     @Column(name="mtr_location", nullable = false, columnDefinition = "varchar2(20)")

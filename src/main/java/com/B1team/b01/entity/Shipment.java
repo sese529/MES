@@ -33,7 +33,7 @@ public class Shipment {
     private Long cnt;
 
     //품목명
-    @Column(name="shipment_product_name", nullable = false, columnDefinition = "varchar2(20)")
+    @Column(name="shipment_product_name", nullable = false, columnDefinition = "varchar2(50)")
     private String productName;
 
     //출하일

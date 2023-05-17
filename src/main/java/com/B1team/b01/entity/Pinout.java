@@ -28,7 +28,7 @@ public class Pinout {
     @Column(name="pinout_product_date", nullable = false, columnDefinition = "date")
     private LocalDateTime productDate;
 
-    @Column(name="pinout_sort", nullable = false, columnDefinition = "varchar2(6)")
+    @Column(name="pinout_sort", nullable = false, columnDefinition = "varchar2(10)")
     private LocalDateTime sort;
 
 }
