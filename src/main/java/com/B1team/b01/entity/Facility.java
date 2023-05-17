@@ -16,7 +16,7 @@ public class Facility {
     @Id
     @Column(name = "facility_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "facility_seq_generator")
-//    @SequenceGenerator(name = "facility_seq_generator", sequenceName = "FACILITY_SEQ", initialValue = 10001, allocationSize = 1)
+    @SequenceGenerator(name = "facility_seq_generator", sequenceName = "FACILITY_SEQ", initialValue = 10001, allocationSize = 1)
     private String id;        //설비 고유번호
 
     @Column(name="facility_name", nullable = false, columnDefinition = "varchar2(50)")

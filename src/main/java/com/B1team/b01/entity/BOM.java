@@ -15,7 +15,7 @@ public class BOM {
     @Id
     @Column(name = "bom_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bom_seq_generator")
-//    @SequenceGenerator(name = "bom_seq_generator", sequenceName = "bom_seq", initialValue = 10001, allocationSize = 1)
+    @SequenceGenerator(name = "bom_seq_generator", sequenceName = "bom_seq", initialValue = 10001, allocationSize = 1)
     //bom 고유번호
     private String id;
 

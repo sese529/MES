@@ -16,7 +16,7 @@ public class Order {
     @Id
     @Column(name = "order_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq_generator")
-//    @SequenceGenerator(name = "order_seq_generator", sequenceName = "order_seq", initialValue = 10001, allocationSize = 1)
+    @SequenceGenerator(name = "order_seq_generator", sequenceName = "order_seq", initialValue = 10001, allocationSize = 1)
     private String id;
 
     @Column(name="order_date", nullable = false, columnDefinition = "date")

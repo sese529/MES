@@ -16,7 +16,7 @@ public class LOT {
     @Id
     @Column(name = "lot_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lot_seq_generator")
-//    @SequenceGenerator(name = "lot_seq_generator", sequenceName = "LOT_SEQ", initialValue = 10001, allocationSize = 1)
+    @SequenceGenerator(name = "lot_seq_generator", sequenceName = "LOT_SEQ", initialValue = 10001, allocationSize = 1)
     private String id;    //로트 고유번호
 
     @Column(name="lot_code", nullable = false, columnDefinition = "varchar2(20)")

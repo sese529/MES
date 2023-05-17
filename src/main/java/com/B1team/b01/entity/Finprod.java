@@ -16,7 +16,7 @@ public class Finprod {
     @Id
     @Column(name = "finprod_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "finprod_seq_generator")
-//    @SequenceGenerator(name = "finprod_seq_generator", sequenceName = "FINPROD_SEQ", initialValue = 10001, allocationSize = 1)
+    @SequenceGenerator(name = "finprod_seq_generator", sequenceName = "FINPROD_SEQ", initialValue = 10001, allocationSize = 1)
     private String id;        //완제품 고유번호
 
     @Column(name="product_id", nullable = false, columnDefinition = "varchar2(50)")
