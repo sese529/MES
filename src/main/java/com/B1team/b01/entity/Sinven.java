@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Sinven {
     @Id
-    @Column(name = "sinven_id", nullable = false, columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sinven_seq_generator")
-    @SequenceGenerator(name = "sinven_seq_generator", sequenceName = "sinven_seq", initialValue = 1, allocationSize = 1)
-    private Long id;
+    @Column(name = "sinven_id", nullable = false, columnDefinition = "varchar2(50)")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sinven_seq_generator")
+//    @SequenceGenerator(name = "sinven_seq_generator", sequenceName = "sinven_seq", initialValue = 1, allocationSize = 1)
+    private String id;
 
     @Column(name="product_id", nullable = false, columnDefinition = "number(10)")
     private Long productId;

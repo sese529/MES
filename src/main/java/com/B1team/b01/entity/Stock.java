@@ -13,11 +13,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Stock {
     @Id
-    @Column(name = "stock_id", nullable = false, columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_seq_generator")
-    @SequenceGenerator(name = "stock_seq_generator", sequenceName = "stock_seq", initialValue = 1, allocationSize = 1)
+    @Column(name = "stock_id", nullable = false, columnDefinition = "varchar2(50)")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_seq_generator")
+//    @SequenceGenerator(name = "stock_seq_generator", sequenceName = "stock_seq", initialValue = 1, allocationSize = 1)
     //재고 고유번호
-    private Long id;
+    private String id;
 
     //제품 고유번호
     @Column(name="product_id", columnDefinition = "number(10)")

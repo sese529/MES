@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Worder {
     @Id
-    @Column(name = "worder_id", nullable = false, columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "worder_seq_generator")
-    @SequenceGenerator(name = "worder_seq_generator", sequenceName = "WORDER_SEQ", initialValue = 1, allocationSize = 1)
-    private Long id;        //작업지시 고유번호
+    @Column(name = "worder_id", nullable = false, columnDefinition = "varchar2(50)")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "worder_seq_generator")
+//    @SequenceGenerator(name = "worder_seq_generator", sequenceName = "WORDER_SEQ", initialValue = 1, allocationSize = 1)
+    private String id;        //작업지시 고유번호
 
     @Column(name = "process_id", nullable = false, columnDefinition = "number(10)")
     private Long processId;    //공정 고유번호
