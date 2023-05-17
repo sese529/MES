@@ -31,6 +31,6 @@ public class Finprod {
     @Column(name="finprod_deadline", nullable = false, columnDefinition = "date")
     private LocalDateTime deadline;    //납품예정일
 
-    @Column(name="finprod_product", nullable = false, columnDefinition = "varchar2(10)")
+    @Column(name="finprod_product", nullable = false, columnDefinition = "varchar2(50)")
     private String product;    //품목명
 }

@@ -46,6 +46,6 @@ public class Order {
     @Column(name="order_cnt", nullable = false, columnDefinition = "number(10)")
     private long cnt;
 
-    @Column(name="product_name", nullable = false, columnDefinition = "varchar2(15)")
+    @Column(name="product_name", nullable = false, columnDefinition = "varchar2(50)")
     private String productName;
 }

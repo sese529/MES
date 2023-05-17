@@ -19,7 +19,7 @@ public class Facility {
     @SequenceGenerator(name = "facility_seq_generator", sequenceName = "FACILITY_SEQ", initialValue = 1, allocationSize = 1)
     private Long id;        //설비 고유번호
 
-    @Column(name="facility_name", nullable = false, columnDefinition = "varchar2(30)")
+    @Column(name="facility_name", nullable = false, columnDefinition = "varchar2(50)")
     private String name;    //자재명
 
     @Column(name="facility_capa", nullable = false, columnDefinition = "varchar2(30)")
@@ -28,7 +28,7 @@ public class Facility {
     @Column(name="facility_company", nullable = false, columnDefinition = "varchar2(20)")
     private String company;    //제조사
 
-    @Column(name="facility_model", nullable = false, columnDefinition = "varchar2(30)")
+    @Column(name="facility_model", nullable = false, columnDefinition = "varchar2(50)")
     private String model;    //모델명
 
     @Column(name="facility_location", nullable = false, columnDefinition = "varchar2(20)")
