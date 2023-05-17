@@ -1,17 +1,24 @@
 package com.B1team.b01.Service;
 
 import com.B1team.b01.entity.Materials;
+import com.B1team.b01.entity.Worder;
 import com.B1team.b01.repository.MaterialsRepository;
+import com.B1team.b01.repository.MprocessRepository;
+import com.B1team.b01.repository.RoutingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class MaterialsService {
     private final MaterialsRepository materialsRepository;
+    private final MprocessRepository mprocessRepository;
+    private final RoutingRepository routingRepository;
 
     //시뮬레이션 - 발주 입고 날짜 계산
     public LocalDateTime calculateArrivalDate(LocalDateTime orderDate, String materialId) {
@@ -38,5 +45,12 @@ public class MaterialsService {
         date = date.withHour(10).withMinute(0).withSecond(0).withNano(0);
 
         return date;
+    }
+
+    //시뮬레이션 - 작업 시간 계산
+    public List<Worder> calculateWorderDate(){
+        List<Worder> list = new ArrayList<>();
+
+        return list;
     }
 }
