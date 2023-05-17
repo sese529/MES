@@ -16,7 +16,7 @@ public class Customer {
     @Id
     @Column(name = "customer_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq_generator")
-//    @SequenceGenerator(name = "customer_seq_generator", sequenceName = "customer_seq", initialValue = 1, allocationSize = 1)
+//    @SequenceGenerator(name = "customer_seq_generator", sequenceName = "customer_seq", initialValue = 10001, allocationSize = 1)
     private String id;
 
     @Column(name="customer_sort", nullable = false, columnDefinition = "varchar2(9)")
