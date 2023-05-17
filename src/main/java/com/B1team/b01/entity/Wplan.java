@@ -15,15 +15,15 @@ import java.time.LocalDateTime;
 public class Wplan {
     @Id
     @Column(name = "wplan_id", nullable = false, columnDefinition = "varchar2(50)")
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wplan_seq_generator")
-//    @SequenceGenerator(name = "wplan_seq_generator", sequenceName = "wplan_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wplan_seq_generator")
+    @SequenceGenerator(name = "wplan_seq_generator", sequenceName = "wplan_seq", initialValue = 10001, allocationSize = 1)
     private String id;
 
-    @Column(name="product_id", nullable = false, columnDefinition = "number(10)")
-    private Long productId;
+    @Column(name="product_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String productId;
 
-    @Column(name="order_id", nullable = false, columnDefinition = "number(10)")
-    private Long orderId;
+    @Column(name="order_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String orderId;
 
     @Column(name="wplan_cnt", nullable = false, columnDefinition = "number(10)")
     private Long cnt;
