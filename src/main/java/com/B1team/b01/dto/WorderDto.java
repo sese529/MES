@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WorderDto {
-    public String id;   //작업지시 고유번호
-    public String processId; //공정 고유번호
-    public String wplanId; //작업계획 고유번호
-    public String facilityId; //설비정보 고유번호
-    public LocalDateTime finishDate; //작업 완료 일자
+    private String id;   //작업지시 고유번호
+    private String processId; //공정 고유번호
+    private String wplanId; //작업계획 고유번호
+    private String facilityId; //설비정보 고유번호
+    private LocalDateTime finishDate; //작업 완료 일자
 
 }
