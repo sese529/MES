@@ -16,7 +16,7 @@ public class Pinout {
     @Id
     @Column(name = "pinout_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pinout_seq_generator")
-//    @SequenceGenerator(name = "pinout_seq_generator", sequenceName = "pinout_seq", initialValue = 10001, allocationSize = 1)
+    @SequenceGenerator(name = "pinout_seq_generator", sequenceName = "pinout_seq", initialValue = 10001, allocationSize = 1)
     private String id;
 
     @Column(name="mtr_id", nullable = false, columnDefinition = "number(10)")

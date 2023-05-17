@@ -14,7 +14,7 @@ public class Mprocess {
     @Id
     @Column(name = "process_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "process_seq_generator")
-//    @SequenceGenerator(name = "process_seq_generator", sequenceName = "PROCESS_SEQ", initialValue = 10001, allocationSize = 1)
+    @SequenceGenerator(name = "process_seq_generator", sequenceName = "PROCESS_SEQ", initialValue = 10001, allocationSize = 1)
     private String id;    //공정 고유번호
 
     @Column(name="process_name", nullable = false, columnDefinition = "varchar2(50)")
