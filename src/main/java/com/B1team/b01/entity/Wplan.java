@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Wplan {
     @Id
     @Column(name = "wplan_id", nullable = false, columnDefinition = "varchar2(50)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wplan_seq_generator")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wplan_seq_generator")
     @SequenceGenerator(name = "wplan_seq_generator", sequenceName = "wplan_seq", initialValue = 10001, allocationSize = 1)
     private String id;
 

@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Stock {
     @Id
     @Column(name = "stock_id", nullable = false, columnDefinition = "varchar2(50)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_seq_generator")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_seq_generator")
     @SequenceGenerator(name = "stock_seq_generator", sequenceName = "stock_seq", initialValue = 10001, allocationSize = 1)
     //재고 고유번호
     private String id;
