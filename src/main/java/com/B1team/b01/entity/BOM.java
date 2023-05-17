@@ -13,11 +13,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class BOM {
     @Id
-    @Column(name = "bom_id", nullable = false, columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bom_seq_generator")
-    @SequenceGenerator(name = "bom_seq_generator", sequenceName = "bom_seq", initialValue = 1, allocationSize = 1)
+    @Column(name = "bom_id", nullable = false, columnDefinition = "varchar2(50)")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bom_seq_generator")
+//    @SequenceGenerator(name = "bom_seq_generator", sequenceName = "bom_seq", initialValue = 1, allocationSize = 1)
     //bom 고유번호
-    private Long id;
+    private String id;
 
     //원자재 고유번호
     @Column(name="mtr_id", nullable = false, columnDefinition = "number(10)")
