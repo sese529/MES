@@ -28,6 +28,9 @@ public class Worder {
     @Column(name = "facility_id", nullable = false, columnDefinition = "varchar2(50)")
     private String facilityId;    //설비정보 고유번호
 
+    @Column(name = "worder_start_date", nullable = false, columnDefinition = "date")
+    private LocalDateTime startDate;   //작업 시작 일자
+
     @Column(name = "worder_finish_date", nullable = false, columnDefinition = "date")
     private LocalDateTime finishDate;   //작업 완료 일자
 
