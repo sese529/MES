@@ -27,6 +27,4 @@ public class Product {
     @Column(name="product_sort", nullable = false, columnDefinition = "varchar2(15)")
     private String sort;    //분류
 
-    @Column(name="product_unit", nullable = false, columnDefinition = "varchar2(10)")
-    private String unit;    //단위
 }
