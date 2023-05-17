@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Order {
     @Id
-    @Column(name = "order_id", nullable = false, columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq_generator")
-    @SequenceGenerator(name = "order_seq_generator", sequenceName = "order_seq", initialValue = 1, allocationSize = 1)
-    private Long id;
+    @Column(name = "order_id", nullable = false, columnDefinition = "varchar2(50)")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq_generator")
+//    @SequenceGenerator(name = "order_seq_generator", sequenceName = "order_seq", initialValue = 1, allocationSize = 1)
+    private String id;
 
     @Column(name="order_date", nullable = false, columnDefinition = "date")
     private LocalDateTime date;

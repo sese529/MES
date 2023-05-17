@@ -15,10 +15,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Materials {
     @Id
-    @Column(name = "mtr_id", nullable = false, columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mtr_seq_generator")
-    @SequenceGenerator(name = "mtr_seq_generator", sequenceName = "MTR_SEQ", initialValue = 1, allocationSize = 1)
-    private Long id;        //원자재 고유번호
+    @Column(name = "mtr_id", nullable = false, columnDefinition = "varchar2(50)")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mtr_seq_generator")
+//    @SequenceGenerator(name = "mtr_seq_generator", sequenceName = "MTR_SEQ", initialValue = 1, allocationSize = 1)
+    private String id;        //원자재 고유번호
 
     @Column(name="mtr_name", nullable = false, columnDefinition = "varchar2(50)")
     private String name;    //자재명
