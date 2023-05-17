@@ -3,6 +3,7 @@ package com.B1team.b01.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Table(name="MATERIALS")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class Materials {
     @Id
@@ -31,15 +33,15 @@ public class Materials {
     private String unit;    //단위
 
     @Column(name="mtr_min_cnt", nullable = false, columnDefinition = "number(10)")
-    private String minCnt;    //발주 최소 수량
+    private Long minCnt;    //발주 최소 수량
 
     @Column(name="mtr_max_cnt", nullable = false, columnDefinition = "number(10)")
-    private String maxCnt;    //발주 최대 수량
+    private Long maxCnt;    //발주 최대 수량
 
     @Column(name="mtr_leadtime", nullable = false, columnDefinition = "number(10)")
-    private String leadtime;    //발주 리드타임(발주하고 입고까지 걸리는 시간)
+    private Long leadtime;    //발주 리드타임(발주하고 입고까지 걸리는 시간)
 
     @Column(name="mtr_cutoff_time", nullable = false, columnDefinition = "number(10)")
-    private String cutoffTime;    //발주 주문 처리 기준 시간(~시보다 뒤에 주문하면 다음날로 주문 처리)
+    private Long cutoffTime;    //발주 주문 처리 기준 시간(~시보다 뒤에 주문하면 다음날로 주문 처리)
 
 }
