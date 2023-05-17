@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Pinout {
     @Id
-    @Column(name = "pinout_id", nullable = false, columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pinout_seq_generator")
-    @SequenceGenerator(name = "pinout_seq_generator", sequenceName = "pinout_seq", initialValue = 1, allocationSize = 1)
-    private Long id;
+    @Column(name = "pinout_id", nullable = false, columnDefinition = "varchar2(50)")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pinout_seq_generator")
+//    @SequenceGenerator(name = "pinout_seq_generator", sequenceName = "pinout_seq", initialValue = 1, allocationSize = 1)
+    private String id;
 
     @Column(name="mtr_id", nullable = false, columnDefinition = "number(10)")
     private Long mtrId;
