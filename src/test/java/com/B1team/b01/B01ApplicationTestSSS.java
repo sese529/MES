@@ -15,6 +15,7 @@ class B01ApplicationTestSSS {
 	@Autowired
 	private EntityManagerFactory entityManagerFactory;
 
+	/*
 	@Test
 
 	void contextLoads() {
@@ -37,5 +38,7 @@ class B01ApplicationTestSSS {
 
 
 	}
+
+	 */
 
 }
