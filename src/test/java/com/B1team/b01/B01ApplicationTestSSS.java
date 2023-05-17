@@ -26,8 +26,8 @@ class B01ApplicationTestSSS {
 		BOM bom  = new BOM();
 
 		bom.setVolume(10L);
-		bom.setMtrId(0L);
-		bom.setProductId(0L);
+		bom.setMtrId("D12");
+		bom.setProductId("C12");
 		bom.setMtrName(name);
 
 		entityManager.persist(bom);
