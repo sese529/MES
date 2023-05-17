@@ -14,7 +14,7 @@ public class MaterialsService {
     private final MaterialsRepository materialsRepository;
 
     //시뮬레이션 - 발주 입고 날짜 계산
-    public LocalDateTime calculateArrivalDate(LocalDateTime orderDate, Long materialId) {
+    public LocalDateTime calculateArrivalDate(LocalDateTime orderDate, String materialId) {
         //매개변수 orderDate : 발주 주문 시간 / materialId : 원자재 고유 번호
         Optional<Materials> optional = materialsRepository.findById(materialId);
         Materials materials = optional.get();

@@ -18,7 +18,7 @@ public class MaterialsServiceTests {
         String[] arr = { "양배추", "흑마늘", "석류농축액", "매실농축액", "콜라겐", "파우치", "스틱파우치", "포장Box" };
         String msg = "";
         for(int i = 0; i < arr.length; i++)
-            msg += arr[i] + " 입고 일자 : " + materialsService.calculateArrivalDate(LocalDateTime.now(), new Long(i + 1)) + "\n";
+            msg += arr[i] + " 입고 일자 : " + materialsService.calculateArrivalDate(LocalDateTime.now(), "MTR" + (i + 27)) + "\n";
 
         System.out.println("==========================================\n");
         System.out.println("현재 시간 : " + currentTime);
