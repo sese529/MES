@@ -34,6 +34,6 @@ public class Customer {
     @Column(name="customer_business_number", nullable = false, columnDefinition = "varchar2(20)")
     private String businessNumber;
 
-    @Column(name="cumstomer_fax", nullable = false, columnDefinition = "varchar2(20)")
+    @Column(name="customer_fax", nullable = false, columnDefinition = "varchar2(20)")
     private String fax;
 }
