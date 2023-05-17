@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Finprod {
     @Id
-    @Column(name = "finprod_id", nullable = false, columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "finprod_seq_generator")
-    @SequenceGenerator(name = "finprod_seq_generator", sequenceName = "FINPROD_SEQ", initialValue = 1, allocationSize = 1)
-    private Long id;        //완제품 고유번호
+    @Column(name = "finprod_id", nullable = false, columnDefinition = "varchar2(50)")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "finprod_seq_generator")
+//    @SequenceGenerator(name = "finprod_seq_generator", sequenceName = "FINPROD_SEQ", initialValue = 1, allocationSize = 1)
+    private String id;        //완제품 고유번호
 
     @Column(name="product_id", nullable = false, columnDefinition = "number(10)")
     private Long productId;    //제품 고유번호
