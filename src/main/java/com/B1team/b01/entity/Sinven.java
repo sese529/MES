@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Sinven {
     @Id
     @Column(name = "sinven_id", nullable = false, columnDefinition = "varchar2(50)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sinven_seq_generator")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sinven_seq_generator")
     @SequenceGenerator(name = "sinven_seq_generator", sequenceName = "sinven_seq", initialValue = 10001, allocationSize = 1)
     private String id;
 

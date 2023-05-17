@@ -15,7 +15,7 @@ public class PorderDetail {
     @Id
     @Column(name = "porder_detail_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "process_seq_generator")
-//    @SequenceGenerator(name = "process_seq_generator", sequenceName = "PROCESS_SEQ", initialValue = 10001, allocationSize = 1)
+    @SequenceGenerator(name = "process_seq_generator", sequenceName = "PROCESS_SEQ", initialValue = 10001, allocationSize = 1)
     private String id;    //발주 품목 고유번호
 
     @Column(name="porder_id", nullable = false, columnDefinition = "varchar2(50)")

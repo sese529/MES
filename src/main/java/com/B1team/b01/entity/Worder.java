@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Worder {
     @Id
     @Column(name = "worder_id", nullable = false, columnDefinition = "varchar2(50)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "worder_seq_generator")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "worder_seq_generator")
     @SequenceGenerator(name = "worder_seq_generator", sequenceName = "WORDER_SEQ", initialValue = 10001, allocationSize = 1)
     private String id;        //작업지시 고유번호
 

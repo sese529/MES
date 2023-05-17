@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Routing {
     @Id
     @Column(name = "routing_id", nullable = false, columnDefinition = "varchar2(50)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "routing_seq_generator")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "routing_seq_generator")
     @SequenceGenerator(name = "routing_seq_generator", sequenceName = "ROUTING_SEQ", initialValue = 10001, allocationSize = 1)
     private String id;        //라우팅 고유번호
 
