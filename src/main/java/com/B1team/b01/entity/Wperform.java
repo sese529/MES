@@ -15,12 +15,12 @@ import java.time.LocalDateTime;
 public class Wperform {
     @Id
     @Column(name = "wperform_id", nullable = false, columnDefinition = "varchar2(50)")
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wperform_seq_generator")
-//    @SequenceGenerator(name = "wperform_seq_generator", sequenceName = "wperform_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wperform_seq_generator")
+    @SequenceGenerator(name = "wperform_seq_generator", sequenceName = "wperform_seq", initialValue = 10001, allocationSize = 1)
     private String id;
 
-    @Column(name="wplan_id", nullable = false, columnDefinition = "number(10)")
-    private Long productId;
+    @Column(name="wplan_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String productId;
 
     @Column(name="wperform_start_date", nullable = false, columnDefinition = "date")
     private LocalDateTime startDate;
