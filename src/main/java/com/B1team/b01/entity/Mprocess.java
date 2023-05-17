@@ -20,11 +20,8 @@ public class Mprocess {
     @Column(name="process_name", nullable = false, columnDefinition = "varchar2(50)")
     private String name;    //공정명
 
-    @Column(name="process_min_cnt", nullable = false, columnDefinition = "number(10)")
-    private Long minCnt;    //최소 생산량
-
-    @Column(name="process_max_cnt", nullable = false, columnDefinition = "number(10)")
-    private Long maxCnt;    //최대 생산량
+    @Column(name="process_capa", nullable = false, columnDefinition = "number(10)")
+    private Long capa;    //최대 생산량
 
     @Column(name="facility_id", nullable = false, columnDefinition = "varchar2(50)")
     private String facilityId;    //설비 고유번호
