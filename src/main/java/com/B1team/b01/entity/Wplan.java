@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Wplan {
     @Id
-    @Column(name = "wplan_id", nullable = false, columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wplan_seq_generator")
-    @SequenceGenerator(name = "wplan_seq_generator", sequenceName = "wplan_seq", initialValue = 1, allocationSize = 1)
-    private Long id;
+    @Column(name = "wplan_id", nullable = false, columnDefinition = "varchar2(50)")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wplan_seq_generator")
+//    @SequenceGenerator(name = "wplan_seq_generator", sequenceName = "wplan_seq", initialValue = 1, allocationSize = 1)
+    private String id;
 
     @Column(name="product_id", nullable = false, columnDefinition = "number(10)")
     private Long productId;

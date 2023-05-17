@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Shipment {
     @Id
-    @Column(name = "shipment_id", nullable = false, columnDefinition = "number(10)")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "porder_seq_generator")
-    @SequenceGenerator(name = "porder_seq_generator", sequenceName = "porder_seq", initialValue = 1, allocationSize = 1)
+    @Column(name = "shipment_id", nullable = false, columnDefinition = "varchar2(50)")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "porder_seq_generator")
+//    @SequenceGenerator(name = "porder_seq_generator", sequenceName = "porder_seq", initialValue = 1, allocationSize = 1)
     //출하 고유번호
-    private Long id;
+    private String id;
 
     //완제품 고유번호
     @Column(name="worder_id", nullable = false, columnDefinition = "number(10)")
