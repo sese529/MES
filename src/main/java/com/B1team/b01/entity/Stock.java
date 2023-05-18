@@ -32,10 +32,10 @@ public class Stock {
     private String location;
 
     //잔여수량
-    @Column(name="mtr_ea", nullable = false, columnDefinition = "number(10)")
-    private Long mtrEa;
+    @Column(name="stock_ea", nullable = false, columnDefinition = "number(10)")
+    private Long stockEa;
 
     //단위
-    @Column(name="mtr_unit", nullable = false, columnDefinition = "varchar2(10)")
-    private String mtrUnit;
+    @Column(name="stock_unit", nullable = false, columnDefinition = "varchar2(10)")
+    private String stockUnit;
 }
