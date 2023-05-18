@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +54,18 @@ public class MprocessRepositoryTests {
         for(int i = 0; i < mprocesses.size(); i++)
             msg += mprocesses.get(i).toString() + "\n";
 
+        msg += "---------------------------------------\n";
+
+        LocalDateTime date = LocalDateTime.now(); //현재 시간 기준
+        for(int i = 0; i < mprocesses.size(); i++) {
+            Mprocess process = mprocesses.get(i);
+            String state = process.getName() + " 시작 시간 : ";
+            state += date + ", 종료 시간 : ";
+            if(process.getName().equals("원료계량")) {
+                date.plusMinutes(process.getLeadtime() + process.getProdtime());
+            }
+            msg += state + date + "\n";
+        }
         System.out.println(msg);
     }
 }

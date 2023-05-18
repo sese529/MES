@@ -53,7 +53,7 @@ public class MaterialsService {
     //시뮬레이션 - 작업 시간 계산
     public List<WorderDto> calculateWorderDate(LocalDateTime materialReadyDate, String productId){
         //매개변수 materialReadyDate : 모든 원자재가 준비 완료되는 시간 / productId : 제품 고유번호
-
+        LocalDateTime date = materialReadyDate;     //기준이 될 시간
         List<WorderDto> list = new ArrayList<>();   //반환할 작업지시(Worder) dto List
 
         //라우팅에서 공정 흐름 얻기
@@ -67,6 +67,11 @@ public class MaterialsService {
         //라우팅에 따른 공정 리스트 받기
         List<Mprocess> mprocesses = mprocessRepository.findAllById(producctIdlist);
 
+        //
+        for(int i = 0; i < mprocesses.size(); i++) {
+            WorderDto dto = new WorderDto();
+            dto.setStartDate(date);
+        }
 
         return list;
     }
