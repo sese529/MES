@@ -1,6 +1,9 @@
 package com.B1team.b01.Service;
 
+import com.B1team.b01.dto.WorderDto;
 import com.B1team.b01.entity.Materials;
+import com.B1team.b01.entity.Mprocess;
+import com.B1team.b01.entity.Routing;
 import com.B1team.b01.entity.Worder;
 import com.B1team.b01.repository.MaterialsRepository;
 import com.B1team.b01.repository.MprocessRepository;
@@ -48,8 +51,27 @@ public class MaterialsService {
     }
 
     //시뮬레이션 - 작업 시간 계산
-    public List<Worder> calculateWorderDate(){
-        List<Worder> list = new ArrayList<>();
+    public List<WorderDto> calculateWorderDate(LocalDateTime materialReadyDate, String productId){
+        //매개변수 materialReadyDate : 모든 원자재가 준비 완료되는 시간 / productId : 제품 고유번호
+        LocalDateTime date = materialReadyDate;     //기준이 될 시간
+        List<WorderDto> list = new ArrayList<>();   //반환할 작업지시(Worder) dto List
+
+        //라우팅에서 공정 흐름 얻기
+        List<Routing> routings = routingRepository.findByProductIdOrderByOrder(productId);
+
+        //공정Id만 list로
+        List<String> producctIdlist = new ArrayList<>();
+        for(int i = 0; i < routings.size(); i++)
+            producctIdlist.add(routings.get(i).getProcessId());
+
+        //라우팅에 따른 공정 리스트 받기
+        List<Mprocess> mprocesses = mprocessRepository.findAllById(producctIdlist);
+
+        //
+        for(int i = 0; i < mprocesses.size(); i++) {
+            WorderDto dto = new WorderDto();
+            dto.setStartDate(date);
+        }
 
         return list;
     }

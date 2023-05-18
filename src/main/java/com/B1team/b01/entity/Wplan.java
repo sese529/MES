@@ -35,5 +35,5 @@ public class Wplan {
     private LocalDateTime endDate;
 
     @Column(name="wplan_state", nullable = false, columnDefinition = "varchar2(15)")
-    private LocalDateTime state;
+    private String state;
 }
