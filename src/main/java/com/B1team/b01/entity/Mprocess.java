@@ -33,4 +33,7 @@ public class Mprocess {
 
     @Column(name="process_prod_time", nullable = false, columnDefinition = "number(10)")
     private Long prodtime;  //작업시간
+
+    @Column(name="process_time_unit", nullable = false, columnDefinition = "number(10)")
+    private Long timeUnit;  //소요시간의 기준
 }
