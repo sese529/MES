@@ -103,7 +103,7 @@ public class MprocessRepositoryTests {
             } else if(process.getName().equals("식힘")) {
                 finishDate = finishDate.plusDays(1).withHour(9).withMinute(0).withSecond(0).withNano(0);
             } else {
-                double min = process.getLeadtime() + 60 * capacity / process.getCapa();
+                double min = process.getLeadtime() + process.getTimeUnit() * capacity / process.getCapa();
                 long nanos = (long) (min * 60 * 1000000000);
                 finishDate = finishDate.plusNanos(nanos);
             }
