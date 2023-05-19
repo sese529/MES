@@ -19,8 +19,8 @@ public class Pinout {
     @SequenceGenerator(name = "pinout_seq_generator", sequenceName = "pinout_seq", initialValue = 10001, allocationSize = 1)
     private String id;
 
-    @Column(name="mtr_id", nullable = false, columnDefinition = "number(10)")
-    private Long mtrId;
+    @Column(name="mtr_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String mtrId;
 
     @Column(name="pinout_product_cnt", nullable = false, columnDefinition = "number(10)")
     private Long productCnt;
@@ -29,6 +29,6 @@ public class Pinout {
     private LocalDateTime productDate;
 
     @Column(name="pinout_sort", nullable = false, columnDefinition = "varchar2(10)")
-    private LocalDateTime sort;
+    private String sort;
 
 }
