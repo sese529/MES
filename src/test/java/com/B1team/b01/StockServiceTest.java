@@ -1,5 +1,6 @@
 package com.B1team.b01;
 
+import com.B1team.b01.Service.StockService;
 import com.B1team.b01.entity.Stock;
 import com.B1team.b01.repository.StockRepository;
 import org.junit.jupiter.api.Test;
@@ -13,20 +14,22 @@ import java.util.Optional;
 public class StockServiceTest {
     @Autowired private StockRepository stockRepository;
 
+    @Autowired private StockService stockService;
+
     @Test
     void stTest() {
 //        Optional<Stock> optional = stockRepository.findById("mtr38");
 //        Stock stock = optional.get();
 
-        List<Stock> stockList = stockRepository.findByProductIdNotNull();
-        for (Stock stock : stockList) {
-            Long stockEa = stock.getMtrEa();
-            System.out.println("개수" + stockEa);
+//        List<Stock> stockList = stockRepository.findByProductIdNotNull();
+//        for (Stock stock : stockList) {
+//
+//            Long stockEa = stock.getEa();
+//            System.out.println("개수" + stockEa);
+//
+//        }
 
-        }
-
-
-
+        stockService.stockCheck("p21","10");
     }
 
 }
