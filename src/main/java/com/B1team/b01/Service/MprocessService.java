@@ -19,7 +19,6 @@ import java.util.List;
 public class MprocessService {
     private final MprocessRepository mprocessRepository;
     private final RoutingRepository routingRepository;
-
     private final FacilityRepository facilityRepository;
 
     //시뮬레이션 - 작업 시간 계산
@@ -43,39 +42,18 @@ public class MprocessService {
         //라우팅에 따른 공정 리스트 받기
         List<Mprocess> mprocesses = mprocessRepository.findAllById(producctIdlist);
 
-        //설비명만 list로 바꾸기 + 같은 공정의 설비 개수 세기
-        List<String> facilityNameList = new ArrayList<>();  //설비명 리스트
-        for(int i = 0; i < mprocesses.size(); i++) {
-            facilityNameList.add(mprocesses.get(i).getFacilityId());
-        }
-
-        //공정에 따른 설비 리스트 받기
-        List<Facility> facilities = facilityRepository.findByNameIn(facilityNameList);
-
-        //같은 공정에서 설비 개수 세기
-        int[] facilityCnt = new int[mprocesses.size()]; //같은 공정의 설비 개수
-        int processCnt = 0;
-        String tmpStr = "";
-        for(int i = 0 ; i < facilities.size(); i++) {
-            if(tmpStr.equals(facilities.get(i).getName()))
-                facilityCnt[processCnt]++;
-            else {
-                facilityCnt[++processCnt]++;
-                tmpStr = facilities.get(i).getName();
-            }
-        }
-
         //공정별 처리
         for(int i = 0; i < mprocesses.size(); i++) {
             Mprocess process = mprocesses.get(i);   //이번 공정 정보
+            List<Facility> facilities = facilityRepository.findByName(process.getFacilityId()); //공정의 설비 정보
 
             //임시로 필요 용량 넣기
             double capacity = 0;
             switch(process.getName()) {
-                case "전처리": capacity = 1000 / facilityCnt[i]; break;  //양배추 1000kg / 설비 개수
-                case "추출": case "혼합+살균": capacity = 1600 / facilityCnt[i]; break; //양배추 추출액 1600kg / 설비 개수
-                case "충진(파우치)": case "검사": capacity = 20010 / facilityCnt[i];   //양배추즙 파우치 20010개 / 설비 개수
-                case "포장" : capacity = 667 / facilityCnt[i];   //수주받은 양배추즙 667Box / 설비 개수
+                case "전처리": capacity = 1000 / facilities.size(); break;  //양배추 1000kg / 설비 개수
+                case "추출": case "혼합+살균": capacity = 1600 / facilities.size(); break; //양배추 추출액 1600kg / 설비 개수
+                case "충진(파우치)": case "검사": capacity = 20010 / facilities.size();   //양배추즙 파우치 20010개 / 설비 개수
+                case "포장" : capacity = 667 / facilities.size();   //수주받은 양배추즙 667Box / 설비 개수
             }
 
             //이전 작업 완료 시간을 현재 공정의 작업 시작 시작으로 설정 (점심시간 & 퇴근시간 고려)
@@ -85,8 +63,10 @@ public class MprocessService {
             finishDate = calculateProcessFinishTime(startDate, process, capacity);
 
             //작업 지시 dto 추가
-            WorderDto dto = new WorderDto(process.getId(), process.getFacilityId(), startDate, finishDate);        //이번 공정의 작업지시dto
-            dtoList.add(dto);
+            for(int j = 0; j < facilities.size(); j++) {
+                WorderDto dto = new WorderDto(process.getId(), facilities.get(j).getId(), startDate, finishDate);        //이번 공정의 작업지시dto
+                dtoList.add(dto);
+            }
         }
 
         return dtoList;
@@ -109,7 +89,7 @@ public class MprocessService {
         }
     }
 
-    //시뮬레이션 - 작업 시간 계산 - 점심시간 & 퇴근시간 고려
+    //시뮬레이션 - 작업 시간 계산 - (작업 시작 시간) 점심시간 & 퇴근시간 고려
     public LocalDateTime calculateAdjustedStartTime(LocalDateTime date) {
         if (date.getHour() >= 12 && date.getHour() < 13)    //점심시간
             return date.withHour(13).withMinute(0).withSecond(0).withNano(0);
@@ -118,5 +98,14 @@ public class MprocessService {
         else if (date.getHour() >= 18)  //퇴근 시간 이후
             return date.plusDays(1).withHour(9).withMinute(0).withSecond(0).withNano(0);
         else return date;
+    }
+
+    //시뮬레이션 - 작업 시간 계산 - (작업 완료 시간) 점심시간 & 퇴근시간 고려
+    public LocalDateTime calculateAdjustedFinishTime(LocalDateTime start, LocalDateTime finish) {
+        LocalDateTime finishDate = finish;
+
+        //점심시간
+//        if(start.getHour() > )
+        return finishDate;
     }
 }

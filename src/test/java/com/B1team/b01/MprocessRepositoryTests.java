@@ -1,5 +1,6 @@
 package com.B1team.b01;
 
+import com.B1team.b01.Service.MprocessService;
 import com.B1team.b01.dto.WorderDto;
 import com.B1team.b01.entity.Facility;
 import com.B1team.b01.entity.Mprocess;
@@ -21,6 +22,7 @@ public class MprocessRepositoryTests {
     @Autowired private MprocessRepository mprocessRepository;
     @Autowired private RoutingRepository routingRepository;
     @Autowired private FacilityRepository facilityRepository;
+    @Autowired private MprocessService mprocessService;
 
     @Test
     void 공정테스트() {
@@ -148,6 +150,14 @@ public class MprocessRepositoryTests {
 
         for(int i = 0; i < worderDtos.size(); i++)
             System.out.println(worderDtos.get(i).toString());
+    }
+
+    @Test
+    void 작업시간계산테스트() {
+        LocalDateTime materialReadyDate = LocalDateTime.of(2023, 5, 24, 10, 0);
+        List<WorderDto> list = mprocessService.calculateWorderDate(materialReadyDate, "p21");
+        for(int i = 0; i < list.size(); i++)
+            System.out.println(list.get(i));
     }
 
     @Test
