@@ -26,7 +26,9 @@ public class StockService {
         Stock stock = optional.get();
 
         //재고 수량
+
         Long stockEa = stock.getEa();
+
 
         System.out.println("stockEa" +stockEa);
 

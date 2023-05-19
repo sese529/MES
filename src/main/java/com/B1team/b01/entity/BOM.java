@@ -3,6 +3,7 @@ package com.B1team.b01.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Table(name="BOM")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class BOM {
     @Id
@@ -18,6 +20,9 @@ public class BOM {
     @SequenceGenerator(name = "bom_seq_generator", sequenceName = "bom_seq", initialValue = 10001, allocationSize = 1)
     //bom 고유번호
     private String id;
+
+    @Transient
+    private static final String SEQUENCE_PREFIX = "BOM";
 
     //원자재 고유번호
     @Column(name="mtr_id", nullable = false, columnDefinition = "varchar2(50)")
@@ -34,5 +39,6 @@ public class BOM {
     //용량
     @Column(name="bom_volume", nullable = false, columnDefinition = "number(10)")
     private Long volume;
+
 
 }

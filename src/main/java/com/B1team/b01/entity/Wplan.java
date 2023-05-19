@@ -36,4 +36,5 @@ public class Wplan {
 
     @Column(name="wplan_state", nullable = false, columnDefinition = "varchar2(15)")
     private String state;
+
 }

@@ -44,7 +44,7 @@ public class Order {
     private String productId;
 
     @Column(name="order_cnt", nullable = false, columnDefinition = "number(10)")
-    private long cnt;
+    private Long cnt;
 
     @Column(name="product_name", nullable = false, columnDefinition = "varchar2(50)")
     private String productName;

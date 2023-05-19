@@ -21,6 +21,7 @@ public class StockServiceTest {
 //        Optional<Stock> optional = stockRepository.findById("mtr38");
 //        Stock stock = optional.get();
 
+
 //        List<Stock> stockList = stockRepository.findByProductIdNotNull();
 //        for (Stock stock : stockList) {
 //
@@ -28,6 +29,10 @@ public class StockServiceTest {
 //            System.out.println("개수" + stockEa);
 //
 //        }
+
+
+
+
 
         stockService.stockCheck("p21","10");
     }
