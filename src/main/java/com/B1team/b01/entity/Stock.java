@@ -3,6 +3,7 @@ package com.B1team.b01.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Table(name="STOCK")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class Stock {
     @Id
@@ -38,4 +40,6 @@ public class Stock {
     //단위
     @Column(name="stock_unit", nullable = false, columnDefinition = "varchar2(10)")
     private String unit;
+
+
 }
