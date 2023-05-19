@@ -20,7 +20,7 @@ public class StockServiceTest {
 
         List<Stock> stockList = stockRepository.findByProductIdNotNull();
         for (Stock stock : stockList) {
-            Long stockEa = stock.getMtrEa();
+            Long stockEa = stock.getEa();
             System.out.println("개수" + stockEa);
 
         }

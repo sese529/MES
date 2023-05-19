@@ -3,10 +3,13 @@ package com.B1team.b01.repository;
 import com.B1team.b01.dto.BomDto;
 import com.B1team.b01.entity.BOM;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface BomRepository extends JpaRepository<BOM, String> {
-    List<BOM> findByProductId(String pid);
+    @Query("select b from BOM b where b.productId= :id and b.mtrId not in('MTR44')")
+    List<BOM> findPID(@Param("id") String pid);
 
 }

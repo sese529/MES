@@ -19,7 +19,7 @@ public class StockService {
         Stock stock = optional.get();
 
         //재고 수량
-        Long stockMtrEa = stock.getMtrEa();
+        Long stockMtrEa = stock.getEa();
 
 //        //수주 주문 수량
 //        poderCnt =
