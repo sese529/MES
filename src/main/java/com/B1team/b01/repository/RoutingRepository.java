@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface RoutingRepository extends JpaRepository<Routing, String> {
     List<Routing> findByProductIdOrderByOrder(String productId);
+
 }
