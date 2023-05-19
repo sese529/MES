@@ -84,6 +84,7 @@ public class MprocessService {
             //작업 완료 시간 세팅
             finishDate = calculateProcessFinishTime(startDate, process, capacity);
 
+            //작업 지시 dto 추가
             WorderDto dto = new WorderDto(process.getId(), process.getFacilityId(), startDate, finishDate);        //이번 공정의 작업지시dto
             dtoList.add(dto);
         }
