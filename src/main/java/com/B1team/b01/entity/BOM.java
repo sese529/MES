@@ -19,6 +19,9 @@ public class BOM {
     //bom 고유번호
     private String id;
 
+    @Transient
+    private static final String SEQUENCE_PREFIX = "BOM";
+
     //원자재 고유번호
     @Column(name="mtr_id", nullable = false, columnDefinition = "varchar2(50)")
     private String mtrId;
@@ -34,5 +37,6 @@ public class BOM {
     //용량
     @Column(name="bom_volume", nullable = false, columnDefinition = "number(10)")
     private Long volume;
+
 
 }
