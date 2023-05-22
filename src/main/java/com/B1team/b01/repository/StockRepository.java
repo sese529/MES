@@ -15,5 +15,5 @@ public interface StockRepository extends JpaRepository<Stock, String> {
     Stock findByMtrId(String mtrId);
 //    List<Stock> findByProductIdNotNull();
     Stock findByProductId(String productId);
-    
+
 }

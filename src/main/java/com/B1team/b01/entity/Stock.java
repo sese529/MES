@@ -40,6 +40,4 @@ public class Stock {
     //단위
     @Column(name="stock_unit", nullable = false, columnDefinition = "varchar2(10)")
     private String unit;
-
-
 }

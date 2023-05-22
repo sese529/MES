@@ -42,6 +42,7 @@ public class StockController {
 
 
 
+
 //
 //        model.addAllAttributes()
         return "test";
