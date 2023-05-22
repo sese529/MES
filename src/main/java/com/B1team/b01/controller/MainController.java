@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-    @GetMapping("/order")
-    public String order(Model model) {
-
-        return "order";
-    }
+    //수주 페이지 분리하면서 주석 처리
+//    @GetMapping("/order")
+//    public String order(Model model) {
+//
+//        return "rorder/order";
+//    }
 
     @GetMapping("/placeAnOrderStatus")
     public String placeAnOrderStatus() {
@@ -62,14 +63,15 @@ public class MainController {
         return "stock";
     }
 
-    @GetMapping("/facilityStatus")
-    public String facilityStatus() {
-        return "facilityStatus";
-    }
-
-    @GetMapping("/facilityInformation")
-    public String facilityInformation() {
-        return "facilityInformation";
-    }
+    //설비 페이지 분리하면서 주석 처리
+//    @GetMapping("/facilityStatus")
+//    public String facilityStatus() {
+//        return "facilityStatus";
+//    }
+//
+//    @GetMapping("/facilityInformation")
+//    public String facilityInformation() {
+//        return "facilityInformation";
+//    }
 
 }

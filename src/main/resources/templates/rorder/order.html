@@ -159,7 +159,7 @@
                                 </div>
 
                                 <!-- regSearchbar -->
-                                <form action="/search" method="get">
+                                <form th:action="@{/order}" method="get">
                                     <div class="regSearchbar">
                                         <table class="table table-borderless" id="dataTable" width="100%"
                                             cellspacing="0">
@@ -414,8 +414,9 @@
                 </div>
                 <!-- End of Topbar -->
 
+<!--        일반 검색 조건 영역 시작        -->
                 <!-- searchbar  -->
-                <form action="/search" methbod="get" class="searchbarForm">
+                <form th:action="@{/order/}" methbod="get" class="searchbarForm">
                     <div class="searchbar">
                         <table class="table table-borderless" id="dataTable" cellspacing="0">
                             <tr class="searchbarTr1">
@@ -424,15 +425,15 @@
                                 </td>
                                 <td class="searchbarContent">
                                     <div class="searchbarDate">
-                                        <input type="date">
+                                        <input type="date" name="startDate" th:value="${startDate}">
                                         <p class="searchbarDateWater">~</p>
-                                        <input type="date">
+                                        <input type="date" name="endDate" th:value="${endDate}">
                                     </div>
                                 <td class="searchbarDateTd">
                                     <p>수주번호</p>
                                 </td>
                                 <td class="searchbarContent">
-                                    <input type="text">
+                                    <input type="text" name="orderId" th:value="${orderId}">
                                 </td>
                                 <td class="searchbarDateTd">
                                     <p>진행상태</p>
@@ -503,13 +504,13 @@
                                 </td>
                                 <td class="searchbarContent">
                                     <div class="searchbarDate">
-                                        <input type="date">
+                                        <input type="date" name="startDeadline" th:value="${startDeadline}">
                                         <p class="searchbarDateWater">~</p>
-                                        <input type="date">
+                                        <input type="date" name="endDeadline" th:value="${endDeadline}">
                                     </div>
                                 </td>
                                 <td class="searchButtonTd">
-                                    <button class="searchButton">
+                                    <button class="searchButton" type="submit">
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                         <p class="searchButtonP">조회</p>
                                     </button>
@@ -540,41 +541,21 @@
                                         <th>수주 금액</th>
                                     </tr>
                                 </thead>
+                <!--  리스트 내용 영역 시작  -->
                                 <tbody class="tableBody">
-                                    <tr>
+                                    <tr th:each="rorder : ${rorderList}">
                                         <td><input type="checkbox"></td>
-                                        <td>2022-05-01 11:30</td>
-                                        <td>G215483126</td>
-                                        <td>진행전</td>
-                                        <td>매출처1</td>
-                                        <td>양배추즙</td>
-                                        <td>2022-05-01 11:30</td>
-                                        <td>50</td>
-                                        <td>1,000,000,000</td>
-                                    </tr>
-                                    <tr class="tableBodyTr">
-                                        <td><input type="checkbox"></td>
-                                        <td>2022-05-01 11:30</td>
-                                        <td>G215483126</td>
-                                        <td>진행중</td>
-                                        <td>매출처1</td>
-                                        <td>석류젤리</td>
-                                        <td>2022-05-01 11:30</td>
-                                        <td>100</td>
-                                        <td>1,000,000,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>2022-05-01 11:30</td>
-                                        <td>G215483126</td>
-                                        <td>완료</td>
-                                        <td>매출처1</td>
-                                        <td>흑마늘즙</td>
-                                        <td>2022-05-01 11:30</td>
-                                        <td>70</td>
-                                        <td>1,000,000,000</td>
+                                        <td th:text="${rorder.date}">2022-05-01 11:30</td>
+                                        <td th:text="${rorder.id}">G215483126</td>
+                                        <td th:text="${rorder.state}">진행전</td>
+                                        <td th:text="${rorder.customerName}">매출처1</td>
+                                        <td th:text="${rorder.productName}">양배추즙</td>
+                                        <td th:text="${rorder.deadline}">2022-05-01 11:30</td>
+                                        <td th:text="${rorder.cnt}">50</td>
+                                        <td th:text="${rorder.price}">1,000,000,000</td>
                                     </tr>
                                 </tbody>
+                <!--  리스트 내용 영역 끝  -->
                             </table>
                         </div>
                     </div>
