@@ -26,7 +26,7 @@ public class Mprocess {
     private Long capa;    //최대 생산량
 
     @Column(name="facility_id", nullable = false, columnDefinition = "varchar2(50)")
-    private String facilityId;    //설비 고유번호
+    private String facilityId;    //설비 고유번호 -> 설비명(액상추출, 액상스틱포장 등등)
 
     @Column(name="process_leadtime", nullable = false, columnDefinition = "number(10)")
     private Long leadtime;  //리드타임

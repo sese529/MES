@@ -48,6 +48,15 @@ public class WplanService {
 
     }
 
+    //문자열 시퀀스 메소드
+    @Transactional
+    public String generateId(String head, String seqName) {
+        BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT " + seqName + ".NEXTVAL FROM dual").getSingleResult();
+        String id = head + sequenceValue;
+        return id;
+
+    }
+
 
     //작성계획 등록메소드
     public void createWplan(RorderDto rorderDto) {
