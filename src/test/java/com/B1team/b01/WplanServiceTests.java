@@ -29,17 +29,17 @@ public class WplanServiceTests {
     public void testResister(){
 
         RorderDto rorderDto = RorderDto.builder()
-                .id("10")
+                .id("11")
                 .changedate(LocalDateTime.now())
                 .cnt(1L)
                 .customerId("PCU13")
                 .customerName("싱싱농장")
-                .date(LocalDateTime.now())
+                .date(LocalDateTime.parse("2023-05-18T12:18:00"))
                 .deadline(LocalDateTime.now())
                 .price(9000L)
                 .productId("P21")
                 .productName("양배추즙")
-                .state("테스트중")
+                .state("진행중")
                 .build();
 
 

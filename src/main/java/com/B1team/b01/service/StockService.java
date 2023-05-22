@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
-@Transactional
+
 public class StockService {
     @Autowired
     private StockRepository stockRepository;
