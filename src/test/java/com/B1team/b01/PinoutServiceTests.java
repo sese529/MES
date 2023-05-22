@@ -1,6 +1,6 @@
 package com.B1team.b01;
 
-import com.B1team.b01.Service.PinoutService;
+import com.B1team.b01.service.PinoutService;
 import com.B1team.b01.dto.PinoutDto;
 import com.B1team.b01.entity.Pinout;
 import org.junit.jupiter.api.Test;

@@ -20,7 +20,7 @@ public class Wperform {
     private String id;
 
     @Column(name="wplan_id", nullable = false, columnDefinition = "varchar2(50)")
-    private String productId;
+    private String wplanId;
 
     @Column(name="wperform_start_date", nullable = false, columnDefinition = "date")
     private LocalDateTime startDate;

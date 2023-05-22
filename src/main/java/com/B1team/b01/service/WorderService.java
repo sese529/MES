@@ -1,4 +1,4 @@
-package com.B1team.b01.Service;
+package com.B1team.b01.service;
 
 
 import com.B1team.b01.dto.WorderDto;
@@ -59,11 +59,11 @@ public class WorderService {
         if (result.isPresent()) {
 
             worderDto.setId(makeStringId()); //문자열 시퀀스 추가
-            worderDto.setProcessId(worderDto.processId);
-            worderDto.setWplanId(worderDto.wplanId);
-            worderDto.setFacilityId(worderDto.facilityId);
-            worderDto.setStartDate(worderDto.startDate);
-            worderDto.setFinishDate(worderDto.finishDate);
+            worderDto.setProcessId(worderDto.getProcessId());
+            worderDto.setWplanId(worderDto.getWplanId());
+            worderDto.setFacilityId(worderDto.getFacilityId());
+            worderDto.setStartDate(worderDto.getStartDate());
+            worderDto.setFinishDate(worderDto.getFinishDate());
 
             worderRepository.save((worderDto.toEntity()));
 

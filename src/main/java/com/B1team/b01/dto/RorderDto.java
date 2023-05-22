@@ -13,17 +13,17 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class RorderDto {
 
-    public String id;
-    public LocalDateTime date;
-    public String customerId;
-    public String customerName;
-    public LocalDateTime deadline;
-    public Long price;
-    public String state;
-    public LocalDateTime changedate;
-    public String productId;
-    public Long cnt;
-    public String productName;
+    private String id;
+    private LocalDateTime date;
+    private String customerId;
+    private String customerName;
+    private LocalDateTime deadline;
+    private Long price;
+    private String state;
+    private LocalDateTime changedate;
+    private String productId;
+    private Long cnt;
+    private String productName;
 
 
     private static ModelMapper modelMapper = new ModelMapper(); //엔티티랑 dto의 필드명이 같은 것끼리 매핑
@@ -39,8 +39,3 @@ public class RorderDto {
         return modelMapper.map(this, Rorder.class);
     }
 }
-
-/*
-
-1.
- */

@@ -1,6 +1,6 @@
 package com.B1team.b01;
 
-import com.B1team.b01.Service.WorderService;
+import com.B1team.b01.service.WorderService;
 import com.B1team.b01.dto.WorderDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
