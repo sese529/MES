@@ -10,6 +10,7 @@ import com.B1team.b01.repository.RoutingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +62,13 @@ public class MprocessService {
 
             //작업 완료 시간 세팅
             finishDate = calculateProcessFinishTime(startDate, process, capacity);
+
+            //주말 판정
+            for(LocalDateTime start = startDate; start.isBefore(finishDate) || start.isEqual(finishDate); start = start.plusDays(1)) {
+                if (start.getDayOfWeek() == DayOfWeek.SATURDAY || start.getDayOfWeek() == DayOfWeek.SUNDAY) {
+                    finishDate.plusDays(1);
+                }
+            }
 
             //작업 지시 dto 추가
             for(int j = 0; j < facilities.size(); j++) {
