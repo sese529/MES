@@ -12,6 +12,10 @@ public class MainController {
 //        return "rorder/order";
 //    }
 
+    //test용 get매핑
+    @GetMapping("/")
+    public String mainPage() { return "main"; }
+
     @GetMapping("/placeAnOrderStatus")
     public String placeAnOrderStatus() {
         return "placeAnOrderStatus";
