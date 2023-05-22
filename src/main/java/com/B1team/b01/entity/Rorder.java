@@ -3,6 +3,7 @@ package com.B1team.b01.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Table(name="RORDER")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class Rorder {
     @Id
