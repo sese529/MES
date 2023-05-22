@@ -1,15 +1,12 @@
-package com.B1team.b01.Service;
+package com.B1team.b01.service;
 
-import com.B1team.b01.dto.BomDto;
 import com.B1team.b01.dto.NeedOrderDto;
-import com.B1team.b01.dto.StockDto;
 import com.B1team.b01.entity.BOM;
 import com.B1team.b01.entity.Stock;
 import com.B1team.b01.repository.BomRepository;
 import com.B1team.b01.repository.StockRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 @RequiredArgsConstructor
