@@ -14,7 +14,8 @@ import javax.transaction.Transactional;
 public class RorderController {
     @GetMapping("/")
     public String order() {
-        return "rorder/order";
+
+        return "/rorder/order";
     }
 
 }
