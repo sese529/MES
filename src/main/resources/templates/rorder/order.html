@@ -159,7 +159,7 @@
                                 </div>
 
                                 <!-- regSearchbar -->
-                                <form action="/search" method="get">
+                                <form th:action="@{/order}" method="get">
                                     <div class="regSearchbar">
                                         <table class="table table-borderless" id="dataTable" width="100%"
                                             cellspacing="0">
@@ -432,7 +432,7 @@
                                     <p>수주번호</p>
                                 </td>
                                 <td class="searchbarContent">
-                                    <input type="text">
+                                    <input type="text" name="orderId">
                                 </td>
                                 <td class="searchbarDateTd">
                                     <p>진행상태</p>
@@ -509,7 +509,7 @@
                                     </div>
                                 </td>
                                 <td class="searchButtonTd">
-                                    <button class="searchButton">
+                                    <button class="searchButton" type="submit">
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                         <p class="searchButtonP">조회</p>
                                     </button>
@@ -553,28 +553,6 @@
                                         <td th:text="${rorder.cnt}">50</td>
                                         <td th:text="${rorder.price}">1,000,000,000</td>
                                     </tr>
-<!--                                    <tr class="tableBodyTr">-->
-<!--                                        <td><input type="checkbox"></td>-->
-<!--                                        <td>2022-05-01 11:30</td>-->
-<!--                                        <td>G215483126</td>-->
-<!--                                        <td>진행중</td>-->
-<!--                                        <td>매출처1</td>-->
-<!--                                        <td>석류젤리</td>-->
-<!--                                        <td>2022-05-01 11:30</td>-->
-<!--                                        <td>100</td>-->
-<!--                                        <td>1,000,000,000</td>-->
-<!--                                    </tr>-->
-<!--                                    <tr>-->
-<!--                                        <td><input type="checkbox"></td>-->
-<!--                                        <td>2022-05-01 11:30</td>-->
-<!--                                        <td>G215483126</td>-->
-<!--                                        <td>완료</td>-->
-<!--                                        <td>매출처1</td>-->
-<!--                                        <td>흑마늘즙</td>-->
-<!--                                        <td>2022-05-01 11:30</td>-->
-<!--                                        <td>70</td>-->
-<!--                                        <td>1,000,000,000</td>-->
-<!--                                    </tr>-->
                                 </tbody>
                                 <!--  리스트 내용 영역 끝  -->
                             </table>
