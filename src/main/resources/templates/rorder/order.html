@@ -433,7 +433,7 @@
                                     <p>수주번호</p>
                                 </td>
                                 <td class="searchbarContent">
-                                    <input type="text" name="orderId">
+                                    <input type="text" name="orderId" th:value="${orderId}">
                                 </td>
                                 <td class="searchbarDateTd">
                                     <p>진행상태</p>
@@ -504,9 +504,9 @@
                                 </td>
                                 <td class="searchbarContent">
                                     <div class="searchbarDate">
-                                        <input type="date">
+                                        <input type="date" name="startDeadline" th:value="${startDeadline}">
                                         <p class="searchbarDateWater">~</p>
-                                        <input type="date">
+                                        <input type="date" name="endDeadLine" th:value="${endDeadLine}">
                                     </div>
                                 </td>
                                 <td class="searchButtonTd">

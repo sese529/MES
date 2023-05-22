@@ -1,7 +1,9 @@
 
 package com.B1team.b01.controller;
 
+import com.B1team.b01.dto.CustomerDto;
 import com.B1team.b01.dto.RorderDto;
+import com.B1team.b01.repository.CustomerRepository;
 import com.B1team.b01.service.RorderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import java.util.List;
 @RequestMapping("/order")
 public class RorderController {
     private final RorderService rorderService;
+    private final CustomerRepository customerRepository;
 
     @GetMapping("")
     public String order(Model model,
@@ -39,6 +42,11 @@ public class RorderController {
         LocalDateTime startDeadLineDate = startDeadline == null ? null : LocalDate.parse(startDeadline, formatter).atStartOfDay();
         LocalDateTime endDeadLineDate = endDeadLine == null ? null : LocalDate.parse(endDeadLine, formatter).atTime(23, 59, 59);
 
+        //거래처 리스트
+        List<CustomerDto> customerDtoList = CustomerDto.of(customerRepository.findAll());
+        model.addAttribute("customerDtoList", customerDtoList);
+
+        //기본 수주 조회 리스트
         List<RorderDto> list = rorderService.searchRorder(start, end, orderId, customerName, productName, startDeadLineDate, endDeadLineDate);
 
         model.addAttribute("rorderList", list);
