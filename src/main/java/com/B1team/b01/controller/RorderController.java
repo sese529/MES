@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,14 +24,14 @@ public class RorderController {
 
     @GetMapping("/")
     public String order(Model model,
-                        LocalDateTime startDate,
-                        LocalDateTime endDate,
+                        LocalDate startDate,
+                        LocalDate endDate,
                         String orderId,
                         String customerName,
                         String productName,
                         LocalDateTime startDeadline,
                         LocalDateTime endDeadLine) {
-        List<RorderDto> list = rorderService.searchRorder(startDate, endDate, orderId, customerName, productName, startDeadline, endDeadLine);
+        List<RorderDto> list = rorderService.searchRorder(startDate.atStartOfDay(), endDate.atTime(23, 59, 59), orderId, customerName, productName, startDeadline, endDeadLine);
         model.addAttribute("rorderList", list);
         return "rorder/order";
     }
