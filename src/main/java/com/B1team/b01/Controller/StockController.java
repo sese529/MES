@@ -1,13 +1,9 @@
-package com.B1team.b01.Controller;
+package com.B1team.b01.controller;
 
-import com.B1team.b01.Service.BomService;
-import com.B1team.b01.Service.StockService;
-import com.B1team.b01.entity.Order;
-import com.B1team.b01.entity.Stock;
-import com.B1team.b01.repository.OrderRepository;
+import com.B1team.b01.service.BomService;
+import com.B1team.b01.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Controller
 @Transactional
