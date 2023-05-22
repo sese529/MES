@@ -3,6 +3,7 @@ package com.B1team.b01.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class Order {
     @SequenceGenerator(name = "order_seq_generator", sequenceName = "order_seq", initialValue = 10001, allocationSize = 1)
     private String id;
 
+    @CreatedDate
     @Column(name="order_date", nullable = false, columnDefinition = "date")
     private LocalDateTime date;
 
