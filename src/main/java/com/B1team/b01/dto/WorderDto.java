@@ -34,11 +34,13 @@ public class WorderDto {
         return modelMapper.map(this, Worder.class);
     }
 
+
     public WorderDto(String processId, String facilityId, LocalDateTime startDate, LocalDateTime finishDate) {
         this.processId = processId;
         this.facilityId = facilityId;
         this.startDate = startDate;
         this.finishDate = finishDate;
     }
+
 
 }
