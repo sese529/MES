@@ -31,7 +31,9 @@ public class RorderController {
                         String productName,
                         LocalDateTime startDeadline,
                         LocalDateTime endDeadLine) {
-        List<RorderDto> list = rorderService.searchRorder(startDate.atStartOfDay(), endDate.atTime(23, 59, 59), orderId, customerName, productName, startDeadline, endDeadLine);
+        LocalDateTime start = startDate == null ? null : startDate.atStartOfDay();
+        LocalDateTime end = endDate == null ? null : endDate.atTime(23, 59, 59);
+        List<RorderDto> list = rorderService.searchRorder(start, end, orderId, customerName, productName, startDeadline, endDeadLine);
         model.addAttribute("rorderList", list);
         return "rorder/order";
     }
