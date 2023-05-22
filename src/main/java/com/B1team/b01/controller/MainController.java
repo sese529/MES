@@ -63,14 +63,15 @@ public class MainController {
         return "stock";
     }
 
-    @GetMapping("/facilityStatus")
-    public String facilityStatus() {
-        return "facilityStatus";
-    }
-
-    @GetMapping("/facilityInformation")
-    public String facilityInformation() {
-        return "facilityInformation";
-    }
+    //설비 페이지 분리하면서 주석 처리
+//    @GetMapping("/facilityStatus")
+//    public String facilityStatus() {
+//        return "facilityStatus";
+//    }
+//
+//    @GetMapping("/facilityInformation")
+//    public String facilityInformation() {
+//        return "facilityInformation";
+//    }
 
 }
