@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -13,7 +15,16 @@ public class RorderRepositoryTests {
     @Autowired private RorderRepository rorderRepository;
     @Test
     void 수주검색테스트() {
-        List<Rorder> list = rorderRepository.findRordersByConditions(null, null, "10", null);
+        //검색 조건
+        LocalDateTime startDate = null;
+        LocalDateTime endDate = null;
+        String orderId = null;
+        String customerName = null;
+        String productName = null;
+        LocalDateTime startDeadline = LocalDateTime.of(2023, 05, 25, 0, 0, 0, 0);
+        LocalDateTime endDeadLine = LocalDateTime.of(2023, 05, 25, 23, 59, 59, 0);
+
+        List<Rorder> list = rorderRepository.findRordersByConditions(startDate, endDate, orderId, customerName, productName, startDeadline, endDeadLine);
         for(int i = 0; i < list.size(); i++)
             System.out.println(list.get(i));
     }
