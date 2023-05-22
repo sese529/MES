@@ -10,7 +10,7 @@
 
   <!-- Custom styles for this template-->
   <link href="/css/css.css" rel="stylesheet">
-  <title>생산 계획 현황</title>
+  <title>생산 지시 현황</title>
 </head>
 
 <body>
@@ -145,7 +145,7 @@
 
           <!-- Topbar -->
           <div class="topbar">
-            <h1 class="h4">생산관리 > 작업 계획 현황</h1>
+            <h1 class="h4">생산관리 > 작업 지시 현황</h1>
             <div class="Buttons">
               <button class="ButtonsEx" onclick="openPopupEx()">엑셀다운로드</button>
             </div>
@@ -156,11 +156,11 @@
           <form action="/search" methbod="get" class="searchbarForm">
             <div class="searchbar">
               <table class="table table-borderless" id="dataTables" cellspacing="0">
-                <tr class="searchbarTr2">
-                  <td class="orderTd">
+                <tr class="searchbarTr3">
+                  <td class="orderTd2">
                     <p>품목</p>
                   </td>
-                  <td class="orderContent">
+                  <td class="orderContent2">
                     <nav class="navbar navbar-expand" id="dropdownPro">
                       <ul class="navbar-nav ml-auto">
                         <li class="dropdown">
@@ -177,17 +177,52 @@
                       </ul>
                     </nav>
                   </td>
-                  <td class="orderTd">
-                    <p>수주번호</p>
+                  <td class="orderTd2">
+                    <p>공정 코드</p>
                   </td>
-                  <td class="orderContent">
-                    <input type="text">
+                  <td class="orderContent2">
+                    <nav class="navbar navbar-expand" id="dropdownPro">
+                      <ul class="navbar-nav ml-auto">
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">공정 코드</a>
+                          <div class="dropdown-menu dropdown-menu-right animated--grow-in"
+                            aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">· A1</a>
+                            <a class="dropdown-item" href="#">· A2</a>
+                            <a class="dropdown-item" href="#">· A3</a>
+                            <a class="dropdown-item" href="#">· A4</a>
+                            <a class="dropdown-item" href="#">· A5</a>
+                            <a class="dropdown-item" href="#">· A6</a>
+                          </div>
+                        </li>
+                      </ul>
+                    </nav>
                   </td>
-                  <td class="orderTd">
+                  <td class="orderTd2">
+                    <p>상태</p>
+                  </td>
+                  <td class="orderContent2">
+                    <nav class="navbar navbar-expand" id="dropdownPro">
+                      <ul class="navbar-nav ml-auto">
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">상태</a>
+                          <div class="dropdown-menu dropdown-menu-right animated--grow-in"
+                            aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">· 작업대기</a>
+                            <a class="dropdown-item" href="#">· 진행중</a>
+                            <a class="dropdown-item" href="#">· 완료</a>
+                          </div>
+                        </li>
+                      </ul>
+                    </nav>
+                  </td>
+                  <td class="orderTd2">
                     <p>계획 일자</p>
                   </td>
-                  <td class="orderContent">
-                    <div class="orderDate">
+                  <td class="orderContent2">
+                    <div class="orderDate2">
                       <input type="date">
                       <p class="orderDateWater">~</p>
                       <input type="date">
@@ -216,33 +251,117 @@
                   <thead class="tableTitle">
                     <tr>
                       <th>품목코드</th>
-                      <th>수주번호</th>
-                      <th>계획수량</th>
-                      <th>계획일자</th>
+                      <th>공정코드</th>
+                      <th>작업계획코드</th>
+                      <th>설비코드</th>
                       <th>상태</th>
+                      <th>작업완료일자</th>
                     </tr>
                   </thead>
                   <tbody class="tableBody">
                     <tr>
-                      <td>P78925</td>
-                      <td>G215483126</td>
-                      <td>50</td>
+                      <td>P78925_03</td>
+                      <td>A6</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>작업대기</td>
                       <td>2022-05-01 11:30</td>
-                      <td>진행대기</td>
                     </tr>
                     <tr class="tableBodyTr">
-                      <td>P78925</td>
-                      <td>G215483126</td>
-                      <td>100</td>
+                      <td>P78925_03</td>
+                      <td>A5</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>작업대기</td>
                       <td>2022-05-01 11:30</td>
-                      <td>진행중</td>
                     </tr>
                     <tr>
-                      <td>P78925</td>
-                      <td>G215483126</td>
-                      <td>69</td>
+                      <td>P78925_03</td>
+                      <td>A4</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>작업대기</td>
                       <td>2022-05-01 11:30</td>
-                      <td>진행완료</td>
+                    </tr>
+                    <tr class="tableBodyTr">
+                      <td>P78925_03</td>
+                      <td>A3</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>진행중</td>
+                      <td>2022-05-01 11:30</td>
+                    </tr>
+                    <tr>
+                      <td>P78925_03</td>
+                      <td>A2</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>진행중</td>
+                      <td>2022-05-01 11:30</td>
+                    </tr>
+                    <tr class="tableBodyTr">
+                      <td>P78925_03</td>
+                      <td>A3</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>진행중</td>
+                      <td>2022-05-01 11:30</td>
+                    </tr>
+                    <tr>
+                      <td>P78925_03</td>
+                      <td>A1</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>완료</td>
+                      <td>2022-05-01 11:30</td>
+                    </tr>
+                    <tr class="tableBodyTr">
+                      <td>P78925_03</td>
+                      <td>A5</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>완료</td>
+                      <td>2022-05-01 11:30</td>
+                    </tr>
+                    <tr>
+                      <td>P78925_03</td>
+                      <td>A4</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>완료</td>
+                      <td>2022-05-01 11:30</td>
+                    </tr>
+                    <tr class="tableBodyTr">
+                      <td>P78925_03</td>
+                      <td>A5</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>완료</td>
+                      <td>2022-05-01 11:30</td>
+                    </tr>
+                    <tr>
+                      <td>P78925_03</td>
+                      <td>A4</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>완료</td>
+                      <td>2022-05-01 11:30</td>
+                    </tr>
+                    <tr class="tableBodyTr">
+                      <td>P78925_03</td>
+                      <td>A5</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>완료</td>
+                      <td>2022-05-01 11:30</td>
+                    </tr>
+                    <tr>
+                      <td>P78925_03</td>
+                      <td>A4</td>
+                      <td>WP202304270925</td>
+                      <td>Text</td>
+                      <td>완료</td>
+                      <td>2022-05-01 11:30</td>
                     </tr>
                   </tbody>
                 </table>

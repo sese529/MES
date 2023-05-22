@@ -9,8 +9,8 @@
     rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="/css/css.css" rel="stylesheet">
-  <title>생산 계획 현황</title>
+  <link href=/css/sb-admin-2.min.css" rel="stylesheet">
+  <title>작업 실적 현황</title>
 </head>
 
 <body>
@@ -145,10 +145,7 @@
 
           <!-- Topbar -->
           <div class="topbar">
-            <h1 class="h4">생산관리 > 작업 계획 현황</h1>
-            <div class="Buttons">
-              <button class="ButtonsEx" onclick="openPopupEx()">엑셀다운로드</button>
-            </div>
+            <h1 class="h4">생산관리 > 작업 실적 현황</h1>
           </div>
           <!-- End of Topbar -->
 
@@ -165,26 +162,26 @@
                       <ul class="navbar-nav ml-auto">
                         <li class="dropdown">
                           <a class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">품목 코드</a>
+                            aria-haspopup="true" aria-expanded="false">품목명</a>
                           <div class="dropdown-menu dropdown-menu-right animated--grow-in"
                             aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">· P78925</a>
-                            <a class="dropdown-item" href="#">· P78924</a>
-                            <a class="dropdown-item" href="#">· P78923</a>
-                            <a class="dropdown-item" href="#">· P78922</a>
+                            <a class="dropdown-item" href="#">· 양배추즙</a>
+                            <a class="dropdown-item" href="#">· 흑마늘즙</a>
+                            <a class="dropdown-item" href="#">· 매실젤리</a>
+                            <a class="dropdown-item" href="#">· 석류젤리</a>
                           </div>
                         </li>
                       </ul>
                     </nav>
                   </td>
                   <td class="orderTd">
-                    <p>수주번호</p>
+                    <p>수주 번호</p>
                   </td>
                   <td class="orderContent">
                     <input type="text">
                   </td>
                   <td class="orderTd">
-                    <p>계획 일자</p>
+                    <p>생산 기간</p>
                   </td>
                   <td class="orderContent">
                     <div class="orderDate">
@@ -215,34 +212,34 @@
                 <table class="table table-borderless" id="dataTables" width="100%" cellspacing="0">
                   <thead class="tableTitle">
                     <tr>
-                      <th>품목코드</th>
+                      <th>품목명</th>
                       <th>수주번호</th>
                       <th>계획수량</th>
-                      <th>계획일자</th>
-                      <th>상태</th>
+                      <th>작업시작일자</th>
+                      <th>작업완료일자</th>
                     </tr>
                   </thead>
                   <tbody class="tableBody">
                     <tr>
-                      <td>P78925</td>
+                      <td>P78925_03</td>
                       <td>G215483126</td>
                       <td>50</td>
                       <td>2022-05-01 11:30</td>
-                      <td>진행대기</td>
+                      <td>2022-05-03 11:30</td>
                     </tr>
                     <tr class="tableBodyTr">
-                      <td>P78925</td>
+                      <td>P78925_02</td>
                       <td>G215483126</td>
                       <td>100</td>
                       <td>2022-05-01 11:30</td>
-                      <td>진행중</td>
+                      <td>2022-05-03 11:30</td>
                     </tr>
                     <tr>
-                      <td>P78925</td>
+                      <td>P78925_01</td>
                       <td>G215483126</td>
                       <td>69</td>
                       <td>2022-05-01 11:30</td>
-                      <td>진행완료</td>
+                      <td>2022-05-03 11:30</td>
                     </tr>
                   </tbody>
                 </table>
@@ -267,23 +264,23 @@
       <!-- End of Content Wrapper -->
 
       <!-- Bootstrap core JavaScript-->
-      <script src="/js/reg.js"></script>
+      <script src="js/Reg.js"></script>
       <!-- <script src="js/Cor.js"></script> -->
-      <script src="/js/jquery.min.js"></script>
-      <script src="/js/bootstrap.bundle.min.js"></script>
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
       <!-- Core plugin JavaScript-->
-      <script src="/js/jquery.easing.min.js"></script>
+      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
       <!-- Custom scripts for all pages-->
-      <script src="/js/sb-admin-2.min.js"></script>
+      <script src="js/sb-admin-2.min.js"></script>
 
       <!-- Page level plugins -->
-      <script src="/js/Chart.min.js"></script>
+      <script src="vendor/chart.js/Chart.min.js"></script>
 
       <!-- Page level custom scripts -->
-      <script src="/js/chart-area-demo.js"></script>
-      <script src="/js/chart-pie-demo.js"></script>
+      <script src="js/demo/chart-area-demo.js"></script>
+      <script src="js/demo/chart-pie-demo.js"></script>
   </body>
 
 </html>
