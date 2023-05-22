@@ -14,10 +14,8 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 @RequestMapping("/order")
 public class RorderController {
-    @GetMapping("/rorder")
-    public String orderMap() {
-        System.out.println("d");
-
-        return "/rorder/order";
+    @GetMapping("/")
+    public String order() {
+        return "rorder/order";
     }
 }
