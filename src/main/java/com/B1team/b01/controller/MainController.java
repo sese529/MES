@@ -6,70 +6,70 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-    @GetMapping("/order")
+    @GetMapping("/rorder/order")
     public String order(Model model) {
 
-        return "order";
+        return "/rorder/order";
     }
 
-    @GetMapping("/placeAnOrderStatus")
+    @GetMapping("/materials/porder-status")
     public String placeAnOrderStatus() {
-        return "placeAnOrderStatus";
+        return "/materials/porder-status";
     }
 
-    @GetMapping("/materialInOutPut")
+    @GetMapping("/materials/material-inoutput")
     public String materialInOutPut() {
-        return "materialInOutPut";
+        return "/materials/material-inoutput";
     }
 
-    @GetMapping("/materialInventory")
+    @GetMapping("/materials/material-inventory")
     public String materialInventory() {
-        return "materialInventory";
+        return "/materials/material-inventory";
     }
 
-    @GetMapping("/productionOrder")
+    @GetMapping("/production/production-order")
     public String productionOrder() {
-        return "productionOrder";
+        return "/production/production-order";
     }
 
-    @GetMapping("/productionPlan")
+    @GetMapping("/production/production-plan")
     public String productionPlan() {
-        return "productionPlan";
+        return "/production/production-plan";
     }
 
-    @GetMapping("/productionPerformance")
+    @GetMapping("/production/production-performance")
     public String productionPerformance() {
-        return "productionPerformance";
+        return "/production/production-performance";
     }
 
-    @GetMapping("/shipment")
+    @GetMapping("/shipment/shipment")
     public String shipment() {
-        return "shipment";
+        return "/shipment/shipment";
     }
 
-    @GetMapping("/orderCustomer")
+    @GetMapping("/customer/rorder-customer")
     public String orderCustomer() {
-        return "orderCustomer";
+        return "/customer/rorder-customer";
     }
 
-    @GetMapping("/placeAnOrderCustomer")
+    @GetMapping("/customer/porder-customer")
     public String placeAnOrderCustomer() {
-        return "placeAnOrderCustomer";
+        return "/customer/porder-customer";
     }
 
-    @GetMapping("/stock")
+    @GetMapping("/item/stock")
     public String stock() {
-        return "stock";
+        return "/item/stock";
     }
 
-    @GetMapping("/facilityStatus")
+    @GetMapping("/facility/facility-status")
     public String facilityStatus() {
-        return "facilityStatus";
+        return "/facility/facility-status";
     }
 
-    @GetMapping("/facilityInformation")
+    @GetMapping("/facility/facility-information")
     public String facilityInformation() {
-        return "facilityInformation";
+        return "/facility/facility-information";
     }
 
 }
