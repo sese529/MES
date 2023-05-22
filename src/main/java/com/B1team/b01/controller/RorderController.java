@@ -34,20 +34,20 @@ public class RorderController {
                         String customerName,
                         String productName,
                         String startDeadline,
-                        String endDeadLine) {
+                        String endDeadline) {
         //날짜 관련 변환
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime start = startDate == null ? null : LocalDate.parse(startDate, formatter).atStartOfDay();
-        LocalDateTime end = endDate == null ? null : LocalDate.parse(endDate, formatter).atTime(23, 59, 59);
-        LocalDateTime startDeadLineDate = startDeadline == null ? null : LocalDate.parse(startDeadline, formatter).atStartOfDay();
-        LocalDateTime endDeadLineDate = endDeadLine == null ? null : LocalDate.parse(endDeadLine, formatter).atTime(23, 59, 59);
+        LocalDateTime start = startDate == null || "".equals(startDate)? null : LocalDate.parse(startDate, formatter).atStartOfDay();
+        LocalDateTime end = endDate == null || "".equals(endDate) ? null : LocalDate.parse(endDate, formatter).atTime(23, 59, 59);
+        LocalDateTime startLine = startDeadline == null || "".equals(startDeadline) ? null : LocalDate.parse(startDeadline, formatter).atStartOfDay();
+        LocalDateTime endLine = endDeadline == null || "".equals(endDeadline) ? null : LocalDate.parse(endDeadline, formatter).atTime(23, 59, 59);
 
         //거래처 리스트
         List<CustomerDto> customerDtoList = CustomerDto.of(customerRepository.findAll());
         model.addAttribute("customerDtoList", customerDtoList);
 
         //기본 수주 조회 리스트
-        List<RorderDto> list = rorderService.searchRorder(start, end, orderId, customerName, productName, startDeadLineDate, endDeadLineDate);
+        List<RorderDto> list = rorderService.searchRorder(start, end, orderId, customerName, productName, startLine, endLine);
 
         model.addAttribute("rorderList", list);
         model.addAttribute("startDate", startDate);
@@ -56,7 +56,7 @@ public class RorderController {
         model.addAttribute("customerName", customerName);
         model.addAttribute("productName", productName);
         model.addAttribute("startDeadline", startDeadline);
-        model.addAttribute("endDeadLine", endDeadLine);
+        model.addAttribute("endDeadLine", endDeadline);
         return "rorder/order";
     }
 }
