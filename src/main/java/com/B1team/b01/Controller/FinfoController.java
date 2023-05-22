@@ -14,12 +14,12 @@ public class FinfoController {
     //설비 현황
     @GetMapping("/facilityStatus")
     public String facilityStatus() {
-        return "facility/facilityStatus";
+        return "facility/facility-status";
     }
 
     //설비 정보
     @GetMapping("/facilityInformation")
     public String facilityInformation() {
-        return "facility/facilityInformation";
+        return "facility/facility-information";
     }
 }
