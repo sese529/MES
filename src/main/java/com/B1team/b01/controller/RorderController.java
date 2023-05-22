@@ -56,7 +56,7 @@ public class RorderController {
         model.addAttribute("customerName", customerName);
         model.addAttribute("productName", productName);
         model.addAttribute("startDeadline", startDeadline);
-        model.addAttribute("endDeadLine", endDeadline);
+        model.addAttribute("endDeadline", endDeadline);
         return "rorder/order";
     }
 }
