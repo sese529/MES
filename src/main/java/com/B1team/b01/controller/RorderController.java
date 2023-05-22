@@ -22,7 +22,14 @@ public class RorderController {
     private final RorderService rorderService;
 
     @GetMapping("/")
-    public String order(Model model, LocalDateTime startDate, LocalDateTime endDate, String orderId, String customerName, String productName, LocalDateTime startDeadline, LocalDateTime endDeadLine) {
+    public String order(Model model,
+                        LocalDateTime startDate,
+                        LocalDateTime endDate,
+                        String orderId,
+                        String customerName,
+                        String productName,
+                        LocalDateTime startDeadline,
+                        LocalDateTime endDeadLine) {
         List<RorderDto> list = rorderService.searchRorder(startDate, endDate, orderId, customerName, productName, startDeadline, endDeadLine);
         model.addAttribute("rorderList", list);
         return "rorder/order";

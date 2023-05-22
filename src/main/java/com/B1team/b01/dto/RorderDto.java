@@ -34,7 +34,20 @@ public class RorderDto {
 
 
     //Order 엔티티를 RorderDto로 변환해주는 메소드
-    public static RorderDto of(Rorder rorder) { return CustomModelMapper.getModelMapper().map(rorder, RorderDto.class); }
+    public static RorderDto of(Rorder rorder) {
+        RorderDto dto = CustomModelMapper.getModelMapper().map(rorder, RorderDto.class);
+        switch(dto.getState()) {
+            case "미확정" : dto.setState("진행전"); break;
+            case "확정" :
+                //deadline이 현재 시간보다 이후이면
+                if(rorder.getDeadline().isAfter(LocalDateTime.now()))
+                    dto.setState("진행중");
+                else
+                    dto.setState("완료");
+                break;
+        }
+        return dto;
+    }
 
     //RorderDto를 Order 엔티티로 변환해주는 메소드
     public Rorder toEntity() {
