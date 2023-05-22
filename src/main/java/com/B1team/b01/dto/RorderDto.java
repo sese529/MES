@@ -28,6 +28,7 @@ public class RorderDto {
 
     private static ModelMapper modelMapper = new ModelMapper(); //엔티티랑 dto의 필드명이 같은 것끼리 매핑
 
+
     //Order 엔티티를 RorderDto로 변환해주는 메소드
     public static RorderDto of(Rorder rorder) {
         return modelMapper.map(rorder, RorderDto.class);
@@ -38,3 +39,8 @@ public class RorderDto {
         return modelMapper.map(this, Rorder.class);
     }
 }
+
+/*
+
+1.
+ */

@@ -1,12 +1,14 @@
 package com.B1team.b01.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
     @GetMapping("/order")
-    public String order() {
+    public String order(Model model) {
+
         return "order";
     }
 
