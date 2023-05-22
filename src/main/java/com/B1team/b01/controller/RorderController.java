@@ -23,7 +23,7 @@ import java.util.List;
 public class RorderController {
     private final RorderService rorderService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String order(Model model,
                         String startDate,
                         String endDate,
