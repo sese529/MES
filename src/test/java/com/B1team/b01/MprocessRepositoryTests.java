@@ -1,8 +1,11 @@
 package com.B1team.b01;
 
+import com.B1team.b01.Service.MprocessService;
 import com.B1team.b01.dto.WorderDto;
+import com.B1team.b01.entity.Facility;
 import com.B1team.b01.entity.Mprocess;
 import com.B1team.b01.entity.Routing;
+import com.B1team.b01.repository.FacilityRepository;
 import com.B1team.b01.repository.MprocessRepository;
 import com.B1team.b01.repository.RoutingRepository;
 import oracle.net.aso.c;
@@ -18,6 +21,8 @@ import java.util.List;
 public class MprocessRepositoryTests {
     @Autowired private MprocessRepository mprocessRepository;
     @Autowired private RoutingRepository routingRepository;
+    @Autowired private FacilityRepository facilityRepository;
+    @Autowired private MprocessService mprocessService;
 
     @Test
     void 공정테스트() {
@@ -145,5 +150,56 @@ public class MprocessRepositoryTests {
 
         for(int i = 0; i < worderDtos.size(); i++)
             System.out.println(worderDtos.get(i).toString());
+    }
+
+    @Test
+    void 작업시간계산테스트() {
+        LocalDateTime materialReadyDate = LocalDateTime.of(2023, 5, 24, 10, 0);
+        List<WorderDto> list = mprocessService.calculateWorderDate(materialReadyDate, "p21");
+        for(int i = 0; i < list.size(); i++)
+            System.out.println(list.get(i));
+    }
+
+    @Test
+    void 설비정보받기() {
+        //라우팅에서 공정 흐름 얻기
+        List<Routing> routings = routingRepository.findByProductIdOrderByOrder("p21");
+
+        //공정Id만 list로
+        List<String> producctIdlist = new ArrayList<>();    //공정Id 리스트
+        for(int i = 0; i < routings.size(); i++) {
+            producctIdlist.add(routings.get(i).getProcessId());
+        }
+
+        //라우팅에 따른 공정 리스트 받기
+        List<Mprocess> mprocesses = mprocessRepository.findAllById(producctIdlist);
+
+        //설비명만 list로 바꾸기 + 같은 공정의 설비 개수 세기
+        List<String> facilityNameList = new ArrayList<>();  //설비명 리스트
+        for(int i = 0; i < mprocesses.size(); i++) {
+            facilityNameList.add(mprocesses.get(i).getFacilityId());
+        }
+
+        //공정에 따른 설비 리스트 받기
+        List<Facility> facilities = facilityRepository.findByNameIn(facilityNameList);
+
+        //같은 공정에서 설비 개수 세기
+        int[] facilityCnt = new int[mprocesses.size()]; //같은 공정의 설비 개수
+        int processCnt = -1;
+        String tmpStr = "";
+        for(int i = 0 ; i < facilities.size(); i++) {
+            if(tmpStr.equals(facilities.get(i).getName())) {
+                facilityCnt[processCnt]++;
+                System.out.println("facilityCnt[" + processCnt + "]=" + facilityCnt[processCnt] + ", facilitieName" + facilities.get(i).getName());
+            } else {
+                facilityCnt[++processCnt]++;
+                tmpStr = facilities.get(i).getName();
+                System.out.println("facilityCnt[" + (processCnt) + "]=" + facilityCnt[processCnt] + ", facilitieName" + facilities.get(i).getName());
+            }
+        }
+
+        for(int i = 0; i < mprocesses.size(); i++) {
+            System.out.println("설비 개수=" + facilityCnt[i] + " " + mprocesses.get(i).toString());
+        }
     }
 }
