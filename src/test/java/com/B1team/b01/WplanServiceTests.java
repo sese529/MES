@@ -1,12 +1,11 @@
 package com.B1team.b01;
 
-import com.B1team.b01.Service.WplanService;
+import com.B1team.b01.service.WplanService;
 import com.B1team.b01.dto.RorderDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 

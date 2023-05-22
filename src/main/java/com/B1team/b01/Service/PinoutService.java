@@ -1,4 +1,4 @@
-package com.B1team.b01.Service;
+package com.B1team.b01.service;
 
 import com.B1team.b01.dto.PinoutDto;
 import com.B1team.b01.entity.Pinout;
@@ -51,7 +51,6 @@ public class PinoutService {
             pinoutDto.setId(makeStringId()); //문자열 시퀀스 추가
 
             pinoutRepository.save((pinoutDto.toEntity()));
-
         }
         return null;
     }

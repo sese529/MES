@@ -54,7 +54,7 @@ public class WorderService {
         //작업지시를 내릴 작업 계획이 있는지 조회(수주번호를 전송받아서)
         Optional<WplanDto> result = Optional.ofNullable(wplanRepository.findByOrderId(orderId));
 
-        //(작업계획 테이블에) 전송받은 수주번호에 대한 작업 계획이 있고, (작업지시 테이블에) 그 작업계획 번호를 가진 작업지시 고유번호가 있는지 확인: 없다면 등록하기
+        //(작업계획 테이블에) 전송받은 수주번호에 대한 작업 계획이 있는지 확인: 없다면 등록하기
         Worder worder = new Worder();
         if (result.isPresent()) {
 

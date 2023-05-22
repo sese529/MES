@@ -1,19 +1,11 @@
-package com.B1team.b01.Service;
+package com.B1team.b01.service;
 
-import com.B1team.b01.dto.WorderDto;
 import com.B1team.b01.entity.Materials;
-import com.B1team.b01.entity.Mprocess;
-import com.B1team.b01.entity.Routing;
-import com.B1team.b01.entity.Worder;
 import com.B1team.b01.repository.MaterialsRepository;
-import com.B1team.b01.repository.MprocessRepository;
-import com.B1team.b01.repository.RoutingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor

@@ -1,6 +1,6 @@
 package com.B1team.b01;
 
-import com.B1team.b01.Service.MaterialsService;
+import com.B1team.b01.service.MaterialsService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

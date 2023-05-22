@@ -3,6 +3,7 @@ package com.B1team.b01.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,8 +12,9 @@ import java.time.LocalDateTime;
 @Table(name="FINFO")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
-public class Facility {
+public class Finfo {
     @Id
     @Column(name = "facility_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "facility_seq_generator")
