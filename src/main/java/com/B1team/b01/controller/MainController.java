@@ -6,15 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
+    //수주 페이지 분리하면서 주석 처리
 //    @GetMapping("/order")
 //    public String order(Model model) {
 //
 //        return "rorder/order";
 //    }
-
-    //test용 get매핑
-    @GetMapping("/")
-    public String mainPage() { return "main"; }
 
     @GetMapping("/placeAnOrderStatus")
     public String placeAnOrderStatus() {
