@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface RorderRepository extends JpaRepository<Rorder, String> {
     @Query("SELECT r FROM Rorder r " +
@@ -18,5 +19,5 @@ public interface RorderRepository extends JpaRepository<Rorder, String> {
             "AND (:endDeadLine IS NULL OR r.deadline <= :endDeadLine) " +
             "ORDER BY r.date DESC")
     List<Rorder> findRordersByConditions(LocalDateTime startDate, LocalDateTime endDate, String orderId, String customerName, String productName, LocalDateTime startDeadline, LocalDateTime endDeadLine);
-
+    Optional<Rorder> findById(String id);
 }
