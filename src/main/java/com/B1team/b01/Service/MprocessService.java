@@ -1,10 +1,10 @@
 package com.B1team.b01.Service;
 
 import com.B1team.b01.dto.WorderDto;
-import com.B1team.b01.entity.Facility;
+import com.B1team.b01.entity.Finfo;
 import com.B1team.b01.entity.Mprocess;
 import com.B1team.b01.entity.Routing;
-import com.B1team.b01.repository.FacilityRepository;
+import com.B1team.b01.repository.FinfoRepository;
 import com.B1team.b01.repository.MprocessRepository;
 import com.B1team.b01.repository.RoutingRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.List;
 public class MprocessService {
     private final MprocessRepository mprocessRepository;
     private final RoutingRepository routingRepository;
-    private final FacilityRepository facilityRepository;
+    private final FinfoRepository finfoRepository;
 
     //시뮬레이션 - 작업 시간 계산
     public List<WorderDto> calculateWorderDate(LocalDateTime materialReadyDate, String productId){
@@ -46,7 +46,7 @@ public class MprocessService {
         //공정별 처리
         for(int i = 0; i < mprocesses.size(); i++) {
             Mprocess process = mprocesses.get(i);   //이번 공정 정보
-            List<Facility> facilities = facilityRepository.findByName(process.getFacilityId()); //공정의 설비 정보
+            List<Finfo> facilities = finfoRepository.findByName(process.getFacilityId()); //공정의 설비 정보
 
             //임시로 필요 용량 넣기
             double capacity = 0;
