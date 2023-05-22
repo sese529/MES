@@ -1,6 +1,6 @@
 package com.B1team.b01;
 
-import com.B1team.b01.Service.MprocessService;
+import com.B1team.b01.service.MprocessService;
 import com.B1team.b01.dto.WorderDto;
 import com.B1team.b01.entity.Finfo;
 import com.B1team.b01.entity.Mprocess;

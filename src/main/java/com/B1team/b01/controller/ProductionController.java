@@ -1,10 +1,9 @@
-package com.B1team.b01.Controller;
+package com.B1team.b01.controller;
 
-import com.B1team.b01.Service.ProductionService;
+import com.B1team.b01.service.ProductionService;
 import com.B1team.b01.entity.Wplan;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -21,7 +20,7 @@ import java.util.List;
 @Controller
 @Transactional
 @RequiredArgsConstructor
-@RequestMapping("/Production/*")
+@RequestMapping("/production/*")
 public class ProductionController {
     private ProductionService productionService;
 
@@ -30,12 +29,12 @@ public class ProductionController {
         this.productionService = productionService;
     }
 
-    @GetMapping("ProductionOrder")
+    @GetMapping("production-order")
     public String getOrderList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
         List<Wplan> wlist = productionService.getAllWplan();
         model.addAttribute("wlist", wlist);
 
-        return "Production/ProductionOrder";
+        return "production/production-order";
     }
 
     @GetMapping("search")
@@ -48,6 +47,6 @@ public class ProductionController {
         List<Wplan> searchlist = productionService.search(id,orderId,state,min,max);
         model.addAttribute("searchlist",searchlist);
 
-        return "Production/ProductionOrder";
+        return "production/production-order";
     }
 }

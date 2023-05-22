@@ -1,4 +1,4 @@
-package com.B1team.b01.Service;
+package com.B1team.b01.service;
 
 import com.B1team.b01.dto.RorderDto;
 import com.B1team.b01.entity.Rorder;
