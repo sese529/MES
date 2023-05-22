@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Order {
+public class Rorder {
     @Id
     @Column(name = "order_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq_generator")
@@ -36,6 +37,7 @@ public class Order {
     @Column(name="order_price", nullable = false, columnDefinition = "number(10)")
     private Long price;
 
+    @LastModifiedDate
     @Column(name="order_change_date", nullable = false, columnDefinition = "date")
     private LocalDateTime changedate;
 

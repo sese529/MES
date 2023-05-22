@@ -2,13 +2,12 @@ package com.B1team.b01;
 
 import com.B1team.b01.Service.MprocessService;
 import com.B1team.b01.dto.WorderDto;
-import com.B1team.b01.entity.Facility;
+import com.B1team.b01.entity.Finfo;
 import com.B1team.b01.entity.Mprocess;
 import com.B1team.b01.entity.Routing;
-import com.B1team.b01.repository.FacilityRepository;
+import com.B1team.b01.repository.FinfoRepository;
 import com.B1team.b01.repository.MprocessRepository;
 import com.B1team.b01.repository.RoutingRepository;
-import oracle.net.aso.c;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +20,7 @@ import java.util.List;
 public class MprocessRepositoryTests {
     @Autowired private MprocessRepository mprocessRepository;
     @Autowired private RoutingRepository routingRepository;
-    @Autowired private FacilityRepository facilityRepository;
+    @Autowired private FinfoRepository finfoRepository;
     @Autowired private MprocessService mprocessService;
 
     @Test
@@ -181,7 +180,7 @@ public class MprocessRepositoryTests {
         }
 
         //공정에 따른 설비 리스트 받기
-        List<Facility> facilities = facilityRepository.findByNameIn(facilityNameList);
+        List<Finfo> facilities = finfoRepository.findByNameIn(facilityNameList);
 
         //같은 공정에서 설비 개수 세기
         int[] facilityCnt = new int[mprocesses.size()]; //같은 공정의 설비 개수
