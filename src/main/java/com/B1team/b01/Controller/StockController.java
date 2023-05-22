@@ -34,13 +34,9 @@ public class StockController {
 
         //자동 발주
 
-
-
-
-
 //
 //        model.addAllAttributes()
-        return "test";
+        return "index";
 
     }
 }

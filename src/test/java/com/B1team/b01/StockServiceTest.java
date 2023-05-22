@@ -1,6 +1,6 @@
 package com.B1team.b01;
 
-import com.B1team.b01.Service.StockService;
+import com.B1team.b01.service.StockService;
 import com.B1team.b01.entity.Stock;
 import com.B1team.b01.repository.StockRepository;
 import org.junit.jupiter.api.Test;
