@@ -6,11 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-    @GetMapping("/order")
-    public String order(Model model) {
+//    @GetMapping("/order")
+//    public String order(Model model) {
+//
+//        return "rorder/order";
+//    }
 
-        return "order";
-    }
+    //test용 get매핑
+    @GetMapping("/")
+    public String mainPage() { return "main"; }
 
     @GetMapping("/placeAnOrderStatus")
     public String placeAnOrderStatus() {
