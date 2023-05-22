@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Facility {
+public class Finfo {
     @Id
     @Column(name = "facility_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "facility_seq_generator")

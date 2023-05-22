@@ -1,12 +1,8 @@
 package com.B1team.b01;
 
-import com.B1team.b01.entity.BOM;
-import com.B1team.b01.entity.Facility;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 @SpringBootTest
