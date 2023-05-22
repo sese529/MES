@@ -33,4 +33,8 @@ public class WplanDto {
     public Wplan toEntity() {
         return modelMapper.map(this, Wplan.class);
     }
+
+    public WplanDto(String orderId) {
+        this.orderId = orderId;
+    }
 }
