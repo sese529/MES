@@ -22,8 +22,10 @@ public class StockService {
     //시뮬레이션 - 재고확인 및 자동발주
     public Long stockCheck (String productId, String orderId) {
         //제품 잔여수량 확인
-        Optional<Stock> optional = stockRepository.findById(productId);
-        Stock stock = optional.get();
+//        Optional<Stock> optional = stockRepository.findById(productId);
+//        Stock stock = optional.get();
+
+        Stock stock = stockRepository.findByProductId(productId);
 
         //재고 수량
 
