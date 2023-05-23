@@ -46,4 +46,9 @@ public class MainController {
         return "/item/stock";
     }
 
+    @GetMapping("/item/bom")
+    public String bom() {
+        return "/item/bom";
+    }
+
 }
