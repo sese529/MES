@@ -419,11 +419,9 @@
                                 <p>품목</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>양배추즙</option>
-                                    <option>흑마늘즙</option>
-                                    <option>석류젤리</option>
-                                    <option>메실젤리</option>
+                                <select class="searchbarSelect" name="productName">
+                                    <option value="" th:selected="${productName == '' or productName == null}">선택</option>
+                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.name}" th:selected="${productName == product.name}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
