@@ -30,7 +30,7 @@ public class ProductionController {
     private ProductService productService;
 
 
-    @GetMapping("production-order")
+    @GetMapping("/production/production-order")
     public String getOrderList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
         List<Wplan> wlist = productionService.getAllWplan();
         model.addAttribute("wlist", wlist);

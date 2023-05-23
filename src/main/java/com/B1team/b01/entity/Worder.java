@@ -34,4 +34,5 @@ public class Worder {
     @Column(name = "worder_finish_date", nullable = false, columnDefinition = "date")
     private LocalDateTime finishDate;   //작업 완료 일자
 
+
 }

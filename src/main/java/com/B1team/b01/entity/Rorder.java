@@ -3,16 +3,20 @@ package com.B1team.b01.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name="RORDER")
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class Rorder {
     @Id
