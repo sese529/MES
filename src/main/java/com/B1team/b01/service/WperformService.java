@@ -1,21 +1,28 @@
 package com.B1team.b01.service;
 
 import com.B1team.b01.dto.WperformDto;
+import com.B1team.b01.entity.Wperform;
 import com.B1team.b01.entity.Wplan;
 import com.B1team.b01.repository.WperformRepository;
+import com.B1team.b01.repository.WperformSpecifications;
 import com.B1team.b01.repository.WplanRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class WperformService {
+    @Autowired
     private final WperformRepository wperformRepository;
+    @Autowired
     private final WplanRepository wplanRepository;
 
     @PersistenceContext
@@ -60,6 +67,24 @@ public class WperformService {
         return result;
     }
 
+    public List<Wperform> search(String productId, String orderId, LocalDateTime min, LocalDateTime max){
+        Specification<Wperform> specification = Specification.where(null);
 
+        if(productId != null){
+            specification = specification.and(WperformSpecifications.searchProductId(productId));
+        }
+        if(orderId != null){
+            specification = specification.and(WperformSpecifications.searchOrderId(orderId));
+        }
+        if(min != null || max != null){
+            specification = specification.and(WperformSpecifications.searchDate(min,max));
+        }
+
+        return  wperformRepository.findAll(specification);
+    }
+
+    public List<Wperform> getAllWperform() {
+        return wperformRepository.findAll();
+    }
 }
 

@@ -34,5 +34,6 @@ public class Wperform {
     @Column(name="wperform_end_date", nullable = false, columnDefinition = "date")
     private LocalDateTime endDate;
 
-
+    @Column(name="product_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String productId; //제품 고유번호
 }
