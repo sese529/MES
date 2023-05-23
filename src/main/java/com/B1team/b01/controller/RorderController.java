@@ -2,8 +2,10 @@
 package com.B1team.b01.controller;
 
 import com.B1team.b01.dto.CustomerDto;
+import com.B1team.b01.dto.ProductDto;
 import com.B1team.b01.dto.RorderDto;
 import com.B1team.b01.repository.CustomerRepository;
+import com.B1team.b01.repository.ProductRepository;
 import com.B1team.b01.service.RorderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,38 +23,39 @@ import java.util.List;
 @Controller
 @Transactional
 @RequiredArgsConstructor
-@RequestMapping("/rorder/order")
+@RequestMapping("/rorder")
 public class RorderController {
     private final RorderService rorderService;
     private final CustomerRepository customerRepository;
+    private final ProductRepository productRepository;
 
-    @GetMapping("")
+    @GetMapping("/order")
     public String order(Model model,
                         String startDate,
                         String endDate,
                         String orderId,
+                        String status,
                         String customerName,
                         String productName,
                         String startDeadline,
                         String endDeadline) {
-        //날짜 관련 변환
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime start = startDate == null || "".equals(startDate)? null : LocalDate.parse(startDate, formatter).atStartOfDay();
-        LocalDateTime end = endDate == null || "".equals(endDate) ? null : LocalDate.parse(endDate, formatter).atTime(23, 59, 59);
-        LocalDateTime startLine = startDeadline == null || "".equals(startDeadline) ? null : LocalDate.parse(startDeadline, formatter).atStartOfDay();
-        LocalDateTime endLine = endDeadline == null || "".equals(endDeadline) ? null : LocalDate.parse(endDeadline, formatter).atTime(23, 59, 59);
 
         //거래처 리스트
         List<CustomerDto> customerDtoList = CustomerDto.of(customerRepository.findAll());
-        model.addAttribute("customerDtoList", customerDtoList);
+        model.addAttribute("customerList", customerDtoList);
+
+        //품목 리스트
+        List<ProductDto> productDtoList = ProductDto.of(productRepository.findAll());
+        model.addAttribute("productList", productDtoList);
 
         //기본 수주 조회 리스트
-        List<RorderDto> list = rorderService.searchRorder(start, end, orderId, customerName, productName, startLine, endLine);
+        List<RorderDto> rorderList = rorderService.searchRorder(startDate, endDate, orderId, status, customerName, productName, startDeadline, endDeadline);
 
-        model.addAttribute("rorderList", list);
+        model.addAttribute("rorderList", rorderList);
         model.addAttribute("startDate", startDate);
         model.addAttribute("endDate", endDate);
         model.addAttribute("orderId", orderId);
+        model.addAttribute("status", status);
         model.addAttribute("customerName", customerName);
         model.addAttribute("productName", productName);
         model.addAttribute("startDeadline", startDeadline);
