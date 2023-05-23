@@ -2,12 +2,10 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>수주 관리</title>
@@ -366,9 +364,8 @@
                         </div>
                     </div>
                     <!-- 수정 끝 -->
-
-                    <button class="buttonsChe" onclick="openPopupChe()">확인</button>
-                    <button class="buttonsEx" onclick="openPopupEx()">엑셀다운로드</button>
+                    <button class="buttonsChe" id="confirmedButton">확정</button>
+                    <button class="buttonsEx" id="orderDownloadExcel">엑셀다운로드</button>
                 </div>
             </div>
             <!-- End of Topbar -->
@@ -531,9 +528,16 @@
 </div>
 <!-- End of Page Wrapper -->
 
+
+<!-- 작성 스크립트-->
+<script src="/js/buttons/orderRegistration.js"></script>
+<script src="/js/buttons/orderCorrection.js"></script>
+<script src="/js/excel/orderExcel.js"></script>
+<script src="/js/buttons/confirmed.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 <!-- Bootstrap core JavaScript-->
-<script src="/js/reg.js"></script>
-<script src="/js/cor.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>
 

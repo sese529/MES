@@ -2826,6 +2826,32 @@ textarea.form-control.is-invalid {
     border-right: 2px solid #fff;
 }
 
+#itemDataTable4 tbody tr:nth-child(1) td:nth-child(1),
+#itemDataTable4 tbody tr:nth-child(1) td:nth-child(2),
+#itemDataTable4 tbody tr:nth-child(1) td:nth-child(3),
+#itemDataTable4 tbody tr:nth-child(1) td:nth-child(4),
+#itemDataTable4 tbody tr:nth-child(1) td:nth-child(5),
+#itemDataTable4 tbody tr:nth-child(2) td:nth-child(1),
+#itemDataTable4 tbody tr:nth-child(2) td:nth-child(2),
+#itemDataTable4 tbody tr:nth-child(2) td:nth-child(3),
+#itemDataTable4 tbody tr:nth-child(2) td:nth-child(4),
+#itemDataTable4 tbody tr:nth-child(2) td:nth-child(5) {
+    border-right: 2px solid #fff;
+}
+
+#itemDataTable5 tbody tr:nth-child(1) td:nth-child(1),
+#itemDataTable5 tbody tr:nth-child(1) td:nth-child(2),
+#itemDataTable5 tbody tr:nth-child(1) td:nth-child(3),
+#itemDataTable5 tbody tr:nth-child(1) td:nth-child(4),
+#itemDataTable5 tbody tr:nth-child(1) td:nth-child(5),
+#itemDataTable5 tbody tr:nth-child(2) td:nth-child(1),
+#itemDataTable5 tbody tr:nth-child(2) td:nth-child(2),
+#itemDataTable5 tbody tr:nth-child(2) td:nth-child(3),
+#itemDataTable5 tbody tr:nth-child(2) td:nth-child(4),
+#itemDataTable5 tbody tr:nth-child(2) td:nth-child(5) {
+    border-right: 2px solid #fff;
+}
+
 #dataTables tbody tr:nth-child(1) td:nth-child(1),
 #dataTables tbody tr:nth-child(1) td:nth-child(2),
 #dataTables tbody tr:nth-child(1) td:nth-child(3),
@@ -3227,6 +3253,24 @@ textarea.form-control.is-invalid {
 }
 
 .editClose {
+    width: 80px;
+    height: 40px;
+    background-color: #fff;
+    border: 1px solid #000;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.stockRegClose {
+    width: 80px;
+    height: 40px;
+    background-color: #fff;
+    border: 1px solid #000;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.stockCorClose {
     width: 80px;
     height: 40px;
     background-color: #fff;
