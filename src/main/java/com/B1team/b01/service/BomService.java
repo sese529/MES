@@ -134,4 +134,9 @@ public class BomService {
 
         return result;
     }
+
+    //시뮬레이션 - 수주량(box) 매개변수 넣을 시 개별 개수 반환
+//    public double boxToAmount(long box) {
+//
+//    }
 }

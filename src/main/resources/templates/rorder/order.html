@@ -165,22 +165,21 @@
                                                 <p>수주일</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+<!--                                                <input type="text" id="regOrderCurrentTimeInput" readonly/>-->
+                                                <input type="datetime-local" id="regOrderCurrentTimeInput">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>수주 번호</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+                                                <input type="text" disabled/>
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>거래처명</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <select class="regSearchbarSelect">
-                                                    <option>매출처1</option>
-                                                    <option>매출처2</option>
-                                                    <option>매출처3</option>
+                                                <select class="regSearchbarSelect" name="customerName">
+                                                    <option th:each="customer : ${customerList}" th:text="${customer.name}" th:value="${customer.name}"></option>
                                                 </select>
                                             </td>
                                             <td class="regSearchbarButton">
@@ -192,24 +191,21 @@
                                                 <p>품목</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <select class="regSearchbarSelect">
-                                                    <option>양배추즙</option>
-                                                    <option>흑마늘즙</option>
-                                                    <option>매실젤리</option>
-                                                    <option>석류젤리</option>
+                                                <select class="regSearchbarSelect" name="productName">
+                                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.name}"></option>
                                                 </select>
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>수주량</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+                                                <input type="text" name="cnt">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>납품예정일</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+                                                <input type="text" readonly/>
                                             </td>
                                             <td class="regSearchbarButton">
                                                 <button class="regSearchbarPreButton">
