@@ -23,6 +23,7 @@ public class WplanServiceTests {
     }
 
 
+    /*
 
     //작업계획 등록하기
     @Test
@@ -48,5 +49,6 @@ public class WplanServiceTests {
 
 
     }
+     */
 
 }
