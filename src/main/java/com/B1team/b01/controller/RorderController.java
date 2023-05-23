@@ -35,21 +35,15 @@ public class RorderController {
                         String productName,
                         String startDeadline,
                         String endDeadline) {
-        //날짜 관련 변환
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime start = startDate == null || "".equals(startDate)? null : LocalDate.parse(startDate, formatter).atStartOfDay();
-        LocalDateTime end = endDate == null || "".equals(endDate) ? null : LocalDate.parse(endDate, formatter).atTime(23, 59, 59);
-        LocalDateTime startLine = startDeadline == null || "".equals(startDeadline) ? null : LocalDate.parse(startDeadline, formatter).atStartOfDay();
-        LocalDateTime endLine = endDeadline == null || "".equals(endDeadline) ? null : LocalDate.parse(endDeadline, formatter).atTime(23, 59, 59);
 
         //거래처 리스트
         List<CustomerDto> customerDtoList = CustomerDto.of(customerRepository.findAll());
-        model.addAttribute("customerDtoList", customerDtoList);
+        model.addAttribute("customerList", customerDtoList);
 
         //기본 수주 조회 리스트
-        List<RorderDto> list = rorderService.searchRorder(start, end, orderId, customerName, productName, startLine, endLine);
+        List<RorderDto> rorderList = rorderService.searchRorder(startDate, endDate, orderId, customerName, productName, startDeadline, endDeadline);
 
-        model.addAttribute("rorderList", list);
+        model.addAttribute("rorderList", rorderList);
         model.addAttribute("startDate", startDate);
         model.addAttribute("endDate", endDate);
         model.addAttribute("orderId", orderId);
@@ -57,7 +51,7 @@ public class RorderController {
         model.addAttribute("productName", productName);
         model.addAttribute("startDeadline", startDeadline);
         model.addAttribute("endDeadline", endDeadline);
-        return "rorder/order-content";
-//        return "rorder/order";
+//        return "rorder/order-content";
+        return "rorder/order";
     }
 }

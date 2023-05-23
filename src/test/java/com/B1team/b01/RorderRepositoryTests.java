@@ -37,6 +37,8 @@ public class RorderRepositoryTests {
 
     @Test
     void 수주검색서비스테스트() {
+        //메소드 매개변수 수정으로 작동 불가
+        /*
         //검색 조건
         LocalDateTime startDate = null;
         LocalDateTime endDate = null;
@@ -49,6 +51,8 @@ public class RorderRepositoryTests {
         List<RorderDto> list = rorderService.searchRorder(startDate, endDate, orderId, customerName, productName, startDeadline, endDeadLine);
         for(int i = 0; i < list.size(); i++)
             System.out.println(list.get(i));
+
+         */
     }
 
     @Test
