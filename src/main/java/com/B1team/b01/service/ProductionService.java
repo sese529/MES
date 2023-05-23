@@ -14,7 +14,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-@Transactional
 public class ProductionService {
     private ProductionRepository productionRepository;
 
