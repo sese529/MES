@@ -38,12 +38,12 @@ public class StockController {
     public String mappTest(Model model
                             , StockDto stockDto) {
 
-//        List<Stock> stockList = stockService.getProductStock();
-        List<Product> stList = stockService.getProductStock1(stockDto.getProductId());
-
+        List<Stock> stockList = stockService.getProductStock();
+//        List<Product> stList = stockService.getProductStock1(stockDto.getProductId());
+//
 //        stockList.add((Stock) stList);
 
-        model.addAttribute("stockList",stList);
+        model.addAttribute("stockList",stockList);
 
 
 //        model.addAttribute("st",stList);
