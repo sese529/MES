@@ -4,16 +4,18 @@
 <head>
   <!-- Custom fonts for this template-->
   <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
+    <script th:inline="javascript">
+        console.log([[${searchlist}]]);
+    </script>
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/css.css" rel="stylesheet">
+  <link href="/css/css.css" rel="stylesheet">
   <title>생산 계획 현황</title>
 </head>
 
-<body>
 
   <body id="page-top">
 
@@ -39,7 +41,7 @@
 
             <!-- Nav Item - 수주관리 -->
             <li class="nav-item">
-                <a class="nav-link" href="/order">
+                <a class="nav-link" href="/rorder/order">
                     <i class="fa-solid fa-wallet"></i>
                     <span>수주관리</span></a>
             </li>
@@ -53,9 +55,9 @@
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/placeAnOrderStatus">· 발주 현황</a>
-                        <a class="collapse-item" href="/materialInOutPut">· 자재 입출 현황</a>
-                        <a class="collapse-item" href="/materialInventory">· 자재 재고 현황</a>
+                        <a class="collapse-item" href="/materials/material-inoutput">· 발주 현황</a>
+                        <a class="collapse-item" href="/materials/material-inventory">· 자재 입출 현황</a>
+                        <a class="collapse-item" href="/materials/porder-status">· 자재 재고 현황</a>
                     </div>
                 </div>
             </li>
@@ -69,16 +71,16 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/productionOrder">· 생산 계획 현황</a>
-                        <a class="collapse-item" href="/productionPlan">· 생산 지시 현황</a>
-                        <a class="collapse-item" href="/productionPerformance">· 생산 실적 현황</a>
+                        <a class="collapse-item" href="/production/production-order">· 생산 계획 현황</a>
+                        <a class="collapse-item" href="/production/production-plan">· 생산 지시 현황</a>
+                        <a class="collapse-item" href="/production/production-performance">· 생산 실적 현황</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - 출하관리 -->
             <li class="nav-item">
-                <a class="nav-link" href="/shipment">
+                <a class="nav-link" href="/shipment/shipment">
                     <i class="fa-solid fa-chart-simple"></i>
                     <span>출하관리</span>
                 </a>
@@ -93,8 +95,8 @@
                 </a>
                 <div id="collapseThree" class="collapse" aria-labelledby="HeadingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/orderCustomer">· 수주 거래처 현황</a>
-                        <a class="collapse-item" href="/placeAnOrderCustomer">· 발주 거래처 현황</a>
+                        <a class="collapse-item" href="/customer/rorder-customer">· 수주 거래처 현황</a>
+                        <a class="collapse-item" href="/customer/porder-customer">· 발주 거래처 현황</a>
                     </div>
                 </div>
             </li>
@@ -108,8 +110,8 @@
                 </a>
                 <div id="collapseFour" class="collapse" aria-labelledby="HeadingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/stock">· 제품 재고 현황</a>
-                        <a class="collapse-item" href="/bom">· BOM 현황</a>
+                        <a class="collapse-item" href="/item/stock">· 제품 재고 현황</a>
+                        <a class="collapse-item" href="/item/bom">· BOM 현황</a>
                     </div>
                 </div>
             </li>
@@ -123,8 +125,8 @@
                 </a>
                 <div id="collapseFive" class="collapse" aria-labelledby="HeadingFive" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/facilityStatus">· 설비 현황</a>
-                        <a class="collapse-item" href="/facilityInformation">· 설비 정보</a>
+                        <a class="collapse-item" href="/facility/facility-status">· 설비 현황</a>
+                        <a class="collapse-item" href="/facility/facility-information">· 설비 정보</a>
                     </div>
                 </div>
             </li>
@@ -153,7 +155,7 @@
           <!-- End of Topbar -->
 
           <!-- searchbar  -->
-          <form action="/search" methbod="get" class="searchbarForm">
+          <form action="/production/search" method="POST" class="searchbarForm">
             <div class="searchbar">
               <table class="table table-borderless" id="dataTable" cellspacing="0">
                 <tr class="searchbarTr2">
@@ -164,15 +166,9 @@
                     <nav class="navbar navbar-expand" id="dropdownPro">
                       <ul class="navbar-nav ml-auto">
                         <li class="dropdown">
-                          <a class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">품목 코드</a>
-                          <div class="dropdown-menu dropdown-menu-right animated--grow-in"
-                            aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">· P78925</a>
-                            <a class="dropdown-item" href="#">· P78924</a>
-                            <a class="dropdown-item" href="#">· P78923</a>
-                            <a class="dropdown-item" href="#">· P78922</a>
-                          </div>
+                            <select name="id">
+                                <option th:each="plist : ${plist}" th:text="${plist.id}" th:value="${plist.id}" ></option>
+                            </select>
                         </li>
                       </ul>
                     </nav>
@@ -181,20 +177,20 @@
                     <p>수주번호</p>
                   </td>
                   <td class="searchbarContent">
-                    <input type="text">
+                    <input type="text" name="orderId">
                   </td>
                   <td class="searchbarDateTd">
                     <p>계획 일자</p>
                   </td>
                   <td class="searchbarContent">
                     <div class="searchbarDate">
-                      <input type="date">
+                      <input type="date" name="min">
                       <p class="searchbarDateWater">~</p>
-                      <input type="date">
+                      <input type="date" name="max">
                     </div>
                   </td>
                   <td class="searchButtonTd">
-                    <button class="searchButton">
+                    <button class="searchButton" type="submit">
                       <i class="fa-solid fa-magnifying-glass"></i>
                       <p class="searchButtonP">조회</p>
                     </button>
@@ -223,26 +219,19 @@
                     </tr>
                   </thead>
                   <tbody class="tableBody">
-                    <tr>
-                      <td>P78925</td>
-                      <td>G215483126</td>
-                      <td>50</td>
-                      <td>2022-05-01 11:30</td>
-                      <td>진행대기</td>
+                    <tr th:each="wlist: ${wlist}">
+                        <td th:text="${wlist.productId}"></td>
+                        <td th:text="${wlist.orderId}"></td>
+                        <td th:text="${wlist.cnt}"></td>
+                        <td th:text="${wlist.startDate}"></td>
+                        <td th:text="${wlist.state}"></td>
                     </tr>
-                    <tr class="tableBodyTr">
-                      <td>P78925</td>
-                      <td>G215483126</td>
-                      <td>100</td>
-                      <td>2022-05-01 11:30</td>
-                      <td>진행중</td>
-                    </tr>
-                    <tr>
-                      <td>P78925</td>
-                      <td>G215483126</td>
-                      <td>69</td>
-                      <td>2022-05-01 11:30</td>
-                      <td>진행완료</td>
+                    <tr th:each="wlist: ${searchlist}">
+                        <td th:text="${wlist.productId}"></td>
+                        <td th:text="${wlist.orderId}"></td>
+                        <td th:text="${wlist.cnt}"></td>
+                        <td th:text="${wlist.startDate}"></td>
+                        <td th:text="${wlist.state}"></td>
                     </tr>
                   </tbody>
                 </table>
@@ -284,6 +273,7 @@
         <!-- Page level custom scripts -->
         <script src="/js/chart-area-demo.js"></script>
         <script src="/js/chart-pie-demo.js"></script>
+    </div>
   </body>
 
 </html>
