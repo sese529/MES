@@ -29,7 +29,7 @@ public class PinoutService {
     private EntityManager entityManager;
 
     //문자열 시퀀스 메소드
-    @Transactional
+
     public String makeStringId() {
         BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT pinout_seq.NEXTVAL FROM dual").getSingleResult();
         String id = "INOUT" + sequenceValue;

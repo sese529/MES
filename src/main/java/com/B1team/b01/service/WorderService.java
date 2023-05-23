@@ -30,7 +30,7 @@ public class WorderService {
     private EntityManager entityManager;
 
     //문자열 시퀀스 메소드
-    @Transactional
+
     public String makeStringId() {
         BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT worder_seq.NEXTVAL FROM dual").getSingleResult();
         String id = "WORD" + sequenceValue;

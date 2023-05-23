@@ -19,6 +19,9 @@ public class LOT {
     @SequenceGenerator(name = "lot_seq_generator", sequenceName = "LOT_SEQ", initialValue = 10001, allocationSize = 1)
     private String id;    //로트 고유번호
 
+    @Column(name="order_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String orderId;    //수주 고유번호
+
     @Column(name="lot_code", nullable = false, columnDefinition = "varchar2(20)")
     private String code;    //로트 코드
 

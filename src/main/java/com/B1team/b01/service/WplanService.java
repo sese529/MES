@@ -1,6 +1,7 @@
 package com.B1team.b01.service;
 
 import com.B1team.b01.dto.RorderDto;
+import com.B1team.b01.dto.WplanDto;
 import com.B1team.b01.entity.Rorder;
 import com.B1team.b01.entity.Wplan;
 import com.B1team.b01.repository.RorderRepository;
@@ -38,7 +39,7 @@ public class WplanService {
     private EntityManager entityManager;
 
     //문자열 시퀀스 메소드
-    @Transactional
+
     public String generateWplanId() {
         BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT wplan_seq.NEXTVAL FROM dual").getSingleResult();
         String id = "WPLAN" + sequenceValue;
@@ -47,7 +48,7 @@ public class WplanService {
     }
 
     //문자열 시퀀스 메소드
-    @Transactional
+
     public String generateId(String head, String seqName) {
         BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT " + seqName + ".NEXTVAL FROM dual").getSingleResult();
         String id = head + sequenceValue;
@@ -66,16 +67,16 @@ public class WplanService {
         if (result.isPresent()) {
             Rorder rorder = result.get();
 
-            Wplan wplan = new Wplan();
-            wplan.setId(generateWplanId()); //문자열 시퀀스
-            wplan.setCnt(rorder.getCnt());
-            wplan.setEndDate(LocalDateTime.now()); //시간 구해지면 넣기*
-            wplan.setOrderId(rorder.getId());
-            wplan.setProductId(rorder.getProductId());
-            wplan.setStartDate(LocalDateTime.now()); //시간 구해지면 넣기*
-            wplan.setState("진행중");
+            WplanDto wplanDto = new WplanDto();
+            wplanDto.setId(generateWplanId()); //문자열 시퀀스
+            wplanDto.setCnt(rorder.getCnt());
+            wplanDto.setEndDate(LocalDateTime.now()); //시간 구해지면 넣기*
+            wplanDto.setOrderId(rorder.getId());
+            wplanDto.setProductId(rorder.getProductId());
+            wplanDto.setStartDate(LocalDateTime.parse("2023-05-18T12:00:00")); //시간 구해지면 넣기*
+            wplanDto.setState("진행중");
 
-            wplanRepository.save(wplan);
+            wplanRepository.save(wplanDto.toEntity());
 
         }
     }

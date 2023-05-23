@@ -29,12 +29,12 @@ public class ProductionController {
         this.productionService = productionService;
     }
 
-    @RequestMapping("/production/order-list")
+    @GetMapping("production-order")
     public String getOrderList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
         List<Wplan> wlist = productionService.getAllWplan();
         model.addAttribute("wlist", wlist);
 
-        return "/production/production-order";
+        return "production/production-order";
     }
 
     @GetMapping("search")
@@ -47,6 +47,6 @@ public class ProductionController {
         List<Wplan> searchlist = productionService.search(id,orderId,state,min,max);
         model.addAttribute("searchlist",searchlist);
 
-        return "/production/production-order";
+        return "production/production-order";
     }
 }
