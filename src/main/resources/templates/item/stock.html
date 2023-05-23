@@ -150,10 +150,6 @@
                         <div class="modalContentReg">
                             <div class="regTop">
                                 <p class="regTitle">품목 등록</p>
-                                <div class="regButton">
-                                    <button class="regReg">저장</button>
-                                    <button class="stockRegClose">닫기</button>
-                                </div>
                             </div>
 
                             <!-- regSearchbar -->
@@ -161,55 +157,57 @@
                                 <div class="regSearchbar">
                                     <table class="table table-borderless" id="itemDataTable4" width="100%"
                                            cellspacing="0">
-                                        <tr class="regSearchbarTr1">
-                                            <td class="regSearchbarDateTd">
+                                        <tr class="stockRegSearchbarTr1">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <p>품목명</p>
                                             </td>
-                                            <td class="regSearchbarContent">
+                                            <td class="stockRegSearchbarDateContent">
                                                 <input type="text">
                                             </td>
-                                            <td class="regSearchbarDateTd">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <p>품목코드</p>
                                             </td>
-                                            <td class="regSearchbarContent">
-                                                <input type="text">
+                                            <td class="stockRegSearchbarDateContent">
+                                                <input type="text" disabled/>
                                             </td>
-                                            <td class="regSearchbarDateTd">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <p>분류</p>
                                             </td>
-                                            <td class="regSearchbarContent">
+                                            <td class="stockRegSearchbarDateContent">
                                                 <input type="text">
                                             </td>
                                             <td class="regSearchbarButton">
                                                 <!-- 공백 -->
                                             </td>
                                         </tr>
-
-                                        <tr class="regSearchbarTr2">
-                                            <td class="regSearchbarDateTd">
+                                        <tr class="stockRegSearchbarTr2">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <p>단가(원)</p>
                                             </td>
-                                            <td class="regSearchbarContent">
+                                            <td class="stockRegSearchbarDateContent">
                                                 <input type="text">
                                             </td>
-                                            <td class="regSearchbarDateTd">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <p>창고위치</p>
                                             </td>
-                                            <td class="regSearchbarContent">
+                                            <td class="stockRegSearchbarDateContent">
                                                 <input type="text">
                                             </td>
-                                            <td class="regSearchbarDateTd">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <!-- 공백 -->
                                             </td>
-                                            <td class="regSearchbarContent">
+                                            <td class="stockRegSearchbarDateContent">
                                                 <!-- 공백 -->
                                             </td>
                                             <td class="regSearchbarButton">
                                                 <!-- 공백 -->
                                             </td>
-
                                         </tr>
                                     </table>
+                                    <div class="stockRegButton">
+                                        <button class="stockRegReg">저장</button>
+                                        <button class="stockRegClose">닫기</button>
+                                    </div>
                                 </div>
                             </form>
                             <!-- regSearchbar 끝 -->
@@ -223,57 +221,53 @@
                         <div class="modalContentReg">
                             <div class="regTop">
                                 <p class="regTitle">품목 수정</p>
-                                <div class="regButton">
-                                    <button class="regReg">저장</button>
-                                    <button class="stockCorClose">닫기</button>
-                                </div>
                             </div>
-
                             <!-- regSearchbar -->
                             <form action="/search" method="get">
                                 <div class="regSearchbar">
                                     <table class="table table-borderless" id="itemDataTable5" width="100%"
                                            cellspacing="0">
-                                        <tr class="regSearchbarTr1">
-                                            <td class="regSearchbarDateTd">
+                                        <tr class="stockRegSearchbarTr1">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <p>품목명</p>
                                             </td>
-                                            <td class="regSearchbarContent">
+                                            <td class="stockRegSearchbarDateContent">
                                                 <input type="text">
                                             </td>
-                                            <td class="regSearchbarDateTd">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <p>품목코드</p>
                                             </td>
-                                            <td class="regSearchbarContent">
-                                                <input type="text">
+                                            <td class="stockRegSearchbarDateContent">
+                                                <input type="text" disabled/>
                                             </td>
-                                            <td class="regSearchbarDateTd">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <p>분류</p>
                                             </td>
-                                            <td class="regSearchbarContent">
+                                            <td class="stockRegSearchbarDateContent">
                                                 <input type="text">
                                             </td>
                                             <td class="regSearchbarButton">
                                                 <!-- 공백 -->
                                             </td>
                                         </tr>
-                                        <tr class="regSearchbarTr2">
-                                            <td class="regSearchbarDateTd">
+
+                                        <tr class="stockRegSearchbarTr2">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <p>단가(원)</p>
                                             </td>
-                                            <td class="regSearchbarContent">
+                                            <td class="stockRegSearchbarDateContent">
                                                 <input type="text">
                                             </td>
-                                            <td class="regSearchbarDateTd">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <p>창고위치</p>
                                             </td>
-                                            <td class="regSearchbarContent">
+                                            <td class="stockRegSearchbarDateContent">
                                                 <input type="text">
                                             </td>
-                                            <td class="regSearchbarDateTd">
+                                            <td class="stockRegSearchbarDateTd">
                                                 <!-- 공백 -->
                                             </td>
-                                            <td class="regSearchbarContent">
+                                            <td class="stockRegSearchbarDateContent">
                                                 <!-- 공백 -->
                                             </td>
                                             <td class="regSearchbarButton">
@@ -284,10 +278,13 @@
                                 </div>
                             </form>
                             <!-- regSearchbar 끝 -->
+                            <div class="stockRegButton">
+                                <button class="stockRegReg" type="button">저장</button>
+                                <button class="stockRegClose" type="button">닫기</button>
+                            </div>
                         </div>
                     </div>
                     <!-- 수정 끝 -->
-
                     <button class="buttonsChe" id="deleteButton">삭제</button>
                     <button class="buttonsEx" id="stockDownloadExcel">엑셀다운로드</button>
                 </div>
