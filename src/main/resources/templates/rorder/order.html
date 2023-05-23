@@ -397,10 +397,11 @@
                                 <p>진행상태</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>진행전</option>
-                                    <option>진행중</option>
-                                    <option>완료</option>
+                                <select class="searchbarSelect" name="status">
+                                    <option value="" th:selected="${status == '' or status == null}">선택</option>
+                                    <option value="진행전" th:selected="${status == '진행전'}">진행전</option>
+                                    <option value="진행중" th:selected="${status == '진행중'}">진행중</option>
+                                    <option value="완료" th:selected="${status == '완료'}">완료</option>
                                 </select>
                             </td>
                             <td class="searchButtonTd"></td>

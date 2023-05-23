@@ -34,6 +34,7 @@ public class RorderController {
                         String startDate,
                         String endDate,
                         String orderId,
+                        String status,
                         String customerName,
                         String productName,
                         String startDeadline,
@@ -48,12 +49,13 @@ public class RorderController {
         model.addAttribute("productList", productDtoList);
 
         //기본 수주 조회 리스트
-        List<RorderDto> rorderList = rorderService.searchRorder(startDate, endDate, orderId, customerName, productName, startDeadline, endDeadline);
+        List<RorderDto> rorderList = rorderService.searchRorder(startDate, endDate, orderId, status, customerName, productName, startDeadline, endDeadline);
 
         model.addAttribute("rorderList", rorderList);
         model.addAttribute("startDate", startDate);
         model.addAttribute("endDate", endDate);
         model.addAttribute("orderId", orderId);
+        model.addAttribute("status", status);
         model.addAttribute("customerName", customerName);
         model.addAttribute("productName", productName);
         model.addAttribute("startDeadline", startDeadline);

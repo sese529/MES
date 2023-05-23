@@ -36,7 +36,7 @@ public class RorderDto {
     //Order 엔티티를 RorderDto로 변환해주는 메소드
     public static RorderDto of(Rorder rorder) {
         RorderDto dto = CustomModelMapper.getModelMapper().map(rorder, RorderDto.class);
-        switch(dto.getState()) {
+        switch(dto.getState()) { //Rorder 엔티티의 state = 확정, 미확정
             case "미확정" : dto.setState("진행전"); break;
             case "확정" :
                 //deadline이 현재 시간보다 이후이면

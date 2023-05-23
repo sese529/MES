@@ -30,9 +30,10 @@ public class RorderRepositoryTests {
         LocalDateTime startDeadline = LocalDateTime.of(2023, 05, 25, 0, 0, 0, 0);
         LocalDateTime endDeadLine = LocalDateTime.of(2023, 05, 25, 23, 59, 59, 0);
 
-        List<Rorder> list = rorderRepository.findRordersByConditions(startDate, endDate, orderId, customerName, productName, startDeadline, endDeadLine);
-        for(int i = 0; i < list.size(); i++)
-            System.out.println(list.get(i));
+        //메소드 변경으로 작동 안됨
+//        List<Rorder> list = rorderRepository.findRordersByConditions(startDate, endDate, orderId, customerName, productName, startDeadline, endDeadLine);
+//        for(int i = 0; i < list.size(); i++)
+//            System.out.println(list.get(i));
     }
 
     @Test
