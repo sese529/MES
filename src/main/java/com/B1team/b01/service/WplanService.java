@@ -15,6 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.Optional;
 
 
@@ -25,7 +26,12 @@ public class WplanService {
     private final WplanRepository wplanRepository;
     private final RorderRepository rorderRepository;
 
-
+    //작업계획 진행대기 변수
+    private  LocalDateTime ifNow = LocalDateTime.now();
+    //작업계획 진행중 변수
+    private  LocalDateTime ifStartDate = LocalDateTime.parse("2023-05-18T12:00:00"); // 시간 dto에서 빼오기(동진님꺼 확인 필요)
+    //작업계획 완료 변수
+    private LocalDateTime ifEndDate = LocalDateTime.parse("2023-05-18T12:00:00");
 
     //작성계획 조회
     //rorder table 조회
@@ -37,6 +43,7 @@ public class WplanService {
 
     @PersistenceContext
     private EntityManager entityManager;
+
 
     //문자열 시퀀스 메소드
 
@@ -63,18 +70,26 @@ public class WplanService {
         //rorder table 조회
         Optional<Rorder> result = rorderRepository.findById(rorderDto.getId());
 
-        //등록하기
+        //작업계획(진행중) 등록하기
+        //계획 시작일자 전에는 진행대기로 표시해야할 것 같음
         if (result.isPresent()) {
             Rorder rorder = result.get();
 
             WplanDto wplanDto = new WplanDto();
             wplanDto.setId(generateWplanId()); //문자열 시퀀스
             wplanDto.setCnt(rorder.getCnt());
-            wplanDto.setEndDate(LocalDateTime.now()); //시간 구해지면 넣기*
+            //wplanDto.setEndDate(LocalDateTime.now()); //시간 구해지면 넣기*
             wplanDto.setOrderId(rorder.getId());
             wplanDto.setProductId(rorder.getProductId());
-            wplanDto.setStartDate(LocalDateTime.parse("2023-05-18T12:00:00")); //시간 구해지면 넣기*
-            wplanDto.setState("진행중");
+            //wplanDto.setStartDate(LocalDateTime.parse("2023-05-18T12:00:00")); //시간 구해지면 넣기*
+            if (ifNow.isBefore(ifStartDate)) {
+                wplanDto.setState("진행대기");
+            } else if (ifNow.isEqual(ifStartDate) || ifNow.isAfter(ifStartDate)) {
+                wplanDto.setState("진행중");
+            }
+            if(ifNow.isAfter(ifEndDate)) {
+                wplanDto.setState("완료");
+            }
 
             wplanRepository.save(wplanDto.toEntity());
 
