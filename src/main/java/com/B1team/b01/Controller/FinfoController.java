@@ -12,13 +12,13 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class FinfoController {
     //설비 현황
-    @GetMapping("/facilityStatus")
+    @GetMapping("/facility/facility-status")
     public String facilityStatus() {
         return "facility/facility-status";
     }
 
     //설비 정보
-    @GetMapping("/facilityInformation")
+    @GetMapping("/facility/facility-information")
     public String facilityInformation() {
         return "facility/facility-information";
     }

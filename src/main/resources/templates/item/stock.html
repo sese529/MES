@@ -1,371 +1,367 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
-    <title>제품 재고 관리</title>
+    <title>제품 재고 현황</title>
 </head>
 
-<body>
+<body id="page-top">
 
-    <body id="page-top">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-        <!-- Page Wrapper -->
-        <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" id="sidebarBrandTexts"
+           href="/main">
+            <div class="sidebar-brand-icons">
+                <i class="fa-solid fa-industry fa-2x" id="brandLogo"></i>
+            </div>
+            <div class="sidebar-brand-text mx-4">
+                <div class="sidebarBrandTexts">제1조 MES</div>
+            </div>
+        </a>
 
-                <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" id="sidebarBrandTexts"
-                   href="/main">
-                    <div class="sidebar-brand-icons">
-                        <i class="fa-solid fa-industry fa-2x" id="brandLogo"></i>
-                    </div>
-                    <div class="sidebar-brand-text mx-4">
-                        <div class="sidebarBrandTexts">제1조 MES</div>
-                    </div>
-                </a>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-3">
 
-                <!-- Divider -->
-                <hr class="sidebar-divider my-3">
+        <!-- Nav Item - 수주관리 -->
+        <li class="nav-item">
+            <a class="nav-link" href="/rorder/order">
+                <i class="fa-solid fa-wallet"></i>
+                <span>수주관리</span></a>
+        </li>
 
-                <!-- Nav Item - 수주관리 -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/order">
-                        <i class="fa-solid fa-wallet"></i>
-                        <span>수주관리</span></a>
-                </li>
-
-                <!-- Nav Item - 자재관리 -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                       aria-expanded="true" aria-controls="collapseOne">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <span>자재관리</span>
-                    </a>
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="/placeAnOrderStatus">· 발주 현황</a>
-                            <a class="collapse-item" href="/materialInOutPut">· 자재 입출 현황</a>
-                            <a class="collapse-item" href="/materialInventory">· 자재 재고 현황</a>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Nav Item - 생산관리 -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                       aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fa-solid fa-clipboard"></i>
-                        <span>생산관리</span>
-                    </a>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="/productionOrder">· 생산 계획 현황</a>
-                            <a class="collapse-item" href="/productionPlan">· 생산 지시 현황</a>
-                            <a class="collapse-item" href="/productionPerformance">· 생산 실적 현황</a>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Nav Item - 출하관리 -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/shipment">
-                        <i class="fa-solid fa-chart-simple"></i>
-                        <span>출하관리</span>
-                    </a>
-                </li>
-
-                <!-- Nav Item - 거래처관리 -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                       aria-expanded="true" aria-controls="collapseThree">
-                        <i class="fa-solid fa-user-group"></i>
-                        <span>거래처관리</span>
-                    </a>
-                    <div id="collapseThree" class="collapse" aria-labelledby="HeadingThree" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="/orderCustomer">· 수주 거래처 현황</a>
-                            <a class="collapse-item" href="/placeAnOrderCustomer">· 발주 거래처 현황</a>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Nav Item - 품목관리 -->
-                <li class="nav-item active">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
-                       aria-expanded="true" aria-controls="collapseFour">
-                        <i class="fa-solid fa-chart-bar"></i>
-                        <span>품목관리</span>
-                    </a>
-                    <div id="collapseFour" class="collapse" aria-labelledby="HeadingFour" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="/stock">· 제품 재고 현황</a>
-                            <a class="collapse-item" href="/bom">· BOM 현황</a>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Nav Item - 설비관리 -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
-                       aria-expanded="true" aria-controls="collapseFive">
-                        <i class="fa-solid fa-gear"></i>
-                        <span>설비관리</span>
-                    </a>
-                    <div id="collapseFive" class="collapse" aria-labelledby="HeadingFive" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="/facilityStatus">· 설비 현황</a>
-                            <a class="collapse-item" href="/facilityInformation">· 설비 정보</a>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center-toggle">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <!-- Nav Item - 자재관리 -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+               aria-expanded="true" aria-controls="collapseOne">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>자재관리</span>
+            </a>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/materials/porder-status">· 발주 현황</a>
+                    <a class="collapse-item" href="/materials/material-inoutput">· 자재 입·출 현황</a>
+                    <a class="collapse-item" href="/materials/material-inventory">· 자재 재고 현황</a>
                 </div>
+            </div>
+        </li>
 
-            </ul>
-            <!-- End of Sidebar -->
+        <!-- Nav Item - 생산관리 -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fa-solid fa-clipboard"></i>
+                <span>생산관리</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/production/production-order">· 생산 계획 현황</a>
+                    <a class="collapse-item" href="/production/production-plan">· 생산 지시 현황</a>
+                    <a class="collapse-item" href="/production/production-performance">· 생산 실적 현황</a>
+                </div>
+            </div>
+        </li>
 
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Nav Item - 출하관리 -->
+        <li class="nav-item">
+            <a class="nav-link" href="/shipment/shipment">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>출하관리</span>
+            </a>
+        </li>
 
-                <!-- Main Content -->
-                <div id="content">
+        <!-- Nav Item - 거래처관리 -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+               aria-expanded="true" aria-controls="collapseThree">
+                <i class="fa-solid fa-user-group"></i>
+                <span>거래처관리</span>
+            </a>
+            <div id="collapseThree" class="collapse" aria-labelledby="HeadingThree" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/customer/rorder-customer">· 수주 거래처 현황</a>
+                    <a class="collapse-item" href="/customer/porder-customer">· 발주 거래처 현황</a>
+                </div>
+            </div>
+        </li>
 
-                    <!-- Topbar -->
-                    <div class="topbar">
-                        <h1 class="h4">품목관리 > 제품 재고 현황</h1>
-                        <div class="buttons">
-                            <!-- 등록 -->
-                            <button class="buttonsReg" id="openModalBtn">등록</button>
-                            <div class="modal" id="myModal">
-                                <div class="modalContentReg">
-                                    <div class="RegTop">
-                                        <p class="orderButtonTitle">수주 등록</p>
-                                        <div class="regButton">
-                                            <button class="regReg">등록</button>
-                                            <button class="regClose">닫기</button>
-                                        </div>
-                                    </div>
-                                    <form action="/search" method="get">
-                                        <div class="Regsearchbar">
-                                            <table class="table table-borderless" id="dataTable" width="100%"
-                                                cellspacing="0">
-                                                <tbody class="regSearchbarBody">
-                                                    <tr>
-                                                        <td>수주일</td>
-                                                        <td></td>
-                                                        <td>수주번호</td>
-                                                        <td></td>
-                                                        <td>거래처명</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>품목</td>
-                                                        <td></td>
-                                                        <td>수주량</td>
-                                                        <td></td>
-                                                        <td>납품예정일</td>
-                                                        <td></td>
-                                                        <td><button class="RegPreButton">예측</button></th>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </form>
-                                    <table class="table table-borderless" id="dataTable" width="100%" cellspacing="0">
-                                        <thead class="table-title">
-                                            <tr>
-                                                <th>품목명</th>
-                                                <th>품목 코드</th>
-                                                <th>수량</th>
-                                                <th>단가(원)</th>
-                                                <th>분류</th>
-                                                <th>총금액</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="table-body">
-                                            <tr>
-                                                <td>양배추즙</td>
-                                                <td>01513448</td>
-                                                <td>100</td>
-                                                <td>9,000</td>
-                                                <td>JUICE</td>
-                                                <td>900,000</td>
-                                            </tr>
+        <!-- Nav Item - 품목관리 -->
+        <li class="nav-item active">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+               aria-expanded="true" aria-controls="collapseFour">
+                <i class="fa-solid fa-chart-bar"></i>
+                <span>품목관리</span>
+            </a>
+            <div id="collapseFour" class="collapse" aria-labelledby="HeadingFour" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/item/stock">· 제품 재고 현황</a>
+                    <a class="collapse-item" href="/item/bom">· BOM 현황</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - 설비관리 -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+               aria-expanded="true" aria-controls="collapseFive">
+                <i class="fa-solid fa-gear"></i>
+                <span>설비관리</span>
+            </a>
+            <div id="collapseFive" class="collapse" aria-labelledby="HeadingFive" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/facility/facility-status">· 설비 현황</a>
+                    <a class="collapse-item" href="/facility/facility-information">· 설비 정보</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center-toggle">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <div class="topbar">
+                <h1 class="h4">품목관리 > 제품 재고 현황</h1>
+                <div class="buttons">
+                    <!-- 등록 -->
+                    <button class="buttonsReg" id="openModalBtn">등록</button>
+                    <div class="modal" id="myModal">
+                        <div class="modalContentReg">
+                            <div class="RegTop">
+                                <p class="orderButtonTitle">수주 등록</p>
+                                <div class="regButton">
+                                    <button class="regReg">등록</button>
+                                    <button class="regClose">닫기</button>
+                                </div>
+                            </div>
+                            <form action="/search" method="get">
+                                <div class="Regsearchbar">
+                                    <table class="table table-borderless" id="itemDataTable1" width="100%"
+                                           cellspacing="0">
+                                        <tbody class="regSearchbarBody">
+                                        <tr>
+                                            <td>수주일</td>
+                                            <td></td>
+                                            <td>수주번호</td>
+                                            <td></td>
+                                            <td>거래처명</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>품목</td>
+                                            <td></td>
+                                            <td>수주량</td>
+                                            <td></td>
+                                            <td>납품예정일</td>
+                                            <td></td>
+                                            <td>
+                                                <button class="RegPreButton">예측</button>
+                                                </th>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                            <!-- 등록 끝 -->
-
-                            <!-- 수정 -->
-                            <button class="buttonsCor" onclick="openPopupCor()">수정</button>
-                            <!-- 수정 끝 -->
-
-                            <button class="buttonsChe" onclick="openPopupChe()">확인</button>
-                            <button class="buttonsEx" onclick="openPopupEx()">엑셀다운로드</button>
-                        </div>
-                    </div>
-                    <!-- End of Topbar -->
-
-                    <!-- searchbar  -->
-                    <form action="/search" methbod="get" class="searchbarForm">
-                        <div class="searchbar">
-                            <table class="table table-borderless" id="dataTable" cellspacing="0">
-                                <tr class="searchbarTr2">
-                                    <td class="searchbarDateTd">
-                                        <p>품목</p>
-                                    </td>
-                                    <td class="searchbarContent">
-                                        <nav class="navbar navbar-expand" id="dropdownPro">
-                                            <ul class="navbar-nav ml-auto">
-                                                <li class="dropdown">
-                                                    <a class="dropdown-toggle" id="navbarDropdown" role="button"
-                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">품목명</a>
-                                                    <div class="dropdown-menu dropdown-menu-right animated--grow-in"
-                                                        aria-labelledby="navbarDropdown">
-                                                        <a class="dropdown-item" href="#">· 양배추즙</a>
-                                                        <a class="dropdown-item" href="#">· 흑마늘즙</a>
-                                                        <a class="dropdown-item" href="#">· 석류젤리</a>
-                                                        <a class="dropdown-item" href="#">· 메실젤리</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </td>
-                                    <td class="searchbarDateTd">
-                                        <p>업체코드</p>
-                                    </td>
-                                    <td class="searchbarContent">
-                                        <input type="text">
-                                    </td>
-                                    <td class="searchbarDateTd">
-                                        <p>사업자등록번호</p>
-                                    </td>
-                                    <td class="searchbarContent">
-                                        <input type="text">
-                                    </td>
-                                    <td class="searchButtonTd">
-                                        <button class="searchButton">
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                            <p class="searchButtonP">조회</p>
-                                        </button>
-                                    </td>
+                            </form>
+                            <table class="table table-borderless" id="itemDataTable2" width="100%" cellspacing="0">
+                                <thead class="table-title">
+                                <tr>
+                                    <th>품목명</th>
+                                    <th>품목 코드</th>
+                                    <th>수량</th>
+                                    <th>단가(원)</th>
+                                    <th>분류</th>
+                                    <th>총금액</th>
                                 </tr>
-                            </table>
-                        </div>
-                    </form>
-                    <!-- searchbar끝 -->
-
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
-
-                        <!-- DataTales Example -->
-                    <div class="cardBody">
-                        <div class="table-responsive">
-                            <table class="table table-borderless" id="dataTables" width="100%" cellspacing="0">
-                                <thead class="tableTitle">
-                                    <tr>
-                                        <th></th>
-                                        <th>품목명</th>
-                                        <th>품목 코드</th>
-                                        <th>재고 수량(EA)</th>
-                                        <th>단가(원)</th>
-                                        <th>분류</th>
-                                        <th>창고 위치</th>
-                                    </tr>
                                 </thead>
-                                <tbody class="tableBody">
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>양배추즙</td>
-                                        <td>01513448</td>
-                                        <td>0</td>
-                                        <td>300</td>
-                                        <td>JUICE</td>
-                                        <td>가123</td>
-                                    </tr>
-                                    <tr class="tableBodyTr">
-                                        <td><input type="checkbox"></td>
-                                        <td>흑마늘즙</td>
-                                        <td>01513448</td>
-                                        <td>0</td>
-                                        <td>300</td>
-                                        <td>JUICE</td>
-                                        <td>나123</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>석류 젤리스틱</td>
-                                        <td>01513448</td>
-                                        <td>0</td>
-                                        <td>500</td>
-                                        <td>ST</td>
-                                        <td>다123</td>
-                                    </tr>
-                                    <tr class="tableBodyTr">
-                                      <td><input type="checkbox"></td>
-                                      <td>매실 젤리스틱</td>
-                                      <td>01513448</td>
-                                      <td>0</td>
-                                      <td>500</td>
-                                      <td>ST</td>
-                                      <td>라123</td>
-                                  </tr>
+                                <tbody class="table-body">
+                                <tr>
+                                    <td>양배추즙</td>
+                                    <td>01513448</td>
+                                    <td>100</td>
+                                    <td>9,000</td>
+                                    <td>JUICE</td>
+                                    <td>900,000</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- End of Main Content -->
+                    <!-- 등록 끝 -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                    <!-- 수정 -->
+                    <button class="buttonsCor" onclick="openPopupCor()">수정</button>
+                    <!-- 수정 끝 -->
+
+                    <button class="buttonsChe" onclick="openPopupChe()">확인</button>
+                    <button class="buttonsEx" onclick="openPopupEx()">엑셀다운로드</button>
+                </div>
+            </div>
+            <!-- End of Topbar -->
+
+            <!-- searchbar  -->
+            <form action="/search" methbod="get" class="searchbarForm">
+                <div class="searchbar">
+                    <table class="table table-borderless" id="itemDataTable3" cellspacing="0">
+                        <tr class="searchbarTr2">
+                            <td class="searchbarDateTd">
+                                <p>품목명</p>
+                            </td>
+                            <td class="searchbarContent">
+                                <select class="searchbarSelect">
+                                    <option>양배추즙</option>
+                                    <option>흑마늘즙</option>
+                                    <option>석류젤리</option>
+                                    <option>메실젤리</option>
+                                </select>
+                            </td>
+                            <td class="searchbarDateTd">
+                                <p>품목코드</p>
+                            </td>
+                            <td class="searchbarContent">
+                                <input type="text">
+                            </td>
+                            <td class="searchbarDateTd">
+                                <p>분류</p>
+                            </td>
+                            <td class="searchbarContent">
+                                <input type="text">
+                            </td>
+                            <td class="searchButtonTd">
+                                <button class="searchButton">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <p class="searchButtonP">조회</p>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+            <!-- searchbar끝 -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- DataTales Example -->
+                <div class="cardBody">
+                    <div class="table-responsive">
+                        <table class="table table-borderless" id="itemDataTables1" width="100%" cellspacing="0">
+                            <thead class="tableTitle">
+                            <tr>
+                                <th></th>
+                                <th>품목명</th>
+                                <th>품목 코드</th>
+                                <th>재고 수량(EA)</th>
+                                <th>단위</th>
+                                <th>단가(원)</th>
+                                <th>분류</th>
+                                <th>창고 위치</th>
+                            </tr>
+                            </thead>
+                            <tbody class="tableBody">
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>양배추즙</td>
+                                <td>01513448</td>
+                                <td>0</td>
+                                <td>EA</td>
+                                <td>300</td>
+                                <td>JUICE</td>
+                                <td>가123</td>
+                            </tr>
+                            <tr class="tableBodyTr">
+                                <td><input type="checkbox"></td>
+                                <td>흑마늘즙</td>
+                                <td>01513448</td>
+                                <td>0</td>
+                                <td>EA</td>
+                                <td>300</td>
+                                <td>JUICE</td>
+                                <td>나123</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>석류 젤리스틱</td>
+                                <td>01513448</td>
+                                <td>0</td>
+                                <td>EA</td>
+                                <td>500</td>
+                                <td>ST</td>
+                                <td>다123</td>
+                            </tr>
+                            <tr class="tableBodyTr">
+                                <td><input type="checkbox"></td>
+                                <td>매실 젤리스틱</td>
+                                <td>01513448</td>
+                                <td>0</td>
+                                <td>EA</td>
+                                <td>500</td>
+                                <td>ST</td>
+                                <td>라123</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
             </div>
-            <!-- End of Content Wrapper -->
+            <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="/js/reg.js"></script>
-            <!-- <script src="js/Cor.js"></script> -->
-            <script src="/js/jquery.min.js"></script>
-            <script src="/js/bootstrap.bundle.min.js"></script>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
 
-            <!-- Core plugin JavaScript-->
-            <script src="/js/jquery.easing.min.js"></script>
+    </div>
+    <!-- End of Content Wrapper -->
 
-            <!-- Custom scripts for all pages-->
-            <script src="/js/sb-admin-2.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/js/reg.js"></script>
+    <!-- <script src="js/Cor.js"></script> -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Page level plugins -->
-            <script src="/js/Chart.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/js/jquery.easing.min.js"></script>
 
-            <!-- Page level custom scripts -->
-            <script src="/js/chart-area-demo.js"></script>
-            <script src="/js/chart-pie-demo.js"></script>
-    </body>
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/js/chart-area-demo.js"></script>
+    <script src="/js/chart-pie-demo.js"></script>
+</div>
+</body>
 
 </html>

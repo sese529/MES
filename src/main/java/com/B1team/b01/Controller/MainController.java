@@ -6,73 +6,44 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-    //수주 페이지 분리하면서 주석 처리 (삭제 가능)
-//    @GetMapping("/order")
-//    public String order(Model model) {
-//
-//        return "rorder/order";
-//    }
-
-    @GetMapping("/placeAnOrderStatus")
+    @GetMapping("/materials/porder-status")
     public String placeAnOrderStatus() {
-        return "placeAnOrderStatus";
+        return "/materials/porder-status";
     }
 
-    @GetMapping("/materialInOutPut")
+    @GetMapping("/materials/material-inoutput")
     public String materialInOutPut() {
-        return "materialInOutPut";
+        return "/materials/material-inoutput";
     }
 
-    @GetMapping("/materialInventory")
+    @GetMapping("/materials/material-inventory")
     public String materialInventory() {
-        return "materialInventory";
+        return "/materials/material-inventory";
     }
 
-    @GetMapping("/productionOrder")
-    public String productionOrder() {
-        return "productionOrder";
-    }
-
-    @GetMapping("/productionPlan")
+    @GetMapping("/production/production-plan")
     public String productionPlan() {
-        return "productionPlan";
+        return "/production/production-plan";
     }
 
-    @GetMapping("/productionPerformance")
+    @GetMapping("/production/production-performance")
     public String productionPerformance() {
-        return "productionPerformance";
+        return "/production/production-performance";
     }
 
-    //출하 페이지 분리하면서 주석 처리 (삭제 가능)
-//    @GetMapping("/shipment")
-//    public String shipment() {
-//        return "shipment";
-//    }
-
-    @GetMapping("/orderCustomer")
+    @GetMapping("/customer/rorder-customer")
     public String orderCustomer() {
-        return "orderCustomer";
+        return "/customer/rorder-customer";
     }
 
-    @GetMapping("/placeAnOrderCustomer")
+    @GetMapping("/customer/porder-customer")
     public String placeAnOrderCustomer() {
-        return "placeAnOrderCustomer";
+        return "/customer/porder-customer";
     }
 
-    @GetMapping("/stock")
+    @GetMapping("/item/stock")
     public String stock() {
-        return "stock";
+        return "/item/stock";
     }
-
-    //설비 페이지 분리하면서 주석 처리(삭제 가능)
-//    @GetMapping("/facilityStatus")
-//    public String facilityStatus() {
-//        return "facilityStatus";
-//    }
-//
-//    @GetMapping("/facilityInformation")
-//    public String facilityInformation() {
-//        return "facilityInformation";
-//    }
 
 }
