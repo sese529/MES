@@ -1,6 +1,7 @@
 package com.B1team.b01;
 
 import com.B1team.b01.dto.RorderDto;
+import com.B1team.b01.dto.RorderFormDto;
 import com.B1team.b01.entity.Rorder;
 import com.B1team.b01.repository.RorderRepository;
 import com.B1team.b01.service.RorderService;
@@ -8,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -46,5 +49,24 @@ public class RorderRepositoryTests {
         List<RorderDto> list = rorderService.searchRorder(startDate, endDate, orderId, customerName, productName, startDeadline, endDeadLine);
         for(int i = 0; i < list.size(); i++)
             System.out.println(list.get(i));
+    }
+
+    @Test
+    void 수주등록테스트(@Autowired EntityManager entityManager) {
+        BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT " + "order_seq" + ".NEXTVAL FROM dual").getSingleResult();
+        String id = "ROD" + sequenceValue;
+        RorderFormDto dto = new RorderFormDto().builder()
+                .id(id)
+                .customerId("code1")
+                .customerName("코드하우스")
+                .productId("p21")
+                .productName("양배추즙")
+                .cnt(50L)
+                .price(500000L)
+                .state("미확정")
+                .deadline(LocalDateTime.now().plusDays(2))
+                .build();
+        Rorder entity = dto.toEntity();
+        System.out.println(rorderRepository.save(entity));
     }
 }
