@@ -14,4 +14,10 @@ public class StockDto {
     private String location;
     private Long stockEa;
     private String stockUnit;
+
+    //product
+    private String name;
+    private String unit;
+    private Long price;
+
 }

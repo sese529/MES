@@ -177,9 +177,8 @@
                                             <td></td>
                                             <td>납품예정일</td>
                                             <td></td>
-                                            <td>
-                                                <button class="RegPreButton">예측</button>
-                                                </th>
+                                            <button class="RegPreButton">예측</button>
+                                            </th>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -231,6 +230,7 @@
                             </td>
                             <td class="searchbarContent">
                                 <select class="searchbarSelect">
+                                    <option>선택</option>
                                     <option>양배추즙</option>
                                     <option>흑마늘즙</option>
                                     <option>석류젤리</option>
@@ -281,15 +281,15 @@
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
+                            <tr th:each="stock : ${stList}">
                                 <td><input type="checkbox"></td>
-                                <td>양배추즙</td>
-                                <td>01513448</td>
-                                <td>0</td>
-                                <td>EA</td>
-                                <td>300</td>
-                                <td>JUICE</td>
-                                <td>가123</td>
+                                <td th:text="${stock.id}"></td>
+                                <td th:text="${stock.id}"></td>
+                                <td th:text="${stock.ea}"></td>
+                                <td th:text="${stock.unit}"></td>
+                                <td th:text="${stock}"></td>
+                                <td th:text="${stock.id}"></td>
+                                <td th:text="${stock.location}"></td>
                             </tr>
                             <tr class="tableBodyTr">
                                 <td><input type="checkbox"></td>

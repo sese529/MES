@@ -2,9 +2,7 @@ package com.B1team.b01.service;
 
 import com.B1team.b01.dto.PorderDto;
 import com.B1team.b01.dto.StockDto;
-import com.B1team.b01.entity.Porder;
-import com.B1team.b01.entity.Rorder;
-import com.B1team.b01.entity.Stock;
+import com.B1team.b01.entity.*;
 import com.B1team.b01.repository.PorderRepository;
 import com.B1team.b01.repository.RorderRepository;
 import com.B1team.b01.repository.StockRepository;
@@ -13,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.swing.text.html.HTMLDocument;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
@@ -34,13 +31,18 @@ public class StockService {
     @Autowired
     private EntityManagerFactory entityManagerFactory;
 
+    @Autowired
+    public StockService(StockRepository stockRepository){
+        this.stockRepository = stockRepository;
+    }
+
     //시뮬레이션 - 재고확인 및 자동발주
     public Long stockCheck (String productId, String orderId) {
         //제품 잔여수량 확인
 //        Optional<Stock> optional = stockRepository.findById(productId);
 //        Stock stock = optional.get();
 
-        Stock stock = stockRepository.findByProductId(productId);
+        Stock stock = (Stock) stockRepository.findByProductIdNotNull();
 
         //재고 수량
 
@@ -90,7 +92,7 @@ public class StockService {
 
         //주문량 > 재고량, 자동 발주
 
-        Optional<Stock> stock = Optional.ofNullable(stockRepository.findByProductId(dto.getProductId()));
+        Optional<Stock> stock = Optional.ofNullable((Stock) stockRepository.findByProductIdNotNull());
 
         if (stock.isPresent()) {
             Stock remainStock = stock.get();
@@ -126,7 +128,17 @@ public class StockService {
     }
     
 //    제품재고 조회
-//    public List<Stock> getProductStock() {
+    public List<Stock> getProductStock() {
+//        String name, String productId, String sort
+//                ->매개변수 잠시 주석처리
+//        Specification<Wplan> specification = Specification.where(null);
 //
-//    }
+//        return  stockRepository.findAll(specification);
+
+        return stockRepository.findByProductIdNotNull();
+    }
+
+    public List<Product> getProductStock1(String productId){
+        return stockRepository.findByProductIdInStock(productId);
+    }
 }
