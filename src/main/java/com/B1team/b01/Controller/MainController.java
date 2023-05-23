@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-    //수주 페이지 분리하면서 주석 처리
+    //수주 페이지 분리하면서 주석 처리 (삭제 가능)
 //    @GetMapping("/order")
 //    public String order(Model model) {
 //
@@ -43,10 +43,11 @@ public class MainController {
         return "productionPerformance";
     }
 
-    @GetMapping("/shipment")
-    public String shipment() {
-        return "shipment";
-    }
+    //출하 페이지 분리하면서 주석 처리 (삭제 가능)
+//    @GetMapping("/shipment")
+//    public String shipment() {
+//        return "shipment";
+//    }
 
     @GetMapping("/orderCustomer")
     public String orderCustomer() {
@@ -63,7 +64,7 @@ public class MainController {
         return "stock";
     }
 
-    //설비 페이지 분리하면서 주석 처리
+    //설비 페이지 분리하면서 주석 처리(삭제 가능)
 //    @GetMapping("/facilityStatus")
 //    public String facilityStatus() {
 //        return "facilityStatus";
