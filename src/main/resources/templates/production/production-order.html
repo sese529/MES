@@ -157,33 +157,39 @@
           <!-- searchbar  -->
           <form action="/production/search" method="POST" class="searchbarForm">
             <div class="searchbar">
-              <table class="table table-borderless" id="dataTable" cellspacing="0">
-                <tr class="searchbarTr2">
-                  <td class="searchbarDateTd">
+              <table class="table table-borderless" id="productionDataTables1" cellspacing="0">
+                <tr class="searchbarTr3">
+                  <td class="searchbarDateTd2">
                     <p>품목</p>
                   </td>
-                  <td class="searchbarContent">
-                    <nav class="navbar navbar-expand" id="dropdownPro">
-                      <ul class="navbar-nav ml-auto">
-                        <li class="dropdown">
-                            <select name="id">
+                  <td class="searchbarContent2">
+                            <select name="id" class="searchbarSelect">
+                                <option value="" selected> </option>
                                 <option th:each="plist : ${plist}" th:text="${plist.id}" th:value="${plist.id}" ></option>
                             </select>
-                        </li>
-                      </ul>
-                    </nav>
                   </td>
-                  <td class="searchbarDateTd">
+                  <td class="searchbarDateTd2">
                     <p>수주번호</p>
                   </td>
-                  <td class="searchbarContent">
+                  <td class="searchbarContent2">
                     <input type="text" name="orderId">
                   </td>
-                  <td class="searchbarDateTd">
+                    <td class="searchbarDateTd2">
+                        <p>상태</p>
+                    </td>
+                    <td class="searchbarContent2">
+                        <select class="searchbarSelect" name="state">
+                            <option value="" selected> </option>
+                            <option>진행대기</option>
+                            <option>진행중</option>
+                            <option>완료</option>
+                        </select>
+                    </td>
+                  <td class="searchbarDateTd2">
                     <p>계획 일자</p>
                   </td>
-                  <td class="searchbarContent">
-                    <div class="searchbarDate">
+                  <td class="searchbarContent2">
+                    <div class="searchbarDate2">
                       <input type="date" name="min">
                       <p class="searchbarDateWater">~</p>
                       <input type="date" name="max">

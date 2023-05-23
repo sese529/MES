@@ -150,7 +150,7 @@
             <!-- End of Topbar -->
 
             <!-- searchbar  -->
-            <form action="/search" methbod="get" class="searchbarForm">
+            <form action="/production/performsearch" method="post" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable" cellspacing="0">
                         <tr class="searchbarTr2">
@@ -158,31 +158,29 @@
                                 <p>품목</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>양배추즙</option>
-                                    <option>흑마늘즙</option>
-                                    <option>매실젤리</option>
-                                    <option>석류젤리</option>
+                                <select name="productId" class="searchbarSelect">
+                                    <option value="" selected> </option>
+                                    <option th:each="plist : ${plist}" th:text="${plist.id}" th:value="${plist.id}" ></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
                                 <p>수주 번호</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
+                                <input type="text" name="orderId">
                             </td>
                             <td class="searchbarDateTd">
                                 <p>생산 기간</p>
                             </td>
                             <td class="searchbarContent">
                                 <div class="searchbarDate">
-                                    <input type="date">
+                                    <input type="date" name="min">
                                     <p class="searchbarDateWater">~</p>
-                                    <input type="date">
+                                    <input type="date" name="max">
                                 </div>
                             </td>
                             <td class="searchButtonTd">
-                                <button class="searchButton">
+                                <button class="searchButton" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                     <p class="searchButtonP">조회</p>
                                 </button>
@@ -203,7 +201,7 @@
                         <table class="table table-borderless" id="dataTables" width="100%" cellspacing="0">
                             <thead class="tableTitle">
                             <tr>
-                                <th>품목명</th>
+                                <th>품목코드</th>
                                 <th>수주번호</th>
                                 <th>계획수량</th>
                                 <th>작업시작일자</th>
@@ -211,26 +209,19 @@
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
-                                <td>P78925_03</td>
-                                <td>G215483126</td>
-                                <td>50</td>
-                                <td>2022-05-01 11:30</td>
-                                <td>2022-05-03 11:30</td>
+                            <tr th:each="wlist: ${wlist}">
+                                <td th:text="${wlist.productId}"></td>
+                                <td th:text="${wlist.orderId}"></td>
+                                <td th:text="${wlist.cnt}"></td>
+                                <td th:text="${wlist.startDate}"></td>
+                                <td th:text="${wlist.endDate}"></td>
                             </tr>
-                            <tr class="tableBodyTr">
-                                <td>P78925_02</td>
-                                <td>G215483126</td>
-                                <td>100</td>
-                                <td>2022-05-01 11:30</td>
-                                <td>2022-05-03 11:30</td>
-                            </tr>
-                            <tr>
-                                <td>P78925_01</td>
-                                <td>G215483126</td>
-                                <td>69</td>
-                                <td>2022-05-01 11:30</td>
-                                <td>2022-05-03 11:30</td>
+                            <tr th:each="wlist: ${searchlist}">
+                                <td th:text="${wlist.productId}"></td>
+                                <td th:text="${wlist.orderId}"></td>
+                                <td th:text="${wlist.cnt}"></td>
+                                <td th:text="${wlist.startDate}"></td>
+                                <td th:text="${wlist.endDate}"></td>
                             </tr>
                             </tbody>
                         </table>

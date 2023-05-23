@@ -34,5 +34,6 @@ public class Worder {
     @Column(name = "worder_finish_date", nullable = false, columnDefinition = "date")
     private LocalDateTime finishDate;   //작업 완료 일자
 
-
+    @Column(name="product_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String productId; //제품 고유번호
 }
