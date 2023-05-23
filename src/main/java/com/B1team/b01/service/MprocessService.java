@@ -1,5 +1,6 @@
 package com.B1team.b01.service;
 
+import com.B1team.b01.dto.NeedOrderDto;
 import com.B1team.b01.dto.WorderDto;
 import com.B1team.b01.entity.Finfo;
 import com.B1team.b01.entity.Mprocess;
@@ -21,9 +22,39 @@ public class MprocessService {
     private final MprocessRepository mprocessRepository;
     private final RoutingRepository routingRepository;
     private final FinfoRepository finfoRepository;
+    private final MaterialsService materialsService;
+    private final BomService bomService;
+
+    //시뮬레이션 - 납기일 예측(계산)
+    public LocalDateTime caluculateDeadline(LocalDateTime orderDate, String productId, long amount) {
+        //orderDate : 수주 날짜(시작 날짜), productId : 품목id
+
+        //모든 원자재 준비 완료 시간
+        LocalDateTime materialReadyDate = orderDate;
+
+        //필요 발주 목록 계산
+        List<NeedOrderDto> needOrderList = bomService.calcBom(productId, amount);
+
+        //원자재 재고 충분
+        if(!needOrderList.isEmpty()) {
+            for(NeedOrderDto dto : needOrderList) {
+                LocalDateTime readyDate = materialsService.calculateArrivalDate(orderDate, dto.getMtrId());  //원자재 입고 날짜
+
+                //해당 원자재 입고 날짜가 materialReadyDate보다 이후이면 완료 시간 지정
+                if(readyDate.isAfter(materialReadyDate))
+                    materialReadyDate = readyDate;
+            }
+        }
+
+        //모든 공정 다 돌렸을 때 시간
+        List<WorderDto> worderDtos = calculateWorderDate(materialReadyDate, productId, amount);     //모든 공정에 대한 기록
+        LocalDateTime finishDate = worderDtos.get(worderDtos.size() - 1).getFinishDate();   //마지막 공정의 완료 시간
+
+        return finishDate;
+    }
 
     //시뮬레이션 - 작업 시간 계산
-    public List<WorderDto> calculateWorderDate(LocalDateTime materialReadyDate, String productId){
+    public List<WorderDto> calculateWorderDate(LocalDateTime materialReadyDate, String productId, long amount){
         //매개변수 materialReadyDate : 모든 원자재가 준비 완료되는 시간 / productId : 제품 고유번호
         List<WorderDto> dtoList = new ArrayList<>();   //반환할 작업지시(Worder) dto List
 

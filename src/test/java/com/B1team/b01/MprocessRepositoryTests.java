@@ -24,6 +24,12 @@ public class MprocessRepositoryTests {
     @Autowired private MprocessService mprocessService;
 
     @Test
+    void 납기일예측테스트() {
+        LocalDateTime deadline = mprocessService.caluculateDeadline(LocalDateTime.now(), "p21", 10);
+        System.out.println("deadline=" + deadline);
+    }
+
+    @Test
     void 공정테스트() {
         //모든 공정을 불러오기
         List<String> list = new ArrayList<>(); //processId list
@@ -154,7 +160,7 @@ public class MprocessRepositoryTests {
     @Test
     void 작업시간계산테스트() {
         LocalDateTime materialReadyDate = LocalDateTime.of(2023, 5, 24, 10, 0);
-        List<WorderDto> list = mprocessService.calculateWorderDate(materialReadyDate, "p21");
+        List<WorderDto> list = mprocessService.calculateWorderDate(materialReadyDate, "p21", 10);
         for(int i = 0; i < list.size(); i++)
             System.out.println(list.get(i));
     }
