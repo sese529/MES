@@ -21,12 +21,12 @@ import java.util.List;
 @Controller
 @Transactional
 @RequiredArgsConstructor
-@RequestMapping("/rorder/order")
+@RequestMapping("/rorder")
 public class RorderController {
     private final RorderService rorderService;
     private final CustomerRepository customerRepository;
 
-    @GetMapping("")
+    @GetMapping("/order")
     public String order(Model model,
                         String startDate,
                         String endDate,
