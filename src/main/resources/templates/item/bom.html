@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="utf-8">
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
     <link
@@ -10,7 +10,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
-    <title>출하 관리</title>
+    <title>BOM 현황</title>
 </head>
 
 <body id="page-top">
@@ -67,15 +67,15 @@
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/production/production-order">· 작업 계획 현황</a>
-                    <a class="collapse-item" href="/production/production-plan">· 작업 지시 현황</a>
-                    <a class="collapse-item" href="/production/production-performance">· 작업 실적 현황</a>
+                    <a class="collapse-item" href="/production/production-order">· 생산 계획 현황</a>
+                    <a class="collapse-item" href="/production/production-plan">· 생산 지시 현황</a>
+                    <a class="collapse-item" href="/production/production-performance">· 생산 실적 현황</a>
                 </div>
             </div>
         </li>
 
         <!-- Nav Item - 출하관리 -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="/shipment/shipment">
                 <i class="fa-solid fa-chart-simple"></i>
                 <span>출하관리</span>
@@ -98,7 +98,7 @@
         </li>
 
         <!-- Nav Item - 품목관리 -->
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                aria-expanded="true" aria-controls="collapseFour">
                 <i class="fa-solid fa-chart-bar"></i>
@@ -143,59 +143,15 @@
 
             <!-- Topbar -->
             <div class="topbar">
-                <h1 class="h4">출하관리</h1>
-                <div class="buttons">
-                    <button class="buttonsEx" onclick="openPopupEx()">엑셀다운로드</button>
-                </div>
+                <h1 class="h4">품목관리 > BOM 현황</h1>
             </div>
             <!-- End of Topbar -->
 
             <!-- searchbar  -->
             <form action="/search" methbod="get" class="searchbarForm">
                 <div class="searchbar">
-                    <table class="table table-borderless" id="dataTable2" cellspacing="0">
-
-                        <tr class="searchbarTr1">
-                            <td class="searchbarDateTd">
-                                <p>출하일</p>
-                            </td>
-                            <td class="searchbarContent">
-                                <div class="searchbarDate">
-                                    <input type="date">
-                                    <p class="searchbarDateWater">~</p>
-                                    <input type="date">
-                                </div>
-                            <td class="searchbarDateTd">
-                                <p>창고위치</p>
-                            </td>
-                            <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>가123</option>
-                                    <option>나123</option>
-                                    <option>다123</option>
-                                    <option>라123</option>
-                                    <option>마123</option>
-                                </select>
-                            </td>
-                            <td class="searchbarDateTd">
-                                <p>제품코드</p>
-                            </td>
-                            <td class="searchbarContent">
-                                <input type="text">
-                            </td>
-                            <td class="searchButtonTd"></td>
-                        </tr>
+                    <table class="table table-borderless" id="dataTable" cellspacing="0">
                         <tr class="searchbarTr2">
-                            <td class="searchbarDateTd">
-                                <p>거래처명</p>
-                            </td>
-                            <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>매출처1</option>
-                                    <option>매출처2</option>
-                                    <option>매출처3</option>
-                                </select>
-                            </td>
                             <td class="searchbarDateTd">
                                 <p>품목</p>
                             </td>
@@ -208,10 +164,16 @@
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
-                                <!-- 공백 -->
+                                <p>업체코드</p>
                             </td>
                             <td class="searchbarContent">
-                                <!-- 공백 -->
+                                <input type="text">
+                            </td>
+                            <td class="searchbarDateTd">
+                                <p>사업자등록번호</p>
+                            </td>
+                            <td class="searchbarContent">
+                                <input type="text">
                             </td>
                             <td class="searchButtonTd">
                                 <button class="searchButton">
@@ -220,7 +182,6 @@
                                 </button>
                             </td>
                         </tr>
-
                     </table>
                 </div>
             </form>
@@ -236,44 +197,49 @@
                             <thead class="tableTitle">
                             <tr>
                                 <th></th>
-                                <th>출하일</th>
                                 <th>품목명</th>
-                                <th>수량(EA)</th>
-                                <th>제품코드</th>
-                                <th>창고위치</th>
+                                <th>품목 코드</th>
+                                <th>재고 수량(EA)</th>
+                                <th>단가(원)</th>
+                                <th>분류</th>
+                                <th>창고 위치</th>
                             </tr>
                             </thead>
                             <tbody class="tableBody">
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>2022-05-01 11:30</td>
                                 <td>양배추즙</td>
-                                <td>1</td>
                                 <td>01513448</td>
+                                <td>0</td>
+                                <td>300</td>
+                                <td>JUICE</td>
                                 <td>가123</td>
                             </tr>
                             <tr class="tableBodyTr">
                                 <td><input type="checkbox"></td>
-                                <td>2022-05-01 11:30</td>
                                 <td>흑마늘즙</td>
-                                <td>1</td>
                                 <td>01513448</td>
+                                <td>0</td>
+                                <td>300</td>
+                                <td>JUICE</td>
                                 <td>나123</td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>2022-05-01 11:30</td>
                                 <td>석류 젤리스틱</td>
-                                <td>1</td>
                                 <td>01513448</td>
+                                <td>0</td>
+                                <td>500</td>
+                                <td>ST</td>
                                 <td>다123</td>
                             </tr>
                             <tr class="tableBodyTr">
                                 <td><input type="checkbox"></td>
-                                <td>2022-05-01 11:30</td>
                                 <td>매실 젤리스틱</td>
-                                <td>1</td>
                                 <td>01513448</td>
+                                <td>0</td>
+                                <td>500</td>
+                                <td>ST</td>
                                 <td>라123</td>
                             </tr>
                             </tbody>
@@ -298,31 +264,25 @@
     </div>
     <!-- End of Content Wrapper -->
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="/js/reg.js"></script>
+    <!-- <script src="js/Cor.js"></script> -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/js/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/js/chart-area-demo.js"></script>
+    <script src="/js/chart-pie-demo.js"></script>
 </div>
-<!-- End of Page Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Bootstrap core JavaScript-->
-<script src="/js/reg.js"></script>
-<!-- <script src="js/Cor.js"></script> -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="/js/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="/js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/js/chart-area-demo.js"></script>
-<script src="/js/chart-pie-demo.js"></script>
-
 </body>
 
 </html>
