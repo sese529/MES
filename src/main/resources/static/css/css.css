@@ -3187,6 +3187,9 @@ textarea.form-control.is-invalid {
     height: 40px;
     border: 2px solid #6a84ab;
     border-radius: 10px;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 #regDropdownPro {
