@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 @Transactional
 @RequiredArgsConstructor
-@RequestMapping("/order")
+@RequestMapping("/rorder/order")
 public class RorderController {
     private final RorderService rorderService;
     private final CustomerRepository customerRepository;

@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class ShipmentController {
-    @GetMapping("/shipment")
+    @GetMapping("/shipment/shipment")
     public String shipment() {
         return "shipment/shipment";
     }

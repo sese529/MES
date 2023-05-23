@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="utf-8">
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
     <link
@@ -10,7 +10,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
-    <title>출하 관리</title>
+    <title>수주 거래처 현황</title>
 </head>
 
 <body id="page-top">
@@ -75,7 +75,7 @@
         </li>
 
         <!-- Nav Item - 출하관리 -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="/shipment/shipment">
                 <i class="fa-solid fa-chart-simple"></i>
                 <span>출하관리</span>
@@ -83,7 +83,7 @@
         </li>
 
         <!-- Nav Item - 거래처관리 -->
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
                aria-expanded="true" aria-controls="collapseThree">
                 <i class="fa-solid fa-user-group"></i>
@@ -143,9 +143,9 @@
 
             <!-- Topbar -->
             <div class="topbar">
-                <h1 class="h4">출하관리</h1>
+                <h1 class="h4">거래처 관리 > 수주 거래처 현황</h1>
                 <div class="buttons">
-                    <button class="buttonsEx" onclick="openPopupEx()">엑셀다운로드</button>
+                    <button class="buttonsReg" id="openModalBtn">등록</button>
                 </div>
             </div>
             <!-- End of Topbar -->
@@ -153,65 +153,25 @@
             <!-- searchbar  -->
             <form action="/search" methbod="get" class="searchbarForm">
                 <div class="searchbar">
-                    <table class="table table-borderless" id="dataTable2" cellspacing="0">
-
-                        <tr class="searchbarTr1">
+                    <table class="table table-borderless" id="dataTable" cellspacing="0">
+                        <tr class="searchbarTr2">
                             <td class="searchbarDateTd">
-                                <p>출하일</p>
-                            </td>
-                            <td class="searchbarContent">
-                                <div class="searchbarDate">
-                                    <input type="date">
-                                    <p class="searchbarDateWater">~</p>
-                                    <input type="date">
-                                </div>
-                            <td class="searchbarDateTd">
-                                <p>창고위치</p>
-                            </td>
-                            <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>가123</option>
-                                    <option>나123</option>
-                                    <option>다123</option>
-                                    <option>라123</option>
-                                    <option>마123</option>
-                                </select>
-                            </td>
-                            <td class="searchbarDateTd">
-                                <p>제품코드</p>
+                                <p>업체</p>
                             </td>
                             <td class="searchbarContent">
                                 <input type="text">
                             </td>
-                            <td class="searchButtonTd"></td>
-                        </tr>
-                        <tr class="searchbarTr2">
                             <td class="searchbarDateTd">
-                                <p>거래처명</p>
+                                <p>업체코드</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>매출처1</option>
-                                    <option>매출처2</option>
-                                    <option>매출처3</option>
-                                </select>
+                                <input type="text">
                             </td>
                             <td class="searchbarDateTd">
-                                <p>품목</p>
+                                <p>사업자등록번호</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>양배추즙</option>
-                                    <option>흑마늘즙</option>
-                                    <option>석류젤리</option>
-                                    <option>메실젤리</option>
-                                </select>
-                            </td>
-                            <td class="searchbarDateTd">
-                                <!-- 공백 -->
-                            </td>
-                            <td class="searchbarContent">
-                                <!-- 공백 -->
+                                <input type="text">
                             </td>
                             <td class="searchButtonTd">
                                 <button class="searchButton">
@@ -220,7 +180,6 @@
                                 </button>
                             </td>
                         </tr>
-
                     </table>
                 </div>
             </form>
@@ -235,46 +194,54 @@
                         <table class="table table-borderless" id="dataTables" width="100%" cellspacing="0">
                             <thead class="tableTitle">
                             <tr>
-                                <th></th>
-                                <th>출하일</th>
-                                <th>품목명</th>
-                                <th>수량(EA)</th>
-                                <th>제품코드</th>
-                                <th>창고위치</th>
+                                <th>업체명</th>
+                                <th>업체코드</th>
+                                <th>팩스번호</th>
+                                <th>연락처</th>
+                                <th>소재지</th>
+                                <th>사업자등록번호</th>
                             </tr>
                             </thead>
                             <tbody class="tableBody">
                             <tr>
-                                <td><input type="checkbox"></td>
-                                <td>2022-05-01 11:30</td>
-                                <td>양배추즙</td>
-                                <td>1</td>
-                                <td>01513448</td>
-                                <td>가123</td>
+                                <td>영환건설</td>
+                                <td>p123456</td>
+                                <td>061-644-445</td>
+                                <td>065-925-6711</td>
+                                <td>수원시 장안구 5824 논현로</td>
+                                <td>XXX-XX-XXXXX</td>
                             </tr>
                             <tr class="tableBodyTr">
-                                <td><input type="checkbox"></td>
-                                <td>2022-05-01 11:30</td>
-                                <td>흑마늘즙</td>
-                                <td>1</td>
-                                <td>01513448</td>
-                                <td>나123</td>
+                                <td>상준건설</td>
+                                <td>p123455</td>
+                                <td>061-644-445</td>
+                                <td>065-925-6711</td>
+                                <td>양주시 607 역삼로</td>
+                                <td>XXX-XX-XXXXX</td>
                             </tr>
                             <tr>
-                                <td><input type="checkbox"></td>
-                                <td>2022-05-01 11:30</td>
-                                <td>석류 젤리스틱</td>
-                                <td>1</td>
-                                <td>01513448</td>
-                                <td>다123</td>
+                                <td>(주)윤서</td>
+                                <td>p123454</td>
+                                <td>061-644-445</td>
+                                <td>065-925-6711</td>
+                                <td>수원시 권선구 947 봉은사로</td>
+                                <td>XXX-XX-XXXXX</td>
                             </tr>
                             <tr class="tableBodyTr">
-                                <td><input type="checkbox"></td>
-                                <td>2022-05-01 11:30</td>
-                                <td>매실 젤리스틱</td>
-                                <td>1</td>
-                                <td>01513448</td>
-                                <td>라123</td>
+                                <td>현영네트웍스</td>
+                                <td>p123453</td>
+                                <td>061-644-445</td>
+                                <td>065-925-6711</td>
+                                <td>의왕시 603 가락로</td>
+                                <td>XXX-XX-XXXXX</td>
+                            </tr>
+                            <tr>
+                                <td>(유)연선제약</td>
+                                <td>p123452</td>
+                                <td>061-644-445</td>
+                                <td>065-925-6711</td>
+                                <td>구리시 0836 언주로</td>
+                                <td>XXX-XX-XXXXX</td>
                             </tr>
                             </tbody>
                         </table>
@@ -298,31 +265,25 @@
     </div>
     <!-- End of Content Wrapper -->
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="/js/reg.js"></script>
+    <!-- <script src="js/Cor.js"></script> -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/js/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/js/chart-area-demo.js"></script>
+    <script src="/js/chart-pie-demo.js"></script>
 </div>
-<!-- End of Page Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Bootstrap core JavaScript-->
-<script src="/js/reg.js"></script>
-<!-- <script src="js/Cor.js"></script> -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="/js/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="/js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/js/chart-area-demo.js"></script>
-<script src="/js/chart-pie-demo.js"></script>
-
 </body>
 
 </html>

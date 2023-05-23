@@ -1,3 +1,4 @@
+// 등록 버튼
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("openModalBtn");
 var span = document.getElementsByClassName("regClose")[0];

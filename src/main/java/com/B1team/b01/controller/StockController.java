@@ -1,6 +1,7 @@
 package com.B1team.b01.controller;
 
 import com.B1team.b01.service.BomService;
+import com.B1team.b01.service.ProductionService;
 import com.B1team.b01.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,28 +16,19 @@ import javax.transaction.Transactional;
 @Controller
 @Transactional
 @RequiredArgsConstructor
-@RequestMapping("/stock/*")
+@RequestMapping("/item/*")
 public class StockController {
 
     @Autowired
-    private final StockService stockService;
+    private BomService bomService;
 
     @Autowired
-    private final BomService bomService;
+    private StockService stockService;
 
-    @GetMapping("")
-    public String getCompare(@PathVariable String productId, String orderId, Model model, String pid, double amount) {
-        //재고량 & 주문량 비교 - 재고량 < 주문량 -> 발주계산
-        stockService.stockCheck(productId,orderId);
+    @GetMapping("product")
+    public String mappTest() {
+        System.out.println("d");
 
-        //발주 계산
-        bomService.calcBom(pid,amount);
-
-        //자동 발주
-
-//
-//        model.addAllAttributes()
-        return "index";
-
+        return "/item/stock";
     }
 }
