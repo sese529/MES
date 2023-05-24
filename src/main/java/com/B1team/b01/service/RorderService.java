@@ -35,11 +35,17 @@ public class RorderService {
     }
 
     //수주 등록 - 예정 납기일 예측을 위한 매개변수 변환
-    public LocalDateTime calculateOrderDeliveryDate(String orderDateStr, String productId, long orderCnt) {
-        //String 타입 12시간제 형태 orderDateStr을 LocalDateTime 타입 orderDate으로 변환
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd a hh:mm", Locale.ENGLISH);
+    public String calculateOrderDeliveryDate(String orderDateStr, String productId, String orderCntStr) {
+        // String 타입 24시간제 형태 orderDateStr을 LocalDateTime 타입 orderDate으로 변환
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.ENGLISH);
         LocalDateTime orderDate = LocalDateTime.parse(orderDateStr, inputFormatter);
 
-        return mprocessService.caluculateDeadline(orderDate, productId, orderCnt);
+        // 예정 납기일 받아서 String 형으로 반환
+        LocalDateTime deliveryDate = mprocessService.caluculateDeadline(orderDate, productId, Long.parseLong(orderCntStr));
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd a h:mm", Locale.ENGLISH);
+        String deliveryStr = deliveryDate.format(outputFormatter);
+
+        return deliveryStr;
     }
+
 }

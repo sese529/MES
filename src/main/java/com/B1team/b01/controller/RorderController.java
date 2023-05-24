@@ -74,7 +74,9 @@ public class RorderController {
     @PostMapping("/simulation")
     public ResponseEntity<?> orderDeliveryDate(String orderDate, String productId, String orderCnt) {
         Map<String, String> response = new HashMap<>();
-        response.put("deliveryDate", "예정일전달완료");
+        System.out.println("orderDateStr=" + orderDate);
+        String deliveryDate = rorderService.calculateOrderDeliveryDate(orderDate, productId, orderCnt);
+        response.put("deliveryDate", deliveryDate);
         // JSON 형태의 응답과 함께 상태 코드 200을 반환
         return ResponseEntity.ok(response);
     }
