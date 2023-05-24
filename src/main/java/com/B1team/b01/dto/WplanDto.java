@@ -20,7 +20,7 @@ public class WplanDto {
     private Long cnt; //계획수량
     private LocalDateTime startDate; //계획 시작 일자
     private LocalDateTime endDate; //계획 완료 일자
-    private String state; //작업 완료 일자
+    private String state; //작업 진행 상태
 
     private static ModelMapper modelMapper = new ModelMapper(); //엔티티랑 dto의 필드명이 같은 것끼리 매핑
 
