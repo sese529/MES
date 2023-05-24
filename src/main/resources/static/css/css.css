@@ -3461,12 +3461,13 @@ textarea.form-control.is-invalid {
 }
 
 .stockCorClose {
-    width: 80px;
-    height: 40px;
+    width: 120px;
+    height: 50px;
     background-color: #fff;
     border: 1px solid #000;
     font-weight: bold;
     margin-left: 10px;
+    font-size: 20px;
 }
 
 .customerRegClose {
