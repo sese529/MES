@@ -53,6 +53,13 @@ public class MprocessService {
         List<WorderDto> worderDtos = calculateWorderDate(materialReadyDate, productId, orderCnt);     //모든 공정에 대한 기록
         LocalDateTime finishDate = worderDtos.get(worderDtos.size() - 1).getFinishDate();   //마지막 공정의 완료 시간
 
+        System.out.println("수주 날짜(시작 날짜)=" + orderDate);
+        System.out.println("모든 원자재 준비 완료 시간=" + materialReadyDate);
+        System.out.println("needOrderList=" + needOrderList);
+        for(WorderDto dto : worderDtos) {
+            System.out.println(dto);
+        }
+        System.out.println("마지막 공정의 완료 시간=" + finishDate);
         return finishDate;
     }
 
@@ -90,12 +97,13 @@ public class MprocessService {
             //임시로 필요 용량 넣기
             double capacity = 0;
             switch(process.getName()) {
-                case "전처리": capacity = ea.getMaterialWeight(); break;  //양배추 1000kg
-                case "추출": case "혼합+살균": capacity = ea.getLiquidWeight(); break; //양배추 추출액 1600kg
+                case "전처리": capacity = ea.getMaterialWeight(); break;  //양배추 1000,000g
+                case "추출": case "혼합+살균": capacity = ea.getLiquidWeight(); break; //양배추 추출액 1600,000g
                 case "충진(파우치)": case "검사": capacity = ea.getAmount(); break;   //양배추즙 파우치 20010개
                 case "포장" : capacity = ea.getBox();  break;   //수주받은 양배추즙 667Box
             }
 
+            /*
             //설비가 2개 이상이며, 용량이 홀수이고, 개수로 나눠떨어지는 종류(box, 개)인 경우 +1
             if(facilities.size() % 2 != 1 &&
                     capacity % 2 != 0 &&
@@ -103,6 +111,7 @@ public class MprocessService {
                 capacity++;
 
             capacity /= facilities.size();  //설비 개수만큼 나누기
+             */
 
             //이전 작업 완료 시간을 현재 공정의 작업 시작 시작으로 설정 (점심시간 & 퇴근시간 고려)
             startDate = calculateAdjustedStartTime(finishDate);
@@ -117,6 +126,7 @@ public class MprocessService {
                 }
             }
 
+            //TODO: CAPA보다 많은 양인 경우 한번 더 들어감. 이 경우 작업지시 더 들어가도록 쪼개기
             //작업 지시 dto 추가
             for(int j = 0; j < facilities.size(); j++) {
                 WorderDto dto = new WorderDto(process.getId(), facilities.get(j).getId(), startDate, finishDate);        //이번 공정의 작업지시dto

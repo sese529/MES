@@ -34,7 +34,7 @@ public class RorderService {
         return RorderDto.of(rorderList);
     }
 
-    //수주 등록 - 예정 납기일 예측
+    //수주 등록 - 예정 납기일 예측을 위한 매개변수 변환
     public LocalDateTime calculateOrderDeliveryDate(String orderDateStr, String productId, long orderCnt) {
         //String 타입 12시간제 형태 orderDateStr을 LocalDateTime 타입 orderDate으로 변환
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd a hh:mm", Locale.ENGLISH);
