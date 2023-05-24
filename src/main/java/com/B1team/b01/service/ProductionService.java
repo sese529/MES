@@ -1,6 +1,7 @@
 package com.B1team.b01.service;
 
 import com.B1team.b01.entity.Wplan;
+import com.B1team.b01.repository.ProductRepository;
 import com.B1team.b01.repository.ProductionRepository;
 import com.B1team.b01.repository.ProductionSpecifications;
 import lombok.RequiredArgsConstructor;
@@ -15,12 +16,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class ProductionService {
+    @Autowired
     private ProductionRepository productionRepository;
 
-    @Autowired
-    public ProductionService(ProductionRepository productionRepository) {
-        this.productionRepository = productionRepository;
-    }
+
 
     public List<Wplan> getAllWplan(){
         return productionRepository.findAll();
@@ -30,16 +29,16 @@ public class ProductionService {
         Specification<Wplan> specification = Specification.where(null);
 
         if(id != null){
-            specification = specification.or(ProductionSpecifications.searchId(id));
+            specification = specification.and(ProductionSpecifications.searchId(id));
         }
         if(orderId != null){
-            specification = specification.or(ProductionSpecifications.searchOrderId(orderId));
+            specification = specification.and(ProductionSpecifications.searchOrderId(orderId));
         }
         if(state != null){
-            specification = specification.or(ProductionSpecifications.searchState(state));
+            specification = specification.and(ProductionSpecifications.searchState(state));
         }
-        if(min !=null && max !=null){
-            specification = specification.or(ProductionSpecifications.searchDate(min, max));
+        if(min !=null || max !=null){
+            specification = specification.and(ProductionSpecifications.searchDate(min, max));
         }
 
         return productionRepository.findAll(specification);

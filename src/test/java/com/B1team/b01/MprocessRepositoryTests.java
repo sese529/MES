@@ -1,5 +1,6 @@
 package com.B1team.b01;
 
+import com.B1team.b01.dto.NeedEaDto;
 import com.B1team.b01.service.MprocessService;
 import com.B1team.b01.dto.WorderDto;
 import com.B1team.b01.entity.Finfo;
@@ -22,6 +23,12 @@ public class MprocessRepositoryTests {
     @Autowired private RoutingRepository routingRepository;
     @Autowired private FinfoRepository finfoRepository;
     @Autowired private MprocessService mprocessService;
+
+    @Test
+    void 납기일예측테스트() {
+        LocalDateTime deadline = mprocessService.caluculateDeadline(LocalDateTime.now(), "p21", 10);
+        System.out.println("deadline=" + deadline);
+    }
 
     @Test
     void 공정테스트() {
@@ -154,7 +161,7 @@ public class MprocessRepositoryTests {
     @Test
     void 작업시간계산테스트() {
         LocalDateTime materialReadyDate = LocalDateTime.of(2023, 5, 24, 10, 0);
-        List<WorderDto> list = mprocessService.calculateWorderDate(materialReadyDate, "p21");
+        List<WorderDto> list = mprocessService.calculateWorderDate(materialReadyDate, "p21", 10);
         for(int i = 0; i < list.size(); i++)
             System.out.println(list.get(i));
     }
@@ -200,5 +207,16 @@ public class MprocessRepositoryTests {
         for(int i = 0; i < mprocesses.size(); i++) {
             System.out.println("설비 개수=" + facilityCnt[i] + " " + mprocesses.get(i).toString());
         }
+    }
+
+    //수작업 공정 시간 처리(점심&퇴근 시간 고려)
+    @Test
+    void 점심퇴근고려() {
+        LocalDateTime start = LocalDateTime.of(2023, 5, 23, 13, 0, 0, 0);
+        LocalDateTime finish = LocalDateTime.of(2023, 5, 25, 0, 30, 0, 0);
+        LocalDateTime time = mprocessService.calculateAdjustedFinishTime(start, finish);
+        System.out.println("시작시간 = " + start);
+        System.out.println("완료시간 = " + finish);
+        System.out.println("result = " + time); //예상 result = 2023-05-25 13:20
     }
 }
