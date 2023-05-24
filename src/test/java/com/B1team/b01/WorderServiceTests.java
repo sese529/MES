@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootTest
 public class WorderServiceTests {
@@ -15,29 +16,25 @@ public class WorderServiceTests {
 
 
 
+    //작업중인지 설비 확인하기
+    /*@Test
+    public void testcheckWorder(){
+        String list = worderService.checkWorder("A102");
 
-    //작업계획 수주번호 조회하기
-    @Test
-    public void testSeeWorder(){
-        String niceto = worderService.seeWorder("10");
-        System.out.println("결과값 확인" + niceto);
+        if(!list.isEmpty()){
+            System.out.println(list);
+        }else{
+            System.out.println("list 없음");
+        }
     }
+    */
 
 
-    //작업지시하기
+    //작업지시 등록하기
     @Test
     public void testdoWorder(){
 
-        WorderDto worderDto = WorderDto.builder()
-                .processId("A1")
-                .wplanId("WPLAN")
-                .facilityId("A101")
-                .startDate(LocalDateTime.parse("2023-05-18T12:18:00"))
-                .finishDate(LocalDateTime.parse("2023-05-25T09:20:00"))
-                .build();
-
-
-        worderService.doWorder("10",worderDto);
+        LocalDateTime materialReadyDate = LocalDateTime.of(2023, 5, 25, 18, 0);
+        worderService.doWorder("ROD29",materialReadyDate,"p21", 1);
     }
-
 }

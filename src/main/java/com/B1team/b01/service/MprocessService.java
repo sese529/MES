@@ -10,6 +10,7 @@ import com.B1team.b01.repository.FinfoRepository;
 import com.B1team.b01.repository.MprocessRepository;
 import com.B1team.b01.repository.RoutingRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -19,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Service
+//@Service
+@Component
 public class MprocessService {
     private final MprocessRepository mprocessRepository;
     private final RoutingRepository routingRepository;
