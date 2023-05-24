@@ -158,19 +158,19 @@
                                 <p>업체</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
+                                <input type="text" name="name">
                             </td>
                             <td class="searchbarDateTd">
                                 <p>업체코드</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
+                                <input type="text" name="id">
                             </td>
                             <td class="searchbarDateTd">
                                 <p>사업자등록번호</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
+                                <input type="text" name="businessNumber">
                             </td>
                             <td class="searchButtonTd">
                                 <button class="searchButton">
@@ -202,45 +202,21 @@
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
-                                <td>영환건설</td>
-                                <td>p123456</td>
-                                <td>061-644-445</td>
-                                <td>065-925-6711</td>
-                                <td>수원시 장안구 5824 논현로</td>
-                                <td>XXX-XX-XXXXX</td>
+                            <tr th:each="clist:${clist}">
+                                <td th:text="${clist.name}"></td>
+                                <td th:text="${clist.id}"></td>
+                                <td th:text="${clist.fax}"></td>
+                                <td th:text="${clist.tel}"></td>
+                                <td th:text="${clist.address}"></td>
+                                <td th:text="${clist.businessNumber}"></td>
                             </tr>
-                            <tr class="tableBodyTr">
-                                <td>상준건설</td>
-                                <td>p123455</td>
-                                <td>061-644-445</td>
-                                <td>065-925-6711</td>
-                                <td>양주시 607 역삼로</td>
-                                <td>XXX-XX-XXXXX</td>
-                            </tr>
-                            <tr>
-                                <td>(주)윤서</td>
-                                <td>p123454</td>
-                                <td>061-644-445</td>
-                                <td>065-925-6711</td>
-                                <td>수원시 권선구 947 봉은사로</td>
-                                <td>XXX-XX-XXXXX</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>현영네트웍스</td>
-                                <td>p123453</td>
-                                <td>061-644-445</td>
-                                <td>065-925-6711</td>
-                                <td>의왕시 603 가락로</td>
-                                <td>XXX-XX-XXXXX</td>
-                            </tr>
-                            <tr>
-                                <td>(유)연선제약</td>
-                                <td>p123452</td>
-                                <td>061-644-445</td>
-                                <td>065-925-6711</td>
-                                <td>구리시 0836 언주로</td>
-                                <td>XXX-XX-XXXXX</td>
+                            <tr th:each="clist:${slist}">
+                                <td th:text="${clist.name}"></td>
+                                <td th:text="${clist.id}"></td>
+                                <td th:text="${clist.fax}"></td>
+                                <td th:text="${clist.tel}"></td>
+                                <td th:text="${clist.address}"></td>
+                                <td th:text="${clist.businessNumber}"></td>
                             </tr>
                             </tbody>
                         </table>
