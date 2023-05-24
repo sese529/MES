@@ -26,7 +26,8 @@ public class PorderService {
 
         //주문량 > 재고량, 자동 발주
 
-        Optional<Stock> stock = Optional.ofNullable(stockRepository.findByProductId(stockDto.getProductId()));
+        Optional<Stock> stock;
+        stock = Optional.ofNullable((Stock) stockRepository.findByProductIdNotNull());
         if (stock.isPresent()) {
             Stock existingStock = stock.get();
             // 기존 재고 업데이트 로직
