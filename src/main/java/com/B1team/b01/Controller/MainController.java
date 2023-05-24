@@ -31,14 +31,5 @@ public class MainController {
         return "/customer/porder-customer";
     }
 
-    @GetMapping("/item/stock")
-    public String stock() {
-        return "/item/stock";
-    }
-
-    @GetMapping("/item/bom")
-    public String bom() {
-        return "/item/bom";
-    }
 
 }
