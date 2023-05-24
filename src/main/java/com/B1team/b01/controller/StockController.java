@@ -37,6 +37,11 @@ public class StockController {
 
         return "/item/stock";
     }
+
+    @GetMapping("/item/bom")
+    public String BOM() {
+        return "/item/bom";
+    }
 //
 //    @GetMapping("product")
 //    public String mappTest(Model model) {

@@ -5927,6 +5927,9 @@ input[type=submit].btn-block {
     min-height: 1px;
     border: 2px solid #efefef;
     border-radius: 10px;
+    white-space: nowrap;
+    max-height: 90%;
+    overflow: auto;
 }
 
 .regCardBody {
