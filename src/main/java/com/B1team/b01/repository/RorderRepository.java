@@ -1,8 +1,10 @@
 package com.B1team.b01.repository;
 
+import com.B1team.b01.dto.WplanDto;
 import com.B1team.b01.entity.Rorder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -32,4 +34,6 @@ public interface RorderRepository extends JpaRepository<Rorder, String> {
                                          LocalDateTime startDeadline,
                                          LocalDateTime endDeadLine);
     Optional<Rorder> findById(String id);
+
+
 }

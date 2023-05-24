@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface WplanRepository extends JpaRepository<Wplan, String> {
     //작업지시 관련 작업계획 조회하기
-    @Query("select new com.B1team.b01.dto.WplanDto(wp.orderId) from Wplan wp where wp.orderId = :orderId")
+    @Query("select wp from Wplan wp where wp.orderId = :orderId and wp.state = '진행대기'")
     WplanDto findByOrderId(@Param("orderId") String orderId);
 
     //작업실적 관련 작업계획 조회하기
