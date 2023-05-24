@@ -21,16 +21,6 @@ public class MainController {
         return "/materials/material-inventory";
     }
 
-    @GetMapping("/production/production-plan")
-    public String productionPlan() {
-        return "/production/production-plan";
-    }
-
-    @GetMapping("/production/production-performance")
-    public String productionPerformance() {
-        return "/production/production-performance";
-    }
-
     @GetMapping("/customer/rorder-customer")
     public String orderCustomer() {
         return "/customer/rorder-customer";
@@ -44,6 +34,11 @@ public class MainController {
     @GetMapping("/item/stock")
     public String stock() {
         return "/item/stock";
+    }
+
+    @GetMapping("/item/bom")
+    public String bom() {
+        return "/item/bom";
     }
 
 }

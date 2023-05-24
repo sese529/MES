@@ -2,12 +2,10 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>수주 관리</title>
@@ -167,22 +165,21 @@
                                                 <p>수주일</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+<!--                                                <input type="text" id="regOrderCurrentTimeInput" readonly/>-->
+                                                <input type="datetime-local" id="regOrderCurrentTimeInput">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>수주 번호</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+                                                <input type="text" disabled/>
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>거래처명</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <select class="regSearchbarSelect">
-                                                    <option>매출처1</option>
-                                                    <option>매출처2</option>
-                                                    <option>매출처3</option>
+                                                <select class="regSearchbarSelect" name="customerName">
+                                                    <option th:each="customer : ${customerList}" th:text="${customer.name}" th:value="${customer.name}"></option>
                                                 </select>
                                             </td>
                                             <td class="regSearchbarButton">
@@ -194,24 +191,21 @@
                                                 <p>품목</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <select class="regSearchbarSelect">
-                                                    <option>양배추즙</option>
-                                                    <option>흑마늘즙</option>
-                                                    <option>매실젤리</option>
-                                                    <option>석류젤리</option>
+                                                <select class="regSearchbarSelect" name="productName">
+                                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.name}"></option>
                                                 </select>
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>수주량</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+                                                <input type="text" name="cnt">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>납품예정일</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+                                                <input type="text" readonly/>
                                             </td>
                                             <td class="regSearchbarButton">
                                                 <button class="regSearchbarPreButton">
@@ -366,9 +360,8 @@
                         </div>
                     </div>
                     <!-- 수정 끝 -->
-
-                    <button class="buttonsChe" onclick="openPopupChe()">확인</button>
-                    <button class="buttonsEx" onclick="openPopupEx()">엑셀다운로드</button>
+                    <button class="buttonsChe" id="confirmedButton">확정</button>
+                    <button class="buttonsEx" id="orderDownloadExcel">엑셀다운로드</button>
                 </div>
             </div>
             <!-- End of Topbar -->
@@ -509,9 +502,16 @@
 </div>
 <!-- End of Page Wrapper -->
 
+
+<!-- 작성 스크립트-->
+<script src="/js/buttons/orderRegistration.js"></script>
+<script src="/js/buttons/orderCorrection.js"></script>
+<script src="/js/excel/orderExcel.js"></script>
+<script src="/js/buttons/confirmed.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 <!-- Bootstrap core JavaScript-->
-<script src="/js/reg.js"></script>
-<script src="/js/cor.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>
 

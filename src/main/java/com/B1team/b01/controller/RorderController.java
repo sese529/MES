@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.transaction.Transactional;
@@ -29,6 +30,7 @@ public class RorderController {
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
 
+    //수주 리스트 검색
     @GetMapping("/order")
     public String order(Model model,
                         String startDate,
@@ -61,6 +63,13 @@ public class RorderController {
         model.addAttribute("startDeadline", startDeadline);
         model.addAttribute("endDeadline", endDeadline);
 //        return "rorder/order-content";
+        return "rorder/order";
+    }
+
+
+    //수주 등록 시 - 시뮬레이션(예측)
+    @PostMapping("/simulation")
+    public String order() {
         return "rorder/order";
     }
 }

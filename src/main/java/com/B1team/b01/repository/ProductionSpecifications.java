@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class ProductionSpecifications {
     public static Specification<Wplan> searchId(String id){
-        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("id"),id);
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("productId"),id);
     }
 
     public static Specification<Wplan> searchOrderId(String orderId){
