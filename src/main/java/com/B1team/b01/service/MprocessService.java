@@ -134,7 +134,6 @@ public class MprocessService {
         switch(process.getName()) {
             case "원료계량":
                 result = date.plusMinutes(process.getLeadtime() + process.getProdtime());
-                //TODO : 수작업은 시작시간~완료시간까지 작업 외 시간(점심&퇴근) 고려
                 break;
             case "혼합+살균":
                 double min = (process.getLeadtime() + process.getProdtime()) * (capacity / process.getCapa() + (capacity % process.getCapa() > 0 ? 1 : 0));
@@ -149,6 +148,11 @@ public class MprocessService {
                 long defaultNanos = (long) (defaultMin * 60 * 1000000000);
                 result = date.plusNanos(defaultNanos);
                 break;
+        }
+
+        //수작업인 작업은 작업 외 시간(점심&퇴근) 고려
+        if(process.getName().equals("원료계량") || process.getName().equals("포장")) {
+            result = calculateAdjustedFinishTime(date, result);
         }
 
         return result;
@@ -166,15 +170,12 @@ public class MprocessService {
     }
 
     //시뮬레이션 - 작업 시간 계산 - (작업 완료 시간) 점심시간 & 퇴근시간 고려
+    //TODO: 점심&퇴근으로 중간에 작업이 중단되었을 때 리드타임 한번 더 추가할지 말지 결정하기(현재는 추가X)
     public LocalDateTime calculateAdjustedFinishTime(LocalDateTime start, LocalDateTime finish) {
         long durationDays = ChronoUnit.HOURS.between(start, finish) / 8;   //작업 시간을 시간 단위로 했을 때(분, 초 단위는 버림) 하루 8시간 작업 기준으로 일수 나누기
-        System.out.println("durationDays=" + durationDays);
         long durationNanos = ChronoUnit.NANOS.between(start, finish) - durationDays * 8 * 60 * 60 * 1000000000; //위에서 버려진 시간의 나머지(9시간 미만)
-        System.out.println("durationNanos=" + durationNanos / 1000000000 / 60 + "분");
         LocalDateTime standardTime = start.plusDays(durationDays);          //작업 일수 더한 후 나머지 시간 더하기 전
         LocalDateTime finishTime = standardTime.plusNanos(durationNanos);   //작업 일수 더한 후 나머지 시간 더했을 때
-        System.out.println("standardTime=" + standardTime);
-        System.out.println("finishTime=" + finishTime);
 
         while(standardTime.isBefore(finishTime)) {
             int hour = standardTime.getHour();

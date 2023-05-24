@@ -212,8 +212,8 @@ public class MprocessRepositoryTests {
     //수작업 공정 시간 처리(점심&퇴근 시간 고려)
     @Test
     void 점심퇴근고려() {
-        LocalDateTime start = LocalDateTime.of(2023, 5, 23, 20, 40, 0, 0);
-        LocalDateTime finish = LocalDateTime.of(2023, 5, 24, 9, 0, 0, 0);
+        LocalDateTime start = LocalDateTime.of(2023, 5, 23, 13, 0, 0, 0);
+        LocalDateTime finish = LocalDateTime.of(2023, 5, 25, 0, 30, 0, 0);
         LocalDateTime time = mprocessService.calculateAdjustedFinishTime(start, finish);
         System.out.println("시작시간 = " + start);
         System.out.println("완료시간 = " + finish);
