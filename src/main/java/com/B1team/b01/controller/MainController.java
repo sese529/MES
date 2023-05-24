@@ -21,14 +21,16 @@ public class MainController {
         return "/materials/material-inventory";
     }
 
-    @GetMapping("/item/stock")
-    public String stock() {
-        return "/item/stock";
+    @GetMapping("/customer/rorder-customer")
+    public String orderCustomer() {
+        return "/customer/rorder-customer";
     }
 
-    @GetMapping("/item/bom")
-    public String bom() {
-        return "/item/bom";
+    @GetMapping("/customer/porder-customer")
+    public String placeAnOrderCustomer() {
+        return "/customer/porder-customer";
     }
+
+
 
 }
