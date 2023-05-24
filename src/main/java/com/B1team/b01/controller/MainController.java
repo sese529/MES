@@ -21,4 +21,9 @@ public class MainController {
         return "/materials/material-inventory";
     }
 
+    @GetMapping("/main")
+    public String main() {
+        return "/main";
+    }
+
 }
