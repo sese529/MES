@@ -9,5 +9,5 @@ import lombok.*;
 @NoArgsConstructor
 public class NeedOrderDto {
     private String mtrId;
-    private Double amount;
+    private Double amount;  //그램(g) 단위로 들어감
 }
