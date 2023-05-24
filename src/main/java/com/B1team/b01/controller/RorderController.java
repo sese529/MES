@@ -8,6 +8,7 @@ import com.B1team.b01.repository.CustomerRepository;
 import com.B1team.b01.repository.ProductRepository;
 import com.B1team.b01.service.RorderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,9 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -69,8 +72,10 @@ public class RorderController {
 
     //수주 등록 시 - 시뮬레이션(예측)
     @PostMapping("/simulation")
-    public String orderDeliveryDate(Model model, String orderDate, String productId, long orderCnt) {
-
-        return "rorder/order";
+    public ResponseEntity<?> orderDeliveryDate(String orderDate, String productId, String orderCnt) {
+        Map<String, String> response = new HashMap<>();
+        response.put("deliveryDate", "예정일전달완료");
+        // JSON 형태의 응답과 함께 상태 코드 200을 반환
+        return ResponseEntity.ok(response);
     }
 }

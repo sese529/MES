@@ -156,7 +156,7 @@
                             </div>
 
                             <!-- regSearchbar -->
-                            <form action="/search" method="get">
+                            <form id="regform">
                                 <div class="regSearchbar">
                                     <table class="table table-borderless" id="orderDataTable1" width="100%"
                                            cellspacing="0">
@@ -191,7 +191,7 @@
                                                 <p>품목</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <select class="regSearchbarSelect" name="productName">
+                                                <select class="regSearchbarSelect" name="productName" id="regProductName">
                                                     <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.name}"></option>
                                                 </select>
                                             </td>
@@ -199,16 +199,16 @@
                                                 <p>수주량</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text" name="orderCnt">
+                                                <input type="text" name="orderCnt" id="regOrderCnt">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>납품예정일</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text" readonly/>
+                                                <input type="text" id="deliveryDate" name="deliveryDate" readonly/>
                                             </td>
                                             <td class="regSearchbarButton">
-                                                <button class="regSearchbarPreButton">
+                                                <button type="button" class="regSearchbarPreButton" id="regSearchbarPreButton">
                                                     <p class="regSearchbarPreButtonP">예측</p>
                                                 </button>
                                             </td>
@@ -263,7 +263,7 @@
                             </div>
 
                             <!-- regSearchbar -->
-                            <form action="/search" method="get">
+                            <form id="editform" action="/search" method="get">
                                 <div class="regSearchbar">
                                     <table class="table table-borderless" id="orderDataTable2" width="100%"
                                            cellspacing="0">
@@ -527,6 +527,40 @@
 <!-- Page level custom scripts -->
 <script src="/js/chart-area-demo.js"></script>
 <script src="/js/chart-pie-demo.js"></script>
+<script>
+    //예측 버튼 클릭 이벤트 핸들러 등록
+    $('#regSearchbarPreButton').on('click', function (event) {
+        // event.preventDefault();
+
+        // form에서 필요한 값 가져오기
+        var orderDate = $('#regOrderCurrentTimeInput').val();
+        var productName = $('#regProductName').val();
+        var orderCnt = $('#regOrderCnt').val();
+
+        // AJAX 요청 보내기
+        $.ajax({
+            url: '/rorder/simulation',
+            method: 'POST',
+            data: {
+                orderDate: orderDate,
+                productName: productName,
+                orderCnt: orderCnt
+            },
+            success: function (response) {
+                console.log('통신결과');
+                // 응답 데이터에서 시뮬레이션 날짜 가져오기
+                var deliveryDate = response.deliveryDate;
+                console.log('deliveryDate:', deliveryDate);
+                // 시뮬레이션 날짜를 deliveryDate 클래스를 가진 input 엘리먼트에 설정
+                $('#deliveryDate').val(deliveryDate);
+            },
+            error: function (error) {
+                // 오류 처리
+                console.error('-----------------AJAX 요청 실패:', error);
+            }
+        });
+    });
+</script>
 
 </body>
 
