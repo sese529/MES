@@ -34,7 +34,7 @@ public class WorderServiceTests {
     @Test
     public void testdoWorder(){
 
-        LocalDateTime materialReadyDate = LocalDateTime.of(2023, 4, 26, 10, 0);
-        worderService.doWorder("ROD38",materialReadyDate,"p24");
+        LocalDateTime materialReadyDate = LocalDateTime.of(2023, 5, 25, 18, 0);
+        worderService.doWorder("ROD29",materialReadyDate,"p21", 1);
     }
 }

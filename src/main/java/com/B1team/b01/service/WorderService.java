@@ -78,7 +78,7 @@ public class WorderService {
 
 
     //작업지시 등록메소드
-    public List<WorderDto> doWorder(String orderId, LocalDateTime materialReadyDate, String productId) {
+    public List<WorderDto> doWorder(String orderId, LocalDateTime materialReadyDate, String productId, long orderCnt) {
 
         //작업지시를 내릴 '진행대기' 상태의 작업 계획이 있는지 조회(수주번호가 필요한?)
         Optional<WplanDto> result = Optional.ofNullable(wplanRepository.findByOrderId(orderId));
@@ -86,7 +86,7 @@ public class WorderService {
 
 
         //있다면 작업지시 등록하기
-        List<WorderDto> worderDtos = mprocessService.calculateWorderDate(materialReadyDate, productId);
+        List<WorderDto> worderDtos = mprocessService.calculateWorderDate(materialReadyDate, productId, orderCnt);
 
         if (result.isPresent()) {
 
