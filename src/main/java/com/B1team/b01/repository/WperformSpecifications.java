@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public interface WperformSpecifications {
+public class WperformSpecifications {
     public static Specification<Wperform> searchProductId(String productId){
         return ((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("productId"),productId));
     }
