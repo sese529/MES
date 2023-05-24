@@ -20,7 +20,7 @@ public class WorderDto {
     private String facilityId; //설비정보 고유번호
     private LocalDateTime startDate; //작업 시작 일자
     private LocalDateTime finishDate; //작업 완료 일자
-
+    private String productId; //품목명 고유번호
 
 
     private static ModelMapper modelMapper = new ModelMapper(); //엔티티랑 dto의 필드명이 같은 것끼리 매핑
@@ -42,4 +42,6 @@ public class WorderDto {
         this.startDate = startDate;
         this.finishDate = finishDate;
     }
+
+
 }

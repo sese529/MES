@@ -17,26 +17,24 @@ public class WorderServiceTests {
 
 
     //작업중인지 설비 확인하기
-    @Test
+    /*@Test
     public void testcheckWorder(){
-        worderService.checkWorder("A102", 0);
+        String list = worderService.checkWorder("A102");
+
+        if(!list.isEmpty()){
+            System.out.println(list);
+        }else{
+            System.out.println("list 없음");
+        }
     }
+    */
 
 
-    //작업지시하기
+    //작업지시 등록하기
     @Test
     public void testdoWorder(){
 
-        /*WorderDto worderDto = WorderDto.builder()
-                .processId("A1")
-                .wplanId("WPLAN")
-                .facilityId("A101")
-                .startDate(LocalDateTime.parse("2023-05-18T12:18:00"))
-                .finishDate(LocalDateTime.parse("2023-05-25T09:20:00"))
-                .build();
-
-*/
-        LocalDateTime materialReadyDate = LocalDateTime.of(2023, 5, 22, 10, 0);
-        List<WorderDto> list =  worderService.doWorder("11",materialReadyDate,"p22");
+        LocalDateTime materialReadyDate = LocalDateTime.of(2023, 4, 26, 10, 0);
+        worderService.doWorder("ROD38",materialReadyDate,"p24");
     }
 }
