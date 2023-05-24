@@ -53,13 +53,6 @@ public class MprocessService {
         List<WorderDto> worderDtos = calculateWorderDate(materialReadyDate, productId, orderCnt);     //모든 공정에 대한 기록
         LocalDateTime finishDate = worderDtos.get(worderDtos.size() - 1).getFinishDate();   //마지막 공정의 완료 시간
 
-        System.out.println("수주 날짜(시작 날짜)=" + orderDate);
-        System.out.println("모든 원자재 준비 완료 시간=" + materialReadyDate);
-        System.out.println("needOrderList=" + needOrderList);
-        for(WorderDto dto : worderDtos) {
-            System.out.println(dto);
-        }
-        System.out.println("마지막 공정의 완료 시간=" + finishDate);
         return finishDate;
     }
 
