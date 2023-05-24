@@ -10,11 +10,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 @RequiredArgsConstructor
 @Service
 public class RorderService {
     private final RorderRepository rorderRepository;
+    private final MprocessService mprocessService;
 
     public List<RorderDto> searchRorder(String start, String end, String orderId, String state, String customerName, String productName, String startLine, String endLine) {
         //날짜 관련 변환
@@ -30,5 +32,14 @@ public class RorderService {
 
         List<Rorder> rorderList = rorderRepository.findRordersByConditions(startDate, endDate, orderId, state, now, customerName, productName, startDeadline, endDeadLine);
         return RorderDto.of(rorderList);
+    }
+
+    //수주 등록 - 예정 납기일 예측
+    public LocalDateTime calculateOrderDeliveryDate(String orderDateStr, String productId, long orderCnt) {
+        //String 타입 12시간제 형태 orderDateStr을 LocalDateTime 타입 orderDate으로 변환
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd a hh:mm", Locale.ENGLISH);
+        LocalDateTime orderDate = LocalDateTime.parse(orderDateStr, inputFormatter);
+
+        return mprocessService.caluculateDeadline(orderDate, productId, orderCnt);
     }
 }

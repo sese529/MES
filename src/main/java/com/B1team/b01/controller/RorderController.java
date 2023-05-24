@@ -69,7 +69,8 @@ public class RorderController {
 
     //수주 등록 시 - 시뮬레이션(예측)
     @PostMapping("/simulation")
-    public String order() {
+    public String orderDeliveryDate(Model model, String orderDate, String productId, long orderCnt) {
+
         return "rorder/order";
     }
 }
