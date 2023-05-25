@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
+///////////////////////////Shipment DB 관련(엔티티, 레포지토리 등)은 필요 없음!!!!
 @Entity
 @Table(name="SHIPMENT")
 @Getter
