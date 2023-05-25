@@ -19,11 +19,11 @@ public class StockListDto {
     private String stockId;
     private String productId;
     private String mtrId;
-//    private String location;
     private Long ea;
     private String unit;
 
     //product
+
     private String name;
     private String sort;
     private Long price;

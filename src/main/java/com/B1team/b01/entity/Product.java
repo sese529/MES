@@ -27,7 +27,7 @@ public class Product {
     @Column(name="product_sort", nullable = false, columnDefinition = "varchar2(15)")
     private String sort;    //분류
 
-    @Column(name = "location", nullable = false, columnDefinition = "varchar2(20)")
+    @Column(name="location", nullable = false, columnDefinition = "varchar2(20)")
     private String location;    //창고위치
 
 }
