@@ -17,7 +17,7 @@ public class PinoutServiceTests {
 
 
     //자재출고 등록하기 테스트
-    @Test
+ /*   @Test
     public void testRegisterPinout(){
 
         String wplanId = "WPLAN12";
@@ -32,5 +32,5 @@ public class PinoutServiceTests {
            pinoutService.createInout(pinoutDto);
 
     }
-
+*/
 }

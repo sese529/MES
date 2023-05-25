@@ -34,7 +34,4 @@ public class WplanDto {
         return modelMapper.map(this, Wplan.class);
     }
 
-    public WplanDto(String orderId) {
-        this.orderId = orderId;
-    }
 }

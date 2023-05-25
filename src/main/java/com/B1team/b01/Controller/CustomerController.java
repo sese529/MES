@@ -89,4 +89,16 @@ public class CustomerController {
 
         return "/customer/rorder-customer";
     }
+
+    @PostMapping("/pcustomer-insert")
+    public String pcustomerInsert(String name, String id, String text, String tel, String fax){
+
+        return "/customer/porder-customer";
+    }
+
+    @PostMapping("/rcustomer-insert")
+    public String rcustomerInsert(){
+
+        return "/customer/rorder-customer";
+    }
 }

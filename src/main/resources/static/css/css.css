@@ -3225,7 +3225,7 @@ textarea.form-control.is-invalid {
 }
 .customerRegSearchbarTr3 {
     width: 1400px;
-    height: 120px;
+    height: 180px;
     color: #fff;
     background-color: #6a84ab;
     display: flex;
@@ -3324,7 +3324,7 @@ textarea.form-control.is-invalid {
 
 .customerRegSearchbarDateTd2 {
     width: 150px;
-    height: 120px;
+    height: 180px;
     font-size: 20px;
     font-weight: bold;
     display: flex;
@@ -3337,7 +3337,7 @@ textarea.form-control.is-invalid {
 }
 
 .customerRegSearchbarDateContent2 {
-    width: 500px;
+    width: 600px;
     margin-left: 10px;
 }
 
@@ -3349,8 +3349,33 @@ textarea.form-control.is-invalid {
     color: #929295;
     font-size: 15px;
     font-weight: bold;
+    margin-top: 5px;
+    pointer-events: none;
+    background-color: #f1f1f1;
 }
+
+.customerInput1Button {
+    width: 40px;
+    height: 40px;
+    background-color: #2ea7ff;
+    border: 2px solid #6a84ab;
+    border-radius: 10px;
+}
+
 .customerInput2 {
+    width: 400px;
+    height: 40px;
+    border: 2px solid #6a84ab;
+    border-radius: 10px;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 12px;
+    pointer-events: none;
+    background-color: #f1f1f1;
+}
+
+.customerInput3 {
     width: 500px;
     height: 40px;
     border: 2px solid #6a84ab;
