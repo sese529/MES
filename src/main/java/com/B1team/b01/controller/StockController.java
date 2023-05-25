@@ -55,7 +55,7 @@ public class StockController {
 //        return "/item/stock";
 //    }
 
-    @GetMapping("/search")
+    @GetMapping("/stock")
     public String stock(Model model
                         , @RequestParam(required = false) String productName
                         , @RequestParam(required = false) String productId
