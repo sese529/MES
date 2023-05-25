@@ -11,11 +11,13 @@ import java.util.List;
 
 public interface StockRepository extends JpaRepository<Stock, String> {
     Stock findByMtrId(String mtrId);
+
 //    List<Stock> findByProductIdNotNull();
     List<Stock> findByProductIdNotNull();
 
     @Query("SELECT p FROM Product p WHERE p.id IN (SELECT s.productId FROM Stock s WHERE s.productId = :productId)")
     List<Product> findByProductIdInStock(@Param("productId") String productId);
 
-
+    @Query("SELECT st.ea FROM Stock st WHERE st.productId = :productId")
+    Long findByStockCnt(String productId);
 }

@@ -1,10 +1,8 @@
 package com.B1team.b01.repository;
 
-import com.B1team.b01.dto.WplanDto;
 import com.B1team.b01.entity.Rorder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,7 +31,10 @@ public interface RorderRepository extends JpaRepository<Rorder, String> {
                                          String productName,
                                          LocalDateTime startDeadline,
                                          LocalDateTime endDeadLine);
-    Optional<Rorder> findById(String id);
+    Optional<Rorder> findById(String Id);
+
+    @Query("SELECT ro.cnt FROM Rorder ro WHERE ro.id = :orderId")
+    Long findByOrderCnt(String orderId);
 
 
 }
