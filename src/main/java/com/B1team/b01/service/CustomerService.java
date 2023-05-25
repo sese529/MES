@@ -41,4 +41,12 @@ public class CustomerService {
 
         return customerRepository.findAll(specification);
     }
+
+    public void insertCustomer(Customer customer){
+        customerRepository.save(customer);
+    }
+
+    public Long getNextCustomerSeq(){
+        return customerRepository.getNextCustomerSeq();
+    }
 }
