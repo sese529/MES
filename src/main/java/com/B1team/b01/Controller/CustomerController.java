@@ -96,7 +96,7 @@ public class CustomerController {
                                   @RequestParam String fax,
                                   @RequestParam String sample6_address,
                                   @RequestParam String sample6_detailAddress){
-        String address = sample6_address + sample6_detailAddress;
+        String address = sample6_address + " " +  sample6_detailAddress;
         Customer customer = new Customer();
         customer.setId("PCU" + customerService.getNextCustomerSeq());
         customer.setSort(psort);
@@ -107,7 +107,8 @@ public class CustomerController {
         customer.setFax(fax);
 
         customerService.insertCustomer(customer);
-        return "/customer/porder-customer";
+
+        return "redirect:/customer/porder-customer";
     }
 
     @PostMapping("/rcustomer-insert")
@@ -117,10 +118,10 @@ public class CustomerController {
                                   @RequestParam String fax,
                                   @RequestParam String sample6_address,
                                   @RequestParam String sample6_detailAddress){
-        String address = sample6_address + sample6_detailAddress;
+        String address = sample6_address + " " + sample6_detailAddress;
         Customer customer = new Customer();
         customer.setId("RCU" + customerService.getNextCustomerSeq());
-        customer.setSort(psort);
+        customer.setSort(rsort);
         customer.setName(name);
         customer.setAddress(address);
         customer.setTel(tel);
@@ -128,6 +129,6 @@ public class CustomerController {
         customer.setFax(fax);
 
         customerService.insertCustomer(customer);
-        return "/customer/rorder-customer";
+        return "redirect:/customer/rorder-customer";
     }
 }
