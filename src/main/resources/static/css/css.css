@@ -2685,6 +2685,7 @@ textarea.form-control.is-invalid {
     justify-content: space-evenly;
     align-items: center;
     transform: translateX(10px);
+    margin-top: 3px;
 }
 
 .searchButtonP {
