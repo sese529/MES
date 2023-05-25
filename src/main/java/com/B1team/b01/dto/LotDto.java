@@ -36,7 +36,4 @@ public class LotDto {
         return modelMapper.map(this, LOT.class);
     }
 
-    public LotDto(String orderId) {
-        this.orderId = orderId;
-    }
 }

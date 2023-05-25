@@ -47,9 +47,10 @@ public class WorderService {
     }
 
     //(안쓰게된 메소드) 현재 시간에 작동중인 설비가 있는지 체크 //현재 작업지시 상태 조회
-    public String checkWorder(String processId) {
+    public String checkWorder(String processId, String wplanId) {
 
-        List<Worder> nowWorderTime = worderRepository.findByState(processId); //시작시간과 끝시간을 받아옴
+        List<Worder> nowWorderTime = worderRepository.findByState(processId, wplanId); //시작시간과 끝시간을 받아옴
+
         //현재 해당기기 공정 상태
         String result = "";
 
@@ -67,6 +68,7 @@ public class WorderService {
         }
         return result;
     }
+
 
 
     //작업지시 조회
@@ -126,7 +128,6 @@ public class WorderService {
 
         return worderRepository.findAll(specification);
     }
-
 
 
 
