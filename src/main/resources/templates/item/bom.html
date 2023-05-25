@@ -147,15 +147,16 @@
             <!-- End of Topbar -->
 
             <!-- searchbar  -->
-            <form action="/search" methbod="get" class="searchbarForm">
+            <form action="/search" method="post" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable" cellspacing="0">
                         <tr class="searchbarTr2">
                             <td class="searchbarDateTd">
-                                <p>품목</p>
+                                <p>제품명</p>
                             </td>
                             <td class="searchbarContent">
                                 <select class="searchbarSelect">
+                                    <option value="" selected> </option>
                                     <option>양배추즙</option>
                                     <option>흑마늘즙</option>
                                     <option>석류젤리</option>
@@ -163,16 +164,14 @@
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
-                                <p>업체코드</p>
+                                <p>원자재명</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
-                            </td>
-                            <td class="searchbarDateTd">
-                                <p>사업자등록번호</p>
-                            </td>
-                            <td class="searchbarContent">
-                                <input type="text">
+                                <select class="searchbarSelect">
+                                    <option value="" selected> </option>
+                                    <option>양배추</option>
+                                    <option>정제수</option>
+                                </select>
                             </td>
                             <td class="searchButtonTd">
                                 <button class="searchButton">
@@ -195,52 +194,25 @@
                         <table class="table table-borderless" id="dataTables" width="100%" cellspacing="0">
                             <thead class="tableTitle">
                             <tr>
-                                <th></th>
-                                <th>품목명</th>
-                                <th>품목 코드</th>
-                                <th>재고 수량(EA)</th>
-                                <th>단가(원)</th>
-                                <th>분류</th>
-                                <th>창고 위치</th>
+                                <th>제품명</th>
+                                <th>원자재명</th>
+                                <th>필요량</th>
+                                <th>단위</th>
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>양배추즙</td>
-                                <td>01513448</td>
-                                <td>0</td>
-                                <td>300</td>
-                                <td>JUICE</td>
-                                <td>가123</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td><input type="checkbox"></td>
-                                <td>흑마늘즙</td>
-                                <td>01513448</td>
-                                <td>0</td>
-                                <td>300</td>
-                                <td>JUICE</td>
-                                <td>나123</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>석류 젤리스틱</td>
-                                <td>01513448</td>
-                                <td>0</td>
-                                <td>500</td>
-                                <td>ST</td>
-                                <td>다123</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td><input type="checkbox"></td>
-                                <td>매실 젤리스틱</td>
-                                <td>01513448</td>
-                                <td>0</td>
-                                <td>500</td>
-                                <td>ST</td>
-                                <td>라123</td>
-                            </tr>
+                                <tr>
+                                    <td>양배추즙</td>
+                                    <td>양배추</td>
+                                    <td>40</td>
+                                    <td>ml</td>
+                                </tr>
+                                <tr>
+                                    <td>양배추즙</td>
+                                    <td>정제수</td>
+                                    <td>40</td>
+                                    <td>ml</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
