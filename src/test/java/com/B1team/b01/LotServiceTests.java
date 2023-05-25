@@ -39,7 +39,19 @@ public class LotServiceTests {
     @Test
     @Rollback(false)
     public void testCreateLotRecode(){
-        lotService.createLotRecode("A105", "WPLAN39", "");
+
+        lotService.createLotRecode("A101", "WPLAN39","p24");
+        lotService.createLotRecode("A102", "WPLAN39","p24");
+        lotService.createLotRecode("A103", "WPLAN39","p24");
+        lotService.createLotRecode("A104", "WPLAN39","p24");
+        lotService.createLotRecode("A105", "WPLAN39","p24");
+        lotService.createLotRecode("A106", "WPLAN39","p24");
+        lotService.createLotRecode("A107", "WPLAN39","p24");
+        lotService.createLotRecode("A108", "WPLAN39","p24");
+        lotService.createLotRecode("A109", "WPLAN39","p24");
+        lotService.createLotRecode("A100", "WPLAN39","p24");
+        lotService.createLotRecode("A110", "WPLAN39","p24");
+
     }
 
 }

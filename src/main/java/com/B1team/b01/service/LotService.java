@@ -85,20 +85,20 @@ public class LotService {
         lotDto.setCode(productCode + processCode + DateCode);
         lotDto.setId(makeStringId());
         lotDto.setWorderId(someWorder.get(0).getId());
-        lotDto.setFinprodId(lotRepository.findByPlanOrderId(productId).getId()); //완제품 고유번호
-        lotDto.setOrderId(String.valueOf(lotRepository.findByPlanOrderId(wplanId).getOrderId())); //수주 고유번호
+        lotDto.setFinprodId(someFinprod.getId()); //완제품 고유번호
+        lotDto.setOrderId(lotRepository.findByPlanOrderId(wplanId).getOrderId()); //수주 고유번호
 
         return lotDto;
     }
 
     //공정이 끝날 경우, LOT번호 추가하는 메소드
-    public void createLotRecode(String processId, String wplanId, String orderId){
+    public void createLotRecode(String processId, String wplanId, String productId){
        String checkWorder = worderService.checkWorder(processId, wplanId); //공정고유번호를 체크해서 현재 가동상태가 완료인 것(=작업완료시간이 현재시간 이전이면)
             System.out.println("checkWorder");
 
 
         if(checkWorder == "완료"){
-            LotDto result  = ruleProductName(processId, wplanId, orderId);
+            LotDto result  = ruleProductName(processId, wplanId, productId);
             lotRepository.save(result.toEntity());
         }else{
             System.out.println("등록실패");
