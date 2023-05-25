@@ -2917,9 +2917,7 @@ textarea.form-control.is-invalid {
 #productionDataTables3 tbody tr:nth-child(1) td:nth-child(2),
 #productionDataTables3 tbody tr:nth-child(1) td:nth-child(3),
 #productionDataTables3 tbody tr:nth-child(1) td:nth-child(4),
-#productionDataTables3 tbody tr:nth-child(1) td:nth-child(5),
-#productionDataTables3 tbody tr:nth-child(1) td:nth-child(6),
-#productionDataTables3 tbody tr:nth-child(1) td:nth-child(7) {
+#productionDataTables3 tbody tr:nth-child(1) td:nth-child(5) {
     border-right: 2px solid #fff;
 }
 
