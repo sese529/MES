@@ -140,13 +140,13 @@ public class StockService {
             // stock
             stockListDto.setName(row[0].toString());
             stockListDto.setProductId(row[1].toString());
-            stockListDto.setEa(Long.valueOf((Long) row[2]));
-            stockListDto.setUnit(row[3].toString());
-            stockListDto.setPrice(Long.valueOf((Long) row[4]));
-            stockListDto.setSort(row[5].toString());
-            stockListDto.setLocation(row[6].toString());
+//            stockListDto.setEa(Long.valueOf((Long) row[2]));
+            stockListDto.setUnit(row[2].toString());
+            stockListDto.setPrice(Long.valueOf((Long) row[3]));
+            stockListDto.setSort(row[4].toString());
+            stockListDto.setLocation(row[5].toString());
 
-            for(int i=0; i <= 6;i++){
+            for(int i=0; i <= 5;i++){
                 System.out.println(i+ ":" +row[i]);
             }
 

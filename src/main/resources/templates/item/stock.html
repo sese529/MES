@@ -161,19 +161,19 @@
                                                 <p>품목명</p>
                                             </td>
                                             <td class="stockRegSearchbarDateContent">
-                                                <input type="text" name="productName">
+                                                <input type="text" name="name">
                                             </td>
                                             <td class="stockRegSearchbarDateTd">
                                                 <p>품목코드</p>
                                             </td>
                                             <td class="stockRegSearchbarDateContent">
-                                                <input type="text" name = "productId" disabled/>
+                                                <input type="text" name = "id" disabled/>
                                             </td>
                                             <td class="stockRegSearchbarDateTd">
                                                 <p>분류</p>
                                             </td>
                                             <td class="stockRegSearchbarDateContent">
-                                                <input type="text" name = "productSort">
+                                                <input type="text" name = "sort">
                                             </td>
                                             <td class="regSearchbarButton">
                                                 <!-- 공백 -->
@@ -292,7 +292,7 @@
 
 
             <!-- searchbar  -->
-            <form action="/item/stock" method="get" class="searchbarForm">
+            <form action="/item/product" method="get" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="itemDataTable3" cellspacing="0">
                         <tr class="searchbarTr2" >
@@ -302,7 +302,7 @@
                             <td class="searchbarContent">
                                 <select class="searchbarSelect" name = "productName">
                                     <option value=""></option>
-                                    <option th:each="stock : ${stockList}" th:text="${stock.name}"></option>
+                                    <option th:each="product : ${productList}" th:text="${product.name}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
@@ -341,23 +341,23 @@
                                 <th></th>
                                 <th>품목명</th>
                                 <th>품목 코드</th>
-                                <th>재고 수량(EA)</th>
-                                <th>단위</th>
+<!--                                <th>재고 수량(EA)</th>-->
+<!--                                <th>단위</th>-->
                                 <th>단가(원)</th>
                                 <th>분류</th>
                                 <th>창고 위치</th>
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr th:each="stock : ${stockList}">
+                            <tr th:each="product : ${productList}">
                                 <td><input type="checkbox"></td>
-                                <td th:text="${stock.name}"></td>
-                                <td th:text="${stock.productId}"></td>
-                                <td th:text="${stock.ea}"></td>
-                                <td th:text="${stock.unit}"></td>
-                                <td th:text="${stock.price}"></td>
-                                <td th:text="${stock.sort}"></td>
-                                <td th:text="${stock.location}"></td>
+                                <td th:text="${product.name}"></td>
+                                <td th:text="${product.id}"></td>
+<!--                                <td th:text="${stock.ea}"></td>-->
+<!--                                <td th:text="${product.unit}"></td>-->
+                                <td th:text="${product.price}"></td>
+                                <td th:text="${product.sort}"></td>
+                                <td th:text="${product.location}"></td>
                             </tr>
 
                             </tbody>
