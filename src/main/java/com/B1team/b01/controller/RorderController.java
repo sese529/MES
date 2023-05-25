@@ -47,7 +47,7 @@ public class RorderController {
                         String endDeadline) {
 
         //거래처 리스트
-        List<CustomerDto> customerDtoList = CustomerDto.of(customerRepository.findAll());
+        List<CustomerDto> customerDtoList = CustomerDto.of(customerRepository.findBySort("수주처"));
         model.addAttribute("customerList", customerDtoList);
 
         //품목 리스트
