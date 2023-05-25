@@ -17,6 +17,7 @@ public class ProductDto {
     private String name;    //제품명
     private Long price;    //가격
     private String sort;    //분류
+    private String location;    //분류
 
     private static ModelMapper modelMapper = new ModelMapper(); //엔티티랑 dto의 필드명이 같은 것끼리 매핑
 

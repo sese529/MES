@@ -20,18 +20,19 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    public static final String rsort = "수주처";
+    public static final String psort = "발주처";
+
     @GetMapping("/customer/rorder-customer")
     public String rorderCustomer(Model model) {
-        String sort = "수주처";
-        model.addAttribute("clist",customerService.getPorderList(sort));
+        model.addAttribute("clist",customerService.getPorderList(rsort));
 
         return "/customer/rorder-customer";
     }
 
     @GetMapping("/customer/porder-customer")
     public String porderCustomer(Model model) {
-        String sort = "발주처";
-        model.addAttribute("clist",customerService.getPorderList(sort));
+        model.addAttribute("clist",customerService.getPorderList(psort));
 
         return "/customer/porder-customer";
     }
@@ -55,8 +56,7 @@ public class CustomerController {
         System.out.println(id);
         System.out.println(businessNumber);
 
-        String sort="발주처";
-        List<Customer> slist = customerService.search(name,id,businessNumber,sort);
+        List<Customer> slist = customerService.search(name,id,businessNumber,psort);
         System.out.println(slist);
         model.addAttribute("slist",slist);
 
@@ -82,8 +82,7 @@ public class CustomerController {
         System.out.println(id);
         System.out.println(businessNumber);
 
-        String sort="수주처";
-        List<Customer> slist = customerService.search(name,id,businessNumber,sort);
+        List<Customer> slist = customerService.search(name,id,businessNumber,rsort);
         System.out.println(slist);
         model.addAttribute("slist",slist);
 
@@ -91,14 +90,45 @@ public class CustomerController {
     }
 
     @PostMapping("/pcustomer-insert")
-    public String pcustomerInsert(String name, String id, String text, String tel, String fax){
+    public String pcustomerInsert(@RequestParam String businessNumber,
+                                  @RequestParam String name,
+                                  @RequestParam String tel,
+                                  @RequestParam String fax,
+                                  @RequestParam String sample6_address,
+                                  @RequestParam String sample6_detailAddress){
+        String address = sample6_address + " " +  sample6_detailAddress;
+        Customer customer = new Customer();
+        customer.setId("PCU" + customerService.getNextCustomerSeq());
+        customer.setSort(psort);
+        customer.setName(name);
+        customer.setAddress(address);
+        customer.setTel(tel);
+        customer.setBusinessNumber(businessNumber);
+        customer.setFax(fax);
 
-        return "/customer/porder-customer";
+        customerService.insertCustomer(customer);
+
+        return "redirect:/customer/porder-customer";
     }
 
     @PostMapping("/rcustomer-insert")
-    public String rcustomerInsert(){
+    public String rcustomerInsert(@RequestParam String businessNumber,
+                                  @RequestParam String name,
+                                  @RequestParam String tel,
+                                  @RequestParam String fax,
+                                  @RequestParam String sample6_address,
+                                  @RequestParam String sample6_detailAddress){
+        String address = sample6_address + " " + sample6_detailAddress;
+        Customer customer = new Customer();
+        customer.setId("RCU" + customerService.getNextCustomerSeq());
+        customer.setSort(rsort);
+        customer.setName(name);
+        customer.setAddress(address);
+        customer.setTel(tel);
+        customer.setBusinessNumber(businessNumber);
+        customer.setFax(fax);
 
-        return "/customer/rorder-customer";
+        customerService.insertCustomer(customer);
+        return "redirect:/customer/rorder-customer";
     }
 }

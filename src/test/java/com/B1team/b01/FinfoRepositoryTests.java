@@ -15,7 +15,7 @@ public class FinfoRepositoryTests {
 
     @Test
     void 레포지토리테스트() {
-        List<FinfoDto> list = FinfoDto.of(finfoRepository.findFinfosByConditions(null, null));
+        List<FinfoDto> list = FinfoDto.of(finfoRepository.findFinfosByConditions(null, null, null));
         for(int i = 0; i < list.size(); i++)
             System.out.println(list.get(i));
     }

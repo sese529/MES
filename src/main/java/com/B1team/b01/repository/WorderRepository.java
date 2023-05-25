@@ -20,4 +20,8 @@ public interface WorderRepository extends JpaRepository<Worder, String> , JpaSpe
     List<Worder> findByState(String processId, String wplanId); //작업지시 테이블에서 특정 공정고유번호에 대한 컬럼 전체를 불러옴(진행)
 
     List<Worder> findAll();
+
+    //설비 - 작업 지시에서 현재 가동 중인 설비 찾기
+    @Query("SELECT w FROM Worder w WHERE w.facilityId = :fid AND w.startDate <= :currentDateTime AND w.finishDate >= :currentDateTime")
+    List<Worder> findWordersByFacilityIdAndCurrentDateTime(String fid, LocalDateTime currentDateTime);
 }

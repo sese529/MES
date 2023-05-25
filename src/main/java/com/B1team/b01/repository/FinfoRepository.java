@@ -13,6 +13,7 @@ public interface FinfoRepository extends JpaRepository<Finfo, String> {
     //설비 정보 리스트
     @Query("SELECT f FROM Finfo f " +
             "WHERE (:name IS NULL OR f.name = :name) " +
-            "AND (:location IS NULL OR f.location = :location ) ")
-    List<Finfo> findFinfosByConditions(String name, String location);
+            "AND (:location IS NULL OR f.location = :location ) " +
+            "AND (:id IS NULL OR f.id = :id )")
+    List<Finfo> findFinfosByConditions(String name, String location, String id);
 }

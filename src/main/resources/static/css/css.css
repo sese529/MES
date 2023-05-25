@@ -2974,8 +2974,6 @@ textarea.form-control.is-invalid {
 #customerDataTable1 tbody tr:nth-child(1) td:nth-child(5),
 #customerDataTable1 tbody tr:nth-child(2) td:nth-child(1),
 #customerDataTable1 tbody tr:nth-child(2) td:nth-child(2),
-#customerDataTable1 tbody tr:nth-child(2) td:nth-child(4),
-#customerDataTable1 tbody tr:nth-child(2) td:nth-child(5),
 #customerDataTable1 tbody tr:nth-child(3) td:nth-child(1) {
     border-right: 2px solid #fff;
 }
@@ -3351,7 +3349,7 @@ textarea.form-control.is-invalid {
     font-weight: bold;
     margin-top: 5px;
     pointer-events: none;
-    background-color: #f1f1f1;
+    background-color: #ffffff;
 }
 
 .customerInput1Button {
@@ -3372,7 +3370,7 @@ textarea.form-control.is-invalid {
     font-weight: bold;
     margin-top: 12px;
     pointer-events: none;
-    background-color: #f1f1f1;
+    background-color: #ffffff;
 }
 
 .customerInput3 {
@@ -13573,4 +13571,9 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
     width: 100%
+}
+
+.mainChart {
+    width: 500px;
+    height: 500px;
 }

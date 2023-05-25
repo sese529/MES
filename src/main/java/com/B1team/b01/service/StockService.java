@@ -128,7 +128,6 @@ public class StockService {
     }
 
 
-
     public List<StockListDto> getProductStockList(String productName, String productId, String productSort) {
 
         List<Object[]> results = stockRepository.getProductStockList(productName, productId, productSort);

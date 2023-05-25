@@ -4,6 +4,7 @@ package com.B1team.b01.controller;
 import com.B1team.b01.dto.CustomerDto;
 import com.B1team.b01.dto.ProductDto;
 import com.B1team.b01.dto.RorderDto;
+import com.B1team.b01.dto.RorderFormDto;
 import com.B1team.b01.repository.CustomerRepository;
 import com.B1team.b01.repository.ProductRepository;
 import com.B1team.b01.service.RorderService;
@@ -46,7 +47,7 @@ public class RorderController {
                         String endDeadline) {
 
         //거래처 리스트
-        List<CustomerDto> customerDtoList = CustomerDto.of(customerRepository.findAll());
+        List<CustomerDto> customerDtoList = CustomerDto.of(customerRepository.findBySort("수주처"));
         model.addAttribute("customerList", customerDtoList);
 
         //품목 리스트
@@ -78,6 +79,25 @@ public class RorderController {
         String deliveryDate = rorderService.calculateOrderDeliveryDate(orderDate, productId, orderCnt);
         response.put("deliveryDate", deliveryDate);
         // JSON 형태의 응답과 함께 상태 코드 200을 반환
+        return ResponseEntity.ok(response);
+    }
+
+    //수주 등록
+    @PostMapping("/reg")
+    public ResponseEntity<?> regOrder(String orderDate,
+                           String customerId,
+                           String customerName,
+                           String productId,
+                           String productName,
+                           String orderCnt,
+                           String deliveryDate) {
+        RorderFormDto dto = new RorderFormDto(orderDate, customerId, customerName, productId, productName, orderCnt, deliveryDate);
+//        System.out.println("입력 정보=" + dto);
+        rorderService.addRorder(dto);
+
+        //View에 보내줄 내용
+        Map<String, String> response = new HashMap<>();
+        response.put("redirectUrl", "/rorder/order");
         return ResponseEntity.ok(response);
     }
 }
