@@ -66,8 +66,8 @@
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/production/production-order">· 작업 계획 현황</a>
-                    <a class="collapse-item" href="/production/production-plan">· 작업 지시 현황</a>
+                    <a class="collapse-item" href="/production/production-plan">· 작업 계획 현황</a>
+                    <a class="collapse-item" href="/production/production-order">· 작업 지시 현황</a>
                     <a class="collapse-item" href="/production/production-performance">· 작업 실적 현황</a>
                 </div>
             </div>
@@ -105,7 +105,7 @@
             </a>
             <div id="collapseFour" class="collapse" aria-labelledby="HeadingFour" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/item/stock">· 제품 재고 현황</a>
+                    <a class="collapse-item" href="/item/product">· 제품 재고 현황</a>
                     <a class="collapse-item" href="/item/bom">· BOM 현황</a>
                 </div>
             </div>
@@ -124,6 +124,14 @@
                     <a class="collapse-item" href="/facility/facility-information">· 설비 정보</a>
                 </div>
             </div>
+        </li>
+
+        <!-- Nav Item - LOT 관리 -->
+        <li class="nav-item">
+            <a class="nav-link" href="/lot/lot">
+                <i class="fa-solid fa-repeat"></i>
+                <span>LOT 관리</span>
+            </a>
         </li>
 
         <!-- Sidebar Toggler (Sidebar) -->
@@ -281,16 +289,14 @@
                                                 <p>수주 번호</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+                                                <input type="text" id="editId" disabled/>
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>거래처명</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <select class="regSearchbarSelect">
-                                                    <option>매출처1</option>
-                                                    <option>매출처2</option>
-                                                    <option>매출처3</option>
+                                                <select class="regSearchbarSelect" name="customerId" id="editCustomerId">
+                                                    <option th:each="customer : ${customerList}" th:text="${customer.name}" th:value="${customer.id}"></option>
                                                 </select>
                                             </td>
                                             <td class="regSearchbarButton">
@@ -302,18 +308,15 @@
                                                 <p>품목</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <select class="regSearchbarSelect">
-                                                    <option>양배추즙</option>
-                                                    <option>흑마늘즙</option>
-                                                    <option>매실젤리</option>
-                                                    <option>석류젤리</option>
+                                                <select class="regSearchbarSelect" id="editProductId">
+                                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.id}"></option>
                                                 </select>
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>수주량</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+                                                <input type="text" id="editCnt">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>납품예정일</p>
@@ -464,19 +467,22 @@
                             </tr>
                             </thead>
                             <!--  리스트 내용 영역 시작  -->
-                            <tbody class="tableBody">
-                            <tr th:each="rorder : ${rorderList}">
-                                <td><input type="checkbox"></td>
-                                <td th:text="${rorder.date}">2022-05-01 11:30</td>
-                                <td th:text="${rorder.id}">G215483126</td>
-                                <td th:text="${rorder.state}">진행전</td>
-                                <td th:text="${rorder.customerName}">매출처1</td>
-                                <td th:text="${rorder.productName}">양배추즙</td>
-                                <td th:text="${rorder.deadline}">2022-05-01 11:30</td>
-                                <td th:text="${rorder.cnt}">50</td>
-                                <td th:text="${rorder.price}">1,000,000,000</td>
-                            </tr>
-                            </tbody>
+                            <form id="confirmedForm" action="/rorder/confirmed" method="post">
+                                <tbody class="tableBody">
+                                <tr th:each="rorder : ${rorderList}">
+                                    <td><input type="checkbox" th:value="${rorder.id}" name="selectedIds" th:if="${rorder.state == '진행전'}">
+                                        <input type="checkbox" th:if="${rorder.state != '진행전'}" disabled></td>
+                                    <td th:text="${rorder.date}">2022-05-01 11:30</td>
+                                    <td th:text="${rorder.id}">G215483126</td>
+                                    <td th:text="${rorder.state}">진행전</td>
+                                    <td th:text="${rorder.customerName}">매출처1</td>
+                                    <td th:text="${rorder.productName}">양배추즙</td>
+                                    <td th:text="${rorder.deadline}">2022-05-01 11:30</td>
+                                    <td th:text="${rorder.cnt}">50</td>
+                                    <td th:text="${rorder.price}">1,000,000,000</td>
+                                </tr>
+                                </tbody>
+                            </form>
                             <!--  리스트 내용 영역 끝  -->
                         </table>
                     </div>
@@ -624,6 +630,12 @@
             }
         });
     });
+
+    //수주 확정 버튼 이벤트 핸들러 confirmedButton
+    // $('#confirmedButton').on('click', function (event) {
+    //     // 폼 제출
+    //     $('#confirmedForm').submit();
+    // });
 </script>
 
 </body>

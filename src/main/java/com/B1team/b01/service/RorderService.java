@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -68,4 +69,9 @@ public class RorderService {
         return id;
     }
 
+    //수주 정보 받아오기
+    public RorderDto findById(String rid) {
+        Optional<Rorder> optional = rorderRepository.findById(rid);
+        return RorderDto.of(optional.get());
+    }
 }

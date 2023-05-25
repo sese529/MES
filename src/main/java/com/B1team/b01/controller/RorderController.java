@@ -7,6 +7,7 @@ import com.B1team.b01.dto.RorderDto;
 import com.B1team.b01.dto.RorderFormDto;
 import com.B1team.b01.repository.CustomerRepository;
 import com.B1team.b01.repository.ProductRepository;
+import com.B1team.b01.repository.RorderRepository;
 import com.B1team.b01.service.RorderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +33,7 @@ import java.util.Map;
 @RequestMapping("/rorder")
 public class RorderController {
     private final RorderService rorderService;
+    private final RorderRepository rorderRepository;
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
 
@@ -75,7 +78,7 @@ public class RorderController {
     @PostMapping("/simulation")
     public ResponseEntity<?> orderDeliveryDate(String orderDate, String productId, String orderCnt) {
         Map<String, String> response = new HashMap<>();
-        System.out.println("orderDateStr=" + orderDate);
+//        System.out.println("orderDateStr=" + orderDate);
         String deliveryDate = rorderService.calculateOrderDeliveryDate(orderDate, productId, orderCnt);
         response.put("deliveryDate", deliveryDate);
         // JSON 형태의 응답과 함께 상태 코드 200을 반환
@@ -97,6 +100,35 @@ public class RorderController {
 
         //View에 보내줄 내용
         Map<String, String> response = new HashMap<>();
+        response.put("redirectUrl", "/rorder/order");
+        return ResponseEntity.ok(response);
+    }
+
+    //수주 확정
+    @PostMapping("/confirmed")
+    public String updateToConfirmed(String[] selectedIds) {
+        Arrays.sort(selectedIds);
+        for(int i = 0; i < selectedIds.length; i++) {
+            int temp = rorderRepository.updateState(selectedIds[i]);
+            System.out.println(i + "번째=" + temp);
+        }
+//            System.out.println("selectedIds=" + selectedIds[i]);
+        return "redirect:/rorder/order";
+    }
+
+    //수정 정보 요청
+    @GetMapping("/edit")
+    public ResponseEntity<?> getEditInfo(String selectedId) {
+        RorderDto editInfo = rorderService.findById(selectedId);
+
+        //View에 보내줄 내용
+        Map<String, String> response = new HashMap<>();
+        response.put("editInfoDate", editInfo.getDate());
+        response.put("editInfoId", editInfo.getId());
+        response.put("editInfoCustomerId", editInfo.getCustomerId());
+        response.put("editInfoProductId", editInfo.getProductId());
+        response.put("editInfoCnt", String.valueOf(editInfo.getCnt()));
+        response.put("editInfoDeadline", editInfo.getDeadline());
         response.put("redirectUrl", "/rorder/order");
         return ResponseEntity.ok(response);
     }
