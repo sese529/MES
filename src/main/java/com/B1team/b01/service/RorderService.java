@@ -42,8 +42,8 @@ public class RorderService {
 
         // 예정 납기일 받아서 String 형으로 반환
         LocalDateTime deliveryDate = mprocessService.caluculateDeadline(orderDate, productId, Long.parseLong(orderCntStr));
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd a h:mm", Locale.ENGLISH);
-        String deliveryStr = deliveryDate.format(outputFormatter);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd a HH:mm", Locale.ENGLISH);
+        String deliveryStr = deliveryDate.format(outputFormatter).replace("AM", "오전").replace("PM", "오후");
 
         return deliveryStr;
     }
