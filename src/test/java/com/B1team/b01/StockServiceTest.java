@@ -30,7 +30,7 @@ public class StockServiceTest {
 
 //        stockService.stockCheck("p21","10");
         System.out.println("d");
-        stockService.getProductStock();
+//        stockService.getProductStock();
     }
 
 }

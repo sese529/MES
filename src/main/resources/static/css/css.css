@@ -2967,6 +2967,19 @@ textarea.form-control.is-invalid {
     border-right: 2px solid #fff;
 }
 
+#customerDataTable1 tbody tr:nth-child(1) td:nth-child(1),
+#customerDataTable1 tbody tr:nth-child(1) td:nth-child(2),
+#customerDataTable1 tbody tr:nth-child(1) td:nth-child(3),
+#customerDataTable1 tbody tr:nth-child(1) td:nth-child(4),
+#customerDataTable1 tbody tr:nth-child(1) td:nth-child(5),
+#customerDataTable1 tbody tr:nth-child(2) td:nth-child(1),
+#customerDataTable1 tbody tr:nth-child(2) td:nth-child(2),
+#customerDataTable1 tbody tr:nth-child(2) td:nth-child(4),
+#customerDataTable1 tbody tr:nth-child(2) td:nth-child(5),
+#customerDataTable1 tbody tr:nth-child(3) td:nth-child(1) {
+    border-right: 2px solid #fff;
+}
+
 .searchbarDateTd {
     width: 160px;
     font-size: 18px;
@@ -3125,7 +3138,14 @@ textarea.form-control.is-invalid {
     padding: 20px;
     width: 1500px;
     height: 550px;
+}
 
+.customerModalContentReg {
+    background-color: #fefefe;
+    margin: 12% auto;
+    padding: 20px;
+    width: 1500px;
+    height: 650px;
 }
 
 .regTop {
@@ -3177,6 +3197,35 @@ textarea.form-control.is-invalid {
 .stockRegSearchbarTr2 {
     width: 1400px;
     height: 100px;
+    color: #fff;
+    background-color: #6a84ab;
+    display: flex;
+    border-bottom: 2px solid #fff;
+    margin: 0;
+}
+
+.customerRegSearchbarTr1 {
+    width: 1400px;
+    height: 100px;
+    color: #fff;
+    background-color: #6a84ab;
+    display: flex;
+    border-bottom: 2px solid #fff;
+    margin: 0;
+}
+
+.customerRegSearchbarTr2 {
+    width: 1400px;
+    height: 100px;
+    color: #fff;
+    background-color: #6a84ab;
+    display: flex;
+    border-bottom: 2px solid #fff;
+    margin: 0;
+}
+.customerRegSearchbarTr3 {
+    width: 1400px;
+    height: 120px;
     color: #fff;
     background-color: #6a84ab;
     display: flex;
@@ -3241,6 +3290,75 @@ textarea.form-control.is-invalid {
     color: #929295;
     font-size: 20px;
     font-weight: bold;
+}
+
+.customerRegSearchbarDateTd {
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.customerRegSearchbarDateTd p {
+    margin: 0;
+}
+
+.customerRegSearchbarDateContent {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.customerRegSearchbarDateContent input {
+    width: 260px;
+    height: 40px;
+    border: 2px solid #6a84ab;
+    border-radius: 10px;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.customerRegSearchbarDateTd2 {
+    width: 150px;
+    height: 120px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.customerRegSearchbarDateTd2 p {
+    margin: 0;
+}
+
+.customerRegSearchbarDateContent2 {
+    width: 500px;
+    margin-left: 10px;
+}
+
+.customerInput1 {
+    width: 260px;
+    height: 40px;
+    border: 2px solid #6a84ab;
+    border-radius: 10px;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
+}
+.customerInput2 {
+    width: 500px;
+    height: 40px;
+    border: 2px solid #6a84ab;
+    border-radius: 10px;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 12px;
 }
 
 #regDropdownPro {
@@ -3343,12 +3461,23 @@ textarea.form-control.is-invalid {
 }
 
 .stockCorClose {
-    width: 80px;
-    height: 40px;
+    width: 120px;
+    height: 50px;
     background-color: #fff;
     border: 1px solid #000;
     font-weight: bold;
     margin-left: 10px;
+    font-size: 20px;
+}
+
+.customerRegClose {
+    width: 120px;
+    height: 50px;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .regClose:hover,
@@ -5798,6 +5927,9 @@ input[type=submit].btn-block {
     min-height: 1px;
     border: 2px solid #efefef;
     border-radius: 10px;
+    white-space: nowrap;
+    max-height: 90%;
+    overflow: auto;
 }
 
 .regCardBody {
