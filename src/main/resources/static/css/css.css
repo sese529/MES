@@ -13678,3 +13678,11 @@ body.sidebar-toggled footer.sticky-footer {
     padding-bottom: 40px;
     margin: 0;
 }
+
+
+#orderCurrent {
+    width: 850px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+}
