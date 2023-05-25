@@ -8,6 +8,7 @@ import com.B1team.b01.entity.Worder;
 import com.B1team.b01.entity.Wplan;
 import com.B1team.b01.repository.LotRepository;
 import com.B1team.b01.repository.WorderRepository;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -27,10 +29,8 @@ public class LotService {
     private LotRepository lotRepository;
     @Autowired
     private WorderRepository worderRepository;
-
     @Autowired
     private WorderService worderService;
-    private Wplan wplan;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -42,16 +42,15 @@ public class LotService {
         return id;
     }
 
-    //LOT 코드 생성규칙1
+    //LOT값 등록하기
     public LotDto ruleProductName(String processId, String wplanId, String productId){
         List<Worder> someWorder = worderRepository.findByState(processId, wplanId); // 작업지시테이블의 특정 1행을 불러옴
         Finprod someFinprod = lotRepository.findByFinprodId(productId); // 작업지시테이블의 특정 1행을 불러옴
 
-        //품목코드
-        String productName = someWorder.get(0).getProductId();
-
+        //LOT코드
+        //LOT코드 만들기(품목+공정코드+공정완료날짜)
         LotDto lotDto = new LotDto();
-
+        String productName = someWorder.get(0).getProductId();  //품목코드
 
         LotMakeNameDto lotMakeNameDto= new LotMakeNameDto();
         switch (productName) {
@@ -61,27 +60,26 @@ public class LotService {
             case "p24": lotMakeNameDto.setProduct("M"); break;
         }
 
-        //공정과정
-        String processName  = someWorder.get(0).getProcessId();
+        String processName  = someWorder.get(0).getProcessId(); //공정과정
         lotMakeNameDto.setProcess(processName);
 
-        //날짜
-        LocalDateTime finishDate = someWorder.get(0).getFinishDate();
+        LocalDateTime finishDate = someWorder.get(0).getFinishDate();   //공정완료날짜
+        String finishDateFome = finishDate.format(DateTimeFormatter.ofPattern("yyyyMMddHHmm"));
+        lotMakeNameDto.setDate(finishDateFome);
 
-        String finishDateString = String.valueOf(finishDate);
-        String newFinishDateString = finishDateString.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]", ""); // ':' 문자 제거
+        //LocalDateTime finishDateFomeGeneral = LocalDateTime.parse(finishDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 
-        lotMakeNameDto.setDate(newFinishDateString);
-
-
+        //품목, 공정코드, 공정끝난시간
         String productCode = lotMakeNameDto.getProduct();
         String processCode  = lotMakeNameDto.getProcess();
-        String DateCode = lotMakeNameDto.getDate();
+        String DateCode  = lotMakeNameDto.getDate();
+
 
         //dto에 값 넣기
         lotDto.setProduct(productName);
         lotDto.setProcess(processName);
         lotDto.setDate(finishDate);
+
         lotDto.setCode(productCode + processCode + DateCode);
         lotDto.setId(makeStringId());
         lotDto.setWorderId(someWorder.get(0).getId());
@@ -93,8 +91,8 @@ public class LotService {
 
     //공정이 끝날 경우, LOT번호 추가하는 메소드
     public void createLotRecode(String processId, String wplanId, String productId){
-       String checkWorder = worderService.checkWorder(processId, wplanId); //공정고유번호를 체크해서 현재 가동상태가 완료인 것(=작업완료시간이 현재시간 이전이면)
-            System.out.println("checkWorder");
+        String checkWorder = worderService.checkWorder(processId, wplanId); //공정고유번호를 체크해서 현재 가동상태가 완료인 것(=작업완료시간이 현재시간 이전이면)
+        System.out.println("checkWorder");
 
 
         if(checkWorder == "완료"){

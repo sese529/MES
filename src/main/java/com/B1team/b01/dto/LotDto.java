@@ -1,6 +1,7 @@
 package com.B1team.b01.dto;
 
 import com.B1team.b01.entity.LOT;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
@@ -20,6 +21,8 @@ public class LotDto {
     private String process; //공정 코드
     private String product; //제품명
     private String worderId;  //작업지시 고유번호
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime date;  //로트 완료일
     private String finprodId;   //완제품 고유번호
 
