@@ -3,6 +3,7 @@ package com.B1team.b01.repository;
 import com.B1team.b01.entity.Rorder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,19 +23,24 @@ public interface RorderRepository extends JpaRepository<Rorder, String> {
             "AND (:startDeadline IS NULL OR r.deadline >= :startDeadline) " +
             "AND (:endDeadLine IS NULL OR r.deadline <= :endDeadLine) " +
             "ORDER BY r.date DESC")
-    List<Rorder> findRordersByConditions(LocalDateTime startDate,
-                                         LocalDateTime endDate,
-                                         String orderId,
-                                         String state,
-                                         LocalDateTime now,
-                                         String customerName,
-                                         String productName,
-                                         LocalDateTime startDeadline,
-                                         LocalDateTime endDeadLine);
+
+
     Optional<Rorder> findById(String Id);
 
     @Query("SELECT ro.cnt FROM Rorder ro WHERE ro.id = :orderId")
     Long findByOrderCnt(String orderId);
+
+    List<Rorder> findRordersByConditions(@Param("startDate") LocalDateTime startDate,
+                                         @Param("endDate")LocalDateTime endDate,
+                                         @Param("orderId")String orderId,
+                                         @Param("state")String state,
+                                         @Param("now")LocalDateTime now,
+                                         @Param("customerName")String customerName,
+                                         @Param("productName")String productName,
+                                         @Param("startDeadline")LocalDateTime startDeadline,
+                                         @Param("endDeadLine")LocalDateTime endDeadLine);
+
+
 
 
 }

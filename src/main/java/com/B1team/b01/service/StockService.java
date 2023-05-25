@@ -2,6 +2,7 @@ package com.B1team.b01.service;
 
 import com.B1team.b01.dto.PorderDto;
 import com.B1team.b01.dto.StockDto;
+import com.B1team.b01.dto.StockListDto;
 import com.B1team.b01.entity.*;
 import com.B1team.b01.repository.PorderRepository;
 import com.B1team.b01.repository.RorderRepository;
@@ -13,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,12 +34,12 @@ public class StockService {
     private EntityManagerFactory entityManagerFactory;
 
     @Autowired
-    public StockService(StockRepository stockRepository){
+    public StockService(StockRepository stockRepository) {
         this.stockRepository = stockRepository;
     }
 
     //시뮬레이션 - 재고확인 및 자동발주
-    public Long stockCheck (String productId, String orderId) {
+    public Long stockCheck(String productId, String orderId) {
         //제품 잔여수량 확인
 //        Optional<Stock> optional = stockRepository.findById(productId);
 //        Stock stock = optional.get();
@@ -100,16 +102,15 @@ public class StockService {
             // 기존 재고 업데이트 로직 (기존 재고량에서 주문량만큼 수량 감소)
             remainStock.setEa(dto.getStockEa());
 //            existingStock.setUnit(dto.getStockUnit());
-            stockRepository.save(remainStock);
+
+//            stockRepository.save(remainStock);
         } else {
             //발주 계산
-
-
 
             // 새로운 발주 등록 로직
             Porder porder = new Porder();
 
-            porder.setId(generateId("POR","porder_seq"));
+            porder.setId(generateId("POR", "porder_seq"));
             porder.setAmount(pdto.getAmount());
             porder.setArrivalDate(pdto.getArrivaldate());
             porder.setCnt(pdto.getCnt());
@@ -123,22 +124,65 @@ public class StockService {
             porder.setState(pdto.getState());
 
             porderRepository.save(porder);
-
         }
     }
-    
-//    제품재고 조회
-    public List<Stock> getProductStock() {
-//        String name, String productId, String sort
-//                ->매개변수 잠시 주석처리
-//        Specification<Wplan> specification = Specification.where(null);
-//
-//        return  stockRepository.findAll(specification);
 
-        return stockRepository.findByProductIdNotNull();
+    public List<StockListDto> getAllList() {
+
+        List<Object[]> results = stockRepository.getAllList();
+
+        List<StockListDto> stockListDtoList = new ArrayList<>();
+
+        for (Object[] row : results) {
+            StockListDto stockListDto = new StockListDto();
+
+            // stock
+            stockListDto.setName(row[0].toString());
+            stockListDto.setProductId(row[1].toString());
+            stockListDto.setEa(Long.valueOf((Long) row[2]));
+            stockListDto.setUnit(row[3].toString());
+            stockListDto.setPrice(Long.valueOf((Long) row[4]));
+            stockListDto.setSort(row[5].toString());
+            stockListDto.setLocation(row[6].toString());
+
+            for(int i=0; i <= 6;i++){
+                System.out.println(i+ ":" +row[i]);
+            }
+
+            stockListDtoList.add(stockListDto);
+
+        }
+        return stockListDtoList;
     }
 
-    public List<Product> getProductStock1(String productId){
-        return stockRepository.findByProductIdInStock(productId);
+
+
+    public List<StockListDto> getProductStockList(String productName, String productId, String productSort) {
+
+        List<Object[]> results = stockRepository.getProductStockList(productName, productId, productSort);
+
+        List<StockListDto> stockListDtoList = new ArrayList<>();
+
+        for (Object[] row : results) {
+            StockListDto stockListDto = new StockListDto();
+
+            // stock
+            stockListDto.setName(row[0].toString());
+            stockListDto.setProductId(row[1].toString());
+            stockListDto.setEa(Long.valueOf((Long) row[2]));
+            stockListDto.setUnit(row[3].toString());
+            stockListDto.setPrice(Long.valueOf((Long) row[4]));
+            stockListDto.setSort(row[5].toString());
+            stockListDto.setLocation(row[6].toString());
+
+            for(int i=0; i <= 6;i++){
+                System.out.println(i+ ":" +row[i]);
+            }
+
+            stockListDtoList.add(stockListDto);
+
+        }
+        return stockListDtoList;
     }
+
 }

@@ -144,13 +144,84 @@
             <div class="topbar">
                 <h1 class="h4">거래처 관리 > 수주 거래처 현황</h1>
                 <div class="buttons">
-                    <button class="buttonsReg" id="openModalBtn">등록</button>
+                    <!-- 등록 -->
+                    <button class="buttonsReg" id="customerRegBtn">등록</button>
+                    <div class="modal" id="customerRegModal">
+                        <div class="customerModalContentReg">
+                            <div class="regTop">
+                                <p class="regTitle">거래처 등록</p>
+                            </div>
+                            <!-- regSearchbar -->
+                            <form action="/search" method="get">
+                                <div class="regSearchbar">
+                                    <table class="table table-borderless" id="customerDataTable1" width="100%"
+                                           cellspacing="0">
+                                        <tr class="customerRegSearchbarTr1">
+                                            <td class="customerRegSearchbarDateTd">
+                                                <p>업체명</p>
+                                            </td>
+                                            <td class="customerRegSearchbarDateContent">
+                                                <input type="text">
+                                            </td>
+                                            <td class="customerRegSearchbarDateTd">
+                                                <p>업체코드</p>
+                                            </td>
+                                            <td class="customerRegSearchbarDateContent">
+                                                <input type="text" placeholder="코드">
+                                            </td>
+                                            <td class="customerRegSearchbarDateTd">
+                                                <p>사업자번호</p>
+                                            </td>
+                                            <td class="customerRegSearchbarDateContent">
+                                                <input type="text">
+                                            </td>
+                                        </tr>
+                                        <tr class="customerRegSearchbarTr2">
+                                            <td class="customerRegSearchbarDateTd">
+                                                <p>연락처</p>
+                                            </td>
+                                            <td class="customerRegSearchbarDateContent">
+                                                <input type="text">
+                                            </td>
+                                            <td class="customerRegSearchbarDateTd">
+                                                <!-- 공백 -->
+                                            </td>
+                                            <td class="customerRegSearchbarDateContent">
+                                                <!-- 공백 -->
+                                            </td>
+                                            <td class="customerRegSearchbarDateTd">
+                                                <p>팩스번호</p>
+                                            </td>
+                                            <td class="customerRegSearchbarDateContent">
+                                                <input type="text">
+                                            </td>
+                                        </tr>
+                                        <tr class="customerRegSearchbarTr3">
+                                            <td class="customerRegSearchbarDateTd2">
+                                                <p>사업장<br>소재지</p>
+                                            </td>
+                                            <td class="customerRegSearchbarDateContent2">
+                                                <input type="text" class="customerInput1">
+                                                <input type="text" class="customerInput2" placeholder="상세 주소">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="stockRegButton">
+                                        <button type="submit" class="stockRegReg">저장</button>
+                                        <button type="button" class="customerRegClose">닫기</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- regSearchbar 끝 -->
+                        </div>
+                    </div>
+                    <!-- 등록 끝 -->
                 </div>
             </div>
             <!-- End of Topbar -->
 
             <!-- searchbar  -->
-            <form action="/search" methbod="get" class="searchbarForm">
+            <form action="/customer/rordersearch" method="post" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable" cellspacing="0">
                         <tr class="searchbarTr2">
@@ -158,19 +229,19 @@
                                 <p>업체</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
+                                <input type="text" name="name">
                             </td>
                             <td class="searchbarDateTd">
                                 <p>업체코드</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
+                                <input type="text" name="id">
                             </td>
                             <td class="searchbarDateTd">
                                 <p>사업자등록번호</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
+                                <input type="text" name="businessNumber">
                             </td>
                             <td class="searchButtonTd">
                                 <button class="searchButton">
@@ -189,7 +260,7 @@
 
                 <!-- DataTales Example -->
                 <div class="cardBody">
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="overflow: auto; max-height: 600px;">
                         <table class="table table-borderless" id="dataTables" width="100%" cellspacing="0">
                             <thead class="tableTitle">
                             <tr>
@@ -202,45 +273,21 @@
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
-                                <td>영환건설</td>
-                                <td>p123456</td>
-                                <td>061-644-445</td>
-                                <td>065-925-6711</td>
-                                <td>수원시 장안구 5824 논현로</td>
-                                <td>XXX-XX-XXXXX</td>
+                            <tr th:each="clist:${clist}">
+                                <td th:text="${clist.name}"></td>
+                                <td th:text="${clist.id}"></td>
+                                <td th:text="${clist.fax}"></td>
+                                <td th:text="${clist.tel}"></td>
+                                <td th:text="${clist.address}"></td>
+                                <td th:text="${clist.businessNumber}"></td>
                             </tr>
-                            <tr class="tableBodyTr">
-                                <td>상준건설</td>
-                                <td>p123455</td>
-                                <td>061-644-445</td>
-                                <td>065-925-6711</td>
-                                <td>양주시 607 역삼로</td>
-                                <td>XXX-XX-XXXXX</td>
-                            </tr>
-                            <tr>
-                                <td>(주)윤서</td>
-                                <td>p123454</td>
-                                <td>061-644-445</td>
-                                <td>065-925-6711</td>
-                                <td>수원시 권선구 947 봉은사로</td>
-                                <td>XXX-XX-XXXXX</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>현영네트웍스</td>
-                                <td>p123453</td>
-                                <td>061-644-445</td>
-                                <td>065-925-6711</td>
-                                <td>의왕시 603 가락로</td>
-                                <td>XXX-XX-XXXXX</td>
-                            </tr>
-                            <tr>
-                                <td>(유)연선제약</td>
-                                <td>p123452</td>
-                                <td>061-644-445</td>
-                                <td>065-925-6711</td>
-                                <td>구리시 0836 언주로</td>
-                                <td>XXX-XX-XXXXX</td>
+                            <tr th:each="clist:${slist}">
+                                <td th:text="${clist.name}"></td>
+                                <td th:text="${clist.id}"></td>
+                                <td th:text="${clist.fax}"></td>
+                                <td th:text="${clist.tel}"></td>
+                                <td th:text="${clist.address}"></td>
+                                <td th:text="${clist.businessNumber}"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -265,9 +312,7 @@
     <!-- End of Content Wrapper -->
 
     <!-- 작성 스크립트-->
-    <script src="/js/orderRegistration.js"></script>
-    <script src="/js/orderCorrection.js"></script>
-    <script src="/js/excel.js"></script>
+    <script src="/js/buttons/customerRegistration.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
