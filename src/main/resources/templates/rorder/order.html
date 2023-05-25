@@ -464,19 +464,22 @@
                             </tr>
                             </thead>
                             <!--  리스트 내용 영역 시작  -->
-                            <tbody class="tableBody">
-                            <tr th:each="rorder : ${rorderList}">
-                                <td><input type="checkbox"></td>
-                                <td th:text="${rorder.date}">2022-05-01 11:30</td>
-                                <td th:text="${rorder.id}">G215483126</td>
-                                <td th:text="${rorder.state}">진행전</td>
-                                <td th:text="${rorder.customerName}">매출처1</td>
-                                <td th:text="${rorder.productName}">양배추즙</td>
-                                <td th:text="${rorder.deadline}">2022-05-01 11:30</td>
-                                <td th:text="${rorder.cnt}">50</td>
-                                <td th:text="${rorder.price}">1,000,000,000</td>
-                            </tr>
-                            </tbody>
+                            <form id="confirmedForm" action="/rorder/confirmed" method="post">
+                                <tbody class="tableBody">
+                                <tr th:each="rorder : ${rorderList}">
+                                    <td><input type="checkbox" th:value="${rorder.id}" name="selectedIds" th:if="${rorder.state == '진행전'}">
+                                    <input type="checkbox" th:if="${rorder.state != '진행전'}" disabled></td>
+                                    <td th:text="${rorder.date}">2022-05-01 11:30</td>
+                                    <td th:text="${rorder.id}">G215483126</td>
+                                    <td th:text="${rorder.state}">진행전</td>
+                                    <td th:text="${rorder.customerName}">매출처1</td>
+                                    <td th:text="${rorder.productName}">양배추즙</td>
+                                    <td th:text="${rorder.deadline}">2022-05-01 11:30</td>
+                                    <td th:text="${rorder.cnt}">50</td>
+                                    <td th:text="${rorder.price}">1,000,000,000</td>
+                                </tr>
+                                </tbody>
+                            </form>
                             <!--  리스트 내용 영역 끝  -->
                         </table>
                     </div>
@@ -624,6 +627,12 @@
             }
         });
     });
+
+    //수주 확정 버튼 이벤트 핸들러 confirmedButton
+    // $('#confirmedButton').on('click', function (event) {
+    //     // 폼 제출
+    //     $('#confirmedForm').submit();
+    // });
 </script>
 
 </body>

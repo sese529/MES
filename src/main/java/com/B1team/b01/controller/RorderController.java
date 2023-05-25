@@ -7,6 +7,7 @@ import com.B1team.b01.dto.RorderDto;
 import com.B1team.b01.dto.RorderFormDto;
 import com.B1team.b01.repository.CustomerRepository;
 import com.B1team.b01.repository.ProductRepository;
+import com.B1team.b01.repository.RorderRepository;
 import com.B1team.b01.service.RorderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +33,7 @@ import java.util.Map;
 @RequestMapping("/rorder")
 public class RorderController {
     private final RorderService rorderService;
+    private final RorderRepository rorderRepository;
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
 
@@ -99,5 +102,17 @@ public class RorderController {
         Map<String, String> response = new HashMap<>();
         response.put("redirectUrl", "/rorder/order");
         return ResponseEntity.ok(response);
+    }
+
+    //수주 확정
+    @PostMapping("/confirmed")
+    public String updateToConfirmed(String[] selectedIds) {
+        Arrays.sort(selectedIds);
+        for(int i = 0; i < selectedIds.length; i++) {
+            int temp = rorderRepository.updateState(selectedIds[i]);
+            System.out.println(i + "번째=" + temp);
+        }
+//            System.out.println("selectedIds=" + selectedIds[i]);
+        return "redirect:/rorder/order";
     }
 }

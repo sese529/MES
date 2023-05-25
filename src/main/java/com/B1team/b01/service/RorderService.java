@@ -68,4 +68,6 @@ public class RorderService {
         return id;
     }
 
+    //수주 확정
+
 }
