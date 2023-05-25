@@ -1,20 +1,19 @@
 package com.B1team.b01.controller;
 
-import com.B1team.b01.dto.StockDto;
 import com.B1team.b01.dto.StockListDto;
 import com.B1team.b01.entity.Product;
-import com.B1team.b01.entity.Stock;
-import com.B1team.b01.service.BomService;
-import com.B1team.b01.service.ProductionService;
+import com.B1team.b01.service.ProductService;
 import com.B1team.b01.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -25,6 +24,12 @@ public class StockController {
 
     @Autowired
     private StockService stockService;
+
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
 //
 //    @GetMapping("/list")
 //    public String search(Model model
@@ -48,24 +53,14 @@ public class StockController {
 
     @GetMapping("/stock")
     public String stock(Model model
-                        , @RequestParam(required = false) String productName
-                        , @RequestParam(required = false) String productId
-                        , @RequestParam(required = false) String productSort) {
+            , @RequestParam(required = false) String productName
+            , @RequestParam(required = false) String productId
+            , @RequestParam(required = false) String productSort) {
         List<StockListDto> stockList = stockService.getProductStockList(productName, productId, productSort);
-
-//        if ("".equals(productName)) {
-//            productName = null;
-//        }
-//        if ("".equals(productId)) {
-//            productId = null;
-//        }
-//        if ("".equals(productSort)) {
-//            productSort = null;
-//        }
 
         model.addAttribute("stockList", stockList);
 
-        return "/item/stock";
+        return "product";
     }
 //
 //    @PostMapping("/update")
@@ -73,32 +68,35 @@ public class StockController {
 //
 //        return "/item/stock";
 //    }
-//    @PostMapping("/register")
-//    public String stockRegister(StockListDto sdto) {
-//        return "/item/stock";
-//    }
+
+    @Transactional
+    public String generateId(String head, String seqName) {
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT " + seqName + ".NEXTVAL FROM dual").getSingleResult();
+        String id = head + sequenceValue;
+        return id;
+    }
+
+    @PostMapping("/register")
+    public String insertProduct(Product product) {
+
+        product.setId(generateId("P", "product_seq"));
+        productService.insertProduct(product);
+//        product.setId(product.getId());
+//        product.setName(product.getName());
+//        product.setPrice(product.getPrice());
+//        product.setSort(product.getSort());
+//        product.setLocation(product.getLocation());
+
+        return "product";
+    }
 //
     //삭제
 //    @PostMapping("/delete")
 //    public String stockDelete(StockListDto sdto) {
 //        stockService.
-//
-//        return "/item/stock";
-//    }
-
-
-    @GetMapping("/item/bom")
-    public String BOM() {
-        return "/item/bom";
-    }
-//
-//    @GetMapping("product")
-//    public String mappTest(Model model) {
-//
-//        List<StockListDto> stockList = stockService.getProductStockList();
-////        List<StockDto> stList = stockService.getProductStock1(stockDto.getProductId());
-//
-//        model.addAttribute("stockList",stockList);
 //
 //        return "/item/stock";
 //    }
