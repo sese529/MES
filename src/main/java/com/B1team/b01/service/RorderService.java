@@ -1,11 +1,16 @@
 package com.B1team.b01.service;
 
 import com.B1team.b01.dto.RorderDto;
+import com.B1team.b01.dto.RorderFormDto;
 import com.B1team.b01.entity.Rorder;
 import com.B1team.b01.repository.RorderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,6 +22,7 @@ import java.util.Locale;
 public class RorderService {
     private final RorderRepository rorderRepository;
     private final MprocessService mprocessService;
+    private final EntityManager entityManager;
 
     public List<RorderDto> searchRorder(String start, String end, String orderId, String state, String customerName, String productName, String startLine, String endLine) {
         //날짜 관련 변환
@@ -46,6 +52,20 @@ public class RorderService {
         String deliveryStr = deliveryDate.format(outputFormatter).replace("AM", "오전").replace("PM", "오후");
 
         return deliveryStr;
+    }
+
+    //수주 등록
+    public void addRorder(RorderFormDto dto) {
+        dto.setId(generateId("ROD", "order_seq"));  //id 세팅
+        rorderRepository.save(dto.toEntity());  //save하기
+    }
+
+    //id 지정하는 메소드
+    @Transactional
+    public String generateId(String head, String seqName) {
+        BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT " + seqName + ".NEXTVAL FROM dual").getSingleResult();
+        String id = head + sequenceValue;
+        return id;
     }
 
 }
