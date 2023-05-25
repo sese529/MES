@@ -6,10 +6,12 @@ import com.B1team.b01.dto.WplanDto;
 import com.B1team.b01.entity.Worder;
 import com.B1team.b01.repository.RorderRepository;
 import com.B1team.b01.repository.WorderRepository;
+import com.B1team.b01.repository.WorderSpecifications;
 import com.B1team.b01.repository.WplanRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -107,5 +109,28 @@ public class WorderService {
         }
         return worderDtos;
         }
+
+
+    public List<Worder> search(String id, String pid, LocalDateTime min, LocalDateTime max){
+        Specification<Worder> specification = Specification.where(null);
+
+        if(id!=null){
+            specification = specification.and(WorderSpecifications.searchId(id));
+        }
+        if(pid!=null){
+            specification = specification.and(WorderSpecifications.searchPId(pid));
+        }
+        if(min!=null || max!=null){
+            specification = specification.and(WorderSpecifications.searchDate(min,max));
+        }
+
+        return worderRepository.findAll(specification);
     }
+
+
+
+
+}
+
+
 

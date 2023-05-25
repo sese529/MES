@@ -1,11 +1,8 @@
 package com.B1team.b01.controller;
 
-import com.B1team.b01.entity.Product;
-import com.B1team.b01.entity.Wperform;
-import com.B1team.b01.entity.Wplan;
-import com.B1team.b01.service.ProductService;
-import com.B1team.b01.service.ProductionService;
-import com.B1team.b01.service.WperformService;
+import com.B1team.b01.entity.*;
+import com.B1team.b01.repository.WorderSpecifications;
+import com.B1team.b01.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -32,19 +28,49 @@ public class ProductionController {
     private ProductService productService;
     @Autowired
     private WperformService wperformService;
+    @Autowired
+    private MprocessService mprocessService;
+    @Autowired
+    private WorderService worderService;
 
 
     @GetMapping("/production/production-order")
     public String getOrderList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
-        List<Wplan> wlist = productionService.getAllWplan();
+        List<Worder> wlist = productionService.getAllWorder();
         model.addAttribute("wlist", wlist);
+
         List<Product> plist = productService.getAllProduct();
         model.addAttribute("plist",plist);
+
+        List<Mprocess> mlist = mprocessService.getAllProcess();
+        model.addAttribute("mlist",mlist);
 
         return "production/production-order";
     }
 
-    @PostMapping("/search")
+    @GetMapping("/production/production-plan")
+    public String getWplanList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        List<Wplan> wlist = productionService.getAllWplan();
+        model.addAttribute("wlist", wlist);
+
+        List<Product> plist = productService.getAllProduct();
+        model.addAttribute("plist",plist);
+
+        return "production/production-plan";
+    }
+
+    @GetMapping("/production/production-performance")
+    public String getWperformList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        List<Wperform> wlist = wperformService.getAllWperform();
+        model.addAttribute("wlist", wlist);
+
+        List<Product> plist = productService.getAllProduct();
+        model.addAttribute("plist",plist);
+
+        return "production/production-performance";
+    }
+
+    @PostMapping("/plansearch")
     public String wplanSearch(Model model,
                               @RequestParam(required = false) String id,
                               @RequestParam(required = false) String orderId,
@@ -85,28 +111,7 @@ public class ProductionController {
         List<Product> plist = productService.getAllProduct();
         model.addAttribute("plist",plist);
 
-        return "production/production-order";
-    }
-
-    @GetMapping("/production/production-plan")
-    public String getWplanList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
-        List<Wplan> wlist = productionService.getAllWplan();
-        model.addAttribute("wlist", wlist);
-        List<Product> plist = productService.getAllProduct();
-        model.addAttribute("plist",plist);
-
         return "production/production-plan";
-    }
-
-    @GetMapping("/production/production-performance")
-    public String getWperformList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
-        List<Wperform> wlist = wperformService.getAllWperform();
-        model.addAttribute("wlist", wlist);
-
-        List<Product> plist = productService.getAllProduct();
-        model.addAttribute("plist",plist);
-
-        return "production/production-performance";
     }
 
     @PostMapping("/performsearch")
@@ -136,5 +141,39 @@ public class ProductionController {
         model.addAttribute("plist",plist);
 
         return "production/production-performance";
+    }
+
+    @PostMapping("/ordersearch")
+    public String worderSearch(Model model,
+                                 @RequestParam(required = false) String id,
+                                 @RequestParam(required = false) String pid,
+                                 @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate min,
+                                 @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate max){
+        LocalDateTime smin = null;
+        LocalDateTime smax = null;
+
+        if(min != null){
+            smin= LocalDateTime.of(min, LocalTime.MIN);
+        }
+        if(max != null){
+            smax = LocalDateTime.of(max, LocalTime.MAX);
+        }
+        if("".equals(id)){
+            id=null;
+        }
+        if("".equals(pid) ){
+            pid=null;
+        }
+        List<Worder> searchlist = worderService.search(id,pid,smin,smax);
+        model.addAttribute("searchlist",searchlist);
+        System.out.println(searchlist);
+
+        List<Product> plist = productService.getAllProduct();
+        model.addAttribute("plist",plist);
+
+        List<Mprocess> mlist = mprocessService.getAllProcess();
+        model.addAttribute("mlist",mlist);
+
+        return "production/production-order";
     }
 }
