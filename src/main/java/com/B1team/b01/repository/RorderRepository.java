@@ -1,6 +1,5 @@
 package com.B1team.b01.repository;
 
-import com.B1team.b01.dto.WplanDto;
 import com.B1team.b01.entity.Rorder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,6 +23,13 @@ public interface RorderRepository extends JpaRepository<Rorder, String> {
             "AND (:startDeadline IS NULL OR r.deadline >= :startDeadline) " +
             "AND (:endDeadLine IS NULL OR r.deadline <= :endDeadLine) " +
             "ORDER BY r.date DESC")
+
+
+    Optional<Rorder> findById(String Id);
+
+    @Query("SELECT ro.cnt FROM Rorder ro WHERE ro.id = :orderId")
+    Long findByOrderCnt(String orderId);
+
     List<Rorder> findRordersByConditions(@Param("startDate") LocalDateTime startDate,
                                          @Param("endDate")LocalDateTime endDate,
                                          @Param("orderId")String orderId,
@@ -33,7 +39,8 @@ public interface RorderRepository extends JpaRepository<Rorder, String> {
                                          @Param("productName")String productName,
                                          @Param("startDeadline")LocalDateTime startDeadline,
                                          @Param("endDeadLine")LocalDateTime endDeadLine);
-    Optional<Rorder> findById(String id);
+
+
 
 
 }
