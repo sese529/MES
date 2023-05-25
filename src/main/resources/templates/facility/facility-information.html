@@ -145,7 +145,7 @@
             </div>
 
             <!-- searchbar  -->
-            <form action="/search" methbod="get" class="searchbarForm">
+            <form action="/facility/facility-information" methbod="get" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable4" cellspacing="0">
                         <tr class="searchbarTr2">
@@ -153,23 +153,18 @@
                                 <p>설비</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>포장기</option>
-                                    <option>추출기</option>
-                                    <option>혼합저장탱크</option>
-                                    <option>열교환기</option>
-                                    <option>건조기</option>
-                                    <option>금속검출기</option>
+                                <select class="searchbarSelect" name="fname">
+                                    <option th:value="${null}" th:selected="${fname == '' or fname == null}">선택</option>
+                                    <option th:each="facilityName : ${nameList}" th:text="${facilityName}" th:value="${facilityName}" th:selected="${fname == facilityName}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
                                 <p>설비위치</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>충진실</option>
-                                    <option>추출가공실</option>
-                                    <option>포장실</option>
+                                <select class="searchbarSelect" name="flocation">
+                                    <option th:value="${null}" th:selected="${flocation == '' or flocation == null}">선택</option>
+                                    <option th:each="location : ${locationList}" th:text="${location}" th:value="${location}" th:selected="${flocation == location}"></option>
                                 </select>
                             </td>
                             <td class="searchButtonTd">
@@ -196,7 +191,7 @@
                                 <th>설비</th>
                                 <th>생산 가능량</th>
                                 <th>생산 준비시간(Min)</th>
-                                <th>생산 소요시간(Min)</th>
+<!--                                <th>생산 소요시간(Min)</th>-->
                                 <th>모델명</th>
                                 <th>제조사</th>
                                 <th>점검 일자</th>
@@ -204,115 +199,14 @@
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
-                                <td>포장기</td>
-                                <td>1500ea/1h</td>
-                                <td>20</td>
-                                <td>-</td>
-                                <td>ABC123</td>
-                                <td>A사</td>
-                                <td>2023-01-05</td>
-                                <td>충진실</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>포장기</td>
-                                <td>1500ea/1h</td>
-                                <td>20</td>
-                                <td>-</td>
-                                <td>ABC123</td>
-                                <td>A사</td>
-                                <td>2023-01-05</td>
-                                <td>충진실</td>
-                            </tr>
-                            <tr>
-                                <td>포장기</td>
-                                <td>1500ea/1h</td>
-                                <td>20</td>
-                                <td>-</td>
-                                <td>ABC123</td>
-                                <td>A사</td>
-                                <td>2023-01-05</td>
-                                <td>충진실</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>포장기</td>
-                                <td>1500ea/1h</td>
-                                <td>20</td>
-                                <td>-</td>
-                                <td>ABC123</td>
-                                <td>A사</td>
-                                <td>2023-01-05</td>
-                                <td>충진실</td>
-                            </tr>
-                            <tr>
-                                <td>포장기</td>
-                                <td>1500ea/1h</td>
-                                <td>20</td>
-                                <td>-</td>
-                                <td>ABC123</td>
-                                <td>A사</td>
-                                <td>2023-01-05</td>
-                                <td>충진실</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>추출기</td>
-                                <td>2ton</td>
-                                <td>60</td>
-                                <td>-</td>
-                                <td>CCC123</td>
-                                <td>B사</td>
-                                <td>2023-01-05</td>
-                                <td>추출가공실</td>
-                            </tr>
-                            <tr>
-                                <td>추출기</td>
-                                <td>2ton</td>
-                                <td>60</td>
-                                <td>-</td>
-                                <td>CCC123</td>
-                                <td>B사</td>
-                                <td>2023-01-05</td>
-                                <td>추출가공실</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>혼합저장탱크</td>
-                                <td>2ton</td>
-                                <td>20</td>
-                                <td>1440</td>
-                                <td>B1A4</td>
-                                <td>C사</td>
-                                <td>2023-01-05</td>
-                                <td>추출가공실</td>
-                            </tr>
-                            <tr>
-                                <td>혼합저장탱크</td>
-                                <td>2ton</td>
-                                <td>20</td>
-                                <td>1440</td>
-                                <td>B1A4</td>
-                                <td>C사</td>
-                                <td>2023-01-05</td>
-                                <td>추출가공실</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>열교환기</td>
-                                <td></td>
-                                <td></td>
-                                <td>1440</td>
-                                <td>EU5</td>
-                                <td>D사</td>
-                                <td>2023-01-05</td>
-                                <td>추출가공실</td>
-                            </tr>
-                            <tr>
-                                <td>금속검출기</td>
-                                <td>5000/1h</td>
-                                <td>10</td>
-                                <td>-</td>
-                                <td>APLUS2</td>
-                                <td>E사</td>
-                                <td>2023-01-05</td>
-                                <td>포장실</td>
+                            <tr th:each="info : ${finfoList}">
+                                <td th:text="${info.name}">포장기</td>
+                                <td th:text="${info.capa}">1500ea/1h</td>
+                                <td th:text="${info.leadtime}">20</td>
+                                <td th:text="${info.model}">ABC123</td>
+                                <td th:text="${info.company}">A사</td>
+                                <td th:text="${info.inspectionDate}">2023-01-05</td>
+                                <td th:text="${info.location}">충진실</td>
                             </tr>
                             </tbody>
                         </table>
