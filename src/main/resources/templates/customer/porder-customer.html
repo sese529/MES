@@ -168,7 +168,7 @@
                                                 <p>업체코드</p>
                                             </td>
                                             <td class="customerRegSearchbarDateContent">
-                                                <input type="text" placeholder="코드" name="id">
+                                                <input type="text" placeholder="코드">
                                             </td>
                                             <td class="customerRegSearchbarDateTd">
                                                 <p>사업자번호</p>
@@ -202,12 +202,12 @@
                                                 <p>사업장<br>소재지</p>
                                             </td>
                                             <td class="customerRegSearchbarDateContent2">
-                                                <input type="text" class="customerInput1" placeholder="우편번호 / 도로명주소" disabled/>
-                                                <button class="customerInput1Button">
+                                                <input type="text" id="sample6_postcode" name="sample6_postcode" class="customerInput1" placeholder="우편번호" readonly/>
+                                                <button type="button" class="customerInput1Button" onclick="findAddr();">
                                                     <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #ffffff"></i>
                                                 </button>
-                                                <input type="text" class="customerInput2" disabled/>
-                                                <input type="text" class="customerInput3" placeholder="상세 주소">
+                                                <input type="text" id="sample6_address" name="sample6_address" class="customerInput2" placeholder="주소" readonly/>
+                                                <input type="text"id="sample6_detailAddress" name="sample6_detailAddress" class="customerInput3" placeholder="상세 주소">
                                             </td>
                                         </tr>
                                     </table>
