@@ -10,6 +10,8 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Data
 @ToString
@@ -33,6 +35,17 @@ public class RorderFormDto {
 
 //    @Autowired private EntityManager entityManager;
 
+    public RorderFormDto(String orderDate,
+                         String customerId,
+                         String productId,
+                         String orderCnt,
+                         String deliveryDate) {
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.ENGLISH);
+        setDate(LocalDateTime.parse(orderDate, inputFormatter));
+        setCustomerId(customerId);
+        setProductId(productId);
+        setCnt(Long.parseLong(orderCnt));
+    }
     //RorderFormDto를 Order 엔티티로 변환해주는 메소드
     public Rorder toEntity() {
 //        this.setId(generateId("ROD", "order_seq"));
