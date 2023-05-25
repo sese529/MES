@@ -42,6 +42,4 @@ public class LOT {
 
     @Column(name="arrival_date", nullable = false, columnDefinition = "date")
     private LocalDateTime arrivalDate;  //원자재 입고일
-
-
 }
