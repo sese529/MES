@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
@@ -152,7 +153,7 @@
                                 <p class="regTitle">거래처 등록</p>
                             </div>
                             <!-- regSearchbar -->
-                            <form action="/search" method="get">
+                            <form action="/customer/rcustomer-insert" method="post">
                                 <div class="regSearchbar">
                                     <table class="table table-borderless" id="customerDataTable1" width="100%"
                                            cellspacing="0">
@@ -201,8 +202,12 @@
                                                 <p>사업장<br>소재지</p>
                                             </td>
                                             <td class="customerRegSearchbarDateContent2">
-                                                <input type="text" class="customerInput1">
-                                                <input type="text" class="customerInput2" placeholder="상세 주소">
+                                                <input type="text" class="customerInput1" placeholder="우편번호 / 도로명주소" disabled/>
+                                                <button class="customerInput1Button">
+                                                    <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #ffffff"></i>
+                                                </button>
+                                                <input type="text" class="customerInput2" disabled/>
+                                                <input type="text" class="customerInput3" placeholder="상세 주소">
                                             </td>
                                         </tr>
                                     </table>

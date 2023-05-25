@@ -127,8 +127,10 @@ public class StockService {
         }
     }
 
-    public List<StockListDto> getProductStockList() {
-        List<Object[]> results = stockRepository.getProductStockList();
+
+    public List<StockListDto> getProductStockList(String productName, String productId, String productSort) {
+
+        List<Object[]> results = stockRepository.getProductStockList(productName, productId, productSort);
 
         List<StockListDto> stockListDtoList = new ArrayList<>();
 
@@ -153,4 +155,5 @@ public class StockService {
         }
         return stockListDtoList;
     }
+
 }

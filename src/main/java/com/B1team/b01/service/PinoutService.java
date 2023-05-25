@@ -37,7 +37,7 @@ public class PinoutService {
 
     }
 
-
+/*
     //자재입출정보 등록메소드
     public String createInout(PinoutDto pinoutDto) {
 
@@ -54,5 +54,7 @@ public class PinoutService {
         }
         return null;
     }
+
+ */
 }
 
