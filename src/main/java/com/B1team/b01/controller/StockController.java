@@ -1,17 +1,11 @@
 package com.B1team.b01.controller;
 
-import com.B1team.b01.dto.ProductDto;
-import com.B1team.b01.dto.StockDto;
 import com.B1team.b01.dto.StockListDto;
 import com.B1team.b01.entity.Product;
-import com.B1team.b01.entity.Stock;
-import com.B1team.b01.service.BomService;
 import com.B1team.b01.service.ProductService;
-import com.B1team.b01.service.ProductionService;
 import com.B1team.b01.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -66,7 +60,7 @@ public class StockController {
 
         model.addAttribute("stockList", stockList);
 
-        return "/item/stock";
+        return "product";
     }
 //
 //    @PostMapping("/update")
@@ -96,7 +90,7 @@ public class StockController {
 //        product.setSort(product.getSort());
 //        product.setLocation(product.getLocation());
 
-        return "/item/stock";
+        return "product";
     }
 //
     //삭제

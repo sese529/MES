@@ -1,29 +1,23 @@
 package com.B1team.b01.controller;
 
-import com.B1team.b01.dto.StockListDto;
 import com.B1team.b01.entity.Product;
 import com.B1team.b01.service.ProductService;
-import com.B1team.b01.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
 @Transactional
 @RequiredArgsConstructor
 @RequestMapping("/item/*")
-public class productController {
+public class ProductController {
     @Autowired
     private ProductService productService;
 
@@ -37,7 +31,7 @@ public class productController {
         List<Product> productList = productService.ProductList(productName, productId, productSort);
         model.addAttribute("productList",productList);
 
-        return "/item/stock";
+        return "/item/product";
     }
 
     @GetMapping("/item/bom")
