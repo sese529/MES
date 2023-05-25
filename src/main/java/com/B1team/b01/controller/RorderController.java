@@ -78,7 +78,7 @@ public class RorderController {
     @PostMapping("/simulation")
     public ResponseEntity<?> orderDeliveryDate(String orderDate, String productId, String orderCnt) {
         Map<String, String> response = new HashMap<>();
-        System.out.println("orderDateStr=" + orderDate);
+//        System.out.println("orderDateStr=" + orderDate);
         String deliveryDate = rorderService.calculateOrderDeliveryDate(orderDate, productId, orderCnt);
         response.put("deliveryDate", deliveryDate);
         // JSON 형태의 응답과 함께 상태 코드 200을 반환
@@ -114,5 +114,22 @@ public class RorderController {
         }
 //            System.out.println("selectedIds=" + selectedIds[i]);
         return "redirect:/rorder/order";
+    }
+
+    //수정 정보 요청
+    @GetMapping("/edit")
+    public ResponseEntity<?> getEditInfo(String selectedId) {
+        RorderDto editInfo = rorderService.findById(selectedId);
+
+        //View에 보내줄 내용
+        Map<String, String> response = new HashMap<>();
+        response.put("editInfoDate", editInfo.getDate());
+        response.put("editInfoId", editInfo.getId());
+        response.put("editInfoCustomerId", editInfo.getCustomerId());
+        response.put("editInfoProductId", editInfo.getProductId());
+        response.put("editInfoCnt", String.valueOf(editInfo.getCnt()));
+        response.put("editInfoDeadline", editInfo.getDeadline());
+        response.put("redirectUrl", "/rorder/order");
+        return ResponseEntity.ok(response);
     }
 }
