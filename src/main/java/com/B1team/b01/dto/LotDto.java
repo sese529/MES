@@ -21,8 +21,7 @@ public class LotDto {
     private String product; //제품명
     private String worderId;  //작업지시 고유번호
     private LocalDateTime date;  //로트 완료일
-    private String porderId;  //발주 고유번호
-    private LocalDateTime arrivalDate;  //원자재 입고일
+    private String finprodId;   //완제품 고유번호
 
     private static ModelMapper modelMapper = new ModelMapper(); //엔티티랑 dto의 필드명이 같은 것끼리 매핑
 
