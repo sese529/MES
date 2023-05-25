@@ -1,5 +1,6 @@
 package com.B1team.b01.controller;
 
+import com.B1team.b01.dto.FacilityStatusDto;
 import com.B1team.b01.service.FinfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,19 +14,31 @@ import java.util.List;
 @Controller
 @Transactional
 @RequiredArgsConstructor
+@RequestMapping("/facility")
 public class FinfoController {
     private final FinfoService finfoService;
     //설비 현황
-    @GetMapping("/facility/facility-status")
-    public String facilityStatus(Model model){
+    @GetMapping("/facility-status")
+    public String facilityStatus(Model model,
+                                 String fname,
+                                 String state,
+                                 String id){
         //설비명 목록
         List<String> nameList = finfoService.getFacilityNameList();
         model.addAttribute("nameList", nameList);
+
+        //설비 현황 리스트
+        List<FacilityStatusDto> statusList = finfoService.getStatusList(fname, state, id);
+        model.addAttribute("statusList", statusList);
+
+        model.addAttribute("fname", fname);
+        model.addAttribute("state", state);
+        model.addAttribute("id", id);
         return "facility/facility-status";
     }
 
     //설비 정보
-    @GetMapping("/facility/facility-information")
+    @GetMapping("/facility-information")
     public String facilityInformation(Model model) {
         //설비명 목록
         List<String> nameList = finfoService.getFacilityNameList();

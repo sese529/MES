@@ -145,7 +145,7 @@
             </div>
 
             <!-- searchbar  -->
-            <form action="/search" methbod="get" class="searchbarForm">
+            <form action="/facility/facility-status" methbod="get" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable" cellspacing="0">
                         <tr class="searchbarTr2">
@@ -153,29 +153,26 @@
                                 <p>설비</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>포장기</option>
-                                    <option>추출기</option>
-                                    <option>혼합저장탱크</option>
-                                    <option>열교환기</option>
-                                    <option>건조기</option>
-                                    <option>금속검출기</option>
+                                <select class="searchbarSelect" name="fname">
+                                    <option th:value="${null}" th:selected="${fname == '' or fname == null}">선택</option>
+                                    <option th:each="facilityName : ${nameList}" th:text="${facilityName}" th:value="${facilityName}" th:selected="${fname == facilityName}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
                                 <p>가동여부</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>가동중</option>
-                                    <option>미가동</option>
+                                <select class="searchbarSelect" name="state">
+                                    <option th:value="${null}" th:selected="${state == '' or state == null}">선택</option>
+                                    <option value="가동중" th:selected="${state == '가동중'}">가동중</option>
+                                    <option value="미가동" th:selected="${state == '미가동'}">미가동</option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
                                 <p>설비코드</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
+                                <input type="text" name="id" th:value="${id}">
                             </td>
                             <td class="searchButtonTd">
                                 <button class="searchButton">
@@ -204,61 +201,12 @@
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
-                                <td>포장기</td>
-                                <td>가동중</td>
-                                <td>a12345</td>
+                            <tr th:each="status : ${statusList}">
+                                <td th:text="${status.name}">포장기</td>
+                                <td th:text="${status.state}">가동중</td>
+                                <td th:text="${status.id}">a12345</td>
                             </tr>
-                            <tr class="tableBodyTr">
-                                <td>포장기</td>
-                                <td>가동중</td>
-                                <td>a12345</td>
-                            </tr>
-                            <tr>
-                                <td>포장기</td>
-                                <td>가동중</td>
-                                <td>a12345</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>포장기</td>
-                                <td>가동중</td>
-                                <td>a12345</td>
-                            </tr>
-                            <tr>
-                                <td>추출기</td>
-                                <td>미가동</td>
-                                <td>a12345</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>추출기</td>
-                                <td>미가동</td>
-                                <td>a12345</td>
-                            </tr>
-                            <tr>
-                                <td>혼합저장탱크</td>
-                                <td>미가동</td>
-                                <td>a12345</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>혼합저장탱크</td>
-                                <td>가동중</td>
-                                <td>a12345</td>
-                            </tr>
-                            <tr>
-                                <td>열교환기</td>
-                                <td>미가동</td>
-                                <td>a12345</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>건조기</td>
-                                <td>미가동</td>
-                                <td>a12345</td>
-                            </tr>
-                            <tr>
-                                <td>금속검출기</td>
-                                <td>가동중</td>
-                                <td>a12345</td>
-                            </tr>
+<!--                            <tr class="tableBodyTr">-->
                             </tbody>
                         </table>
                     </div>
