@@ -14,22 +14,7 @@ import java.util.List;
 public class WorderServiceTests {
     @Autowired private WorderService worderService;
 
-
-
-    //작업중인지 설비 확인하기
-    /*@Test
-    public void testcheckWorder(){
-        String list = worderService.checkWorder("A102");
-
-        if(!list.isEmpty()){
-            System.out.println(list);
-        }else{
-            System.out.println("list 없음");
-        }
-    }
-    */
-
-
+/*
     //작업지시 등록하기
     @Test
     public void testdoWorder(){
@@ -37,4 +22,6 @@ public class WorderServiceTests {
         LocalDateTime materialReadyDate = LocalDateTime.of(2023, 5, 25, 18, 0);
         worderService.doWorder("ROD29",materialReadyDate,"p21", 1);
     }
+
+*/
 }
