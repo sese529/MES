@@ -23,7 +23,6 @@ public class StockListDto {
     private String unit;
 
     //product
-
     private String name;
     private String sort;
     private Long price;
