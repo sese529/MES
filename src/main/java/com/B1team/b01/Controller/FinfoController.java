@@ -1,4 +1,4 @@
-package com.B1team.b01.controller;
+package com.B1team.b01.Controller;
 
 import com.B1team.b01.dto.FacilityStatusDto;
 import com.B1team.b01.dto.FinfoDto;
