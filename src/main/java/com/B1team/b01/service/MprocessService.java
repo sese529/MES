@@ -193,4 +193,8 @@ public class MprocessService {
 
         return finishTime;
     }
+
+    public List<Mprocess> getAllProcess(){
+        return mprocessRepository.findAll();
+    }
 }

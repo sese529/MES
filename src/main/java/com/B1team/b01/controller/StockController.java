@@ -59,21 +59,31 @@ public class StockController {
     public String stock(Model model
                         , @RequestParam(required = false) String productName
                         , @RequestParam(required = false) String productId
-                        , @RequestParam(required = false) String productSort){
+                        , @RequestParam(required = false) String productSort) {
         List<StockListDto> stockList = stockService.getProductStockList(productName, productId, productSort);
 
-        if("".equals(productName)){
+        if ("".equals(productName)) {
             productName = null;
         }
-        if("".equals(productId)){
+        if ("".equals(productId)) {
             productId = null;
         }
-        if("".equals(productSort)){
+        if ("".equals(productSort)) {
             productSort = null;
         }
 
-        model.addAttribute("stockList",stockList);
+        model.addAttribute("stockList", stockList);
 
+        return "/item/stock";
+    }
+
+    @PostMapping("/update")
+    public String stockUpdate(StockListDto sdto) {
+
+        return "/item/stock";
+    }
+    @PostMapping("/register")
+    public String stockRegister() {
         return "/item/stock";
     }
 

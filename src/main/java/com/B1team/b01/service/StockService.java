@@ -127,34 +127,6 @@ public class StockService {
         }
     }
 
-    public List<StockListDto> getAllList() {
-
-        List<Object[]> results = stockRepository.getAllList();
-
-        List<StockListDto> stockListDtoList = new ArrayList<>();
-
-        for (Object[] row : results) {
-            StockListDto stockListDto = new StockListDto();
-
-            // stock
-            stockListDto.setName(row[0].toString());
-            stockListDto.setProductId(row[1].toString());
-            stockListDto.setEa(Long.valueOf((Long) row[2]));
-            stockListDto.setUnit(row[3].toString());
-            stockListDto.setPrice(Long.valueOf((Long) row[4]));
-            stockListDto.setSort(row[5].toString());
-            stockListDto.setLocation(row[6].toString());
-
-            for(int i=0; i <= 6;i++){
-                System.out.println(i+ ":" +row[i]);
-            }
-
-            stockListDtoList.add(stockListDto);
-
-        }
-        return stockListDtoList;
-    }
-
 
 
     public List<StockListDto> getProductStockList(String productName, String productId, String productSort) {
