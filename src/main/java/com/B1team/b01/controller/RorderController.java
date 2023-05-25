@@ -86,11 +86,14 @@ public class RorderController {
     @PostMapping("/reg")
     public ResponseEntity<?> regOrder(String orderDate,
                            String customerId,
+                           String customerName,
                            String productId,
+                           String productName,
                            String orderCnt,
                            String deliveryDate) {
-        RorderFormDto dto = new RorderFormDto(orderDate, customerId, productId, orderCnt, deliveryDate);
-        System.out.println("입력 정보=" + dto);
+        RorderFormDto dto = new RorderFormDto(orderDate, customerId, customerName, productId, productName, orderCnt, deliveryDate);
+//        System.out.println("입력 정보=" + dto);
+        rorderService.addRorder(dto);
 
         //View에 보내줄 내용
         Map<String, String> response = new HashMap<>();

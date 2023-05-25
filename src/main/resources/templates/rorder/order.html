@@ -182,6 +182,7 @@
                                                 <select class="regSearchbarSelect" name="customerId" id="regCustomerId">
                                                     <option th:each="customer : ${customerList}" th:text="${customer.name}" th:value="${customer.id}"></option>
                                                 </select>
+                                                <input id="hiddenRegCustomer" type="hidden" th:value="${customerList.get(0).name}">
                                             </td>
                                             <td class="regSearchbarButton">
                                                 <!-- 공백 -->
@@ -195,6 +196,7 @@
                                                 <select class="regSearchbarSelect" name="productId" id="regProductId">
                                                     <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.id}"></option>
                                                 </select>
+                                                <input id="hiddenRegProduct" type="hidden" th:value="${productList.get(0).name}">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>수주량</p>
@@ -565,6 +567,22 @@
         });
     });
 
+    // 선택된 옵션의 customer.Name 값을 hiddenRegCustomer에 설정
+    $('#regCustomerId').on('change', function() {
+        var selectedOption = $(this).find('option:selected');
+        var customerName = selectedOption.text();
+        $('#hiddenRegCustomer').val(customerName);
+        console.log('customerName:', customerName);
+    });
+
+    // 선택된 옵션의 productName 값을 hiddenRegProduct 설정
+    $('#regProductId').on('change', function() {
+        var selectedOption = $(this).find('option:selected');
+        var productName = selectedOption.text();
+        $('#hiddenRegProduct').val(productName);
+        console.log('productName:', productName);
+    });
+
     //수주 등록 버튼 이벤트 핸들러
     $('#regBtn').on('click', function (event) {
         event.preventDefault();
@@ -572,7 +590,9 @@
         // form에서 필요한 값 가져오기
         var orderDate = $('#regOrderCurrentTimeInput').val();
         var customerId = $('#regCustomerId').val();
+        var customerName = $('#hiddenRegCustomer').val();
         var productId = $('#regProductId').val();
+        var productName = $('#hiddenRegProduct').val();
         var orderCnt = $('#regOrderCnt').val();
         var deliveryDate = $('#deliveryDate').val();
 
@@ -583,7 +603,9 @@
             data: {
                 orderDate: orderDate,
                 customerId: customerId,
+                customerName: customerName,
                 productId: productId,
+                productName: productName,
                 orderCnt: orderCnt,
                 deliveryDate: deliveryDate
             },
@@ -591,7 +613,7 @@
                 console.log('등록 통신결과');
                 window.location.href = response.redirectUrl;
                 console.log('orderDate:', orderDate);
-                console.log('customerId:', customerId);
+                // console.log('customerId:', customerId);
                 console.log('productId:', productId);
                 console.log('orderCnt:', orderCnt);
                 console.log('deliveryDate:', deliveryDate);
