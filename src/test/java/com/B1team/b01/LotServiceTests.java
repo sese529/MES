@@ -39,7 +39,7 @@ public class LotServiceTests {
     @Test
     @Rollback(false)
     public void testCreateLotRecode(){
-        lotService.createLotRecode("A105", "WPLAN39");
+        lotService.createLotRecode("A105", "WPLAN39", "");
     }
 
 }
