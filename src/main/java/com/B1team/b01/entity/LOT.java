@@ -37,11 +37,7 @@ public class LOT {
     @Column(name="lot_date", nullable = false, columnDefinition = "date")
     private LocalDateTime date;  //로트 완료일
 
-    @Column(name="porder_id", nullable = false, columnDefinition = "varchar2(50)")
-    private String porderId;  //발주 고유번호
-
-    @Column(name="arrival_date", nullable = false, columnDefinition = "date")
-    private LocalDateTime arrivalDate;  //원자재 입고일
-
+    @Column(name="finprod_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String finprodId;  //완제품 고유번호
 
 }
