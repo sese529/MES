@@ -1,6 +1,6 @@
 package com.B1team.b01.dto;
 
-import com.B1team.b01.entity.Wplan;
+import com.B1team.b01.entity.LOT;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
@@ -26,17 +26,14 @@ public class LotDto {
 
     private static ModelMapper modelMapper = new ModelMapper(); //엔티티랑 dto의 필드명이 같은 것끼리 매핑
 
-    //Wplan 엔티티를 WplanDto로 변환해주는 메소드
-    public static LotDto of(Wplan wplan) {
-        return modelMapper.map(wplan, LotDto.class);
+    //LOT 엔티티를 LotDto로 변환해주는 메소드
+    public static LotDto of(LOT lot) {
+        return modelMapper.map(lot, LotDto.class);
     }
 
-    //WplanDto를 Wplan 엔티티로 변환해주는 메소드
-    public Wplan toEntity() {
-        return modelMapper.map(this, Wplan.class);
+    //LotDto를 LOT 엔티티로 변환해주는 메소드
+    public LOT toEntity() {
+        return modelMapper.map(this, LOT.class);
     }
 
-    public LotDto(String orderId) {
-        this.orderId = orderId;
-    }
 }
