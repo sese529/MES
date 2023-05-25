@@ -28,8 +28,8 @@ public class LOT {
     @Column(name="lot_process", nullable = false, columnDefinition = "varchar2(5)")
     private String process; //공정 코드
 
-    @Column(name="lot_product", nullable = false, columnDefinition = "varchar2(50)")
-    private String product; //제품명
+    @Column(name="lot_product_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String productId; //제품 고유번호
 
     @Column(name="worder_id", nullable = false, columnDefinition = "varchar2(50)")
     private String worderId;  //작업지시 고유번호

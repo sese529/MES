@@ -67,8 +67,6 @@ public class LotService {
         String finishDateFome = finishDate.format(DateTimeFormatter.ofPattern("yyyyMMddHHmm"));
         lotMakeNameDto.setDate(finishDateFome);
 
-        //LocalDateTime finishDateFomeGeneral = LocalDateTime.parse(finishDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-
         //품목, 공정코드, 공정끝난시간
         String productCode = lotMakeNameDto.getProduct();
         String processCode  = lotMakeNameDto.getProcess();
@@ -76,7 +74,7 @@ public class LotService {
 
 
         //dto에 값 넣기
-        lotDto.setProduct(productName);
+        lotDto.setProductId(productName);
         lotDto.setProcess(processName);
         lotDto.setDate(finishDate);
 
