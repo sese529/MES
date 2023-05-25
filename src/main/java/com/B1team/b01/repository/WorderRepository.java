@@ -18,7 +18,12 @@ public interface WorderRepository extends JpaRepository<Worder, String> , JpaSpe
     //List<Worder> findWordersByConditions();//작업지시 리스트 중에 공정예약 or 공정이 돌아가고 있는 것
 
     @Query("select wo from Worder wo where wo.processId = :processId and wo.wplanId = :wplanId")
-    List<Worder> findByState(String processId, String wplanId); //작업지시 테이블에서 특정 공정고유번호에 대한 컬럼 전체를 불러옴(진행)
+    List<Worder> findByState(@Param("processId") String processId,
+                             @Param("wplanId") String wplanId); //작업지시 테이블에서 특정 공정고유번호에 대한 컬럼 전체를 불러옴(진행)
+
+   //포장작업 완료 데이터(출하관련)
+    @Query("select wo from Worder wo where wo.wplanId = :wplanId and wo.processId = 'A110'")
+    Worder findByEndProcess(@Param("wplanId") String wplanId);
 
     List<Worder> findAll();
 
