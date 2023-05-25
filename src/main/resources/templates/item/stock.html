@@ -290,8 +290,9 @@
             </div>
             <!-- End of Topbar -->
 
+
             <!-- searchbar  -->
-            <form action="/search" method="post" class="searchbarForm">
+            <form action="/item/search" method="get" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="itemDataTable3" cellspacing="0">
                         <tr class="searchbarTr2" >
@@ -299,8 +300,8 @@
                                 <p>품목명</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect" >
-                                    <option>선택</option>
+                                <select class="searchbarSelect" name = "productName">
+                                    <option value=""></option>
                                     <option th:each="stock : ${stockList}" th:text="${stock.name}"></option>
                                 </select>
                             </td>
@@ -308,13 +309,13 @@
                                 <p>품목코드</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
+                                <input type="text" name = "productId">
                             </td>
                             <td class="searchbarDateTd">
                                 <p>분류</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
+                                <input type="text" name = "productSort">
                             </td>
                             <td class="searchButtonTd">
                                 <button class="searchButton">
@@ -358,16 +359,6 @@
                                 <td th:text="${stock.sort}"></td>
                                 <td th:text="${stock.location}"></td>
                             </tr>
-<!--                            <tr class="tableBodyTr" th:each="stock : ${stList}">-->
-<!--                                <td><input type="checkbox"></td>-->
-<!--                                <td th:text="${stock.price}"></td>-->
-<!--                                <td th:text="${stock.sort"></td>-->
-<!--                                <td th:text="${stock.price}"></td>-->
-<!--                                <td th:text="${stock.sort}"></td>-->
-<!--                                <td th:text="${stock.id}"></td>-->
-<!--                                <td th:text="${stock.name}"></td>-->
-<!--                                <td th:text="${stock.id}"></td>-->
-<!--                            </tr>-->
 
                             </tbody>
                         </table>
