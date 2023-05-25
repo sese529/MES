@@ -7,6 +7,8 @@
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
+    <!--  chart.js  -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>제1조 MES</title>
@@ -146,7 +148,7 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- main content-->
-        <div id="mainContent1">
+        <div id="mainRow1">
             <!-- calendar -->
             <div class="mainContent">
                 <h2 class="calendarLogo"><i class="fa-regular fa-calendar-days" id="calendarIcon"
@@ -181,25 +183,49 @@
             </div>
             <!-- End calendar-->
 
-            <!-- 미정 -->
+            <!-- 수주별 생산 현황 -->
             <div class="mainContent">
-
+                <div class="mainContent">
+                    <div class="mainChartHeader">
+                        <h2><i class="fa-solid fa-chart-simple" id="orderCurrentIcon"
+                               style="color: #6a84ab;"></i>수주별 생산 현황</h2>
+                    </div>
+                    <div class="mainCharts">
+                        <canvas id="orderCurrent"></canvas>
+                    </div>
+                </div>
             </div>
-            <!-- 미정 -->
+            <!-- 수주별 생산 현황 끝 -->
         </div>
 
-        <div id="mainContent2">
-            <!-- 미정 -->
+        <div id="mainRow2">
+            <!-- 일일 생산량 -->
             <div class="mainContent">
-
+                <div class="mainChart">
+                    <div class="mainChartHeader">
+                        <h2><i class="fa-solid fa-chart-simple" id="dailyProductionIcon"
+                               style="color: #6a84ab;"></i>일일 생산량</h2>
+                    </div>
+                    <div class="mainCharts">
+                        <canvas id="dailyProduction"></canvas>
+                    </div>
+                </div>
             </div>
-            <!-- 미정 -->
+            <!-- 일일 생산량 끝 -->
 
-            <!-- 미정 -->
             <div class="mainContent">
-
+                <!-- 월간 생산량 -->
+                <div class="mainChart">
+                    <div class="mainChartHeader">
+                        <h2><i class="fa-solid fa-chart-area" id="monthlyProductionIcon"
+                               style="color: #6a84ab;"></i>월간 생산량</h2>
+                    </div>
+                    <div class="mainCharts">
+                        <canvas id="monthlyProduction"></canvas>
+                    </div>
+                </div>
             </div>
-            <!-- 미정 -->
+            <!-- 월간 생산량 끝 -->
 
         </div>
 
@@ -229,8 +255,9 @@
 <script src="/js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="/js/chart-area-demo.js"></script>
-<script src="/js/chart-pie-demo.js"></script>
+<script src="/js/monthlyChart.js"></script>
+<script src="/js/dailyChart.js"></script>
+<script src="/js/orderCurrentChart.js"></script>
 
 </body>
 

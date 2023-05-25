@@ -13570,12 +13570,12 @@ body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
 
-#mainContent1 {
+#mainRow1 {
     display: flex;
     justify-content: space-evenly;
 }
 
-#mainContent2 {
+#mainRow2 {
     display: flex;
     justify-content: space-evenly;
     padding-top: 10px;
@@ -13650,5 +13650,31 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 #calendarIcon {
-    padding-right: 10px;
+    padding-right: 15px;
+}
+
+#dailyProductionIcon {
+    padding-right: 15px;
+}
+
+#monthlyProductionIcon {
+    padding-right: 15px;
+}
+
+#orderCurrentIcon {
+    padding-right: 15px;
+}
+
+.mainCharts {
+    width: 850px;
+    height: 400px;
+}
+
+.mainChartHeader h2{
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    margin: 0;
 }
