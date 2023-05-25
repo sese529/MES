@@ -46,15 +46,6 @@ public class StockController {
 //        return "/item/stock";
 //    }
 
-//    @GetMapping("/stock")
-//    public String stockList(Model model){
-//        List<StockListDto> stockList = stockService.getAllList();
-//
-//        model.addAttribute("stockList",stockList);
-//
-//        return "/item/stock";
-//    }
-
     @GetMapping("/stock")
     public String stock(Model model
                         , @RequestParam(required = false) String productName
@@ -62,30 +53,39 @@ public class StockController {
                         , @RequestParam(required = false) String productSort) {
         List<StockListDto> stockList = stockService.getProductStockList(productName, productId, productSort);
 
-        if ("".equals(productName)) {
-            productName = null;
-        }
-        if ("".equals(productId)) {
-            productId = null;
-        }
-        if ("".equals(productSort)) {
-            productSort = null;
-        }
+//        if ("".equals(productName)) {
+//            productName = null;
+//        }
+//        if ("".equals(productId)) {
+//            productId = null;
+//        }
+//        if ("".equals(productSort)) {
+//            productSort = null;
+//        }
 
         model.addAttribute("stockList", stockList);
 
         return "/item/stock";
     }
+//
+//    @PostMapping("/update")
+//    public String stockUpdate(StockListDto sdto) {
+//
+//        return "/item/stock";
+//    }
+//    @PostMapping("/register")
+//    public String stockRegister(StockListDto sdto) {
+//        return "/item/stock";
+//    }
+//
+    //삭제
+//    @PostMapping("/delete")
+//    public String stockDelete(StockListDto sdto) {
+//        stockService.
+//
+//        return "/item/stock";
+//    }
 
-    @PostMapping("/update")
-    public String stockUpdate(StockListDto sdto) {
-
-        return "/item/stock";
-    }
-    @PostMapping("/register")
-    public String stockRegister() {
-        return "/item/stock";
-    }
 
     @GetMapping("/item/bom")
     public String BOM() {

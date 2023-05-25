@@ -19,7 +19,7 @@ public class StockListDto {
     private String stockId;
     private String productId;
     private String mtrId;
-    private String location;
+//    private String location;
     private Long ea;
     private String unit;
 
@@ -27,6 +27,6 @@ public class StockListDto {
     private String name;
     private String sort;
     private Long price;
-
+    private String location;
 
 }
