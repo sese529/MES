@@ -1,9 +1,7 @@
 package com.B1team.b01.repository;
 
 import com.B1team.b01.dto.BomDto;
-import com.B1team.b01.dto.BomListDto;
 import com.B1team.b01.entity.BOM;
-import com.B1team.b01.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,5 +19,6 @@ public interface BomRepository extends JpaRepository<BOM, String> {
             "AND (:mtrName IS NULL OR b.mtrName = :mtrName)")
     List<Object[]> getBomList(@Param("productName") String productName,
                               @Param("mtrName") String mtrName);
+
 
 }

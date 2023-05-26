@@ -6,9 +6,9 @@ var editClose = document.getElementsByClassName("editClose")[0];
 editBtn.onclick = function () {
     var checkedCnt = document.querySelectorAll('input[type="checkbox"]:checked').length;
     console.log('-----------' + checkedCnt);
-    if(checkedCnt == 0)
+    if (checkedCnt == 0)
         alert("수정할 행을 선택해주세요.");
-    else if(checkedCnt > 1)
+    else if (checkedCnt > 1)
         alert("1개의 행만 선택해주세요.");
     else {
         var selectedId = document.querySelector('input[type=checkbox][name=selectedIds]:checked').value;
@@ -17,7 +17,7 @@ editBtn.onclick = function () {
             url: '/rorder/edit',
             method: 'GET',
             data: {
-                 selectedId: selectedId
+                selectedId: selectedId
             },
             success: function (response) {
                 //수주일 설정
@@ -35,8 +35,8 @@ editBtn.onclick = function () {
                 var editInfoCustomerId = response.editInfoCustomerId;
                 var customerList = document.getElementById('editCustomerId');
 
-                for(let i = 0; i < customerList.options.length; i++) {
-                    if(customerList.options[i].value == editInfoCustomerId) {
+                for (let i = 0; i < customerList.options.length; i++) {
+                    if (customerList.options[i].value == editInfoCustomerId) {
                         customerList.options[i].selected = true;
                         break;
                     }
@@ -46,8 +46,8 @@ editBtn.onclick = function () {
                 var editInfoProductId = response.editInfoProductId;
                 var productList = document.getElementById('editProductId');
 
-                for(let i = 0; i < productList.options.length; i++) {
-                    if(productList.options[i].value == editInfoProductId) {
+                for (let i = 0; i < productList.options.length; i++) {
+                    if (productList.options[i].value == editInfoProductId) {
                         productList.options[i].selected = true;
                         break;
                     }
@@ -68,22 +68,56 @@ editBtn.onclick = function () {
                 var formattedDate = year + '-' + month + '-' + day + ' ' + (hour < 12 ? '오전' : '오후') + ' ' + ('0' + (hour % 12 || 12)).slice(-2) + ':' + ('0' + minute).slice(-2);
 
                 document.getElementById('editDeliveryDate').value = formattedDate;
+
+                // 모달 천천히 나타내기
+                editModal.style.opacity = 0;
+                editModal.style.display = "block";
+                setTimeout(function () {
+                    var opacity = 0;
+                    var interval = setInterval(function () {
+                        if (opacity < 1) {
+                            opacity += 0.1;
+                            editModal.style.opacity = opacity;
+                        } else {
+                            clearInterval(interval);
+                        }
+                    }, 20);
+                }, 10); // 일정 시간 간격 뒤에 애니메이션 시작
             },
             error: function (error) {
                 // 오류 처리
                 console.error('-----------------AJAX 요청 실패:', error);
             }
-        })
-        editModal.style.display = "block";
+        });
     }
-}
+};
 
 editClose.onclick = function () {
-    editModal.style.display = "none";
-}
+    // 모달 천천히 사라지게 하기
+    var opacity = 1;
+    var interval = setInterval(function () {
+        if (opacity > 0) {
+            opacity -= 0.1;
+            editModal.style.opacity = opacity;
+        } else {
+            clearInterval(interval);
+            editModal.style.display = "none";
+        }
+    }, 20);
+};
 
 window.onclick = function (event) {
     if (event.target == editModal) {
-        editModal.style.display = "none";
+        // 모달 천천히 사라지게 하기
+        var opacity = 1;
+        var interval = setInterval(function () {
+            if (opacity > 0) {
+                opacity -= 0.1;
+                editModal.style.opacity = opacity;
+            } else {
+                clearInterval(interval);
+                editModal.style.display = "none";
+            }
+        }, 20);
     }
-}
+};

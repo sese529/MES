@@ -11,6 +11,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!--  간트 js  -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <!--  달력  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>제1조 MES</title>
@@ -153,8 +157,7 @@
         <div id="mainRow1">
             <!-- calendar -->
             <div class="mainContent">
-                <h2 class="calendarLogo"><i class="fa-regular fa-calendar-days" id="calendarIcon"
-                                            style="color: #6a84ab;"></i>일일 재공 현황</h2>
+                <h2 class="calendarLogo"><i class="fa-regular fa-calendar-days" id="calendarIcon" style="color: #6a84ab;"></i>일일 재공 현황</h2>
                 <div class="yearMonth">
                     <label for="year">년도:</label>
                     <select id="year" onchange="updateCalendar()">
@@ -163,7 +166,6 @@
                         <option value="2023">2023</option>
                         <option value="2024">2024</option>
                         <option value="2025">2025</option>
-                        `
                     </select>
                     <label for="month">월:</label>
                     <select id="month" onchange="updateCalendar()">
@@ -239,7 +241,11 @@
 
 
 <!-- 작성 스크립트 -->
-<script src="/js/calendar.js"></script>
+<script src="/js/mainJS/calendar.js"></script>
+<script src="/js/mainJS/orderCurrentChart.js"></script>
+<script src="/js/Chart.min.js"></script>
+<script src="/js/mainJS/monthlyChart.js"></script>
+<script src="/js/mainJS/dailyChart.js"></script>
 <!-- Bootstrap core JavaScript-->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>
@@ -249,14 +255,6 @@
 
 <!-- Custom scripts for all pages-->
 <script src="/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="/js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/js/monthlyChart.js"></script>
-<script src="/js/dailyChart.js"></script>
-<script src="/js/orderCurrentChart.js"></script>
 
 </body>
 
