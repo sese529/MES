@@ -2734,6 +2734,10 @@ textarea.form-control.is-invalid {
     border-right: 2px solid #fff;
 }
 
+#dataTable {
+    margin: 0;
+}
+
 #orderDataTable1 tbody tr:nth-child(1) td:nth-child(1),
 #orderDataTable1 tbody tr:nth-child(1) td:nth-child(2),
 #orderDataTable1 tbody tr:nth-child(1) td:nth-child(3),
@@ -2823,6 +2827,10 @@ textarea.form-control.is-invalid {
 #itemDataTable3 tbody tr:nth-child(2) td:nth-child(4),
 #itemDataTable3 tbody tr:nth-child(2) td:nth-child(5) {
     border-right: 2px solid #fff;
+}
+
+#itemDataTable3 {
+    margin: 0;
 }
 
 #itemDataTable4 tbody tr:nth-child(1) td:nth-child(1),
@@ -2921,6 +2929,10 @@ textarea.form-control.is-invalid {
     border-right: 2px solid #fff;
 }
 
+#productionDataTables3 {
+    margin: 0;
+}
+
 #productionDataTables4 tbody tr:nth-child(1) td:nth-child(1),
 #productionDataTables4 tbody tr:nth-child(1) td:nth-child(2),
 #productionDataTables4 tbody tr:nth-child(1) td:nth-child(3),
@@ -2953,15 +2965,27 @@ textarea.form-control.is-invalid {
     border-right: 2px solid #fff;
 }
 
+#dataTable2 {
+    margin: 0;
+}
+
 #dataTable3 tbody tr:nth-child(1) td:nth-child(1),
 #dataTable3 tbody tr:nth-child(1) td:nth-child(2) {
     border-right: 2px solid #fff;
+}
+
+#dataTable3 {
+    margin: 0;
 }
 
 #dataTable4 tbody tr:nth-child(1) td:nth-child(1),
 #dataTable4 tbody tr:nth-child(1) td:nth-child(2),
 #dataTable4 tbody tr:nth-child(1) td:nth-child(3) {
     border-right: 2px solid #fff;
+}
+
+#dataTable4 {
+    margin: 0;
 }
 
 #customerDataTable1 tbody tr:nth-child(1) td:nth-child(1),
@@ -2972,6 +2996,16 @@ textarea.form-control.is-invalid {
 #customerDataTable1 tbody tr:nth-child(2) td:nth-child(1),
 #customerDataTable1 tbody tr:nth-child(2) td:nth-child(2),
 #customerDataTable1 tbody tr:nth-child(3) td:nth-child(1) {
+    border-right: 2px solid #fff;
+}
+
+#shipmentDataTable tbody tr:nth-child(1) td:nth-child(1),
+#shipmentDataTable tbody tr:nth-child(1) td:nth-child(2),
+#shipmentDataTable tbody tr:nth-child(1) td:nth-child(3),
+#shipmentDataTable tbody tr:nth-child(1) td:nth-child(4),
+#shipmentDataTable tbody tr:nth-child(1) td:nth-child(5),
+#shipmentDataTable tbody tr:nth-child(1) td:nth-child(6),
+#shipmentDataTable tbody tr:nth-child(1) td:nth-child(7) {
     border-right: 2px solid #fff;
 }
 
