@@ -13572,12 +13572,10 @@ body.sidebar-toggled footer.sticky-footer {
 
 #mainRow1 {
     display: flex;
-    justify-content: space-evenly;
 }
 
 #mainRow2 {
     display: flex;
-    justify-content: space-evenly;
     padding-top: 10px;
 }
 
@@ -13639,6 +13637,34 @@ body.sidebar-toggled footer.sticky-footer {
     border-radius: 15px;
     width: 850px;
     height: 550px;
+    margin-left: 80px;
+}
+
+.mainContent2 {
+    margin-top: 30px;
+    border: 2px solid #6a84ab;
+    border-radius: 15px;
+    width: 850px;
+    height: 550px;
+    margin-left: 30px;
+}
+
+.mainContent3 {
+    margin-top: 30px;
+    border: 2px solid #6a84ab;
+    border-radius: 15px;
+    width: 850px;
+    height: 550px;
+    margin-left: 80px;
+}
+
+.mainContent4 {
+    margin-top: 30px;
+    border: 2px solid #6a84ab;
+    border-radius: 15px;
+    width: 850px;
+    height: 550px;
+    margin-left: 30px;
 }
 
 .calendarLogo {

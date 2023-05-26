@@ -23,8 +23,3 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 }
-
-$(document).ready(function () {
-  console.log('-----------------js 추가');
-  $("#datepicker").datepicker();
-});

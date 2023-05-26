@@ -72,7 +72,3 @@ window.onclick = function (event) {
         editModal.style.display = "none";
     }
 }
-
-$(document).ready(function () {
-    $("#editDatepicker").datepicker();
-});
