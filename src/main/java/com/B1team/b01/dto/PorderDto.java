@@ -18,10 +18,10 @@ public class PorderDto {
     public Long cnt;
     public String customerId;
     public String customerName;
-    public LocalDateTime orderdate;
+    public LocalDateTime orderDate;
     public Long price;
     public String state;
-    public LocalDateTime arrivaldate;
+    public LocalDateTime arrivalDate;
     public String mtrId;
     public Long amount;
     public String name;
