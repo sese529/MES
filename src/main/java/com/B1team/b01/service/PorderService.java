@@ -1,10 +1,9 @@
 package com.B1team.b01.service;
 
-import com.B1team.b01.dto.RorderDto;
+import com.B1team.b01.dto.PorderOutputDto;
 import com.B1team.b01.dto.StockDto;
-import com.B1team.b01.entity.Rorder;
+import com.B1team.b01.entity.Porder;
 import com.B1team.b01.entity.Stock;
-import com.B1team.b01.entity.Wplan;
 import com.B1team.b01.repository.PorderDetailRepository;
 import com.B1team.b01.repository.PorderRepository;
 import com.B1team.b01.repository.StockRepository;
@@ -12,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -49,5 +49,17 @@ public class PorderService {
     }
 
 
+    //발주 현황 - 검색 시 Entity - Dto 변환
+    public List<PorderOutputDto> getPorderList(LocalDateTime startDate,
+                                               LocalDateTime endDate,
+                                               String mtrName,
+                                               String customerName,
+                                               String state,
+                                               LocalDateTime currentTime,
+                                               LocalDateTime startArrivalDate,
+                                               LocalDateTime endArrivalDate) {
+        List<Porder> porders = porderRepository.findPordersByConditons(startDate, endDate, mtrName, customerName, state, currentTime, startArrivalDate, endArrivalDate);
+        return PorderOutputDto.of(porders);
+    }
 
 }
