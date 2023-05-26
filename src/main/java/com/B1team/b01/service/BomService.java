@@ -144,6 +144,7 @@ public class BomService {
                 break;
             case "p23": case "p24":
                 needEa.setLiquidWeight(amount*5);
+
                 break;
         }
         return needEa;

@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 
 @SpringBootTest
@@ -33,4 +34,26 @@ public class PinoutServiceTests {
 
     }
 */
+
+/*
+    @Test
+    public void testOneBoxNeedProduct(){
+
+           Long[] result = pinoutService.oneBoxNeedProduct("p21");
+           System.out.println(Arrays.toString(result));
+           System.out.println(result[1]);
+    }
+*/
+
+    //자재출고 등록하기 테스트2
+    @Test
+    public void testRegisterPinout2(){
+
+        //Long[] result = pinoutService.oneBoxNeedProduct("p21");
+        //System.out.println(Arrays.toString(result));
+        //System.out.println(result[1]);
+
+        pinoutService.createMTROut("ROD38", "p24");
+    }
+
 }

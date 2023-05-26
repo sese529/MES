@@ -47,7 +47,6 @@ public class WplanService {
         //orderDate : 수주 날짜(시작 날짜), productId : 품목id, orderCnt: 수주량(box)
 
         //수주고유번호로 계획이 세워져 있는지 확인  //wplan table 조회
-
         Optional<Wplan> confirmWplan = wplanRepository.findByPlanOrderId(orderId);
 
         //계획 세워져 있는게 없다면, 작업계획 등록하기
