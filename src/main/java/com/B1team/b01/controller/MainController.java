@@ -1,11 +1,12 @@
 package com.B1team.b01.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
 
 @Controller
 public class MainController {
+
     @GetMapping("/materials/porder-status")
     public String placeAnOrderStatus() {
         return "/materials/porder-status";
@@ -20,7 +21,7 @@ public class MainController {
     public String materialInventory() {
         return "/materials/material-inventory";
     }
-//
+
 //    @GetMapping("/customer/rorder-customer")
 //    public String orderCustomer() {
 //        return "/customer/rorder-customer";
@@ -37,9 +38,6 @@ public class MainController {
         return "/main";
     }
 
-    @GetMapping("/lot/lot")
-    public String LOT() {
-        return "/lot/lot";
-    }
+
 
 }
