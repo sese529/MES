@@ -39,19 +39,4 @@ public class ProductController {
 
         return "/item/product";
     }
-//
-//    @GetMapping("/bom")
-//    public String BOM(Model model
-//            , @RequestParam(required = false) String productName
-//            , @RequestParam(required = false) String mtrName) {
-//
-//        List<BomListDto> bomList = bomService.BomList(productName, mtrName);
-//        List<BomListDto> NameList = bomService.BomName();
-//
-//        model.addAttribute("bomList",bomList);
-//        model.addAttribute("NameList",NameList);
-//
-//
-//        return "/item/bom";
-//    }
 }
