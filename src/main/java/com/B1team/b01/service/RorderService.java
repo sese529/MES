@@ -61,6 +61,11 @@ public class RorderService {
         rorderRepository.save(dto.toEntity());  //save하기
     }
 
+    //수주 수정
+    public void editRorder(RorderFormDto dto) {
+        rorderRepository.save(dto.toEntity());
+    }
+
     //id 지정하는 메소드
     @Transactional
     public String generateId(String head, String seqName) {

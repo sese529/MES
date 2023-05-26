@@ -155,7 +155,7 @@
             <!-- End of Topbar -->
 
             <!-- searchbar  -->
-            <form action="/search" method="post" class="searchbarForm">
+            <form action="/item/bom" method="get" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable" cellspacing="0">
                         <tr class="searchbarTr2">
@@ -163,22 +163,19 @@
                                 <p>제품명</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option value="" selected> </option>
-                                    <option>양배추즙</option>
-                                    <option>흑마늘즙</option>
-                                    <option>석류젤리</option>
-                                    <option>메실젤리</option>
+                                <select class="searchbarSelect" name = "productName">
+                                    <option value="" selected></option>
+                                    <option th:each="bom : ${Product}" th:text="${bom.name}" ></option>
+
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
                                 <p>원자재명</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option value="" selected> </option>
-                                    <option>양배추</option>
-                                    <option>정제수</option>
+                                <select class="searchbarSelect" name = "mtrName">
+                                    <option value="" selected > </option>
+                                    <option th:each="bom : ${Materials}" th:text="${bom.name}" ></option>
                                 </select>
                             </td>
                             <td class="searchButtonTd">
@@ -198,29 +195,27 @@
 
                 <!-- DataTales Example -->
                 <div class="cardBody">
-                    <div class="table-responsive" style="overflow: auto; max-height: 600px;">
+                    <div class="table-responsive" style="overflow: auto; max-height: 800px;">
                         <table class="table table-borderless" id="dataTables" width="100%" cellspacing="0">
                             <thead class="tableTitle">
                             <tr>
                                 <th>제품명</th>
+                                <th>제품번호</th>
                                 <th>원자재명</th>
+                                <th>원자재번호</th>
                                 <th>필요량</th>
-                                <th>단위</th>
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                                <tr>
-                                    <td>양배추즙</td>
-                                    <td>양배추</td>
-                                    <td>40</td>
-                                    <td>ml</td>
+                                <tr th:each="bom : ${bomList}">
+                                    <td th:text="${bom.productName}"/>
+                                    <td th:text="${bom.productId}"/>
+                                    <td th:text="${bom.mtrName}"/>
+                                    <td th:text="${bom.id}"/>
+                                    <td th:text="${bom.volume}"/>
+
                                 </tr>
-                                <tr>
-                                    <td>양배추즙</td>
-                                    <td>정제수</td>
-                                    <td>40</td>
-                                    <td>ml</td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>
