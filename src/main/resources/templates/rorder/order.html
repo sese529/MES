@@ -216,7 +216,7 @@
                                                 <p>납품예정일</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text" id="deliveryDate" name="deliveryDate" readonly/>
+                                                <input type="text" id="regDeliveryDate" name="deliveryDate" readonly/>
                                             </td>
                                             <td class="regSearchbarButton">
                                                 <button type="button" class="regSearchbarPreButton" id="regSearchbarPreButton">
@@ -274,7 +274,7 @@
                             </div>
 
                             <!-- regSearchbar -->
-                            <form id="editform" action="/search" method="get">
+                            <form id="editform">
                                 <div class="regSearchbar">
                                     <table class="table table-borderless" id="orderDataTable2" width="100%"
                                            cellspacing="0">
@@ -283,7 +283,7 @@
                                                 <p>수주일</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+                                                <input type="datetime-local" id="editOrderCurrentTimeInput">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>수주 번호</p>
@@ -322,10 +322,10 @@
                                                 <p>납품예정일</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text">
+                                                <input type="text" id="editDeliveryDate">
                                             </td>
                                             <td class="regSearchbarButton">
-                                                <button class="regSearchbarPreButton">
+                                                <button class="regSearchbarPreButton" id="editSearchbarPreButton">
                                                     <p class="regSearchbarPreButtonP">예측</p>
                                                 </button>
                                             </td>
@@ -537,41 +537,58 @@
 <script src="/js/monthlyChart.js"></script>
 <script src="/js/dailyChart.js"></script>
 <script>
-    //예측 버튼 클릭 이벤트 핸들러
-    $('#regSearchbarPreButton').on('click', function (event) {
-        event.preventDefault();
+    function simulationFuntion(orderTimeInput, productId, orderCnt, deliveryDateId) {
 
         // form에서 필요한 값 가져오기
-        var orderDate = $('#regOrderCurrentTimeInput').val();
-        var productId = $('#regProductId').val();
-        var orderCnt = $('#regOrderCnt').val();
+        var orderDate = $(orderTimeInput).val();
+        var productId = $(productId).val();
+        var orderCnt = $(orderCnt).val();
+        var numberCheck = /^[0-9]+$/;
 
-        // AJAX 요청 보내기
-        $.ajax({
-            url: '/rorder/simulation',
-            method: 'POST',
-            data: {
-                orderDate: orderDate,
-                productId: productId,
-                orderCnt: orderCnt
-            },
-            success: function (response) {
-                console.log('통신결과');
-                // 응답 데이터에서 시뮬레이션 날짜 가져오기
-                var deliveryDate = response.deliveryDate;
-                console.log('orderDate:', orderDate);
-                console.log('productId:', productId);
-                console.log('orderCnt:', orderCnt);
-                console.log('deliveryDate:', deliveryDate);
-                // 시뮬레이션 날짜를 deliveryDate 클래스를 가진 input 엘리먼트에 설정
-                $('#deliveryDate').val(deliveryDate);
-            },
-            error: function (error) {
-                // 오류 처리
-                console.error('-----------------AJAX 요청 실패:', error);
-            }
-        });
+        if(orderCnt == '')
+            alert("수주량을 입력해주세요.");
+        else if(!numberCheck.test(orderCnt))
+            alert("수주량은 숫자만 입력 가능합니다.");
+        else {
+            // AJAX 요청 보내기
+            $.ajax({
+                url: '/rorder/simulation',
+                method: 'POST',
+                data: {
+                    orderDate: orderDate,
+                    productId: productId,
+                    orderCnt: orderCnt
+                },
+                success: function (response) {
+                    console.log('통신결과');
+                    // 응답 데이터에서 시뮬레이션 날짜 가져오기
+                    var deliveryDate = response.deliveryDate;
+                    console.log('orderDate:', orderDate);
+                    console.log('productId:', productId);
+                    console.log('orderCnt:', orderCnt);
+                    console.log('deliveryDate:', deliveryDate);
+                    // 시뮬레이션 날짜를 deliveryDate 클래스를 가진 input 엘리먼트에 설정
+                    $(deliveryDateId).val(deliveryDate);
+                },
+                error: function (error) {
+                    // 오류 처리
+                    console.error('-----------------AJAX 요청 실패:', error);
+                }
+            });
+        }
+    }
+
+    //등록 예측 버튼 클릭 이벤트 핸들러
+    $('#regSearchbarPreButton').on('click', function (event) {
+        event.preventDefault();
+        simulationFuntion('#regOrderCurrentTimeInput', '#regProductId', '#regOrderCnt', '#regDeliveryDate');
     });
+
+    //수정 예측 버튼 클릭 이벤트 핸들러
+    $('#editSearchbarPreButton').on('click', function (event) {
+        event.preventDefault();
+        simulationFuntion('#editOrderCurrentTimeInput', '#editProductId', '#editCnt', '#editDeliveryDate');
+    })
 
     // 선택된 옵션의 customer.Name 값을 hiddenRegCustomer에 설정
     $('#regCustomerId').on('change', function() {
