@@ -6,6 +6,7 @@ import com.B1team.b01.repository.MaterialsRepository;
 import com.B1team.b01.repository.ProductRepository;
 import com.B1team.b01.repository.StockRepository;
 import com.B1team.b01.service.MaterialsService;
+import com.B1team.b01.service.PinoutService;
 import com.B1team.b01.service.PorderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import java.util.List;
 @RequestMapping("/materials")
 public class MaterialsController {
     private final PorderService porderService;
+    private final PinoutService pinoutService;
     private final MaterialsRepository materialsRepository;
     private final StockRepository stockRepository;
     private final CustomerRepository customerRepository;
@@ -59,7 +61,29 @@ public class MaterialsController {
 
     //자재 입출 현황
     @GetMapping("/material-inoutput")
-    public String materialInOutPut() {
+    public String materialInOutPut(Model model,
+                                   String sort,
+                                   String startDate,
+                                   String endDate,
+                                   String mtrName) {
+        //거래처 리스트
+        List<CustomerDto> customerDtoList = CustomerDto.of(customerRepository.findBySort("발주처"));
+        model.addAttribute("customerList", customerDtoList);
+
+        //품목 리스트
+        List<MaterialsDto> materialsDtoList = MaterialsDto.of(materialsRepository.findAll());
+        model.addAttribute("materialList", materialsDtoList);
+
+        //자재 입출 현황 리스트
+        List<PinoutOutputDto> pinoutOutputDtoList = pinoutService.getPinoutList(sort, startDate, endDate, mtrName);
+        model.addAttribute("pinoutList", pinoutOutputDtoList);
+
+        System.out.println("컨트롤러 리스트:" + pinoutOutputDtoList);
+
+        model.addAttribute("sort", sort);
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+        model.addAttribute("mtrName", mtrName);
         return "/materials/material-inoutput";
     }
 
