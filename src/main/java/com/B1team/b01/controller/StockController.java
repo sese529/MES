@@ -28,8 +28,7 @@ public class StockController {
     @Autowired
     private ProductService productService;
 
-    @Autowired
-    private EntityManagerFactory entityManagerFactory;
+
 //
 //    @GetMapping("/list")
 //    public String search(Model model
@@ -62,42 +61,4 @@ public class StockController {
 
         return "product";
     }
-//
-//    @PostMapping("/update")
-//    public String stockUpdate(StockListDto sdto) {
-//
-//        return "/item/stock";
-//    }
-
-    @Transactional
-    public String generateId(String head, String seqName) {
-
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT " + seqName + ".NEXTVAL FROM dual").getSingleResult();
-        String id = head + sequenceValue;
-        return id;
-    }
-
-    @PostMapping("/register")
-    public String insertProduct(Product product) {
-
-        product.setId(generateId("P", "product_seq"));
-        productService.insertProduct(product);
-//        product.setId(product.getId());
-//        product.setName(product.getName());
-//        product.setPrice(product.getPrice());
-//        product.setSort(product.getSort());
-//        product.setLocation(product.getLocation());
-
-        return "product";
-    }
-//
-    //삭제
-//    @PostMapping("/delete")
-//    public String stockDelete(StockListDto sdto) {
-//        stockService.
-//
-//        return "/item/stock";
-//    }
 }
