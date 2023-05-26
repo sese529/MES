@@ -25,8 +25,8 @@ public class LOT {
     @Column(name="lot_code", nullable = false, columnDefinition = "varchar2(20)")
     private String code;    //로트 코드
 
-    @Column(name="lot_process", nullable = false, columnDefinition = "varchar2(5)")
-    private String process; //공정 코드
+    @Column(name="lot_process_id", nullable = false, columnDefinition = "varchar2(5)")
+    private String processId; //공정 코드
 
     @Column(name="lot_product_id", nullable = false, columnDefinition = "varchar2(50)")
     private String productId; //제품 고유번호
