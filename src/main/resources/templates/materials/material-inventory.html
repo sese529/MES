@@ -158,7 +158,7 @@
             <!-- End of Topbar -->
 
             <!-- searchbar  -->
-            <form action="/material/material-inventory" methbod="get" class="searchbarForm">
+            <form action="/materials/material-inventory" methbod="get" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable3" cellspacing="0">
                         <tr class="searchbarTr1">
@@ -166,7 +166,7 @@
                                 <p>품목 상세조회</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text" th:name="${mtrName}" th:value="${mtrName}">
+                                <input type="text" th:name="mtrName" th:value="${mtrName}">
                             </td>
                             <td class="searchButtonTd">
                                 <button class="searchButton">
