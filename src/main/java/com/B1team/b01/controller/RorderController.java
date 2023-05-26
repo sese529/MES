@@ -104,6 +104,26 @@ public class RorderController {
         return ResponseEntity.ok(response);
     }
 
+    //수주 수정
+    @PostMapping("/edit")
+    public ResponseEntity<?> editOrder(String rorderId,
+                                       String orderDate,
+                                       String customerId,
+                                       String customerName,
+                                       String productId,
+                                       String productName,
+                                       String orderCnt,
+                                       String deliveryDate) {
+        RorderFormDto dto = new RorderFormDto(rorderId, orderDate, customerId, customerName, productId, productName, orderCnt, deliveryDate);
+//        System.out.println("입력 정보=" + dto);
+        rorderService.editRorder(dto);
+
+        //View에 보내줄 내용
+        Map<String, String> response = new HashMap<>();
+        response.put("redirectUrl", "/rorder/order");
+        return ResponseEntity.ok(response);
+    }
+
     //수주 확정
     @PostMapping("/confirmed")
     public String updateToConfirmed(String[] selectedIds) {

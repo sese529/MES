@@ -12,6 +12,7 @@ import com.B1team.b01.repository.MaterialsRepository;
 import com.B1team.b01.repository.ProductRepository;
 import com.B1team.b01.repository.StockRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -19,8 +20,13 @@ import java.util.*;
 @RequiredArgsConstructor
 @Service
 public class BomService {
+    @Autowired
     private final BomRepository bomRepository;
+    @Autowired
     private final StockRepository stockRepository;
+    @Autowired
+    private final StockService stockService;
+
     private final ProductRepository productRepository;
     private final MaterialsRepository materialsRepository;
 //    List<Stock> stockList = new ArrayList<>();
@@ -50,12 +56,14 @@ public class BomService {
                     if (s.getMtrId().equals("MTR36")) {
                         NeedOrderDto ndto = new NeedOrderDto();
                         ndto.setMtrId("MTR36");
-                        ndto.setAmount(result(cabbage, s.getEa()));
+                        ndto.setAmount(result("MTR36",cabbage,s.getEa()));
+
                         needList.add(ndto);
                     } else if (s.getMtrId().equals("MTR41")) {
                         NeedOrderDto ndto = new NeedOrderDto();
                         ndto.setMtrId("MTR41");
-                        ndto.setAmount(result(pouch, s.getEa()));
+                        ndto.setAmount(result("MTR41",pouch,s.getEa()));
+
                         needList.add(ndto);
                     }
                 }
@@ -67,12 +75,14 @@ public class BomService {
                     if (s.getMtrId().equals("MTR37")) {
                         NeedOrderDto ndto = new NeedOrderDto();
                         ndto.setMtrId("MTR37");
-                        ndto.setAmount(result(g, s.getEa()));
+                        ndto.setAmount(result("MTR37",g,s.getEa()));
+
                         needList.add(ndto);
                     } else if (s.getMtrId().equals("MTR41")) {
                         NeedOrderDto ndto = new NeedOrderDto();
                         ndto.setMtrId("MTR41");
-                        ndto.setAmount(result(pouch, s.getEa()));
+                        ndto.setAmount(result("MTR41",pouch,s.getEa()));
+
                         needList.add(ndto);
                     }
                 }
@@ -85,21 +95,23 @@ public class BomService {
                     if (s.getMtrId().equals("MTR38")) {
                         NeedOrderDto ndto = new NeedOrderDto();
                         ndto.setMtrId("MTR38");
-                        double re = result(po, s.getEa());
+                        double re =result("MTR38",po,s.getEa());
+
                         ndto.setAmount(re);
                         needList.add(ndto);
                     }
                     if (s.getMtrId().equals("MTR40")) {
                         NeedOrderDto ndto = new NeedOrderDto();
                         ndto.setMtrId("MTR40");
-                        double re = result(collagen, s.getEa());
+                        double re = result("MTR40",collagen,s.getEa());
+
                         ndto.setAmount(re);
                         needList.add(ndto);
                     }
                     if (s.getMtrId().equals("MTR42")) {
                         NeedOrderDto ndto = new NeedOrderDto();
                         ndto.setMtrId("MTR42");
-                        double re = result(stickpouch, s.getEa());
+                        double re =result("MTR42",stickpouch,s.getEa());
                         ndto.setAmount(re);
                         needList.add(ndto);
                     }
@@ -113,17 +125,19 @@ public class BomService {
                     if (s.getMtrId().equals("MTR39")) {
                         NeedOrderDto ndto = new NeedOrderDto();
                         ndto.setMtrId("MTR39");
-                        ndto.setAmount(result(pl, s.getEa()));
+                        ndto.setAmount(result("MTR39",pl,s.getEa()));
                         needList.add(ndto);
                     } else if (s.getMtrId().equals("MTR40")) {
                         NeedOrderDto ndto = new NeedOrderDto();
                         ndto.setMtrId("MTR40");
-                        ndto.setAmount(result(collagen, s.getEa()));
+                        ndto.setAmount(result("MTR40",collagen,s.getEa()));
+
                         needList.add(ndto);
                     } else if (s.getMtrId().equals("MTR42")) {
                         NeedOrderDto ndto = new NeedOrderDto();
                         ndto.setMtrId("MTR42");
-                        ndto.setAmount(result(stickpouch, s.getEa()));
+                        ndto.setAmount(result("MTR42",stickpouch,s.getEa()));
+
                         needList.add(ndto);
                     }
                 }
@@ -150,6 +164,7 @@ public class BomService {
                 needEa.setMaterialWeight((amount * 20) * 1.25f / 3);
                 needEa.setLiquidWeight(amount * 20);
                 break;
+
             case "p23":
             case "p24":
                 needEa.setLiquidWeight(amount * 5);
@@ -157,16 +172,17 @@ public class BomService {
         }
         return needEa;
     }
+    public double result(String mtr_id,double orderamount,double stockamount){
 
-    public double result(double orderamount, double stockamount) {
         double result = 0;
 
         if (orderamount > stockamount) {
             result = orderamount - stockamount;
         } else if (stockamount > orderamount) {
             result = 0;
+            double change = stockamount-orderamount;
+            stockService.updateStockEa(mtr_id,change);
         }
-
         return result;
     }
 

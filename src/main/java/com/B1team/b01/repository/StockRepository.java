@@ -1,6 +1,7 @@
 package com.B1team.b01.repository;
 
 
+import com.B1team.b01.dto.MaterialStockDto;
 import com.B1team.b01.dto.StockListDto;
 import com.B1team.b01.entity.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StockRepository extends JpaRepository<Stock, String> {
     Stock findByMtrId(String mtrId);
@@ -28,5 +30,12 @@ public interface StockRepository extends JpaRepository<Stock, String> {
     Long findByStockCnt(String productId);
 
 
-
+    //원자재 재고 리스트
+    @Query("SELECT NEW com.B1team.b01.dto.MaterialStockDto(m.name, s.ea, s.unit) " +
+            "FROM Materials m " +
+            "JOIN Stock s ON m.id = s.mtrId " +
+            "WHERE s.mtrId IS NOT NULL " +
+            "AND (:mtrName IS NULL OR m.name = :mtrName)" +
+            "ORDER BY s.mtrId")
+    List<MaterialStockDto> findMaterialStock(@Param("mtrName") String mtrName);
 }
