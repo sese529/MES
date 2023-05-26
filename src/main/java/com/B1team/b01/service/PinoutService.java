@@ -3,6 +3,7 @@ package com.B1team.b01.service;
 
 import com.B1team.b01.dto.PinoutDto;
 
+import com.B1team.b01.dto.PinoutOutputDto;
 import com.B1team.b01.entity.Wplan;
 import com.B1team.b01.repository.PinoutRepository;
 import com.B1team.b01.repository.WplanRepository;
@@ -14,6 +15,10 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -132,5 +137,15 @@ public class PinoutService {
 
     }
 
+    //자재 입출 현황 조회 페이지 - 레포지토리 매개변수에 맞게 매개변수 타입 변환
+    public List<PinoutOutputDto> getPinoutList(String sort,
+                                               String start,
+                                               String end,
+                                               String mtrName) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime startDate = start == null || "".equals(start)? null : LocalDate.parse(start, formatter).atStartOfDay();
+        LocalDateTime endDate = end == null || "".equals(end) ? null : LocalDate.parse(end, formatter).atTime(23, 59, 59);
+        return pinoutRepository.findPinoutsByConditions(sort, startDate, endDate, mtrName);
+    }
 
 }

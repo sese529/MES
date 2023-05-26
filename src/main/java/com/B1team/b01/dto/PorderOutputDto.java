@@ -1,7 +1,7 @@
 package com.B1team.b01.dto;
 
+import com.B1team.b01.config.CustomModelMapper;
 import com.B1team.b01.entity.Porder;
-import com.B1team.b01.entity.Rorder;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
@@ -14,30 +14,35 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PorderDto {
+public class PorderOutputDto {
     public String id;
-    public String unit;
-    public Long cnt;
+    public String orderDate;
+    public String arrivalDate;
     public String customerId;
     public String customerName;
-    public LocalDateTime orderDate;
+    public Long cnt;
+    public String mtrUnit;
     public Long price;
+    public Long amount; //발주 금액
     public String state;
-    public LocalDateTime arrivalDate;
     public String mtrId;
-    public Long amount;
-    public String name;
+    public Long mtrPrice;
+    public String mtrName;
 
     private static ModelMapper modelMapper = new ModelMapper(); //엔티티랑 dto의 필드명이 같은 것끼리 매핑
 
     //Porder 엔티티를 RorderDto로 변환해주는 메소드
-    public static PorderDto of(Porder porder) { return modelMapper.map(porder, PorderDto.class); }
+    public static PorderOutputDto of(Porder porder) {
+        PorderOutputDto dto = CustomModelMapper.getModelMapper().map(porder, PorderOutputDto.class);
+        dto.setState(LocalDateTime.now().isBefore(porder.getArrivalDate()) ? "예정" : "완료");
+        return dto;
+    }
 
     //List<Porder>를 List<PorderDto>로 변환해주는 메소드
-    public static List<PorderDto> of(List<Porder> entitys) {
-        List<PorderDto> dtos = new ArrayList<>();
+    public static List<PorderOutputDto> of(List<Porder> entitys) {
+        List<PorderOutputDto> dtos = new ArrayList<>();
         for(Porder entity : entitys)
-            dtos.add(PorderDto.of(entity));
+            dtos.add(PorderOutputDto.of(entity));
         return dtos;
     }
 

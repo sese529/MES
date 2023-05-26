@@ -1,13 +1,29 @@
 package com.B1team.b01.repository;
 
+import com.B1team.b01.dto.ShipmentDto;
 import com.B1team.b01.entity.Finprod;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface FinprodRepository extends JpaRepository<Finprod, String> {
 
+    //출하관리 페이지 - 완제품에 거래처 추가하여 리스트 얻기
+    @Query("SELECT NEW com.B1team.b01.dto.ShipmentDto(f.id, f.deadline, f.product, f.ea, f.orderId, r.customerName) " +
+            "FROM Finprod f JOIN Rorder r ON f.orderId = r.id " +
+            "WHERE (:customerName IS NULL OR r.customerName = :customerName) " +
+            "AND (:productName IS NULL OR f.product = :productName) " +
+            "AND (:orderId IS NULL OR f.orderId = :orderId) " +
+            "AND (:startDate IS NULL OR f.deadline >= :startDate) " +
+            "AND (:endDate IS NULL OR f.deadline <= :endDate) " +
+            "ORDER BY f.id DESC")
+    List<ShipmentDto> findShipmentsByConditions(@Param("customerName") String customerName,
+                                                @Param("productName") String productName,
+                                                @Param("orderId") String orderId,
+                                                @Param("startDate") LocalDateTime startDate,
+                                                @Param("endDate") LocalDateTime endDate);
 
 }

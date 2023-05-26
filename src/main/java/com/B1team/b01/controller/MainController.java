@@ -1,11 +1,13 @@
 package com.B1team.b01.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
 
 @Controller
 public class MainController {
+
+
     //Materials 컨트롤러 독립 - materials 관련 주석 처리(주석 부분 제거 가능)
     //    @GetMapping("/materials/porder-status")
 //    public String placeAnOrderStatus() {
@@ -22,6 +24,7 @@ public class MainController {
 //        return "/materials/material-inventory";
 //    }
 //
+
 //    @GetMapping("/customer/rorder-customer")
 //    public String orderCustomer() {
 //        return "/customer/rorder-customer";
@@ -38,9 +41,6 @@ public class MainController {
         return "/main";
     }
 
-    @GetMapping("/lot/lot")
-    public String LOT() {
-        return "/lot/lot";
-    }
+
 
 }

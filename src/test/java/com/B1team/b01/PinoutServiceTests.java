@@ -1,5 +1,6 @@
 package com.B1team.b01;
 
+import com.B1team.b01.dto.PinoutOutputDto;
 import com.B1team.b01.service.PinoutService;
 import com.B1team.b01.dto.PinoutDto;
 import com.B1team.b01.entity.Pinout;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 
 
 @SpringBootTest
@@ -56,4 +58,10 @@ public class PinoutServiceTests {
         pinoutService.createMTROut("ROD38", "p24");
     }
 
+    //입출고 현황 리스트 뽑기 테스트
+    @Test
+    public void getListTest() {
+        List<PinoutOutputDto> list = pinoutService.getPinoutList(null, null, null, null);
+        System.out.println(list);
+    }
 }
