@@ -195,45 +195,10 @@
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
-                                <td>양배추</td>
-                                <td>5</td>
-                                <td>ton</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>흑마늘</td>
-                                <td>10</td>
-                                <td>kg</td>
-                            </tr>
-                            <tr>
-                                <td>석류액기스</td>
-                                <td>5</td>
-                                <td>kg</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>매실액기스</td>
-                                <td>5</td>
-                                <td>kg</td>
-                            </tr>
-                            <tr>
-                                <td>콜라겐</td>
-                                <td>5</td>
-                                <td>kg</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>즙 파우치</td>
-                                <td>1000</td>
-                                <td>ea</td>
-                            </tr>
-                            <tr>
-                                <td>스틱 파우치</td>
-                                <td>1000</td>
-                                <td>ea</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>포장박스</td>
-                                <td>500</td>
-                                <td>ea</td>
+                            <tr th:each="inventory : ${list}">
+                                <td th:text="${inventory.name}">양배추</td>
+                                <td th:text="${inventory.unit == 'g' && inventory.ea > 1000 ? inventory.ea / 1000 : inventory.ea}">5</td>
+                                <td th:text="${inventory.unit == 'g' && inventory.ea > 1000 ? 'kg' : inventory.unit}">ton</td>
                             </tr>
                             </tbody>
                         </table>
