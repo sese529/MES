@@ -21,6 +21,11 @@ editBtn.onclick = function () {
             },
             success: function (response) {
                 //수주일 설정
+                var editInfoDate = response.editInfoDate;
+                var formattedDate = editInfoDate.replace(' ', 'T');
+
+                console.log("editInfoDate=" + formattedDate);
+                document.getElementById('editOrderCurrentTimeInput').value = formattedDate;
 
                 //수주번호 설정
                 var editInfoId = response.editInfoId;
@@ -53,6 +58,16 @@ editBtn.onclick = function () {
                 document.getElementById('editCnt').value = editInfoCnt;
 
                 //납품예정일 설정
+                var editInfoDeadline = response.editInfoDeadline;
+                var dateObj = new Date(editInfoDeadline);
+                var year = dateObj.getFullYear();
+                var month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+                var day = ('0' + dateObj.getDate()).slice(-2);
+                var hour = ('0' + dateObj.getHours()).slice(-2);
+                var minute = ('0' + dateObj.getMinutes()).slice(-2);
+                var formattedDate = year + '-' + month + '-' + day + ' ' + (hour < 12 ? '오전' : '오후') + ' ' + ('0' + (hour % 12 || 12)).slice(-2) + ':' + ('0' + minute).slice(-2);
+
+                document.getElementById('editDeliveryDate').value = formattedDate;
             },
             error: function (error) {
                 // 오류 처리
@@ -72,7 +87,3 @@ window.onclick = function (event) {
         editModal.style.display = "none";
     }
 }
-
-$(document).ready(function () {
-    $("#editDatepicker").datepicker();
-});

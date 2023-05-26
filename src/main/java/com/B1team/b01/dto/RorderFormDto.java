@@ -35,6 +35,18 @@ public class RorderFormDto {
 
 //    @Autowired private EntityManager entityManager;
 
+    public RorderFormDto(String rorderId,
+                         String orderDate,
+                         String customerId,
+                         String customerName,
+                         String productId,
+                         String productName,
+                         String orderCnt,
+                         String deliveryDate) {
+        this(orderDate, customerId, customerName, productId, productName, orderCnt, deliveryDate);
+        setId(rorderId);
+    }
+
     public RorderFormDto(String orderDate,
                          String customerId,
                          String customerName,
@@ -55,6 +67,7 @@ public class RorderFormDto {
         setState("미확정");
         setPrice(0L);   //TODO:나중에 price 뷰에서 계산해서 받기
     }
+
     //RorderFormDto를 Order 엔티티로 변환해주는 메소드
     public Rorder toEntity() {
 //        this.setId(generateId("ROD", "order_seq"));

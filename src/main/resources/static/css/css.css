@@ -13570,10 +13570,19 @@ body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
 
+#mainRow1 {
+    display: flex;
+}
+
+#mainRow2 {
+    display: flex;
+    padding-top: 10px;
+}
+
 .calendar {
     font-family: Arial, sans-serif;
-    width: 600px;
-    height: 400px;
+    width: 750px;
+    height: 370px;
     border-collapse: collapse;
 }
 
@@ -13582,6 +13591,7 @@ body.sidebar-toggled footer.sticky-footer {
     padding: 8px;
     text-align: center;
     border: 1px solid #ccc;
+    font-size: 20px;
 }
 
 .calendar td:hover {
@@ -13597,17 +13607,19 @@ body.sidebar-toggled footer.sticky-footer {
 
 .yearMonth {
     float: right;
-    padding-right: 50px;
+    padding-right: 45px;
 }
 
 .yearMonth label {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     color: #6a84ab;
 }
 
 .yearMonth select {
     color: #6a84ab;
+    font-size: 20px;
+    margin-right: 5px;
 }
 
 #calendar-container {
@@ -13619,13 +13631,40 @@ body.sidebar-toggled footer.sticky-footer {
     width: 200px;
 }
 
-.calendars {
-    margin-top: 50px;
-    margin-left: 50px;
+.mainContent {
+    margin-top: 30px;
     border: 2px solid #6a84ab;
     border-radius: 15px;
-    width: 700px;
-    height: 600px;
+    width: 850px;
+    height: 550px;
+    margin-left: 80px;
+}
+
+.mainContent2 {
+    margin-top: 30px;
+    border: 2px solid #6a84ab;
+    border-radius: 15px;
+    width: 850px;
+    height: 550px;
+    margin-left: 30px;
+}
+
+.mainContent3 {
+    margin-top: 30px;
+    border: 2px solid #6a84ab;
+    border-radius: 15px;
+    width: 850px;
+    height: 550px;
+    margin-left: 80px;
+}
+
+.mainContent4 {
+    margin-top: 30px;
+    border: 2px solid #6a84ab;
+    border-radius: 15px;
+    width: 850px;
+    height: 550px;
+    margin-left: 30px;
 }
 
 .calendarLogo {
@@ -13633,9 +13672,43 @@ body.sidebar-toggled footer.sticky-footer {
     font-size: 35px;
     font-weight: bold;
     padding-top: 30px;
-    padding-bottom: 35px;
+    padding-bottom: 20px;
 }
 
 #calendarIcon {
-    padding-right: 10px;
+    padding-right: 15px;
+}
+
+#dailyProductionIcon {
+    padding-right: 15px;
+}
+
+#monthlyProductionIcon {
+    padding-right: 15px;
+}
+
+#orderCurrentIcon {
+    padding-right: 15px;
+}
+
+.mainCharts {
+    width: 850px;
+    height: 400px;
+}
+
+.mainChartHeader h2{
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    margin: 0;
+}
+
+
+#orderCurrent {
+    width: 850px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
 }
