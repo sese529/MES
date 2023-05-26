@@ -202,7 +202,8 @@
                                             </td>
                                             <td class="regSearchbarContent">
                                                 <select class="regSearchbarSelect" name="productId" id="regProductId">
-                                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.id}"></option>
+                                                    <option th:each="product : ${productList}" th:text="${product.name}"
+                                                            th:value="${product.id}" th:data-price="${product.price}" th:data-sort="${product.sort}"></option>
                                                 </select>
                                                 <input id="hiddenRegProduct" type="hidden" th:value="${productList.get(0).name}">
                                             </td>
@@ -245,12 +246,12 @@
                                         </thead>
                                         <tbody class="tableBody">
                                         <tr>
-                                            <td>양배추즙</td>
-                                            <td>01513448</td>
-                                            <td>100</td>
-                                            <td>9,000</td>
-                                            <td>JUICE</td>
-                                            <td>900,000</td>
+                                            <td id="regTableProductName" th:text="${productList.get(0).name}">양배추즙</td>
+                                            <td id="regTableProductCode" th:text="${productList.get(0).id}">01513448</td>
+                                            <td id="regTableCnt">0</td>
+                                            <td id="regTableProductPrice" th:text="${productList.get(0).price}">9,000</td>
+                                            <td id="regTableProductSort" th:text="${productList.get(0).sort}">JUICE</td>
+                                            <td id="regTableSum">0</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -623,7 +624,15 @@
     $('#regProductId').on('change', function() {
         var selectedOption = $(this).find('option:selected');
         var productName = selectedOption.text();
+        var productId = selectedOption.val();
+        var productPrice = selectedOption.data('price');
+        var productSort = selectedOption.data('sort');
+
         $('#hiddenRegProduct').val(productName);
+        $('#regTableProductName').val(productName);
+        $('#regTableProductCode').val(productId);
+        $('#regTableProductPrice').text(productPrice);
+        $('#regTableProductSort').text(productSort);
         console.log('productName:', productName);
     });
 
