@@ -473,7 +473,7 @@
                                 <tr th:each="rorder : ${rorderList}">
                                     <td><input type="checkbox" th:value="${rorder.id}" name="selectedIds" th:if="${rorder.state == '진행전'}">
                                         <input type="checkbox" th:if="${rorder.state != '진행전'}" disabled></td>
-                                    <td th:text="${rorder.date}">2022-05-01 11:30</td>
+                                    <td class="date-cell" th:text="${rorder.date}">2022-05-01 11:30</td>
                                     <td th:text="${rorder.id}">G215483126</td>
                                     <td th:text="${rorder.state}">진행전</td>
                                     <td th:text="${rorder.customerName}">매출처1</td>
