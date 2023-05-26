@@ -67,7 +67,13 @@ function createDateTable(container, year, month) {
                 // 클릭 이벤트 처리
                 td.addEventListener("click", function () {
                     var clickedDate = new Date(year, month, parseInt(this.innerHTML));
-                    console.log(clickedDate);
+                    // SweetAlert 팝업
+                    swal({
+                        title: "일일 재공 & capa 현황",
+                        text: "제품명: 1000ea\n제품명: 100ea\n재료명: 100ea\n작업 수량: 100Box",
+                        icon: "info",
+                        button: "확인",
+                    });
                 });
 
                 if (

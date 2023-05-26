@@ -13734,3 +13734,21 @@ body.sidebar-toggled footer.sticky-footer {
     display: flex;
     justify-content: center;
 }
+
+.calendarDay {
+    background-color: yellow;
+}
+
+.swal-text {
+    color: red;
+    font-size: 16px;
+}
+
+.swal-button {
+    background-color: #6a84ab;
+    font-size: 15px;
+}
+
+.swal-button:not([disabled]):hover {
+    background-color: #aeaeae;
+}
