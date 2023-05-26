@@ -12,4 +12,5 @@ public interface BomRepository extends JpaRepository<BOM, String> {
     @Query("select b from BOM b where b.productId= :id and b.mtrId not in('MTR44')")
     List<BOM> findPID(@Param("id") String pid);
 
+
 }
