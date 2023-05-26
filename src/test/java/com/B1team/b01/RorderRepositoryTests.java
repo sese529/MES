@@ -8,6 +8,7 @@ import com.B1team.b01.service.RorderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
@@ -73,5 +74,13 @@ public class RorderRepositoryTests {
                 .build();
         Rorder entity = dto.toEntity();
         System.out.println(rorderRepository.save(entity));
+    }
+
+    @Transactional
+    @Test
+    void 수주확정테스트() {
+        System.out.println("테스트----------------------");
+        System.out.println(rorderRepository.updateState("ROD28"));
+        System.out.println("테스트----------------------");
     }
 }

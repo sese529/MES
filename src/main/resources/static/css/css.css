@@ -396,13 +396,11 @@ template {
 }
 
 .h1,
-.h2,
 .h3,
 .h4,
 .h5,
 .h6,
 h1,
-h2,
 h3,
 h4,
 h5,
@@ -2687,6 +2685,7 @@ textarea.form-control.is-invalid {
     justify-content: space-evenly;
     align-items: center;
     transform: translateX(10px);
+    margin-top: 3px;
 }
 
 .searchButtonP {
@@ -2918,9 +2917,7 @@ textarea.form-control.is-invalid {
 #productionDataTables3 tbody tr:nth-child(1) td:nth-child(2),
 #productionDataTables3 tbody tr:nth-child(1) td:nth-child(3),
 #productionDataTables3 tbody tr:nth-child(1) td:nth-child(4),
-#productionDataTables3 tbody tr:nth-child(1) td:nth-child(5),
-#productionDataTables3 tbody tr:nth-child(1) td:nth-child(6),
-#productionDataTables3 tbody tr:nth-child(1) td:nth-child(7) {
+#productionDataTables3 tbody tr:nth-child(1) td:nth-child(5) {
     border-right: 2px solid #fff;
 }
 
@@ -13573,7 +13570,145 @@ body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
 
-.mainChart {
-    width: 500px;
-    height: 500px;
+#mainRow1 {
+    display: flex;
+}
+
+#mainRow2 {
+    display: flex;
+    padding-top: 10px;
+}
+
+.calendar {
+    font-family: Arial, sans-serif;
+    width: 750px;
+    height: 370px;
+    border-collapse: collapse;
+}
+
+.calendar th,
+.calendar td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc;
+    font-size: 20px;
+}
+
+.calendar td:hover {
+    color: #ffffff;
+    background-color: #aeaeae;
+    cursor: pointer;
+}
+
+.calendar .today {
+    color: #ffffff;
+    background-color: #6a84ab;
+}
+
+.yearMonth {
+    float: right;
+    padding-right: 45px;
+}
+
+.yearMonth label {
+    font-size: 25px;
+    font-weight: bold;
+    color: #6a84ab;
+}
+
+.yearMonth select {
+    color: #6a84ab;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+#calendar-container {
+    padding-left: 50px;
+}
+
+#calendar-container h2{
+    font-weight: bold;
+    width: 200px;
+}
+
+.mainContent {
+    margin-top: 30px;
+    border: 2px solid #6a84ab;
+    border-radius: 15px;
+    width: 850px;
+    height: 550px;
+    margin-left: 80px;
+}
+
+.mainContent2 {
+    margin-top: 30px;
+    border: 2px solid #6a84ab;
+    border-radius: 15px;
+    width: 850px;
+    height: 550px;
+    margin-left: 30px;
+}
+
+.mainContent3 {
+    margin-top: 30px;
+    border: 2px solid #6a84ab;
+    border-radius: 15px;
+    width: 850px;
+    height: 550px;
+    margin-left: 80px;
+}
+
+.mainContent4 {
+    margin-top: 30px;
+    border: 2px solid #6a84ab;
+    border-radius: 15px;
+    width: 850px;
+    height: 550px;
+    margin-left: 30px;
+}
+
+.calendarLogo {
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+#calendarIcon {
+    padding-right: 15px;
+}
+
+#dailyProductionIcon {
+    padding-right: 15px;
+}
+
+#monthlyProductionIcon {
+    padding-right: 15px;
+}
+
+#orderCurrentIcon {
+    padding-right: 15px;
+}
+
+.mainCharts {
+    width: 850px;
+    height: 400px;
+}
+
+.mainChartHeader h2{
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    margin: 0;
+}
+
+
+#orderCurrent {
+    width: 850px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
 }

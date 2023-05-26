@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface WplanRepository extends JpaRepository<Wplan, String> {
 
-    //작업계획 등록 관련 같은 수주번호로 선 등록 계획이 있는지 확인하기
+    //작업계획 등록 관련, 같은 수주번호로 먼저 등록된 작업계획이 있는지 확인하기
     @Query("select wp from Wplan wp where wp.orderId = :orderId")
     Optional<Wplan> findByPlanOrderId(String orderId);
 

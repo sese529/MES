@@ -37,4 +37,9 @@ public class MainController {
         return "/main";
     }
 
+    @GetMapping("/lot/lot")
+    public String LOT() {
+        return "/lot/lot";
+    }
+
 }

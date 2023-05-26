@@ -2,6 +2,7 @@ package com.B1team.b01.repository;
 
 import com.B1team.b01.entity.Rorder;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -41,7 +42,10 @@ public interface RorderRepository extends JpaRepository<Rorder, String> {
     Long findByOrderCnt(String orderId);
 
 
-
+    //수주 확정
+    @Modifying
+    @Query("UPDATE Rorder r set r.state = '확정' WHERE r.id = :id")
+    int updateState(@Param("id") String id);
 
 
 
