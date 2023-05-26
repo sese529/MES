@@ -1,6 +1,7 @@
 package com.B1team.b01.service;
 
 import com.B1team.b01.entity.Product;
+import com.B1team.b01.repository.MaterialsRepository;
 import com.B1team.b01.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ import java.util.List;
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private MaterialsRepository materialsRepositoryRepository;
 
 
     public List<Product> getAllProduct(){
