@@ -2,6 +2,7 @@ package com.B1team.b01.controller;
 
 import com.B1team.b01.dto.BomListDto;
 import com.B1team.b01.entity.BOM;
+import com.B1team.b01.entity.Materials;
 import com.B1team.b01.entity.Product;
 import com.B1team.b01.service.BomService;
 import com.B1team.b01.service.ProductService;
@@ -35,8 +36,13 @@ public class ProductController {
 
 
         List<Product> productList = productService.ProductList(productName, productId, productSort);
+        List<Product> Product = bomService.getProduct();
+
         model.addAttribute("productList",productList);
+        model.addAttribute("Product",Product);
 
         return "/item/product";
     }
+
+
 }

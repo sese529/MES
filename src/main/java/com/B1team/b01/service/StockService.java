@@ -156,4 +156,12 @@ public class StockService {
         return stockListDtoList;
     }
 
+    // 재고 update
+    public void updateStockEa(String mtrId,double stockEa){
+        Stock stock = stockRepository.findById(mtrId).orElse(null);
+        if (stock != null) {
+            stock.setEa((long) stockEa);
+            stockRepository.save(stock);
+        }
+    }
 }

@@ -310,7 +310,7 @@
                             <td class="searchbarContent">
                                 <select class="searchbarSelect" name = "productName">
                                     <option value=""></option>
-                                    <option th:each="product : ${productList}" th:text="${product.name}"></option>
+                                    <option th:each="product : ${Product}" th:text="${product.name}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
