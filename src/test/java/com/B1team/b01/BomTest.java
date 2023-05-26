@@ -12,6 +12,6 @@ public class BomTest {
 
     @Test
     void finaTest(){
-        System.out.println(bomService.calcBom("p7",10));
+        System.out.println(bomService.calcBom("p21",1));
     }
 }

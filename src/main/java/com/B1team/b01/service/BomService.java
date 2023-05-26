@@ -150,6 +150,7 @@ public class BomService {
                 needEa.setMaterialWeight((amount * 20) * 1.25f / 3);
                 needEa.setLiquidWeight(amount * 20);
                 break;
+
             case "p23":
             case "p24":
                 needEa.setLiquidWeight(amount * 5);
