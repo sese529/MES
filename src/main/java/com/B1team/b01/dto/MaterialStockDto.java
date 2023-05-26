@@ -9,5 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 public class MaterialStockDto {
     private String name;    //원자재명
-    private Long ea;       //재고량
+    private Long ea;        //재고량
+    private String unit;    //단위
 }

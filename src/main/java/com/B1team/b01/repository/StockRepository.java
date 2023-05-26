@@ -31,13 +31,7 @@ public interface StockRepository extends JpaRepository<Stock, String> {
 
 
     //원자재 재고 리스트
-    @Query("SELECT s FROM Stock s " +
-            "WHERE (s.mtrId IS NOT NULL)" +
-            "AND (:mtrId IS NULL OR s.mtrId = :mtrId)" +
-            "ORDER BY s.mtrId")
-    List<Stock> findStocksByConditions(@Param("mtrId") String mtrId);
-
-    @Query("SELECT NEW com.B1team.b01.dto.MaterialStockDto(m.name, s.ea) " +
+    @Query("SELECT NEW com.B1team.b01.dto.MaterialStockDto(m.name, s.ea, s.unit) " +
             "FROM Materials m " +
             "JOIN Stock s ON m.id = s.mtrId " +
             "WHERE s.mtrId IS NOT NULL " +
