@@ -24,7 +24,7 @@ public class PorderRepositoryTests {
 
     @Test
     void 발주현황검색서비스테스트() {
-        List<PorderOutputDto> list = porderService.getPorderList(null, null, null, null, null, null, null, null);
+        List<PorderOutputDto> list = porderService.getPorderList(null, null, null, null, null, null, null);
         for(PorderOutputDto porder : list)
             System.out.println(porder);
     }

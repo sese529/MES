@@ -157,7 +157,7 @@
             <!-- End of Topbar -->
 
             <!-- searchbar  -->
-            <form action="/search" methbod="get" class="searchbarForm">
+            <form action="/materials/porder-status" methbod="get" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable2" cellspacing="0">
 
@@ -167,28 +167,26 @@
                             </td>
                             <td class="searchbarContent">
                                 <div class="searchbarDate">
-                                    <input type="date">
+                                    <input type="date" name="startDate" th:value="${startDate}">
                                     <p class="searchbarDateWater">~</p>
-                                    <input type="date">
+                                    <input type="date" name="endDate" th:value="${endDate}">
                                 </div>
                             <td class="searchbarDateTd">
                                 <p>품목</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>양배추</option>
-                                    <option>흑마늘</option>
-                                    <option>매실 농축액</option>
-                                    <option>석류 농축액</option>
+                                <select class="searchbarSelect" name="mtrName">
+                                    <option value="" th:selected="${mtrName == '' or mtrName == null}">선택</option>
+                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.name}" th:selected="${mtrName == product.name}">양배추</option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
                                 <p>거래처명</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>자연농장</option>
-                                    <option>싱싱야채</option>
+                                <select class="searchbarSelect" name="customerName">
+                                    <option value="" th:selected="${customerName == '' or customerName == null}">선택</option>
+                                    <option th:each="customer : ${customerList}" th:text="${customer.name}" th:value="${customer.name}" th:selected="${customerName == customer.name}">자연농장</option>
                                 </select>
                             </td>
                             <td class="searchButtonTd"></td>
@@ -198,9 +196,10 @@
                                 <p>입고 여부</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>예정</option>
-                                    <option>완료</option>
+                                <select class="searchbarSelect" name="state">
+                                    <option value="" th:selected="${state == '' or state == null}">선택</option>
+                                    <option value="예정" th:selected="${state == '예정'}">예정</option>
+                                    <option value="완료" th:selected="${state == '완료'}">완료</option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
@@ -208,9 +207,9 @@
                             </td>
                             <td class="searchbarContent">
                                 <div class="searchbarDate">
-                                    <input type="date">
+                                    <input type="date" name="startArrivalDate" th:value="${startArrivalDate}">
                                     <p class="searchbarDateWater">~</p>
-                                    <input type="date">
+                                    <input type="date" name="endArrivalDate" th:value="${endArrivalDate}">
                                 </div>
                             </td>
                             <td class="searchbarDateTd">
@@ -220,7 +219,7 @@
                                 <!-- 공백 -->
                             </td>
                             <td class="searchButtonTd">
-                                <button class="searchButton">
+                                <button class="searchButton" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                     <p class="searchButtonP">조회</p>
                                 </button>
@@ -252,26 +251,15 @@
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
-                                <td>2022-05-01 11:30</td>
-                                <td>양배추</td>
-                                <td>1</td>
-                                <td>ton</td>
-                                <td>8,900,000</td>
-                                <td>자연농장</td>
-                                <td>완료</td>
-                                <td>2022-05-01 11:30</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>2022-05-01 11:30</td>
-                                <td>흑마늘</td>
-                                <td>1</td>
-                                <td>ton</td>
-                                <td>8,900,000</td>
-                                <td>싱싱야채</td>
-                                <td>예정</td>
-                                <td>2022-05-01 11:30</td>
-                            </tr>
+                            <tr th:each="porder : ${porderList}">
+                                <td th:text="${porder.orderDate}">2022-05-01 11:30</td>
+                                <td th:text="${porder.mtrName}">양배추</td>
+                                <td th:text="${porder.mtrUnit == 'g' && porder.cnt > 1000 ? (porder.cnt > 1000000 && porder.cnt % 10000 == 0 ? porder.cnt / 1000000 : porder.cnt / 1000) : porder.cnt}">1</td>
+                                <td th:text="${porder.mtrUnit == 'g' && porder.cnt > 1000 ? (porder.cnt > 1000000 && porder.cnt % 10000 == 0 ? 'ton' : 'kg') : porder.mtrUnit}">ton</td>
+                                <td th:text="${porder.amount}">8,900,000</td>
+                                <td th:text="${porder.customerName}">자연농장</td>
+                                <td th:text="${porder.state}">완료</td>
+                                <td th:text="${porder.arrivalDate}">2022-05-01 11:30</td>
                             </tr>
                             </tbody>
                         </table>

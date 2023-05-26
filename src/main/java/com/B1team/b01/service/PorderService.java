@@ -10,7 +10,9 @@ import com.B1team.b01.repository.StockRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,15 +52,20 @@ public class PorderService {
 
 
     //발주 현황 - 검색 시 Entity - Dto 변환
-    public List<PorderOutputDto> getPorderList(LocalDateTime startDate,
-                                               LocalDateTime endDate,
+    public List<PorderOutputDto> getPorderList(String start,
+                                               String end,
                                                String mtrName,
                                                String customerName,
                                                String state,
-                                               LocalDateTime currentTime,
-                                               LocalDateTime startArrivalDate,
-                                               LocalDateTime endArrivalDate) {
-        List<Porder> porders = porderRepository.findPordersByConditons(startDate, endDate, mtrName, customerName, state, currentTime, startArrivalDate, endArrivalDate);
+                                               String startArriva,
+                                               String endArrival) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime startDate = start == null || "".equals(start)? null : LocalDate.parse(start, formatter).atStartOfDay();
+        LocalDateTime endDate = end == null || "".equals(end) ? null : LocalDate.parse(end, formatter).atTime(23, 59, 59);
+        LocalDateTime startArrivalDate = start == null || "".equals(startArriva)? null : LocalDate.parse(startArriva, formatter).atStartOfDay();
+        LocalDateTime endArrivalDate = end == null || "".equals(endArrival) ? null : LocalDate.parse(endArrival, formatter).atTime(23, 59, 59);
+
+        List<Porder> porders = porderRepository.findPordersByConditons(startDate, endDate, mtrName, customerName, state, LocalDateTime.now(), startArrivalDate, endArrivalDate);
         return PorderOutputDto.of(porders);
     }
 
