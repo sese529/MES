@@ -165,7 +165,7 @@
                             <td class="searchbarContent">
                                 <select class="searchbarSelect" name = "productName">
                                     <option value="" selected></option>
-                                    <option th:each="bom : ${Product}" th:text="${bom.productName}" ></option>
+                                    <option th:each="bom : ${Product}" th:text="${bom.name}" ></option>
 
                                 </select>
                             </td>
@@ -173,9 +173,9 @@
                                 <p>원자재명</p>
                             </td>
                             <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option value="" selected name = "mtrName"> </option>
-                                    <option th:each="bom : ${Materials}" th:text="${bom.mtrName}" ></option>
+                                <select class="searchbarSelect" name = "mtrName">
+                                    <option value="" selected > </option>
+                                    <option th:each="bom : ${Materials}" th:text="${bom.name}" ></option>
                                 </select>
                             </td>
                             <td class="searchButtonTd">
