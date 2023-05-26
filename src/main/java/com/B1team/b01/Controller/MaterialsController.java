@@ -1,12 +1,11 @@
 package com.B1team.b01.Controller;
 
-import com.B1team.b01.dto.CustomerDto;
-import com.B1team.b01.dto.MaterialStockDto;
-import com.B1team.b01.dto.PorderOutputDto;
-import com.B1team.b01.dto.ProductDto;
+import com.B1team.b01.dto.*;
 import com.B1team.b01.repository.CustomerRepository;
+import com.B1team.b01.repository.MaterialsRepository;
 import com.B1team.b01.repository.ProductRepository;
 import com.B1team.b01.repository.StockRepository;
+import com.B1team.b01.service.MaterialsService;
 import com.B1team.b01.service.PorderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,9 +21,9 @@ import java.util.List;
 @RequestMapping("/materials")
 public class MaterialsController {
     private final PorderService porderService;
+    private final MaterialsRepository materialsRepository;
     private final StockRepository stockRepository;
     private final CustomerRepository customerRepository;
-    private final ProductRepository productRepository;
     //발주 현황
     @GetMapping("/porder-status")
     public String placeAnOrderStatus(String startDate,
@@ -40,8 +39,8 @@ public class MaterialsController {
         model.addAttribute("customerList", customerDtoList);
 
         //품목 리스트
-        List<ProductDto> productDtoList = ProductDto.of(productRepository.findAll());
-        model.addAttribute("productList", productDtoList);
+        List<MaterialsDto> materialsDtoList = MaterialsDto.of(materialsRepository.findAll());
+        model.addAttribute("materialList", materialsDtoList);
 
         //기본 발주 조회 리스트
         List<PorderOutputDto> porderList = porderService.getPorderList(startDate, endDate, mtrName, customerName, state, startArrivalDate, endArrivalDate);

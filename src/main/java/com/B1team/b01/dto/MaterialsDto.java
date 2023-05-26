@@ -4,6 +4,9 @@ import com.B1team.b01.entity.Materials;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @ToString
 @Builder
@@ -31,5 +34,12 @@ public class MaterialsDto {
     //MaterialsDto를 Materials 엔티티로 변환해주는 메소드
     public Materials toEntity(MaterialsDto materialsDto) {
         return modelMapper.map(this, Materials.class);
+    }
+
+    public static List<MaterialsDto> of(List<Materials> entities) {
+        List<MaterialsDto> dtos = new ArrayList<>();
+        for(Materials materials : entities)
+            dtos.add(MaterialsDto.of(materials));
+        return dtos;
     }
 }

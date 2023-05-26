@@ -177,7 +177,7 @@
                             <td class="searchbarContent">
                                 <select class="searchbarSelect" name="mtrName">
                                     <option value="" th:selected="${mtrName == '' or mtrName == null}">선택</option>
-                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.name}" th:selected="${mtrName == product.name}">양배추</option>
+                                    <option th:each="material : ${materialList}" th:text="${material.name}" th:value="${material.name}" th:selected="${mtrName == material.name}">양배추</option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
