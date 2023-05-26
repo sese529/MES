@@ -627,12 +627,14 @@
         var productId = selectedOption.val();
         var productPrice = selectedOption.data('price');
         var productSort = selectedOption.data('sort');
+        var productCnt = parseInt($('#regOrderCnt').val().replace(/,/g, ''));
 
         $('#hiddenRegProduct').val(productName);
-        $('#regTableProductName').val(productName);
-        $('#regTableProductCode').val(productId);
+        $('#regTableProductName').text(productName);
+        $('#regTableProductCode').text(productId);
         $('#regTableProductPrice').text(productPrice);
         $('#regTableProductSort').text(productSort);
+        $('#regTableSum').text(productCnt * parseInt(productPrice));
         console.log('productName:', productName);
     });
 
