@@ -10,6 +10,7 @@ import com.B1team.b01.service.LotService;
 import com.B1team.b01.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -42,44 +45,49 @@ public class LotController {
     @GetMapping("/lot")
     public String lotList(Model model) {
         model.addAttribute("lotList", lotService.getLotList());
-
         return "/lot/lot";
     }
 
     //검색
+
     @GetMapping("/lotsearch")
     public String lotSearch(Model model,
                             @RequestParam(required = false) String id,
                             @RequestParam(required = false) String processId,
                             @RequestParam(required = false) String productId,
-                            @RequestParam(required = false) LocalDateTime min,
-                            @RequestParam(required = false) LocalDateTime max){
+                            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate min,
+                            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate max){
+        LocalDateTime smin = null;
+        LocalDateTime smax = null;
+        if(min != null){
+            smin= LocalDateTime.of(min, LocalTime.MIN);
+        }
+
+        if(max != null){
+            smax = LocalDateTime.of(max, LocalTime.MAX);
+        }
 
         if("".equals(id)){
-            id=null;
+            id = null;
         }
-        if("".equals(processId)){
-            processId=null;
+        if("".equals(processId) ){
+            processId = null;
         }
         if("".equals(productId)){
-            productId=null;
-        }
-        if("".equals(min)){
-            min=null;
-        }
-        if("".equals(max)){
-            max=null;
+            productId = null;
         }
 
+        System.out.println("----------------------------------------");
         System.out.println(id);
         System.out.println(processId);
         System.out.println(productId);
         System.out.println(min);
         System.out.println(max);
 
-        List<LOT> slist = lotService.search(id,processId,productId,min,max);
-        System.out.println(slist);
-        model.addAttribute("slist",slist);
+        List<LOT> searchList = lotService.search(id,processId,productId,smin,smax);
+        System.out.println("검색리스트" + searchList);
+        model.addAttribute("searchList",searchList);
+
 
         return "/lot/lot";
     }

@@ -165,7 +165,7 @@
             <!-- End of Topbar -->
 
             <!-- searchbar  -->
-            <form action="/lot/lotsearch" method="POST" class="searchbarForm">
+            <form action="/lot/lotsearch" method="GET" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="productionDataTables1" cellspacing="0">
                         <tr class="searchbarTr3">
@@ -173,36 +173,36 @@
                                 <p>고유번호</p>
                             </td>
                             <td class="searchbarContent2">
-                                <input type="text">
+                                <input type="text" name="id">
                             </td>
                             <td class="searchbarDateTd2">
                                 <p>공정코드</p>
                             </td>
                             <td class="searchbarContent2">
-                                <select class="searchbarSelect" name="state">
+                                <select class="searchbarSelect" name="processId">
                                     <option value="" selected> </option>
-                                    <option>A101</option>
-                                    <option>A102</option>
-                                    <option>A103</option>
-                                    <option>A104</option>
-                                    <option>A105</option>
-                                    <option>A106</option>
-                                    <option>A107</option>
-                                    <option>A108</option>
-                                    <option>A109</option>
-                                    <option>A110</option>
+                                    <option value="A101">A101</option>
+                                    <option value="A102">A102</option>
+                                    <option value="A103">A103</option>
+                                    <option value="A104">A104</option>
+                                    <option value="A105">A105</option>
+                                    <option value="A106">A106</option>
+                                    <option value="A107">A107</option>
+                                    <option value="A108">A108</option>
+                                    <option value="A109">A109</option>
+                                    <option value="A110">A110</option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd2">
                                 <p>제품명</p>
                             </td>
                             <td class="searchbarContent2">
-                                <select class="searchbarSelect" name="state">
+                                <select class="searchbarSelect" name="productId">
                                     <option value="" selected> </option>
-                                    <option>양배추즙</option>
-                                    <option>흑마늘즙</option>
-                                    <option>매실젤리스틱</option>
-                                    <option>석류젤리스틱</option>
+                                    <option value="p21">양배추즙</option>
+                                    <option value="p22">흑마늘즙</option>
+                                    <option value="p23">석류젤리스틱</option>
+                                    <option value="p24">매실젤리스틱</option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd2">
@@ -252,15 +252,21 @@
                                 <td th:if ="${lotList.productId == 'p21'}"> 양배추즙
                                 <td th:if ="${lotList.productId == 'p22'}"> 흑마늘즙
                                 <td th:if ="${lotList.productId == 'p23'}"> 석류젤리스틱
-                                <td th:if ="${lotList.productId == 'p24'}"> 매실젤리스틱
-                                </td>
-
-                                <td th:text="${lotList.process}"></td>
-                                <td th:text="${lotList.date}"></td>
+                                <td th:if ="${lotList.productId == 'p24'}"> 매실젤리스틱</td>
+                                <td th:text="${lotList.processId}"></td>
+                                <td th:text="${#temporals.format(lotList.date, 'yyyy-MM-dd')}"></td>
                                 <td th:text="${lotList.orderId}"></td>
                             </tr>
-                            <tr>
-
+                            <tr th:each="lotList:${searchList}">
+                                <td th:text="${lotList.id}"></td>
+                                <td th:text="${lotList.code}"></td>
+                                <td th:if ="${lotList.productId == 'p21'}"> 양배추즙
+                                <td th:if ="${lotList.productId == 'p22'}"> 흑마늘즙
+                                <td th:if ="${lotList.productId == 'p23'}"> 석류젤리스틱
+                                <td th:if ="${lotList.productId == 'p24'}"> 매실젤리스틱</td>
+                                <td th:text="${lotList.processId}"></td>
+                                <td th:text="${#temporals.format(lotList.date, 'yyyy-MM-dd')}"></td>
+                                <td th:text="${lotList.orderId}"></td>
                             </tr>
                             </tbody>
                         </table>
