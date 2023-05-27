@@ -13740,8 +13740,9 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 .swal-text {
-    color: red;
+    color: rgba(0,0,0,.65);
     font-size: 16px;
+    font-weight: bold;
 }
 
 .swal-button {

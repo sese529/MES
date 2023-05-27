@@ -112,7 +112,7 @@ public class StockService {
 
             porder.setId(generateId("POR", "porder_seq"));
             porder.setAmount(pdto.getAmount());
-            porder.setArrivalDate(pdto.getArrivaldate());
+            porder.setArrivalDate(pdto.getArrivalDate());
             porder.setCnt(pdto.getCnt());
             porder.setCustomerId(pdto.getCustomerId());
             porder.setCustomerName(pdto.getCustomerName());
@@ -120,7 +120,7 @@ public class StockService {
             porder.setMtrName(pdto.getName());
             porder.setMtrPrice(pdto.getPrice());
             porder.setMtrUnit(pdto.getUnit());
-            porder.setOrderDate(pdto.getOrderdate());
+            porder.setOrderDate(pdto.getOrderDate());
             porder.setState(pdto.getState());
 
             porderRepository.save(porder);

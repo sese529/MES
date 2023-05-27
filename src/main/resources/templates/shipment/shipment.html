@@ -157,7 +157,7 @@
             <!-- End of Topbar -->
 
             <!-- searchbar  -->
-            <form action="/production/plansearch" method="POST" class="searchbarForm">
+            <form action="/shipment/shipment" method="GET" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="shipmentDataTable" cellspacing="0">
                         <tr class="searchbarTr3">
@@ -165,32 +165,34 @@
                                 <p>거래처</p>
                             </td>
                             <td class="searchbarContent2">
-                                <select class="searchbarSelect">
-                                    <option value="" selected> </option>
+                                <select class="searchbarSelect" name="customerName">
+                                    <option value="" th:selected="${customerName == '' or customerName == null}">선택</option>
+                                    <option th:each="customer : ${customerList}" th:text="${customer.name}" th:value="${customer.name}" th:selected="${customerName == customer.name}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd2">
                                 <p>품목</p>
                             </td>
                             <td class="searchbarContent2">
-                                <select class="searchbarSelect">
-                                    <option value="" selected> </option>
+                                <select class="searchbarSelect" name="productName">
+                                    <option value="" th:selected="${productName == '' or productName == null}">선택</option>
+                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.name}" th:selected="${productName == product.name}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd2">
                                 <p>수주번호</p>
                             </td>
                             <td class="searchbarContent2">
-                                <input type="text">
+                                <input type="text" name="orderId" th:value="${orderId}">
                             </td>
                             <td class="searchbarDateTd2">
                                 <p>출하일</p>
                             </td>
                             <td class="searchbarContent2">
                                 <div class="searchbarDate2">
-                                    <input type="date" name="min">
+                                    <input type="date" name="startDate" th:value="${startDate}">
                                     <p class="searchbarDateWater">~</p>
-                                    <input type="date" name="max">
+                                    <input type="date" name="endDate" th:value="${endDate}">
                                 </div>
                             </td>
                             <td class="searchButtonTd">
@@ -221,8 +223,12 @@
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
-
+                            <tr th:each="shipment : ${shipmentList}">
+                                <td th:text="${shipment.deliveryDate}"></td>
+                                <td th:text="${shipment.productName}"></td>
+                                <td th:text="${shipment.ea}"></td>
+                                <td th:text="${shipment.orderId}"></td>
+                                <td th:text="${shipment.customerName}"></td>
                             </tr>
                             <tr class="tableBodyTr">
 

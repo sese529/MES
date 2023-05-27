@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,10 @@ public interface WplanRepository extends JpaRepository<Wplan, String> {
     //작업실적 관련 작업계획 조회하기
     @Query("select wp from Wplan wp where wp.state ='완료' and wp.orderId = :orderId")
     List<Wplan> findByWplanState(@Param("orderId") String orderId);
+
+
+    @Query("SELECT w FROM Wplan w WHERE :workDate BETWEEN w.startDate AND w.endDate")
+    List<WplanDto> workDate(@Param("workDate") LocalDateTime workDate);
 
 }
 

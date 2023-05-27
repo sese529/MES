@@ -3,6 +3,7 @@ package com.B1team.b01.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.jdbc.repository.query.Query;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="PORDER")
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor

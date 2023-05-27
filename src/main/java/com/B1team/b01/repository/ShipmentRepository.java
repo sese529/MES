@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.time.LocalDateTime;
 import java.util.List;
 
-///////////////////////////Shipment DB 관련(엔티티, 레포지토리 등)은 필요 없음!!!!
+///////////////////////////Shipment 관련(엔티티, 레포지토리 등)은 필요 없음!!!!
 public interface ShipmentRepository extends JpaRepository<Shipment, String> {
 
     //출하 관리 페이지 리스트 출력
