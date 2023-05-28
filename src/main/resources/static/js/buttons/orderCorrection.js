@@ -81,7 +81,7 @@ editBtn.onclick = function () {
                         } else {
                             clearInterval(interval);
                         }
-                    }, 20);
+                    }, 10);
                 }, 10); // 일정 시간 간격 뒤에 애니메이션 시작
             },
             error: function (error) {
@@ -103,11 +103,11 @@ editClose.onclick = function () {
             clearInterval(interval);
             editModal.style.display = "none";
         }
-    }, 20);
+    }, 10);
 };
 
 window.onclick = function (event) {
-    if (event.target == editModal) {
+    if (event.target == editClose) {
         // 모달 천천히 사라지게 하기
         var opacity = 1;
         var interval = setInterval(function () {
@@ -118,6 +118,6 @@ window.onclick = function (event) {
                 clearInterval(interval);
                 editModal.style.display = "none";
             }
-        }, 20);
+        }, 10);
     }
 };
