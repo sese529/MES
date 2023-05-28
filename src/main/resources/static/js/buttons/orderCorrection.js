@@ -7,9 +7,19 @@ editBtn.onclick = function () {
     var checkedCnt = document.querySelectorAll('input[type="checkbox"]:checked').length;
     console.log('-----------' + checkedCnt);
     if (checkedCnt == 0)
-        alert("수정할 행을 선택해주세요.");
+        Swal.fire({
+            title: "선택 필요",
+            text: "수정할 행을 선택해주세요.",
+            icon: "warning",
+            confirmButtonText: "확인"
+        });
     else if (checkedCnt > 1)
-        alert("1개의 행만 선택해주세요.");
+        Swal.fire({
+            title: "선택 오류",
+            text: "1개의 행만 선택해주세요.",
+            icon: "warning",
+            confirmButtonText: "확인"
+        });
     else {
         var selectedId = document.querySelector('input[type=checkbox][name=selectedIds]:checked').value;
         console.log("checkedId=" + selectedId);
