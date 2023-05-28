@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>발주현황</title>
@@ -177,7 +178,9 @@
                             <td class="searchbarContent">
                                 <select class="searchbarSelect" name="mtrName">
                                     <option value="" th:selected="${mtrName == '' or mtrName == null}">선택</option>
-                                    <option th:each="material : ${materialList}" th:text="${material.name}" th:value="${material.name}" th:selected="${mtrName == material.name}">양배추</option>
+                                    <option th:each="material : ${materialList}" th:text="${material.name}"
+                                            th:value="${material.name}" th:selected="${mtrName == material.name}">양배추
+                                    </option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
@@ -185,8 +188,12 @@
                             </td>
                             <td class="searchbarContent">
                                 <select class="searchbarSelect" name="customerName">
-                                    <option value="" th:selected="${customerName == '' or customerName == null}">선택</option>
-                                    <option th:each="customer : ${customerList}" th:text="${customer.name}" th:value="${customer.name}" th:selected="${customerName == customer.name}">자연농장</option>
+                                    <option value="" th:selected="${customerName == '' or customerName == null}">선택
+                                    </option>
+                                    <option th:each="customer : ${customerList}" th:text="${customer.name}"
+                                            th:value="${customer.name}" th:selected="${customerName == customer.name}">
+                                        자연농장
+                                    </option>
                                 </select>
                             </td>
                             <td class="searchButtonTd"></td>
@@ -254,8 +261,12 @@
                             <tr th:each="porder : ${porderList}">
                                 <td th:text="${porder.orderDate}">2022-05-01 11:30</td>
                                 <td th:text="${porder.mtrName}">양배추</td>
-                                <td th:text="${porder.mtrUnit == 'g' && porder.cnt > 1000 ? (porder.cnt > 1000000 && porder.cnt % 10000 == 0 ? porder.cnt / 1000000 : porder.cnt / 1000) : porder.cnt}">1</td>
-                                <td th:text="${porder.mtrUnit == 'g' && porder.cnt > 1000 ? (porder.cnt > 1000000 && porder.cnt % 10000 == 0 ? 'ton' : 'kg') : porder.mtrUnit}">ton</td>
+                                <td th:text="${porder.mtrUnit == 'g' && porder.cnt > 1000 ? (porder.cnt > 1000000 && porder.cnt % 10000 == 0 ? porder.cnt / 1000000 : porder.cnt / 1000) : porder.cnt}">
+                                    1
+                                </td>
+                                <td th:text="${porder.mtrUnit == 'g' && porder.cnt > 1000 ? (porder.cnt > 1000000 && porder.cnt % 10000 == 0 ? 'ton' : 'kg') : porder.mtrUnit}">
+                                    ton
+                                </td>
                                 <td th:text="${porder.amount}">8,900,000</td>
                                 <td th:text="${porder.customerName}">자연농장</td>
                                 <td th:text="${porder.state}">완료</td>
@@ -269,17 +280,6 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
@@ -290,8 +290,6 @@
 <!-- End of Page Wrapper -->
 
 <!-- 작성 스크립트-->
-<script src="/js/orderRegistration.js"></script>
-<script src="/js/orderCorrection.js"></script>
 <script src="/js/excel/porder-statusExcel.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -309,9 +307,5 @@
 <!-- Page level plugins -->
 <script src="/js/Chart.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="/js/monthlyChart.js"></script>
-<script src="/js/dailyChart.js"></script>
 </body>
-
 </html>

@@ -233,7 +233,6 @@ table {
 .tableTitle {
     background-color: #f1f3f9;
     text-align: center;
-    font-size: bold;
 }
 
 .tableBody {
@@ -1799,7 +1798,8 @@ pre code {
 
 .table {
     width: 100%;
-    color: #858796
+    color: #858796;
+    margin: 0;
 }
 
 .table td,
@@ -3040,6 +3040,9 @@ textarea.form-control.is-invalid {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .searchbarContent input {
@@ -3047,6 +3050,9 @@ textarea.form-control.is-invalid {
     height: 40px;
     border: 2px solid #6a84ab;
     border-radius: 10px;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .searchbarContent2 {
@@ -3054,6 +3060,9 @@ textarea.form-control.is-invalid {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .searchbarContent2 input {
@@ -3061,6 +3070,9 @@ textarea.form-control.is-invalid {
     height: 40px;
     border: 2px solid #6a84ab;
     border-radius: 10px;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .searchbarSelect {
@@ -3280,6 +3292,9 @@ textarea.form-control.is-invalid {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .regSearchbarContent input {
