@@ -68,11 +68,11 @@ function createDateTable(container, year, month) {
                 td.addEventListener("click", function () {
                     var clickedDate = new Date(year, month, parseInt(this.innerHTML));
                     // SweetAlert 팝업
-                    swal({
+                    Swal.fire({
                         title: "일일 재공 & capa 현황",
-                        text: "제품명: 1000ea\n제품명: 100ea\n재료명: 100ea\n작업 수량: 100Box",
+                        html: "제품명: 1000ea<br>제품명: 100ea<br>재료명: 100ea<br>작업 수량: 100Box",
                         icon: "info",
-                        button: "확인",
+                        confirmButtonText: "확인"
                     });
                 });
 

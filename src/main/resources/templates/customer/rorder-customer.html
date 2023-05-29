@@ -7,7 +7,8 @@
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>수주 거래처 현황</title>
@@ -210,12 +211,18 @@
                                                 <p>사업장<br>소재지</p>
                                             </td>
                                             <td class="customerRegSearchbarDateContent2">
-                                                <input type="text" id="sample6_postcode" class="customerInput1" placeholder="우편번호" readonly/>
-                                                <button type="button" class="customerInput1Button" onclick="findAddr();">
-                                                    <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #ffffff"></i>
+                                                <input type="text" id="sample6_postcode" class="customerInput1"
+                                                       placeholder="우편번호" readonly/>
+                                                <button type="button" class="customerInput1Button"
+                                                        onclick="findAddr();">
+                                                    <i class="fa-solid fa-magnifying-glass fa-lg"
+                                                       style="color: #ffffff"></i>
                                                 </button>
-                                                <input type="text" id="sample6_address" name="sample6_address" class="customerInput2" placeholder="도로명 주소" readonly/>
-                                                <input type="text" id="sample6_detailAddress" name="sample6_detailAddress" class="customerInput3" placeholder="상세 주소">
+                                                <input type="text" id="sample6_address" name="sample6_address"
+                                                       class="customerInput2" placeholder="도로명 주소" readonly/>
+                                                <input type="text" id="sample6_detailAddress"
+                                                       name="sample6_detailAddress" class="customerInput3"
+                                                       placeholder="상세 주소">
                                             </td>
                                         </tr>
                                     </table>
@@ -237,7 +244,7 @@
             <form action="/customer/rordersearch" method="post" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable" cellspacing="0">
-                        <tr class="searchbarTr2">
+                        <tr class="searchbarTr3">
                             <td class="searchbarDateTd">
                                 <p>업체</p>
                             </td>
@@ -310,17 +317,6 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
@@ -342,10 +338,6 @@
     <!-- Page level plugins -->
     <script src="/js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/js/monthlyChart.js"></script>
-    <script src="/js/dailyChart.js"></script>
 </div>
 </body>
-
 </html>

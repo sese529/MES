@@ -111,7 +111,7 @@
             </a>
             <div id="collapseFour" class="collapse" aria-labelledby="HeadingFour" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/item/stock">· 제품 재고 현황</a>
+                    <a class="collapse-item" href="/item/product">· 제품 재고 현황</a>
                     <a class="collapse-item" href="/item/bom">· BOM 현황</a>
                 </div>
             </div>
@@ -180,7 +180,7 @@
                             </td>
                             <td class="searchbarContent2">
                                 <select class="searchbarSelect" name="processId">
-                                    <option value="" selected> </option>
+                                    <option value="" selected></option>
                                     <option value="A101">A101</option>
                                     <option value="A102">A102</option>
                                     <option value="A103">A103</option>
@@ -198,7 +198,7 @@
                             </td>
                             <td class="searchbarContent2">
                                 <select class="searchbarSelect" name="productId">
-                                    <option value="" selected> </option>
+                                    <option value="" selected></option>
                                     <option value="p21">양배추즙</option>
                                     <option value="p22">흑마늘즙</option>
                                     <option value="p23">석류젤리스틱</option>
@@ -249,10 +249,10 @@
                             <tr th:each="lotList:${lotList}">
                                 <td th:text="${lotList.id}"></td>
                                 <td th:text="${lotList.code}"></td>
-                                <td th:if ="${lotList.productId == 'p21'}"> 양배추즙
-                                <td th:if ="${lotList.productId == 'p22'}"> 흑마늘즙
-                                <td th:if ="${lotList.productId == 'p23'}"> 석류젤리스틱
-                                <td th:if ="${lotList.productId == 'p24'}"> 매실젤리스틱</td>
+                                <td th:if="${lotList.productId == 'p21'}"> 양배추즙
+                                <td th:if="${lotList.productId == 'p22'}"> 흑마늘즙
+                                <td th:if="${lotList.productId == 'p23'}"> 석류젤리스틱
+                                <td th:if="${lotList.productId == 'p24'}"> 매실젤리스틱</td>
                                 <td th:text="${lotList.processId}"></td>
                                 <td th:text="${#temporals.format(lotList.date, 'yyyy-MM-dd')}"></td>
                                 <td th:text="${lotList.orderId}"></td>
@@ -260,10 +260,10 @@
                             <tr th:each="lotList:${searchList}">
                                 <td th:text="${lotList.id}"></td>
                                 <td th:text="${lotList.code}"></td>
-                                <td th:if ="${lotList.productId == 'p21'}"> 양배추즙
-                                <td th:if ="${lotList.productId == 'p22'}"> 흑마늘즙
-                                <td th:if ="${lotList.productId == 'p23'}"> 석류젤리스틱
-                                <td th:if ="${lotList.productId == 'p24'}"> 매실젤리스틱</td>
+                                <td th:if="${lotList.productId == 'p21'}"> 양배추즙
+                                <td th:if="${lotList.productId == 'p22'}"> 흑마늘즙
+                                <td th:if="${lotList.productId == 'p23'}"> 석류젤리스틱
+                                <td th:if="${lotList.productId == 'p24'}"> 매실젤리스틱</td>
                                 <td th:text="${lotList.processId}"></td>
                                 <td th:text="${#temporals.format(lotList.date, 'yyyy-MM-dd  HH:mm')}"></td>
                                 <td th:text="${lotList.orderId}"></td>
@@ -276,23 +276,10 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
     <!-- 작성 스크립트 -->
-    <script src="/js/orderRegistration.js"></script>
-    <script src="/js/orderCorrection.js"></script>
     <script src="/js/excel/lotExcel.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -310,11 +297,6 @@
 
     <!-- Page level plugins -->
     <script src="/js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/js/monthlyChart.js"></script>
-    <script src="/js/dailyChart.js"></script>
 </div>
 </body>
-
 </html>

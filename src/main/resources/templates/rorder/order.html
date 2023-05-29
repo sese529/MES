@@ -6,7 +6,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <!--  swal  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>수주 관리</title>
@@ -174,8 +177,9 @@
                                                 <p>수주일</p>
                                             </td>
                                             <td class="regSearchbarContent">
-<!--                                                <input type="text" id="regOrderCurrentTimeInput" readonly/>-->
-                                                <input type="datetime-local" id="regOrderCurrentTimeInput" name="orderDate">
+                                                <!--                                                <input type="text" id="regOrderCurrentTimeInput" readonly/>-->
+                                                <input type="datetime-local" id="regOrderCurrentTimeInput"
+                                                       name="orderDate">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>수주 번호</p>
@@ -188,9 +192,12 @@
                                             </td>
                                             <td class="regSearchbarContent">
                                                 <select class="regSearchbarSelect" name="customerId" id="regCustomerId">
-                                                    <option th:each="customer : ${customerList}" th:text="${customer.name}" th:value="${customer.id}"></option>
+                                                    <option th:each="customer : ${customerList}"
+                                                            th:text="${customer.name}"
+                                                            th:value="${customer.id}"></option>
                                                 </select>
-                                                <input id="hiddenRegCustomer" type="hidden" th:value="${customerList.get(0).name}">
+                                                <input id="hiddenRegCustomer" type="hidden"
+                                                       th:value="${customerList.get(0).name}">
                                             </td>
                                             <td class="regSearchbarButton">
                                                 <!-- 공백 -->
@@ -202,9 +209,11 @@
                                             </td>
                                             <td class="regSearchbarContent">
                                                 <select class="regSearchbarSelect" name="productId" id="regProductId">
-                                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.id}"></option>
+                                                    <option th:each="product : ${productList}" th:text="${product.name}"
+                                                            th:value="${product.id}"></option>
                                                 </select>
-                                                <input id="hiddenRegProduct" type="hidden" th:value="${productList.get(0).name}">
+                                                <input id="hiddenRegProduct" type="hidden"
+                                                       th:value="${productList.get(0).name}">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>수주량</p>
@@ -219,7 +228,8 @@
                                                 <input type="text" id="regDeliveryDate" name="deliveryDate" readonly/>
                                             </td>
                                             <td class="regSearchbarButton">
-                                                <button type="button" class="regSearchbarPreButton" id="regSearchbarPreButton">
+                                                <button type="button" class="regSearchbarPreButton"
+                                                        id="regSearchbarPreButton">
                                                     <p class="regSearchbarPreButtonP">예측</p>
                                                 </button>
                                             </td>
@@ -232,7 +242,8 @@
                             <!-- regCardBody -->
                             <div class="regCardBody">
                                 <div class="table-responsive">
-                                    <table class="table table-borderless" id="orderDataTables1" width="100%" cellspacing="0">
+                                    <table class="table table-borderless" id="orderDataTables1" width="100%"
+                                           cellspacing="0">
                                         <thead class="tableTitle">
                                         <tr>
                                             <th>품목명</th>
@@ -295,10 +306,14 @@
                                                 <p>거래처명</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <select class="regSearchbarSelect" name="customerId" id="editCustomerId">
-                                                    <option th:each="customer : ${customerList}" th:text="${customer.name}" th:value="${customer.id}"></option>
+                                                <select class="regSearchbarSelect" name="customerId"
+                                                        id="editCustomerId">
+                                                    <option th:each="customer : ${customerList}"
+                                                            th:text="${customer.name}"
+                                                            th:value="${customer.id}"></option>
                                                 </select>
-                                                <input id="hiddenEditCustomer" type="hidden" th:value="${customerList.get(0).name}">
+                                                <input id="hiddenEditCustomer" type="hidden"
+                                                       th:value="${customerList.get(0).name}">
                                             </td>
                                             <td class="regSearchbarButton">
                                                 <!-- 공백 -->
@@ -310,9 +325,11 @@
                                             </td>
                                             <td class="regSearchbarContent">
                                                 <select class="regSearchbarSelect" id="editProductId">
-                                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.id}"></option>
+                                                    <option th:each="product : ${productList}" th:text="${product.name}"
+                                                            th:value="${product.id}"></option>
                                                 </select>
-                                                <input id="hiddenEditProduct" type="hidden" th:value="${productList.get(0).name}">
+                                                <input id="hiddenEditProduct" type="hidden"
+                                                       th:value="${productList.get(0).name}">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>수주량</p>
@@ -340,7 +357,8 @@
                             <!-- regCardBody -->
                             <div class="regCardBody">
                                 <div class="table-responsive">
-                                    <table class="table table-borderless" id="orderDataTable3" width="100%" cellspacing="0">
+                                    <table class="table table-borderless" id="orderDataTable3" width="100%"
+                                           cellspacing="0">
                                         <thead class="tableTitle">
                                         <tr>
                                             <th>품목명</th>
@@ -413,8 +431,11 @@
                             </td>
                             <td class="searchbarContent">
                                 <select class="searchbarSelect" name="customerName">
-                                    <option value="" th:selected="${customerName == '' or customerName == null}">선택</option>
-                                    <option th:each="customer : ${customerList}" th:text="${customer.name}" th:value="${customer.name}" th:selected="${customerName == customer.name}"></option>
+                                    <option value="" th:selected="${customerName == '' or customerName == null}">선택
+                                    </option>
+                                    <option th:each="customer : ${customerList}" th:text="${customer.name}"
+                                            th:value="${customer.name}"
+                                            th:selected="${customerName == customer.name}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
@@ -422,8 +443,11 @@
                             </td>
                             <td class="searchbarContent">
                                 <select class="searchbarSelect" name="productName">
-                                    <option value="" th:selected="${productName == '' or productName == null}">선택</option>
-                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.name}" th:selected="${productName == product.name}"></option>
+                                    <option value="" th:selected="${productName == '' or productName == null}">선택
+                                    </option>
+                                    <option th:each="product : ${productList}" th:text="${product.name}"
+                                            th:value="${product.name}"
+                                            th:selected="${productName == product.name}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
@@ -472,7 +496,8 @@
                             <form id="confirmedForm" action="/rorder/confirmed" method="post">
                                 <tbody class="tableBody">
                                 <tr th:each="rorder : ${rorderList}">
-                                    <td><input type="checkbox" th:value="${rorder.id}" name="selectedIds" th:if="${rorder.state == '진행전'}">
+                                    <td><input type="checkbox" th:value="${rorder.id}" name="selectedIds"
+                                               th:if="${rorder.state == '진행전'}">
                                         <input type="checkbox" th:if="${rorder.state != '진행전'}" disabled></td>
                                     <td th:text="${rorder.date}">2022-05-01 11:30</td>
                                     <td th:text="${rorder.id}">G215483126</td>
@@ -493,17 +518,6 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
@@ -536,9 +550,6 @@
 <!-- Page level plugins -->
 <script src="/js/Chart.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="/js/monthlyChart.js"></script>
-<script src="/js/dailyChart.js"></script>
 <script>
     function simulationFuntion(orderTimeInput, productId, orderCnt, deliveryDateId) {
 
@@ -548,9 +559,9 @@
         var orderCnt = $(orderCnt).val();
         var numberCheck = /^[0-9]+$/;
 
-        if(orderCnt == '')
+        if (orderCnt == '')
             alert("수주량을 입력해주세요.");
-        else if(!numberCheck.test(orderCnt))
+        else if (!numberCheck.test(orderCnt))
             alert("수주량은 숫자만 입력 가능합니다.");
         else {
             // AJAX 요청 보내기
@@ -595,7 +606,7 @@
 
     ////hidden 등록 input
     // 선택된 옵션의 customer.Name 값을 hiddenRegCustomer에 설정
-    $('#regCustomerId').on('change', function() {
+    $('#regCustomerId').on('change', function () {
         var selectedOption = $(this).find('option:selected');
         var customerName = selectedOption.text();
         $('#hiddenRegCustomer').val(customerName);
@@ -603,7 +614,7 @@
     });
 
     // 선택된 옵션의 productName 값을 hiddenRegProduct 설정
-    $('#editProductId').on('change', function() {
+    $('#editProductId').on('change', function () {
         var selectedOption = $(this).find('option:selected');
         var productName = selectedOption.text();
         $('#hiddenEditProduct').val(productName);
@@ -612,7 +623,7 @@
 
     ////hidden 수정 input
     // 선택된 옵션의 customer.Name 값을 hiddenRegCustomer에 설정
-    $('#editCustomerId').on('change', function() {
+    $('#editCustomerId').on('change', function () {
         var selectedOption = $(this).find('option:selected');
         var customerName = selectedOption.text();
         $('#hiddenEditCustomer').val(customerName);
@@ -620,7 +631,7 @@
     });
 
     // 선택된 옵션의 productName 값을 hiddenRegProduct 설정
-    $('#regProductId').on('change', function() {
+    $('#regProductId').on('change', function () {
         var selectedOption = $(this).find('option:selected');
         var productName = selectedOption.text();
         $('#hiddenRegProduct').val(productName);
@@ -675,7 +686,7 @@
         var deliveryDate = $(deliveryDateInput).val();
 
         //예측 버튼 비었는지 확인
-        if(deliveryDate == '')
+        if (deliveryDate == '')
             alert("예측 버튼을 눌러주세요");
         else {
             // AJAX 요청 보내기
@@ -708,7 +719,5 @@
         }
     }
 </script>
-
 </body>
-
 </html>

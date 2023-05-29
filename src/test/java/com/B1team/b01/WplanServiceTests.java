@@ -56,10 +56,6 @@ public class WplanServiceTests {
     public void test() {
 
         LocalDateTime d = LocalDateTime.of(LocalDate.parse("2023-05-26"), LocalTime.parse("23:59:59"));
-//        LocalDateTime d = LocalDateTime.parse("2023-05-29 23:59:59",
-//                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-
-//        LocalDateTime d = LocalDateTime.parse("2023-05-29 23:59:59");
 
         System.out.println(wplanService.getWplansByWorkDate(d) +"dd2하하");
 
