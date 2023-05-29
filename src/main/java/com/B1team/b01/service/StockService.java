@@ -131,8 +131,8 @@ public class StockService {
             stockListDto.setSort(row[4].toString());
             stockListDto.setLocation(row[5].toString());
 
-            for(int i=0; i <= 5;i++){
-                System.out.println(i+ ":" +row[i]);
+            for (int i = 0; i <= 5; i++) {
+                System.out.println(i + ":" + row[i]);
             }
 
             stockListDtoList.add(stockListDto);
@@ -142,20 +142,20 @@ public class StockService {
     }
 
     // 재고 update
-    public void updateStockEa(String mtrId,double stockEa){
+    public void updateStockEa(String mtrId, double stockEa) {
         Stock stock = stockRepository.findById(mtrId).orElse(null);
         if (stock != null) {
             stock.setEa((long) stockEa);
             stockRepository.save(stock);
         }
+    }
 
-
-        //제품 재고 업데이트
-        public void updateProStockEa(String productId,Long stockEa){
-            Stock prStock = stockRepository.findById(mtrId).orElse(null);
-            if (prStock != null) {
-                prStock.setEa((long) stockEa);
-                stockRepository.save(prStock);
-            }
+    // 제품 재고 업데이트
+    public void updateProStockEa(String productId, Long stockEa) {
+        Stock prStock = stockRepository.findById(productId).orElse(null);
+        if (prStock != null) {
+            prStock.setEa(stockEa);
+            stockRepository.save(prStock);
+        }
     }
 }
