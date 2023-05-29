@@ -36,14 +36,18 @@ public class LotController {
     @Autowired
     private ProductionService productionService;
     @Autowired
+    private MprocessService mprocessService;
+    @Autowired
     private ProductService productService;
+    @Autowired
+    private WperformService wperformService;
     @Autowired
     private WplanService wplanService;
 
     @Autowired
     private EntityManagerFactory entityManagerFactory;
 
-
+/*
     //wplan 임시용
     @GetMapping("/production/production-plan")
     public String getWplanList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
@@ -102,14 +106,33 @@ public class LotController {
 
         return "production/production-plan";
     }
+    //worder 임시용
+    @GetMapping("/production/production-order")
+    public String getOrderList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        List<Worder> wlist = productionService.getAllWorder();
+        model.addAttribute("wlist", wlist);
 
+        List<Product> plist = productService.getAllProduct();
+        model.addAttribute("plist",plist);
 
+        List<Mprocess> mlist = mprocessService.getAllProcess();
+        model.addAttribute("mlist",mlist);
 
+        return "production/production-order";
+    }
+    //wperform 임시용
+    @GetMapping("/production/production-performance")
+    public String getWperformList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        List<Wperform> wlist = wperformService.getAllWperform();
+        model.addAttribute("wlist", wlist);
 
+        List<Product> plist = productService.getAllProduct();
+        model.addAttribute("plist",plist);
 
+        return "production/production-performance";
+    }
 
-
-
+*/
 
 
     //LOT리스트 표출
@@ -120,7 +143,6 @@ public class LotController {
     }
 
     //검색
-
     @GetMapping("/lotsearch")
     public String lotSearch(Model model,
                             @RequestParam(required = false) String id,

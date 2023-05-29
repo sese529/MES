@@ -218,15 +218,15 @@
                                 <td th:text="${wlist.productId}"></td>
                                 <td th:text="${wlist.orderId}"></td>
                                 <td th:text="${wlist.cnt}"></td>
-                                <td th:text="${wlist.startDate}"></td>
-                                <td th:text="${wlist.endDate}"></td>
+                                <td th:text="${#temporals.format(wlist.startDate, 'yyyy-MM-dd HH:mm')}"></td>
+                                <td th:text="${#temporals.format(wlist.endDate, 'yyyy-MM-dd HH:mm')}"></td>
                             </tr>
                             <tr th:each="wlist: ${searchlist}">
                                 <td th:text="${wlist.productId}"></td>
                                 <td th:text="${wlist.orderId}"></td>
                                 <td th:text="${wlist.cnt}"></td>
-                                <td th:text="${wlist.startDate}"></td>
-                                <td th:text="${wlist.endDate}"></td>
+                                <td th:text="${#temporals.format(wlist.startDate, 'yyyy-MM-dd HH:mm')}"></td>
+                                <td th:text="${#temporals.format(wlist.endDate, 'yyyy-MM-dd HH:mm')}"></td>
                             </tr>
                             </tbody>
                         </table>

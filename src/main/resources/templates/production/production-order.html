@@ -228,14 +228,14 @@
                                 <td th:text="${wlist.processId}"></td>
                                 <td th:text="${wlist.wplanId}"></td>
                                 <td th:text="${wlist.facilityId}"></td>
-                                <td th:text="${wlist.finishDate}"></td>
+                                <td th:text="${#temporals.format(wlist.finishDate, 'yyyy-MM-dd HH:mm')}"></td>
                             </tr>
                             <tr th:each="wlist: ${searchlist}">
                                 <td th:text="${wlist.productId}"></td>
                                 <td th:text="${wlist.processId}"></td>
                                 <td th:text="${wlist.wplanId}"></td>
                                 <td th:text="${wlist.facilityId}"></td>
-                                <td th:text="${wlist.finishDate}"></td>
+                                <td th:text="${#temporals.format(wlist.finishDate, 'yyyy-MM-dd HH:mm')}"></td>
                             </tr>
                             </tbody>
                         </table>
