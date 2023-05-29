@@ -16,9 +16,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +32,11 @@ public class WplanService {
     private final StockRepository stockRepository;
 
     @Autowired
-    private MprocessService mprocessService;
+    private final MprocessService mprocessService;
+    @Autowired
+    private final ProductionService productionService;
+
+    private Wplan wplan;
 
 
     private final LocalDateTime ifNow = LocalDateTime.now();
@@ -60,7 +62,6 @@ public class WplanService {
             WplanDto wplanDto = new WplanDto();
             List<WorderDto> worderDtos = mprocessService.calculateWorderDate(materialReadyDate, productId, orderCnt);
 
-
             wplanDto.setId(generateWplanId()); //문자열 시퀀스
             wplanDto.setCnt(productCnt(productId, orderId)); //생산 수량
             wplanDto.setStartDate(worderDtos.get(0).getStartDate()); //자재 준비 완료 시간
@@ -75,7 +76,6 @@ public class WplanService {
             } else {
                 wplanDto.setState("완료");
             }//계획진행상태
-            System.out.println("wplanDto----------" + wplanDto.toEntity());
             wplanRepository.save(wplanDto.toEntity());
         }
     }
@@ -145,5 +145,28 @@ public class WplanService {
 
             return resultDateTime;
         }
+    }
+
+    //계획상태 업데이트(*)
+    public List<LocalDateTime> updateState() {
+
+        List<LocalDateTime> startTime = wplanRepository.selectStartTime();
+        List<LocalDateTime> endTime = wplanRepository.selectEndTime();
+
+        LocalDateTime currentTime;
+        currentTime = LocalDateTime.now();
+
+        for (int i = 0; i < startTime.size(); i++) {
+            if (currentTime.isBefore(startTime.get(i))) {
+                wplanRepository.updateWaitState(startTime.get(i));
+
+            } else if (currentTime.isAfter(endTime.get(i))) {
+                wplanRepository.updateEndState(endTime.get(i));
+            } else {
+                wplanRepository.updateIngState(endTime.get(i));
+            }
+        }
+
+        return startTime;
     }
 }
