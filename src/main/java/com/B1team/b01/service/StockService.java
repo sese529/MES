@@ -101,28 +101,13 @@ public class StockService {
 
             // 기존 재고 업데이트 로직 (기존 재고량에서 주문량만큼 수량 감소)
             remainStock.setEa(dto.getStockEa());
-//            existingStock.setUnit(dto.getStockUnit());
+            stockRepository.save(remainStock);
 
-//            stockRepository.save(remainStock);
         } else {
-            //발주 계산
-
-            // 새로운 발주 등록 로직
+            // 새로운 발주 등록 insert
             Porder porder = new Porder();
 
             porder.setId(generateId("POR", "porder_seq"));
-            porder.setAmount(pdto.getAmount());
-            porder.setArrivalDate(pdto.getArrivalDate());
-            porder.setCnt(pdto.getCnt());
-            porder.setCustomerId(pdto.getCustomerId());
-            porder.setCustomerName(pdto.getCustomerName());
-            porder.setMtrId(pdto.getMtrId());
-            porder.setMtrName(pdto.getName());
-            porder.setMtrPrice(pdto.getPrice());
-            porder.setMtrUnit(pdto.getUnit());
-            porder.setOrderDate(pdto.getOrderDate());
-            porder.setState(pdto.getState());
-
             porderRepository.save(porder);
         }
     }
@@ -163,5 +148,14 @@ public class StockService {
             stock.setEa((long) stockEa);
             stockRepository.save(stock);
         }
+
+
+        //제품 재고 업데이트
+        public void updateProStockEa(String productId,Long stockEa){
+            Stock prStock = stockRepository.findById(mtrId).orElse(null);
+            if (prStock != null) {
+                prStock.setEa((long) stockEa);
+                stockRepository.save(prStock);
+            }
     }
 }
