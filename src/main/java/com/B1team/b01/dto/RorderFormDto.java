@@ -42,8 +42,9 @@ public class RorderFormDto {
                          String productId,
                          String productName,
                          String orderCnt,
+                         String orderPrice,
                          String deliveryDate) {
-        this(orderDate, customerId, customerName, productId, productName, orderCnt, deliveryDate);
+        this(orderDate, customerId, customerName, productId, productName, orderCnt, orderPrice, deliveryDate);
         setId(rorderId);
     }
 
@@ -53,6 +54,7 @@ public class RorderFormDto {
                          String productId,
                          String productName,
                          String orderCnt,
+                         String orderPrice,
                          String deliveryDate) {
         DateTimeFormatter orderFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.ENGLISH);
         DateTimeFormatter deliveryFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd a HH:mm");
@@ -65,7 +67,7 @@ public class RorderFormDto {
         setProductName(productName);
         setCnt(Long.parseLong(orderCnt));
         setState("미확정");
-        setPrice(0L);   //TODO:나중에 price 뷰에서 계산해서 받기
+        setPrice(Long.parseLong(orderPrice));   //TODO:나중에 price 뷰에서 계산해서 받기
     }
 
     //RorderFormDto를 Order 엔티티로 변환해주는 메소드

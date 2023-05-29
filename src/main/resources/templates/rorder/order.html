@@ -277,6 +277,7 @@
                             <!-- regSearchbar -->
                             <form id="editform">
                                 <div class="regSearchbar">
+                                    <input type="hidden" id="editPrice">
                                     <table class="table table-borderless" id="orderDataTable2" width="100%"
                                            cellspacing="0">
                                         <tr class="regSearchbarTr1">
@@ -628,14 +629,29 @@
         var productPrice = selectedOption.data('price');
         var productSort = selectedOption.data('sort');
         var productCnt = parseInt($('#regOrderCnt').val().replace(/,/g, ''));
+        if(isNaN(productCnt))
+            productCnt = 0;
 
         $('#hiddenRegProduct').val(productName);
-        $('#regTableProductName').text(productName);
-        $('#regTableProductCode').text(productId);
-        $('#regTableProductPrice').text(productPrice);
-        $('#regTableProductSort').text(productSort);
+        $('#regTableProductName').text(productName);    //테이블 품목 이름 변동
+        $('#regTableProductCode').text(productId);      //테이블 품목 코드 변동
+        $('#regTableProductPrice').text(productPrice);  //테이블 품목 단가(원) 변동
+        $('#regTableProductSort').text(productSort);    //테이블 품목 분류 변동
         $('#regTableSum').text(productCnt * parseInt(productPrice));
         console.log('productName:', productName);
+    });
+
+    // 수주량 변동에 따라 테이블에 값 지정
+    $('#regOrderCnt').on('input', function () {
+        var selectedOption = $('#regProductId option:selected');
+        var productPrice = selectedOption.data('price');
+        var productCnt = parseInt($('#regOrderCnt').val().replace(/,/g, ''));
+        if(isNaN(productCnt))
+            productCnt = 0;
+
+        $('#regPrice').val(productCnt * parseInt(productPrice));
+        $('#regOrderCnt').text(productCnt);    //테이블 수량 변동
+        $('#regTableSum').text(productCnt * parseInt(productPrice));    //총 금액 변동
     });
 
     //수주 등록 버튼 이벤트 핸들러
@@ -648,6 +664,7 @@
             '#regProductId',
             '#hiddenRegProduct',
             '#regOrderCnt',
+            '#regPrice',
             '#regDeliveryDate',
             '/rorder/reg');
     });
@@ -661,6 +678,7 @@
             '#editProductId',
             '#hiddenEditProduct',
             '#editCnt',
+            '#editPrice',
             '#editDeliveryDate',
             '/rorder/edit');
     });
@@ -673,6 +691,7 @@
                       productIdInput,
                       productNameInput,
                       orderCntInput,
+                      orderPriceInput,
                       deliveryDateInput,
                       requestUrl) {
         // form에서 필요한 값 가져오기
@@ -683,6 +702,7 @@
         var productId = $(productIdInput).val();
         var productName = $(productNameInput).val();
         var orderCnt = $(orderCntInput).val();
+        var orderPrice = $(orderPriceInput).val();
         var deliveryDate = $(deliveryDateInput).val();
 
         //예측 버튼 비었는지 확인
@@ -701,6 +721,7 @@
                     productId: productId,
                     productName: productName,
                     orderCnt: orderCnt,
+                    orderPrice: orderPrice,
                     deliveryDate: deliveryDate
                 },
                 success: function (response) {
@@ -709,6 +730,7 @@
                     console.log('orderDate:', orderDate);
                     console.log('productId:', productId);
                     console.log('orderCnt:', orderCnt);
+                    console.log('orderPrice:', orderPrice);
                     console.log('deliveryDate:', deliveryDate);
                 },
                 error: function (error) {
