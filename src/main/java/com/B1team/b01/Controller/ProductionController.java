@@ -53,7 +53,7 @@ public class ProductionController {
     @GetMapping("/production/production-plan")
     public String getWplanList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 
-        model.addAttribute("updateState",wplanService.updateState()); //작업계획 업데이트 메소드
+        wplanService.updateState(); //작업계획 업데이트 메소드
 
         List<Wplan> wlist = productionService.getAllWplan();
         model.addAttribute("wlist", wlist);

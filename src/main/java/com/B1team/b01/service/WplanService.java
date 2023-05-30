@@ -150,6 +150,7 @@ public class WplanService {
     }
 
     //계획상태 업데이트(*)
+    @Transactional
     public List<LocalDateTime> updateState() {
 
         List<LocalDateTime> startTime = wplanRepository.selectStartTime();
