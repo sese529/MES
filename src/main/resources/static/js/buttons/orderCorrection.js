@@ -42,6 +42,9 @@ editBtn.onclick = function () {
                     }
                 }
 
+                var editInfoCustomerName = response.editInfoCustomerName;
+                document.getElementById('hiddenEditCustomer').value = editInfoCustomerName;
+
                 //품목 설정
                 var editInfoProductId = response.editInfoProductId;
                 var productList = document.getElementById('editProductId');
@@ -53,9 +56,16 @@ editBtn.onclick = function () {
                     }
                 }
 
+                var editInfoProductName = response.editInfoProductName;
+                document.getElementById('hiddenEditProduct').value = editInfoProductName;
+
                 //수주량 설정
                 var editInfoCnt = response.editInfoCnt;
-                document.getElementById('editCnt').value = editInfoCnt;
+                document.getElementById('editOrderCnt').value = editInfoCnt;
+
+                //수주 가격 설정
+                var editInfoPrice = response.editInfoPrice;
+                document.getElementById('editPrice').value = editInfoPrice;
 
                 //납품예정일 설정
                 var editInfoDeadline = response.editInfoDeadline;

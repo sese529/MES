@@ -93,8 +93,9 @@ public class RorderController {
                            String productId,
                            String productName,
                            String orderCnt,
+                           String orderPrice,
                            String deliveryDate) {
-        RorderFormDto dto = new RorderFormDto(orderDate, customerId, customerName, productId, productName, orderCnt, deliveryDate);
+        RorderFormDto dto = new RorderFormDto(orderDate, customerId, customerName, productId, productName, orderCnt, orderPrice, deliveryDate);
 //        System.out.println("입력 정보=" + dto);
         rorderService.addRorder(dto);
 
@@ -113,8 +114,9 @@ public class RorderController {
                                        String productId,
                                        String productName,
                                        String orderCnt,
+                                       String orderPrice,
                                        String deliveryDate) {
-        RorderFormDto dto = new RorderFormDto(rorderId, orderDate, customerId, customerName, productId, productName, orderCnt, deliveryDate);
+        RorderFormDto dto = new RorderFormDto(rorderId, orderDate, customerId, customerName, productId, productName, orderCnt, orderPrice, deliveryDate);
 //        System.out.println("입력 정보=" + dto);
         rorderService.editRorder(dto);
 
@@ -146,8 +148,11 @@ public class RorderController {
         response.put("editInfoDate", editInfo.getDate());
         response.put("editInfoId", editInfo.getId());
         response.put("editInfoCustomerId", editInfo.getCustomerId());
+        response.put("editInfoCustomerName", editInfo.getCustomerName());
         response.put("editInfoProductId", editInfo.getProductId());
+        response.put("editInfoProductName", editInfo.getProductName());
         response.put("editInfoCnt", String.valueOf(editInfo.getCnt()));
+        response.put("editInfoPrice", String.valueOf(editInfo.getPrice()));
         response.put("editInfoDeadline", editInfo.getDeadline());
         response.put("redirectUrl", "/rorder/order");
         return ResponseEntity.ok(response);

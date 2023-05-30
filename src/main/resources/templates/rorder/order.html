@@ -312,7 +312,8 @@
                                             </td>
                                             <td class="regSearchbarContent">
                                                 <select class="regSearchbarSelect" id="editProductId">
-                                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.id}"></option>
+                                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.id}"
+                                                    th:data-price="${product.price}" th:data-sort="${product.sort}"></option>
                                                 </select>
                                                 <input id="hiddenEditProduct" type="hidden" th:value="${productList.get(0).name}">
                                             </td>
@@ -320,7 +321,7 @@
                                                 <p>수주량</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text" id="editCnt">
+                                                <input type="text" id="editOrderCnt">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>납품예정일</p>
@@ -355,12 +356,12 @@
                                         </thead>
                                         <tbody class="tableBody">
                                         <tr>
-                                            <td>양배추즙</td>
-                                            <td>01513448</td>
-                                            <td>100</td>
-                                            <td>9,000</td>
-                                            <td>JUICE</td>
-                                            <td>900,000</td>
+                                            <td id="editTableProductName" th:text="${productList.get(0).name}">양배추즙</td>
+                                            <td id="editTableProductCode" th:text="${productList.get(0).id}">01513448</td>
+                                            <td id="editTableCnt">0</td>
+                                            <td id="editTableProductPrice" th:text="${productList.get(0).price}">9,000</td>
+                                            <td id="editTableProductSort" th:text="${productList.get(0).sort}">JUICE</td>
+                                            <td id="editTableSum">0</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -592,7 +593,7 @@
     //수정 예측 버튼 클릭 이벤트 핸들러
     $('#editSearchbarPreButton').on('click', function (event) {
         event.preventDefault();
-        simulationFuntion('#editOrderCurrentTimeInput', '#editProductId', '#editCnt', '#editDeliveryDate');
+        simulationFuntion('#editOrderCurrentTimeInput', '#editProductId', '#editOrderCnt', '#editDeliveryDate');
     })
 
     ////hidden 등록 input
@@ -602,14 +603,6 @@
         var customerName = selectedOption.text();
         $('#hiddenRegCustomer').val(customerName);
         console.log('customerName:', customerName);
-    });
-
-    // 선택된 옵션의 productName 값을 hiddenRegProduct 설정
-    $('#editProductId').on('change', function() {
-        var selectedOption = $(this).find('option:selected');
-        var productName = selectedOption.text();
-        $('#hiddenEditProduct').val(productName);
-        console.log('productName:', productName);
     });
 
     ////hidden 수정 input
@@ -641,6 +634,25 @@
         console.log('productName:', productName);
     });
 
+    // 선택된 옵션의 productName 값을 hiddenRegProduct 설정
+    $('#editProductId').on('change', function() {
+        var selectedOption = $(this).find('option:selected');
+        var productName = selectedOption.text();
+        var productId = selectedOption.val();
+        var productPrice = selectedOption.data('price');
+        var productSort = selectedOption.data('sort');
+        var productCnt = parseInt($('#editOrderCnt').val().replace(/,/g, ''));
+        if(isNaN(productCnt))
+            productCnt = 0;
+
+        $('#hiddenEditProduct').val(productName);
+        $('#editTableProductName').text(productName);    //테이블 품목 이름 변동
+        $('#editTableProductCode').text(productId);      //테이블 품목 코드 변동
+        $('#editTableProductPrice').text(productPrice);  //테이블 품목 단가(원) 변동
+        $('#editTableProductSort').text(productSort);    //테이블 품목 분류 변동
+        $('#editTableSum').text(productCnt * parseInt(productPrice));
+    });
+
     // 수주량 변동에 따라 테이블에 값 지정
     $('#regOrderCnt').on('input', function () {
         var selectedOption = $('#regProductId option:selected');
@@ -652,6 +664,19 @@
         $('#regPrice').val(productCnt * parseInt(productPrice));
         $('#regOrderCnt').text(productCnt);    //테이블 수량 변동
         $('#regTableSum').text(productCnt * parseInt(productPrice));    //총 금액 변동
+    });
+
+    // 수주량 변동에 따라 테이블에 값 지정
+    $('#editOrderCnt').on('input', function () {
+        var selectedOption = $('#editProductId option:selected');
+        var productPrice = selectedOption.data('price');
+        var productCnt = parseInt($('#editOrderCnt').val().replace(/,/g, ''));
+        if(isNaN(productCnt))
+            productCnt = 0;
+
+        $('#editPrice').val(productCnt * parseInt(productPrice));
+        $('#editOrderCnt').text(productCnt);    //테이블 수량 변동
+        $('#editTableSum').text(productCnt * parseInt(productPrice));    //총 금액 변동
     });
 
     //수주 등록 버튼 이벤트 핸들러
@@ -677,7 +702,7 @@
             '#hiddenEditCustomer',
             '#editProductId',
             '#hiddenEditProduct',
-            '#editCnt',
+            '#editOrderCnt',
             '#editPrice',
             '#editDeliveryDate',
             '/rorder/edit');
@@ -704,6 +729,7 @@
         var orderCnt = $(orderCntInput).val();
         var orderPrice = $(orderPriceInput).val();
         var deliveryDate = $(deliveryDateInput).val();
+        console.log(requestUrl + 'orderDateInput:',orderDate);
 
         //예측 버튼 비었는지 확인
         if(deliveryDate == '')
