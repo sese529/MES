@@ -3,12 +3,14 @@ package com.B1team.b01.service;
 import com.B1team.b01.dto.NeedEaDto;
 import com.B1team.b01.dto.NeedOrderDto;
 import com.B1team.b01.dto.WorderDto;
+import com.B1team.b01.dto.WplanDto;
 import com.B1team.b01.entity.Finfo;
 import com.B1team.b01.entity.Mprocess;
 import com.B1team.b01.entity.Routing;
 import com.B1team.b01.repository.FinfoRepository;
 import com.B1team.b01.repository.MprocessRepository;
 import com.B1team.b01.repository.RoutingRepository;
+import com.B1team.b01.repository.WplanRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,7 @@ public class MprocessService {
     private final FinfoRepository finfoRepository;
     private final MaterialsService materialsService;
     private final BomService bomService;
+    private final WplanRepository wplanRepository;
 
     //시뮬레이션 - 납기일 예측(계산)
     public LocalDateTime caluculateDeadline(LocalDateTime orderDate, String productId, long orderCnt) {
@@ -38,7 +41,6 @@ public class MprocessService {
 
         //필요 발주 목록 계산
         List<NeedOrderDto> needOrderList = bomService.calcBom(productId, bomService.boxToAmount(productId, orderCnt));
-        //TODO: 수주량 box, ea 중에서 통일하기
 
         //원자재 재고 충분
         if(!needOrderList.isEmpty()) {
@@ -58,11 +60,28 @@ public class MprocessService {
         return finishDate;
     }
 
-    //시뮬레이션 - 작업 시간 계산
+    //시뮬레이션 - 작업 시간 계산(기존 작업을 확인 후 중복 값이 없을 때)
     public List<WorderDto> calculateWorderDate(LocalDateTime materialReadyDate, String productId, long orderCnt){
+        List<WorderDto> worderDtos = calculateWorderTime(materialReadyDate, productId, orderCnt);
+        LocalDateTime resultDate = worderDtos.get(worderDtos.size() - 1).getFinishDate();   //마지막 공정의 완료 시간
+
+        //작업시간 계산 불러옴
+        List<WplanDto> getResultDate = wplanRepository.workDate(resultDate);
+
+        while(!getResultDate.isEmpty()) { //쿼리 값이 있다면 현재 공정 돌아가고 난 후에 돌릴 수 있음
+            LocalDateTime endDateValue = getResultDate.get(0).getEndDate();
+            worderDtos = calculateWorderTime(endDateValue, productId, orderCnt);
+            resultDate = worderDtos.get(worderDtos.size() - 1).getFinishDate();   //마지막 공정의 완료 시간
+            getResultDate = wplanRepository.workDate(resultDate);
+        }
+
+        return worderDtos;
+    }
+
+    //시뮬레이션 - 작업 시간 계산(순수)
+    public List<WorderDto> calculateWorderTime(LocalDateTime materialReadyDate, String productId, long orderCnt){
         //매개변수 materialReadyDate : 모든 원자재가 준비 완료되는 시간 / productId : 제품 고유번호
         List<WorderDto> dtoList = new ArrayList<>();   //반환할 작업지시(Worder) dto List
-        //TODO: 이미 있는 작업계획 참고해서 일정 겹치면 제외하기
 
         //라우팅에서 공정 흐름 얻기
         List<Routing> routings = routingRepository.findByProductIdOrderByOrder(productId);

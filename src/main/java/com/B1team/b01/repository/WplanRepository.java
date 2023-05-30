@@ -31,7 +31,7 @@ public interface WplanRepository extends JpaRepository<Wplan, String> {
     List<Wplan> findByWplanState(@Param("orderId") String orderId);
 
 
-    @Query("SELECT w FROM Wplan w WHERE :workDate BETWEEN w.startDate AND w.endDate")
+    @Query("SELECT w FROM Wplan w WHERE :workDate BETWEEN w.startDate AND w.endDate order by w.endDate desc")
     List<WplanDto> workDate(@Param("workDate") LocalDateTime workDate);
 
     //작업계획 업데이트
