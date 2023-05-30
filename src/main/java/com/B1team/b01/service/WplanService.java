@@ -101,7 +101,7 @@ public class WplanService {
     public Long productCnt(String productId, String orderId) {
 
         Long orderCnt = rorderRepository.findByOrderCnt(orderId);//수주량
-        Long stockCnt = stockRepository.findByStockCnt(productId);//재고량
+        Long stockCnt = stockRepository.findByStockCnt(productId) == null ? 0 : stockRepository.findByStockCnt(productId);//재고량
 
 
         System.out.println(orderCnt);
@@ -110,6 +110,8 @@ public class WplanService {
         Long unit = Long.valueOf(productId.equals("p21") || productId.equals("p22") ? 30 : 25);
         Long orderCntUnit = orderCnt * unit;
 
+        System.out.println("WplanService orderCntUnit=" + orderCntUnit);
+        System.out.println("WplanService stockCnt=" + stockCnt);
         //수주량 - 재고량
         Long result = orderCntUnit - stockCnt;
         System.out.println("생산필요량" + result);

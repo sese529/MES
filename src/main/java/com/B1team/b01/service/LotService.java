@@ -76,14 +76,14 @@ public class LotService {
 
 
     //Lot dto 만들기
-    public LotDto ruleProductName(String processId, String wplanId, String productId){
-        List<Worder> someWorder = worderRepository.findByState(processId, wplanId); // 작업지시테이블의 특정 1행을 불러옴
+    public LotDto ruleProductName(String processId, String wplanId, String productId, Worder worder){
+//        List<Worder> someWorder = worderRepository.findByState(processId, wplanId); // 작업지시테이블의 특정 1행을 불러옴
         List<Finprod> someFinprod = lotRepository.findByFinprodId(productId); // 작업지시테이블의 특정 1행을 불러옴
 
         //LOT코드
         //LOT코드 만들기(품목+공정코드+공정완료날짜)
         LotDto lotDto = new LotDto();
-        String productName = someWorder.get(0).getProductId();  //품목코드
+        String productName = worder.getProductId();  //품목코드
 
         LotMakeNameDto lotMakeNameDto= new LotMakeNameDto();
         switch (productName) {
@@ -93,10 +93,10 @@ public class LotService {
             case "p24": lotMakeNameDto.setProduct("M"); break;
         }
 
-        String processName  = someWorder.get(0).getProcessId(); //공정과정
+        String processName  = worder.getProcessId(); //공정과정
         lotMakeNameDto.setProcess(processName);
 
-        LocalDateTime finishDate = someWorder.get(0).getFinishDate();   //공정완료날짜
+        LocalDateTime finishDate = worder.getFinishDate();   //공정완료날짜
         String finishDateFome = finishDate.format(DateTimeFormatter.ofPattern("yyyyMMddHHmm"));
 
         lotMakeNameDto.setDate(finishDateFome);
@@ -119,21 +119,21 @@ public class LotService {
         lotDto.setDate(finishDate);
         lotDto.setCode(productCode + processCode + DateCode);
         lotDto.setId(makeStringId());
-        lotDto.setWorderId(someWorder.get(0).getId());
-        lotDto.setFinprodId(someFinprod.get(0).getId()); //완제품 고유번호
+        lotDto.setWorderId(worder.getId());
+//        lotDto.setFinprodId(someFinprod.get(0).getId()); //완제품 고유번호
         lotDto.setOrderId(lotRepository.findByPlanOrderId(wplanId).getOrderId()); //수주 고유번호
 
         return lotDto;
     }
 
     //공정이 끝날 경우, LOT번호 추가하는 메소드
-    public void createLotRecode(String processId, String wplanId, String productId){
+    public void createLotRecode(String processId, String wplanId, String productId, Worder worder){
         //String checkWorder = worderService.checkWorder(processId, wplanId); //공정고유번호를 체크해서 현재 가동상태가 완료인 것(=작업완료시간이 현재시간 이전이면)
         System.out.println("checkWorder");
 
 
         //if(checkWorder == "완료"){
-            LotDto result  = ruleProductName(processId, wplanId, productId);
+            LotDto result  = ruleProductName(processId, wplanId, productId, worder);
             lotRepository.save(result.toEntity());
         //}else{
         //    System.out.println("등록실패");

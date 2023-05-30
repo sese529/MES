@@ -15,6 +15,7 @@ public class WperformDto {
 
     private String id;        //작업실적 고유번호
     private String wplanId; //작업계획 고유번호
+    private String productId; //제품 고유번호
     private String orderId; //수주 고유번호
     private LocalDateTime startDate;    //작업시작일자
     private Long cnt;   //수량
