@@ -54,10 +54,12 @@ editBtn.onclick = function () {
 
                 var editInfoCustomerName = response.editInfoCustomerName;
                 document.getElementById('hiddenEditCustomer').value = editInfoCustomerName;
+                document.getElementById('editTableProductName').text = editInfoCustomerName;
 
                 //품목 설정
                 var editInfoProductId = response.editInfoProductId;
                 var productList = document.getElementById('editProductId');
+                document.getElementById('editTableProductCode').text = editInfoProductId;
 
                 for (let i = 0; i < productList.options.length; i++) {
                     if (productList.options[i].value == editInfoProductId) {
@@ -72,6 +74,7 @@ editBtn.onclick = function () {
                 //수주량 설정
                 var editInfoCnt = response.editInfoCnt;
                 document.getElementById('editOrderCnt').value = editInfoCnt;
+                document.getElementById('editTableCnt').text = editInfoCnt;
 
                 //수주 가격 설정
                 var editInfoPrice = response.editInfoPrice;
@@ -88,6 +91,7 @@ editBtn.onclick = function () {
                 var formattedDate = year + '-' + month + '-' + day + ' ' + (hour < 12 ? '오전' : '오후') + ' ' + ('0' + (hour % 12 || 12)).slice(-2) + ':' + ('0' + minute).slice(-2);
 
                 document.getElementById('editDeliveryDate').value = formattedDate;
+
 
                 // 모달 천천히 나타내기
                 editModal.style.opacity = 0;
