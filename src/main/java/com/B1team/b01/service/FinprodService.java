@@ -2,6 +2,7 @@ package com.B1team.b01.service;
 
 import com.B1team.b01.dto.FinprodDto;
 
+import com.B1team.b01.dto.ChartSumDTO;
 import com.B1team.b01.dto.ShipmentDto;
 import com.B1team.b01.entity.Finprod;
 import com.B1team.b01.entity.Rorder;
@@ -11,14 +12,15 @@ import com.B1team.b01.repository.RorderRepository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,5 +73,32 @@ public class FinprodService {
         LocalDateTime startDate = start == null || "".equals(start)? null : LocalDate.parse(start, formatter).atStartOfDay();
         LocalDateTime endDate = end == null || "".equals(end) ? null : LocalDate.parse(end, formatter).atTime(23, 59, 59);
         return finprodRepository.findShipmentsByConditions(customerName, productName, orderId, startDate, endDate, LocalDateTime.now());
+    }
+
+    //메인페이지 - 올해 월별 생산량 합 구하기
+    public List<Long> getMonthlyList() {
+        List<ChartSumDTO> monthlyEaSum = finprodRepository.getMonthlyEaSum();
+        List<Long> list = new ArrayList<>();
+        for(int i = 0; i < 12; i++) {
+            if(!monthlyEaSum.isEmpty() && monthlyEaSum.get(0).getCategory() == (i + 1)) {
+                list.add(monthlyEaSum.get(0).getSumEa());
+                monthlyEaSum.remove(0);
+            } else list.add(0L);
+        }
+        return list;
+    }
+
+    //메인페이지 - 이번달 일별 생산량 합 구하기
+    public List<Long> getDailyList() {
+        List<ChartSumDTO> dailyEaSum = finprodRepository.getDaillyEaSum();
+        List<Long> list = new ArrayList<>();
+        int daysInMonth = YearMonth.from(LocalDate.now()).lengthOfMonth(); //이번달의 일수
+        for(int i = 0; i < daysInMonth; i++) {
+            if(!dailyEaSum.isEmpty() && dailyEaSum.get(0).getCategory() == (i + 1)){
+                list.add(dailyEaSum.get(0).getSumEa());
+                dailyEaSum.remove(0);
+            } else list.add(0L);
+        }
+        return list;
     }
 }
