@@ -210,7 +210,7 @@
                                             <td class="regSearchbarContent">
                                                 <select class="regSearchbarSelect" name="productId" id="regProductId">
                                                     <option th:each="product : ${productList}" th:text="${product.name}"
-                                                            th:value="${product.id}"></option>
+                                                            th:value="${product.id}" th:data-price="${product.price}" th:data-sort="${product.sort}"></option>
                                                 </select>
                                                 <input id="hiddenRegProduct" type="hidden"
                                                        th:value="${productList.get(0).name}">
@@ -256,12 +256,12 @@
                                         </thead>
                                         <tbody class="tableBody">
                                         <tr>
-                                            <td>양배추즙</td>
-                                            <td>01513448</td>
-                                            <td>100</td>
-                                            <td>9,000</td>
-                                            <td>JUICE</td>
-                                            <td>900,000</td>
+                                            <td id="regTableProductName" th:text="${productList.get(0).name}">양배추즙</td>
+                                            <td id="regTableProductCode" th:text="${productList.get(0).id}">01513448</td>
+                                            <td id="regTableCnt">0</td>
+                                            <td id="regTableProductPrice" th:text="${productList.get(0).price}">9,000</td>
+                                            <td id="regTableProductSort" th:text="${productList.get(0).sort}">JUICE</td>
+                                            <td id="regTableSum">0</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -287,6 +287,7 @@
                             <!-- regSearchbar -->
                             <form id="editform">
                                 <div class="regSearchbar">
+                                    <input type="hidden" id="editPrice">
                                     <table class="table table-borderless" id="orderDataTable2" width="100%"
                                            cellspacing="0">
                                         <tr class="regSearchbarTr1">
@@ -325,8 +326,8 @@
                                             </td>
                                             <td class="regSearchbarContent">
                                                 <select class="regSearchbarSelect" id="editProductId">
-                                                    <option th:each="product : ${productList}" th:text="${product.name}"
-                                                            th:value="${product.id}"></option>
+                                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.id}"
+                                                    th:data-price="${product.price}" th:data-sort="${product.sort}"></option>
                                                 </select>
                                                 <input id="hiddenEditProduct" type="hidden"
                                                        th:value="${productList.get(0).name}">
@@ -335,7 +336,7 @@
                                                 <p>수주량</p>
                                             </td>
                                             <td class="regSearchbarContent">
-                                                <input type="text" id="editCnt">
+                                                <input type="text" id="editOrderCnt">
                                             </td>
                                             <td class="regSearchbarDateTd">
                                                 <p>납품예정일</p>
@@ -371,12 +372,12 @@
                                         </thead>
                                         <tbody class="tableBody">
                                         <tr>
-                                            <td>양배추즙</td>
-                                            <td>01513448</td>
-                                            <td>100</td>
-                                            <td>9,000</td>
-                                            <td>JUICE</td>
-                                            <td>900,000</td>
+                                            <td id="editTableProductName" th:text="${productList.get(0).name}">양배추즙</td>
+                                            <td id="editTableProductCode" th:text="${productList.get(0).id}">01513448</td>
+                                            <td id="editTableCnt">0</td>
+                                            <td id="editTableProductPrice" th:text="${productList.get(0).price}">9,000</td>
+                                            <td id="editTableProductSort" th:text="${productList.get(0).sort}">JUICE</td>
+                                            <td id="editTableSum">0</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -499,7 +500,7 @@
                                     <td><input type="checkbox" th:value="${rorder.id}" name="selectedIds"
                                                th:if="${rorder.state == '진행전'}">
                                         <input type="checkbox" th:if="${rorder.state != '진행전'}" disabled></td>
-                                    <td th:text="${rorder.date}">2022-05-01 11:30</td>
+                                    <td class="date-cell" th:text="${rorder.date}">2022-05-01 11:30</td>
                                     <td th:text="${rorder.id}">G215483126</td>
                                     <td th:text="${rorder.state}">진행전</td>
                                     <td th:text="${rorder.customerName}">매출처1</td>
@@ -601,7 +602,7 @@
     //수정 예측 버튼 클릭 이벤트 핸들러
     $('#editSearchbarPreButton').on('click', function (event) {
         event.preventDefault();
-        simulationFuntion('#editOrderCurrentTimeInput', '#editProductId', '#editCnt', '#editDeliveryDate');
+        simulationFuntion('#editOrderCurrentTimeInput', '#editProductId', '#editOrderCnt', '#editDeliveryDate');
     })
 
     ////hidden 등록 input
@@ -612,6 +613,7 @@
         $('#hiddenRegCustomer').val(customerName);
         console.log('customerName:', customerName);
     });
+
 
     // 선택된 옵션의 productName 값을 hiddenRegProduct 설정
     $('#editProductId').on('change', function () {
@@ -634,8 +636,65 @@
     $('#regProductId').on('change', function () {
         var selectedOption = $(this).find('option:selected');
         var productName = selectedOption.text();
+        var productId = selectedOption.val();
+        var productPrice = selectedOption.data('price');
+        var productSort = selectedOption.data('sort');
+        var productCnt = parseInt($('#regOrderCnt').val().replace(/,/g, ''));
+        if(isNaN(productCnt))
+            productCnt = 0;
+
         $('#hiddenRegProduct').val(productName);
+        $('#regTableProductName').text(productName);    //테이블 품목 이름 변동
+        $('#regTableProductCode').text(productId);      //테이블 품목 코드 변동
+        $('#regTableProductPrice').text(productPrice);  //테이블 품목 단가(원) 변동
+        $('#regTableProductSort').text(productSort);    //테이블 품목 분류 변동
+        $('#regTableSum').text(productCnt * parseInt(productPrice));
         console.log('productName:', productName);
+    });
+
+    // 선택된 옵션의 productName 값을 hiddenRegProduct 설정
+    $('#editProductId').on('change', function() {
+        var selectedOption = $(this).find('option:selected');
+        var productName = selectedOption.text();
+        var productId = selectedOption.val();
+        var productPrice = selectedOption.data('price');
+        var productSort = selectedOption.data('sort');
+        var productCnt = parseInt($('#editOrderCnt').val().replace(/,/g, ''));
+        if(isNaN(productCnt))
+            productCnt = 0;
+
+        $('#hiddenEditProduct').val(productName);
+        $('#editTableProductName').text(productName);    //테이블 품목 이름 변동
+        $('#editTableProductCode').text(productId);      //테이블 품목 코드 변동
+        $('#editTableProductPrice').text(productPrice);  //테이블 품목 단가(원) 변동
+        $('#editTableProductSort').text(productSort);    //테이블 품목 분류 변동
+        $('#editTableSum').text(productCnt * parseInt(productPrice));
+    });
+
+    // 수주량 변동에 따라 테이블에 값 지정
+    $('#regOrderCnt').on('input', function () {
+        var selectedOption = $('#regProductId option:selected');
+        var productPrice = selectedOption.data('price');
+        var productCnt = parseInt($('#regOrderCnt').val().replace(/,/g, ''));
+        if(isNaN(productCnt))
+            productCnt = 0;
+
+        $('#regPrice').val(productCnt * parseInt(productPrice));
+        $('#regOrderCnt').text(productCnt);    //테이블 수량 변동
+        $('#regTableSum').text(productCnt * parseInt(productPrice));    //총 금액 변동
+    });
+
+    // 수주량 변동에 따라 테이블에 값 지정
+    $('#editOrderCnt').on('input', function () {
+        var selectedOption = $('#editProductId option:selected');
+        var productPrice = selectedOption.data('price');
+        var productCnt = parseInt($('#editOrderCnt').val().replace(/,/g, ''));
+        if(isNaN(productCnt))
+            productCnt = 0;
+
+        $('#editPrice').val(productCnt * parseInt(productPrice));
+        $('#editOrderCnt').text(productCnt);    //테이블 수량 변동
+        $('#editTableSum').text(productCnt * parseInt(productPrice));    //총 금액 변동
     });
 
     //수주 등록 버튼 이벤트 핸들러
@@ -648,6 +707,7 @@
             '#regProductId',
             '#hiddenRegProduct',
             '#regOrderCnt',
+            '#regPrice',
             '#regDeliveryDate',
             '/rorder/reg');
     });
@@ -660,7 +720,8 @@
             '#hiddenEditCustomer',
             '#editProductId',
             '#hiddenEditProduct',
-            '#editCnt',
+            '#editOrderCnt',
+            '#editPrice',
             '#editDeliveryDate',
             '/rorder/edit');
     });
@@ -673,6 +734,7 @@
                       productIdInput,
                       productNameInput,
                       orderCntInput,
+                      orderPriceInput,
                       deliveryDateInput,
                       requestUrl) {
         // form에서 필요한 값 가져오기
@@ -683,7 +745,9 @@
         var productId = $(productIdInput).val();
         var productName = $(productNameInput).val();
         var orderCnt = $(orderCntInput).val();
+        var orderPrice = $(orderPriceInput).val();
         var deliveryDate = $(deliveryDateInput).val();
+        console.log(requestUrl + 'orderDateInput:',orderDate);
 
         //예측 버튼 비었는지 확인
         if (deliveryDate == '')
@@ -701,6 +765,7 @@
                     productId: productId,
                     productName: productName,
                     orderCnt: orderCnt,
+                    orderPrice: orderPrice,
                     deliveryDate: deliveryDate
                 },
                 success: function (response) {
@@ -709,6 +774,7 @@
                     console.log('orderDate:', orderDate);
                     console.log('productId:', productId);
                     console.log('orderCnt:', orderCnt);
+                    console.log('orderPrice:', orderPrice);
                     console.log('deliveryDate:', deliveryDate);
                 },
                 error: function (error) {

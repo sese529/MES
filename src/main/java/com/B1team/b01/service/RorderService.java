@@ -25,6 +25,23 @@ public class RorderService {
     private final MprocessService mprocessService;
     private final EntityManager entityManager;
 
+    //수주 - 확정 시 이벤트
+    public void rorderConfirmed(String rorderId) {
+        Optional<Rorder> optional = rorderRepository.findById(rorderId);
+        Rorder roder = optional.get();
+
+//            1 제품 재고 업데이트 - 수경님
+//            stockService.stockCheck();
+
+//            2 원자재 재고 업뎃 - 세윤님
+//            stockService.updateStockEa();
+
+//            3 자동 발주 / 발주상세 자재 ,입출 정보 in - 수경님
+
+//            4 생산 지시, 로트번호, 생산계획, 실적, 완제품 insert -다인님
+    }
+
+    //수주 리스트
     public List<RorderDto> searchRorder(String start, String end, String orderId, String state, String customerName, String productName, String startLine, String endLine) {
         //날짜 관련 변환
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
