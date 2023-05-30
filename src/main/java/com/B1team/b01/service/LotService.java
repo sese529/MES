@@ -20,9 +20,11 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.awt.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 
 
@@ -110,9 +112,7 @@ public class LotService {
         //시간 포맷 변경
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         //String finishDateFome2 = finishDate.format(formatter);
-        //LocalDateTime finishDateFome3 = LocalDateTime.parse(finishDateFome2, formatter);
-
-
+        //LocalDateTime finishDateFomeEnd = LocalDateTime.parse(finishDateFome2, formatter);
 
 
         //dto에 값 넣기

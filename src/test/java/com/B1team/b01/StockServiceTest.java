@@ -35,4 +35,11 @@ public class StockServiceTest {
 
     }
 
+//재고에서 원자재 빼기(작업실행되면)
+    @Test
+    void testDeleteStockEa(){
+        stockService.deleteStockEa("p21");
+
+    }
+
 }

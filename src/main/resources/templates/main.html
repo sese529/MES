@@ -13,8 +13,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <!--  달력  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>제1조 MES</title>
@@ -157,7 +156,8 @@
         <div id="mainRow1">
             <!-- calendar -->
             <div class="mainContent">
-                <h2 class="calendarLogo"><i class="fa-regular fa-calendar-days" id="calendarIcon" style="color: #6a84ab;"></i>일일 재공 현황</h2>
+                <h2 class="calendarLogo"><i class="fa-regular fa-calendar-days" id="calendarIcon"
+                                            style="color: #6a84ab;"></i>일일 재공 현황</h2>
                 <div class="yearMonth">
                     <label for="year">년도:</label>
                     <select id="year" onchange="updateCalendar()">
@@ -190,7 +190,8 @@
             <!-- 수주별 생산 현황 -->
             <div class="mainContent2">
                 <div class="mainChartHeader">
-                    <h2><i class="fa-solid fa-chart-gantt" id="orderCurrentIcon" style="color: #6a84ab;"></i>수주별 생산 현황</h2>
+                    <h2><i class="fa-solid fa-chart-gantt" id="orderCurrentIcon" style="color: #6a84ab;"></i>수주별 생산 현황
+                    </h2>
                 </div>
                 <div class="mainCharts">
                     <div id="orderCurrent"></div>
@@ -214,8 +215,8 @@
             </div>
             <!-- 일일 생산량 끝 -->
 
+            <!-- 월간 생산량 -->
             <div class="mainContent4">
-                <!-- 월간 생산량 -->
                 <div class="mainChart">
                     <div class="mainChartHeader">
                         <h2><i class="fa-solid fa-chart-area" id="monthlyProductionIcon"
@@ -227,15 +228,11 @@
                 </div>
             </div>
             <!-- 월간 생산량 끝 -->
-
         </div>
-
     </div>
     <!-- End of Content Wrapper -->
-
 </div>
 <!-- End of Page Wrapper -->
-
 </div>
 <!-- End of Page Wrapper -->
 
@@ -257,5 +254,4 @@
 <script src="/js/sb-admin-2.min.js"></script>
 
 </body>
-
 </html>

@@ -35,7 +35,7 @@ public class LotServiceTests {
     }
 */
 
-    //dto 조회
+    //LOT 등록
     @Test
     @Rollback(false)
     public void testCreateLotRecode(){

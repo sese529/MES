@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>출하 관리</title>
@@ -104,7 +105,7 @@
             </a>
             <div id="collapseFour" class="collapse" aria-labelledby="HeadingFour" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/item/stock">· 제품 재고 현황</a>
+                    <a class="collapse-item" href="/item/product">· 제품 재고 현황</a>
                     <a class="collapse-item" href="/item/bom">· BOM 현황</a>
                 </div>
             </div>
@@ -166,8 +167,11 @@
                             </td>
                             <td class="searchbarContent2">
                                 <select class="searchbarSelect" name="customerName">
-                                    <option value="" th:selected="${customerName == '' or customerName == null}">선택</option>
-                                    <option th:each="customer : ${customerList}" th:text="${customer.name}" th:value="${customer.name}" th:selected="${customerName == customer.name}"></option>
+                                    <option value="" th:selected="${customerName == '' or customerName == null}">선택
+                                    </option>
+                                    <option th:each="customer : ${customerList}" th:text="${customer.name}"
+                                            th:value="${customer.name}"
+                                            th:selected="${customerName == customer.name}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd2">
@@ -175,8 +179,11 @@
                             </td>
                             <td class="searchbarContent2">
                                 <select class="searchbarSelect" name="productName">
-                                    <option value="" th:selected="${productName == '' or productName == null}">선택</option>
-                                    <option th:each="product : ${productList}" th:text="${product.name}" th:value="${product.name}" th:selected="${productName == product.name}"></option>
+                                    <option value="" th:selected="${productName == '' or productName == null}">선택
+                                    </option>
+                                    <option th:each="product : ${productList}" th:text="${product.name}"
+                                            th:value="${product.name}"
+                                            th:selected="${productName == product.name}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd2">
@@ -247,17 +254,6 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
@@ -268,8 +264,6 @@
 <!-- End of Page Wrapper -->
 
 <!-- 작성 스크립트-->
-<script src="/js/orderRegistration.js"></script>
-<script src="/js/orderCorrection.js"></script>
 <script src="/js/excel/shipmentExcel.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -288,8 +282,6 @@
 <script src="/js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="/js/monthlyChart.js"></script>
-<script src="/js/dailyChart.js"></script>
 </body>
 
 </html>

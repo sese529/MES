@@ -24,15 +24,6 @@ public class LotSpecifications {
     }
 
     public static Specification<LOT> searchDate(LocalDateTime min, LocalDateTime max) {
-        return (Root<LOT> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
-            // 시작일과 종료일 사이에 포함되는지 확인하는 조건
-            Predicate startDatePredicate = criteriaBuilder.lessThanOrEqualTo(root.get("startDate"), min);
-            Predicate endDatePredicate = criteriaBuilder.greaterThanOrEqualTo(root.get("endDate"), max);
-
-            // 기간 안에 포함되는지 확인하는 조건
-            Predicate condition = criteriaBuilder.and(startDatePredicate, endDatePredicate);
-
-            return condition;
-        };
+        return (root, query, criteriaBuilder) -> criteriaBuilder.between(root.get("date"),min,max);
     }
 }

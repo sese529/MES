@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>자재 입·출 현황</title>
@@ -160,8 +161,7 @@
             <form action="/materials/material-inoutput" methbod="get" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable2" cellspacing="0">
-
-                        <tr class="searchbarTr1">
+                        <tr class="searchbarTr3">
                             <td class="searchbarDateTd">
                                 <p>입·출고</p>
                             </td>
@@ -187,40 +187,41 @@
                             <td class="searchbarContent">
                                 <select class="searchbarSelect" name="mtrName">
                                     <option value="" th:selected="${mtrName == '' or mtrName == null}">선택</option>
-                                    <option th:each="material : ${materialList}" th:text="${material.name}" th:value="${material.name}" th:selected="${mtrName == material.name}">양배추</option>
+                                    <option th:each="material : ${materialList}" th:text="${material.name}"
+                                            th:value="${material.name}" th:selected="${mtrName == material.name}">양배추
+                                    </option>
                                 </select>
                             </td>
-                            <td class="searchButtonTd"></td>
-<!--                        </tr>-->
-        <!--            두번째 라인 생략            -->
-<!--
-                        <tr class="searchbarTr2">
-                            <td class="searchbarDateTd">
-                                <p>거래처명</p>
-                            </td>
-                            <td class="searchbarContent">
+                            <!--                        </tr>-->
+                            <!--            두번째 라인 생략            -->
+                            <!--
+                                                    <tr class="searchbarTr2">
+                                                        <td class="searchbarDateTd">
+                                                            <p>거래처명</p>
+                                                        </td>
+                                                        <td class="searchbarContent">
 
-                                <select class="searchbarSelect">
-                                    <option>싱싱야채</option>
-                                    <option>자연농장</option>
-                                </select>
-                            </td>
-                            <td class="searchbarDateTd">
-                                <p>창고위치</p>
-                            </td>
-                            <td class="searchbarContent">
-                                <select class="searchbarSelect">
-                                    <option>하123</option>
-                                    <option>허123</option>
-                                </select>
-                            </td>
-                            <td class="searchbarDateTd">
+                                                            <select class="searchbarSelect">
+                                                                <option>싱싱야채</option>
+                                                                <option>자연농장</option>
+                                                            </select>
+                                                        </td>
+                                                        <td class="searchbarDateTd">
+                                                            <p>창고위치</p>
+                                                        </td>
+                                                        <td class="searchbarContent">
+                                                            <select class="searchbarSelect">
+                                                                <option>하123</option>
+                                                                <option>허123</option>
+                                                            </select>
+                                                        </td>
+                                                        <td class="searchbarDateTd">
 
-                            </td>
-                            <td class="searchbarContent">
+                                                        </td>
+                                                        <td class="searchbarContent">
 
-                            </td>
-                            -->
+                                                        </td>
+                                                        -->
                             <td class="searchButtonTd">
                                 <button class="searchButton">
                                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -248,7 +249,7 @@
                                 <th>품목</th>
                                 <th>수량</th>
                                 <th>단위</th>
-<!--                                <th>거래처명</th>-->
+                                <!--                                <th>거래처명</th>-->
                                 <th>창고위치</th>
                             </tr>
                             </thead>
@@ -257,20 +258,24 @@
                                 <td th:text="${pinout.sort}">입고</td>
                                 <td th:text="${pinout.date}">2022-05-01 11:30</td>
                                 <td th:text="${pinout.mtrName}">양배추</td>
-                                <td th:text="${pinout.unit == 'g' && pinout.cnt > 1000 ? (pinout.cnt > 1000000 && pinout.cnt % 10000 == 0 ? pinout.cnt / 1000000 : pinout.cnt / 1000) : pinout.cnt}">1</td>
-                                <td th:text="${pinout.unit == 'g' && pinout.cnt > 1000 ? (pinout.cnt > 1000000 && pinout.cnt % 10000 == 0 ? 'ton' : 'kg') : pinout.unit}">ton</td>
-<!--                                <td>자연농장</td>-->
+                                <td th:text="${pinout.unit == 'g' && pinout.cnt > 1000 ? (pinout.cnt > 1000000 && pinout.cnt % 10000 == 0 ? pinout.cnt / 1000000 : pinout.cnt / 1000) : pinout.cnt}">
+                                    1
+                                </td>
+                                <td th:text="${pinout.unit == 'g' && pinout.cnt > 1000 ? (pinout.cnt > 1000000 && pinout.cnt % 10000 == 0 ? 'ton' : 'kg') : pinout.unit}">
+                                    ton
+                                </td>
+                                <!--                                <td>자연농장</td>-->
                                 <td th:text="${pinout.location}">하123</td>
                             </tr>
-<!--                            <tr class="tableBodyTr">-->
-<!--                                <td>출고</td>-->
-<!--                                <td>2022-05-01 11:30</td>-->
-<!--                                <td>양배추</td>-->
-<!--                                <td>1</td>-->
-<!--                                <td>ton</td>-->
-<!--&lt;!&ndash;                                <td>자연농장</td>&ndash;&gt;-->
-<!--                                <td>하123</td>-->
-<!--                            </tr>-->
+                            <!--                            <tr class="tableBodyTr">-->
+                            <!--                                <td>출고</td>-->
+                            <!--                                <td>2022-05-01 11:30</td>-->
+                            <!--                                <td>양배추</td>-->
+                            <!--                                <td>1</td>-->
+                            <!--                                <td>ton</td>-->
+                            <!--&lt;!&ndash;                                <td>자연농장</td>&ndash;&gt;-->
+                            <!--                                <td>하123</td>-->
+                            <!--                            </tr>-->
                             </tbody>
                         </table>
                     </div>
@@ -279,17 +284,6 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
@@ -300,8 +294,6 @@
 <!-- End of Page Wrapper -->
 
 <!-- 작성 스크립트-->
-<script src="/js/orderRegistration.js"></script>
-<script src="/js/orderCorrection.js"></script>
 <script src="/js/excel/material-inoutputExcel.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -319,9 +311,5 @@
 <!-- Page level plugins -->
 <script src="/js/Chart.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="/js/monthlyChart.js"></script>
-<script src="/js/dailyChart.js"></script>
 </body>
-
 </html>

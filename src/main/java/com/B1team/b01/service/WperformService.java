@@ -43,7 +43,6 @@ public class WperformService {
 
         //작업실적을 작성할 작업계획이 있는지 조회(작업계획 테이블 중 '완료'가 들어가 있는 계획 행)(작업계획 고유번호를 전송받아서)
         List<Wplan> result = wplanRepository.findByWplanState(orderId);
-        //System.out.println("작업계획 조회: "+ result);
 
         //작업계획 테이블에 상태가 "완료"인 작업계획이 있다면 작업실적 테이블에 해당 실적 등록하기(또는 업데이트)
         WperformDto wperformDto = new WperformDto();

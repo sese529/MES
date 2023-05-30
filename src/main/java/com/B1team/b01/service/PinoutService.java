@@ -49,7 +49,7 @@ public class PinoutService {
 
     }
 
-    //제품 필요 자재 단위 //1BOX 기준 필요량
+    //제품 필요 자재 단위 //1BOX 기준 필요량(g 기준)
     public Long[] oneBoxNeedProduct(String productId) {
 
         switch (productId) {

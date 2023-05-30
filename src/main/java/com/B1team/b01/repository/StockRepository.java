@@ -29,6 +29,10 @@ public interface StockRepository extends JpaRepository<Stock, String> {
     @Query("SELECT st.ea FROM Stock st WHERE st.productId = :productId")
     Long findByStockCnt(String productId);
 
+    //원자재 재고만 들고오기
+    @Query("SELECT st.ea FROM Stock st")
+    List<Long> findByMTRStockCnt();
+
 
     //원자재 재고 리스트
     @Query("SELECT NEW com.B1team.b01.dto.MaterialStockDto(m.name, s.ea, s.unit) " +
