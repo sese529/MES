@@ -130,8 +130,8 @@ public class RorderController {
     public String updateToConfirmed(String[] selectedIds) {
         Arrays.sort(selectedIds);
         for(int i = 0; i < selectedIds.length; i++) {
-            int temp = rorderRepository.updateState(selectedIds[i]);
-            System.out.println(i + "번째=" + temp);
+//            int temp = rorderRepository.updateState(selectedIds[i]);
+//            System.out.println(i + "번째=" + temp);
             rorderService.rorderConfirmed(selectedIds[i]);
         }
         return "redirect:/rorder/order";

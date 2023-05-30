@@ -27,8 +27,7 @@ public class RorderService {
 
     //수주 - 확정 시 이벤트
     public void rorderConfirmed(String rorderId) {
-        Optional<Rorder> optional = rorderRepository.findById(rorderId);
-        Rorder rorder = optional.get();
+        Rorder rorder = updateConfirmed(rorderId);
 
 //            1 제품 재고 업데이트 - 수경님
 //            stockService.stockCheck();
@@ -41,6 +40,24 @@ public class RorderService {
 //            4 생산 지시, 로트번호, 생산계획, 실적, 완제품 insert -다인님
 
 
+    }
+
+    //수주 - 확정 시 : 수주일자 조정 / 시뮬레이션 돌리기 / 확정 변환
+    public Rorder updateConfirmed(String rorderId) {
+        Optional<Rorder> optional = rorderRepository.findById(rorderId);
+        Rorder rorder = optional.get();
+
+        //수주일이 현재 시간 보다 이전이면 지금 시간으로 수정
+        if(rorder.getDate().isBefore(LocalDateTime.now()))
+            rorder.setDate(LocalDateTime.now());
+
+        //시뮬레이션 돌리기
+        LocalDateTime deliveryDate = mprocessService.caluculateDeadline(rorder.getDate(), rorder.getProductId(), rorder.getCnt());
+        rorder.setDeadline(deliveryDate);
+
+        //미확정에서 확정으로 세팅
+        rorder.setState("확정");
+        return rorderRepository.save(rorder);
     }
 
     //수주 리스트
