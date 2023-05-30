@@ -19,11 +19,13 @@ public interface FinprodRepository extends JpaRepository<Finprod, String> {
             "AND (:orderId IS NULL OR f.orderId = :orderId) " +
             "AND (:startDate IS NULL OR f.deadline >= :startDate) " +
             "AND (:endDate IS NULL OR f.deadline <= :endDate) " +
-            "ORDER BY f.id DESC")
+            "AND (:currentTime >= f.deadline) " +
+            "ORDER BY f.deadline DESC")
     List<ShipmentDto> findShipmentsByConditions(@Param("customerName") String customerName,
                                                 @Param("productName") String productName,
                                                 @Param("orderId") String orderId,
                                                 @Param("startDate") LocalDateTime startDate,
-                                                @Param("endDate") LocalDateTime endDate);
+                                                @Param("endDate") LocalDateTime endDate,
+                                                @Param("currentTime") LocalDateTime currentTime);
 
 }
