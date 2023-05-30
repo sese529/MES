@@ -1,11 +1,23 @@
 package com.B1team.b01.controller;
 
+import com.B1team.b01.service.FinprodService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 
+import javax.transaction.Transactional;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
+@Transactional
+@RequiredArgsConstructor
 public class MainController {
+
+    private final FinprodService finprodService;
 
 
 
@@ -41,6 +53,20 @@ public class MainController {
     @GetMapping("/main")
     public String main() {
         return "main";
+    }
+
+    @GetMapping("/main/monthlySum")
+    public ResponseEntity<?> getMonthly() {
+        Map<String, String> response = new HashMap<>();
+        List<Long> list = finprodService.getMonthlyList();
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/main/dailySum")
+    public ResponseEntity<?> getDaily() {
+        Map<String, String> response = new HashMap<>();
+        List<Long> list = finprodService.getDailyList();
+        return ResponseEntity.ok(list);
     }
 
 
