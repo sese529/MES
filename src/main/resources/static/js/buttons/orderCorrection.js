@@ -54,31 +54,34 @@ editBtn.onclick = function () {
 
                 var editInfoCustomerName = response.editInfoCustomerName;
                 document.getElementById('hiddenEditCustomer').value = editInfoCustomerName;
-                document.getElementById('editTableProductName').text = editInfoCustomerName;
 
                 //품목 설정
                 var editInfoProductId = response.editInfoProductId;
                 var productList = document.getElementById('editProductId');
-                document.getElementById('editTableProductCode').text = editInfoProductId;
+                document.getElementById('editTableProductCode').textContent = editInfoProductId;
 
                 for (let i = 0; i < productList.options.length; i++) {
                     if (productList.options[i].value == editInfoProductId) {
                         productList.options[i].selected = true;
+                        document.getElementById('editTableProductSort').textContent = productList.options[i].dataset.sort;
+                        document.getElementById('editTableProductPrice').textContent = productList.options[i].dataset.price;
                         break;
                     }
                 }
 
                 var editInfoProductName = response.editInfoProductName;
                 document.getElementById('hiddenEditProduct').value = editInfoProductName;
+                document.getElementById('editTableProductName').textContent = editInfoProductName;
 
                 //수주량 설정
                 var editInfoCnt = response.editInfoCnt;
                 document.getElementById('editOrderCnt').value = editInfoCnt;
-                document.getElementById('editTableCnt').text = editInfoCnt;
+                document.getElementById('editTableCnt').textContent = editInfoCnt;
 
                 //수주 가격 설정
                 var editInfoPrice = response.editInfoPrice;
                 document.getElementById('editPrice').value = editInfoPrice;
+                document.getElementById('editTableSum').textContent = editInfoPrice;
 
                 //납품예정일 설정
                 var editInfoDeadline = response.editInfoDeadline;
