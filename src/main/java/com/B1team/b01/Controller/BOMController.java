@@ -51,7 +51,7 @@ public class BOMController {
         model.addAttribute("Product",Product);
         model.addAttribute("Materials",Materials);
 
-        return "/item/bom";
+        return "item/bom";
     }
 
 

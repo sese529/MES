@@ -27,14 +27,14 @@ public class CustomerController {
     public String rorderCustomer(Model model) {
         model.addAttribute("clist",customerService.getPorderList(rsort));
 
-        return "/customer/rorder-customer";
+        return "customer/rorder-customer";
     }
 
     @GetMapping("/customer/porder-customer")
     public String porderCustomer(Model model) {
         model.addAttribute("clist",customerService.getPorderList(psort));
 
-        return "/customer/porder-customer";
+        return "customer/porder-customer";
     }
 
     @PostMapping("/pordersearch")
@@ -60,7 +60,7 @@ public class CustomerController {
         System.out.println(slist);
         model.addAttribute("slist",slist);
 
-        return "/customer/porder-customer";
+        return "customer/porder-customer";
     }
 
     @PostMapping("/rordersearch")
@@ -86,7 +86,7 @@ public class CustomerController {
         System.out.println(slist);
         model.addAttribute("slist",slist);
 
-        return "/customer/rorder-customer";
+        return "customer/rorder-customer";
     }
 
     @PostMapping("/pcustomer-insert")
