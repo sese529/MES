@@ -24,15 +24,16 @@ public class RorderService {
     private final RorderRepository rorderRepository;
     private final MprocessService mprocessService;
     private final EntityManager entityManager;
+    private final StockService stockService;
 
     //수주 - 확정 시 이벤트
     public void rorderConfirmed(String rorderId) {
         Optional<Rorder> optional = rorderRepository.findById(rorderId);
-        Rorder roder = optional.get();
+        Rorder rorder = optional.get();
 
 //            1 제품 재고 업데이트 - 수경님
-//            stockService.stockCheck();
-
+                stockService.stockCheck(rorder.getId());
+//
 //            2 원자재 재고 업뎃 - 세윤님
 //            stockService.updateStockEa();
 
