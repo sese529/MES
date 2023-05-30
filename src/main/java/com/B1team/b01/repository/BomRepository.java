@@ -13,4 +13,5 @@ public interface BomRepository extends JpaRepository<BOM, String> {
     List<BOM> findPID(@Param("id") String pid);
 
 
+    List<Object[]> getBomList(String productName, String mtrName);
 }
