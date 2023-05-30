@@ -1,9 +1,12 @@
 package com.B1team.b01.service;
 
+import com.B1team.b01.dto.LotDto;
 import com.B1team.b01.dto.RorderDto;
 import com.B1team.b01.dto.RorderFormDto;
+import com.B1team.b01.entity.Finprod;
 import com.B1team.b01.entity.Rorder;
 import com.B1team.b01.entity.Worder;
+import com.B1team.b01.repository.LotRepository;
 import com.B1team.b01.repository.RorderRepository;
 import com.B1team.b01.repository.WorderRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +38,7 @@ public class RorderService {
     private final LotService lotService;
 
     private final EntityManager entityManager;
+    private final LotRepository lotRepository;
 
 
     //수주 - 확정 시 이벤트
@@ -57,15 +61,19 @@ public class RorderService {
                 String orderId = rorder.getId();
                 wplanService.createWplan(materialReadyDate, productId, orderCnt, orderId);  //작성계획 등록메소드
 
-                worderService.doWorder(orderId, materialReadyDate, productId, orderCnt);    //작업지시 등록메소드
+                List<LotDto> lotDtoList = worderService.doWorder(orderId, materialReadyDate, productId, orderCnt);    //작업지시 등록메소드
 
                  //출고
                 pinoutService.createMTROut(orderId, productId);    //자재입출정보등록
 
 
                 wperformService.insertWperform(orderId);    //작업실적 등록
-                finprodService.insertFinprod(orderId);      //완제품 등록
+                Finprod finprod = finprodService.insertFinprod(orderId);      //완제품 등록
 
+                for(LotDto lotDto : lotDtoList) {
+                    lotDto.setFinprodId(finprod.getId());
+                    lotRepository.save(lotDto.toEntity());
+                }
 
 
 
