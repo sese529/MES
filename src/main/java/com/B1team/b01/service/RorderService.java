@@ -59,14 +59,8 @@ public class RorderService {
 
                 worderService.doWorder(orderId, materialReadyDate, productId, orderCnt);    //작업지시 등록메소드
 
-                    //출고
+                 //출고
                 pinoutService.createMTROut(orderId, productId);    //자재입출정보등록
-
-                Optional<Worder> optional2 = worderRepository.findById(orderId);
-                Worder worder = optional2.get();
-                String processId = worder.getProcessId();
-                String wplanId = worder.getWplanId();
-                lotService.createLotRecode(processId, wplanId, productId);   //로트번호 등록
 
 
                 wperformService.insertWperform(orderId);    //작업실적 등록

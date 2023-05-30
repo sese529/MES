@@ -23,7 +23,7 @@ public interface WplanRepository extends JpaRepository<Wplan, String> {
     Wplan findByPlanOrderId2(String orderId);
 
     //작업지시 관련 작업계획 조회하기
-    @Query("select wp from Wplan wp where wp.orderId = :orderId and wp.state = '진행대기'")
+    @Query("select wp from Wplan wp where wp.orderId = :orderId")
     WplanDto findByOrderId(@Param("orderId") String orderId);
 
     //작업실적 관련 작업계획 조회하기

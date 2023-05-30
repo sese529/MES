@@ -71,7 +71,7 @@ public class PinoutService {
                 Long blackgarlic = 250L;
                 pouch = 30L;
                 box = 1L;
-                productPackage = new Long[]{Long.valueOf("p22"), blackgarlic, pouch, box};
+                productPackage = new Long[]{blackgarlic, pouch, box};
                 break;
 
             case "p23":
