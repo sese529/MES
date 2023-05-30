@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -14,7 +15,7 @@ public class FinprodRepositoryTests {
 
     @Test
     void 테스트() {
-        List<ShipmentDto> list = finprodRepository.findShipmentsByConditions(null, null, "ROD38", null, null);
+        List<ShipmentDto> list = finprodRepository.findShipmentsByConditions(null, null, "ROD38", null, null, LocalDateTime.now());
         for(ShipmentDto dto : list)
             System.out.println(dto);
     }

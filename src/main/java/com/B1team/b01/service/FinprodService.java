@@ -70,6 +70,6 @@ public class FinprodService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime startDate = start == null || "".equals(start)? null : LocalDate.parse(start, formatter).atStartOfDay();
         LocalDateTime endDate = end == null || "".equals(end) ? null : LocalDate.parse(end, formatter).atTime(23, 59, 59);
-        return finprodRepository.findShipmentsByConditions(customerName, productName, orderId, startDate, endDate);
+        return finprodRepository.findShipmentsByConditions(customerName, productName, orderId, startDate, endDate, LocalDateTime.now());
     }
 }

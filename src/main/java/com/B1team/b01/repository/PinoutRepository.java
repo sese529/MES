@@ -19,10 +19,12 @@ public interface PinoutRepository extends JpaRepository<Pinout, String> {
             "AND (:startDate IS NULL OR p.productDate >= :startDate) " +
             "AND (:endDate IS NULL OR p.productDate <= :endDate) " +
             "AND (:mtrName IS NULL OR m.name = :mtrName) " +
-            "ORDER BY p.id DESC")
+            "AND (:currentTime >= p.productDate) " +
+            "ORDER BY p.productDate DESC")
     List<PinoutOutputDto> findPinoutsByConditions(@Param("sort") String sort,
                                                   @Param("startDate") LocalDateTime startDate,
                                                   @Param("endDate") LocalDateTime endDate,
-                                                  @Param("mtrName") String mtrName);
+                                                  @Param("mtrName") String mtrName,
+                                                  @Param("currentTime") LocalDateTime currentTime);
 
 }

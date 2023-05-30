@@ -258,7 +258,7 @@
                                 <td th:text="${pinout.sort}">입고</td>
                                 <td th:text="${pinout.date}">2022-05-01 11:30</td>
                                 <td th:text="${pinout.mtrName}">양배추</td>
-                                <td th:text="${pinout.unit == 'g' && pinout.cnt > 1000 ? (pinout.cnt > 1000000 && pinout.cnt % 10000 == 0 ? pinout.cnt / 1000000 : pinout.cnt / 1000) : pinout.cnt}">
+                                <td th:text="${pinout.unit == 'g' && pinout.cnt > 1000 ? (pinout.cnt > 1000000 && pinout.cnt % 10000 == 0 ? pinout.cnt / 1000000.0 : pinout.cnt / 1000.0) : pinout.cnt}">
                                     1
                                 </td>
                                 <td th:text="${pinout.unit == 'g' && pinout.cnt > 1000 ? (pinout.cnt > 1000000 && pinout.cnt % 10000 == 0 ? 'ton' : 'kg') : pinout.unit}">
