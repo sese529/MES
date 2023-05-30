@@ -1,6 +1,7 @@
 package com.B1team.b01.service;
 
 import com.B1team.b01.dto.LotDto;
+import com.B1team.b01.dto.OrderProductionStatusDto;
 import com.B1team.b01.dto.RorderDto;
 import com.B1team.b01.dto.RorderFormDto;
 import com.B1team.b01.entity.Finprod;
@@ -11,6 +12,10 @@ import com.B1team.b01.repository.RorderRepository;
 import com.B1team.b01.repository.WorderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -19,6 +24,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -160,5 +166,14 @@ public class RorderService {
     public RorderDto findById(String rid) {
         Optional<Rorder> optional = rorderRepository.findById(rid);
         return RorderDto.of(optional.get());
+    }
+
+    //수주별 작업 현황
+    public List<OrderProductionStatusDto> getOrderProductionStatus() {
+        List<Rorder> rorders = rorderRepository.findRordersByStateByConditions("확정");
+        List<OrderProductionStatusDto> list = new ArrayList<>();
+        for(int i = 0; i < 8 && i < list.size(); i++)
+            list.add(OrderProductionStatusDto.of(rorders.get(i)));
+        return list;
     }
 }

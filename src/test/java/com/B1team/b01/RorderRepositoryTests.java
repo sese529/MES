@@ -1,5 +1,6 @@
 package com.B1team.b01;
 
+import com.B1team.b01.dto.OrderProductionStatusDto;
 import com.B1team.b01.dto.RorderDto;
 import com.B1team.b01.dto.RorderFormDto;
 import com.B1team.b01.entity.Rorder;
@@ -8,6 +9,8 @@ import com.B1team.b01.service.RorderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -82,5 +85,21 @@ public class RorderRepositoryTests {
         System.out.println("테스트----------------------");
         System.out.println(rorderRepository.updateState("ROD28"));
         System.out.println("테스트----------------------");
+    }
+
+    @Test
+    void 수주별작업현황테스트() {
+        List<OrderProductionStatusDto> orderProductionStatus = rorderService.getOrderProductionStatus();
+        for(OrderProductionStatusDto dto : orderProductionStatus) {
+            System.out.println(dto);
+        }
+    }
+
+    @Test
+    void 수주별작업현황레포지토리테스트() {
+        List<Rorder> orderProductionStatus = rorderRepository.findRordersByStateByConditions("확정");
+        for(Rorder dto : orderProductionStatus) {
+            System.out.println(dto);
+        }
     }
 }
