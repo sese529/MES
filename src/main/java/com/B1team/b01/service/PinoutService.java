@@ -71,7 +71,7 @@ public class PinoutService {
                 Long blackgarlic = 250L;
                 pouch = 30L;
                 box = 1L;
-                productPackage = new Long[]{Long.valueOf("p22"), blackgarlic, pouch, box};
+                productPackage = new Long[]{blackgarlic, pouch, box};
                 break;
 
             case "p23":
@@ -152,7 +152,7 @@ public class PinoutService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime startDate = start == null || "".equals(start)? null : LocalDate.parse(start, formatter).atStartOfDay();
         LocalDateTime endDate = end == null || "".equals(end) ? null : LocalDate.parse(end, formatter).atTime(23, 59, 59);
-        return pinoutRepository.findPinoutsByConditions(sort, startDate, endDate, mtrName);
+        return pinoutRepository.findPinoutsByConditions(sort, startDate, endDate, mtrName, LocalDateTime.now());
     }
 
 

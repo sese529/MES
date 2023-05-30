@@ -1,6 +1,7 @@
 package com.B1team.b01.service;
 
 
+import com.B1team.b01.dto.LotDto;
 import com.B1team.b01.dto.WorderDto;
 import com.B1team.b01.dto.WplanDto;
 import com.B1team.b01.entity.Worder;
@@ -18,6 +19,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,13 +29,17 @@ import java.util.Optional;
 @Service
 
 public class WorderService {
-    @Autowired
+
+
     private final WorderRepository worderRepository;
+
     private final RorderRepository rorderRepository;
+
     private final WplanRepository wplanRepository;
 
-    @Autowired
-    private MprocessService mprocessService;
+    private final  MprocessService mprocessService;
+
+    private final  LotService lotService;
 
 
     @PersistenceContext
@@ -43,6 +49,7 @@ public class WorderService {
     public String makeStringId() {
         BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT worder_seq.NEXTVAL FROM dual").getSingleResult();
         String id = "WORD" + sequenceValue;
+        System.out.println("worder id=" + id);
         return id;
     }
 
@@ -82,7 +89,7 @@ public class WorderService {
 
 
     //작업지시 등록메소드
-    public List<WorderDto> doWorder(String orderId, LocalDateTime materialReadyDate, String productId, long orderCnt) {
+    public List<LotDto> doWorder(String orderId, LocalDateTime materialReadyDate, String productId, long orderCnt) {
 
         //작업지시를 내릴 '진행대기' 상태의 작업 계획이 있는지 조회(수주번호가 필요한?)
         Optional<WplanDto> result = Optional.ofNullable(wplanRepository.findByOrderId(orderId));
@@ -92,7 +99,8 @@ public class WorderService {
         //있다면 작업지시 등록하기
         List<WorderDto> worderDtos = mprocessService.calculateWorderDate(materialReadyDate, productId, orderCnt);
 
-        if (result.isPresent()) {
+        List<LotDto> lotDtos = new ArrayList<>();
+        //if (result.isPresent()) {
 
             for (int i = 0; i < worderDtos.size(); i++) {
                 WorderDto worderDto = new WorderDto();
@@ -102,15 +110,22 @@ public class WorderService {
                 worderDto.setProductId(result.get().getProductId());//품목명 고유번호
                 worderDto.setStartDate(worderDtos.get(i).getStartDate()); //작업시작일자
                 worderDto.setFinishDate(worderDtos.get(i).getFinishDate()); //작업종료일자
-                worderDto.setStartDate(worderDtos.get(i).getStartDate()); //작업시작일자
-                worderDto.setFinishDate(worderDtos.get(i).getFinishDate()); //작업종료일자
                 worderDto.setFacilityId(worderDtos.get(i).getFacilityId()); //설비정보 고유번호
 
-                worderRepository.save((worderDto.toEntity()));
+
+                System.out.println("worderDto.getId()=" + worderDto.getId());
+                Worder worder = worderRepository.save((worderDto.toEntity()));
+
+
+                String processId = worderDto.getProcessId();
+                String wplanId = worderDto.getWplanId();
+                LotDto lotDto = lotService.ruleProductName(processId, wplanId, productId, worder);   //로트번호 등록
+                lotDtos.add(lotDto);
             }
-        }
-        return worderDtos;
-        }
+       // }
+        return lotDtos;
+
+    }
 
 
     public List<Worder> search(String id, String pid, LocalDateTime min, LocalDateTime max){

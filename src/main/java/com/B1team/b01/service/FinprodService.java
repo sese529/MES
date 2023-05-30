@@ -3,6 +3,7 @@ package com.B1team.b01.service;
 import com.B1team.b01.dto.FinprodDto;
 
 import com.B1team.b01.dto.ShipmentDto;
+import com.B1team.b01.entity.Finprod;
 import com.B1team.b01.entity.Rorder;
 
 import com.B1team.b01.repository.FinprodRepository;
@@ -43,7 +44,7 @@ public class FinprodService {
 
     //완제품 테이블 행 추가 메소드
     //완제품은 수주할 때 고유번호가 생성되어 있어야함(LOT번호 생성관련 제약때문에)
-    public void insertFinprod(String orderId){
+    public Finprod insertFinprod(String orderId){
 
         Optional<Rorder> rorderInfo = rorderRepository.findById(orderId);
 
@@ -55,8 +56,9 @@ public class FinprodService {
             finprodDto.setEa(rorderInfo.get().getCnt()); //수량
             finprodDto.setDeadline(rorderInfo.get().getDeadline()); //납품예정일
 
-        finprodRepository.save(finprodDto.toEntity());
-        }
+        Finprod entity = finprodRepository.save(finprodDto.toEntity());
+        return entity;
+    }
 
     //출하관리 페이지 - 완제품에 거래처 추가하여 리스트 얻기
     //매개변수 String형을 레포지토리 메소드의 매개변수에 맞게 변경하기
@@ -68,6 +70,6 @@ public class FinprodService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime startDate = start == null || "".equals(start)? null : LocalDate.parse(start, formatter).atStartOfDay();
         LocalDateTime endDate = end == null || "".equals(end) ? null : LocalDate.parse(end, formatter).atTime(23, 59, 59);
-        return finprodRepository.findShipmentsByConditions(customerName, productName, orderId, startDate, endDate);
+        return finprodRepository.findShipmentsByConditions(customerName, productName, orderId, startDate, endDate, LocalDateTime.now());
     }
 }
