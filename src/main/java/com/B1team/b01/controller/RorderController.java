@@ -132,25 +132,8 @@ public class RorderController {
         for(int i = 0; i < selectedIds.length; i++) {
             int temp = rorderRepository.updateState(selectedIds[i]);
             System.out.println(i + "번째=" + temp);
-
-            Optional<Rorder> optional = rorderRepository.findById(selectedIds[i]);
-            Rorder roder = optional.get();
-
-//            1 제품 재고 업데이트 - 수경님
-//            stockService.stockCheck();
-
-//            2 원자재 재고 업뎃 - 세윤님
-//            stockService.updateStockEa();
-
-//            3 자동 발주 / 발주상세 자재 ,입출 정보 in - 수경님
-
-//            4 생산 지시, 로트번호, 생산계획, 실적, 완제품 insert -다인님
-
-
-
+            rorderService.rorderConfirmed(selectedIds[i]);
         }
-
-//            System.out.println("selectedIds=" + selectedIds[i]);
         return "redirect:/rorder/order";
     }
 
