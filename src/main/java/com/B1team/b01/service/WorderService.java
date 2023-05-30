@@ -27,13 +27,17 @@ import java.util.Optional;
 @Service
 
 public class WorderService {
-    @Autowired
+
+
     private final WorderRepository worderRepository;
+
     private final RorderRepository rorderRepository;
+
     private final WplanRepository wplanRepository;
 
-    @Autowired
-    private MprocessService mprocessService;
+    private final  MprocessService mprocessService;
+
+    private final  LotService lotService;
 
 
     @PersistenceContext
@@ -92,7 +96,7 @@ public class WorderService {
         //있다면 작업지시 등록하기
         List<WorderDto> worderDtos = mprocessService.calculateWorderDate(materialReadyDate, productId, orderCnt);
 
-        if (result.isPresent()) {
+        //if (result.isPresent()) {
 
             for (int i = 0; i < worderDtos.size(); i++) {
                 WorderDto worderDto = new WorderDto();
@@ -102,15 +106,21 @@ public class WorderService {
                 worderDto.setProductId(result.get().getProductId());//품목명 고유번호
                 worderDto.setStartDate(worderDtos.get(i).getStartDate()); //작업시작일자
                 worderDto.setFinishDate(worderDtos.get(i).getFinishDate()); //작업종료일자
-                worderDto.setStartDate(worderDtos.get(i).getStartDate()); //작업시작일자
-                worderDto.setFinishDate(worderDtos.get(i).getFinishDate()); //작업종료일자
                 worderDto.setFacilityId(worderDtos.get(i).getFacilityId()); //설비정보 고유번호
 
+
                 worderRepository.save((worderDto.toEntity()));
+
+
+                String processId = worderDto.getProcessId();
+                String wplanId = worderDto.getWplanId();
+                lotService.createLotRecode(processId, wplanId, productId);   //로트번호 등록
+
             }
-        }
+       // }
         return worderDtos;
-        }
+
+    }
 
 
     public List<Worder> search(String id, String pid, LocalDateTime min, LocalDateTime max){

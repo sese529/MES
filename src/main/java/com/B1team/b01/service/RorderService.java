@@ -28,6 +28,10 @@ public class RorderService {
     private final MprocessService mprocessService;
     private final WplanService wplanService;
     private final WorderService worderService;
+    private final WperformService wperformService;
+    private final PinoutService pinoutService;
+    private final FinprodService finprodService;
+
     private final LotService lotService;
 
     private final EntityManager entityManager;
@@ -55,11 +59,21 @@ public class RorderService {
 
                 worderService.doWorder(orderId, materialReadyDate, productId, orderCnt);    //작업지시 등록메소드
 
-                Optional<Worder> optional2 = worderRepository.findById(orderId);
-                Worder worder = optional2.get();
-                String processId = worder.getProcessId();
-                String wplanId = worder.getWplanId();
-                lotService.createLotRecode(processId, wplanId, productId);   //로트번호 등록
+                 //출고
+                pinoutService.createMTROut(orderId, productId);    //자재입출정보등록
+
+
+                wperformService.insertWperform(orderId);    //작업실적 등록
+                finprodService.insertFinprod(orderId);      //완제품 등록
+
+
+
+
+
+
+
+
+
 
 
 

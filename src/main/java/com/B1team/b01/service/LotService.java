@@ -36,8 +36,6 @@ public class LotService {
     private LotRepository lotRepository;
     @Autowired
     private WorderRepository worderRepository;
-    @Autowired
-    private WorderService worderService;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -130,16 +128,16 @@ public class LotService {
 
     //공정이 끝날 경우, LOT번호 추가하는 메소드
     public void createLotRecode(String processId, String wplanId, String productId){
-        String checkWorder = worderService.checkWorder(processId, wplanId); //공정고유번호를 체크해서 현재 가동상태가 완료인 것(=작업완료시간이 현재시간 이전이면)
+        //String checkWorder = worderService.checkWorder(processId, wplanId); //공정고유번호를 체크해서 현재 가동상태가 완료인 것(=작업완료시간이 현재시간 이전이면)
         System.out.println("checkWorder");
 
 
-        if(checkWorder == "완료"){
+        //if(checkWorder == "완료"){
             LotDto result  = ruleProductName(processId, wplanId, productId);
             lotRepository.save(result.toEntity());
-        }else{
-            System.out.println("등록실패");
-        }
+        //}else{
+        //    System.out.println("등록실패");
+        //}
     }
 
 
