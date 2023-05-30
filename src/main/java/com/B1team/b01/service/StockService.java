@@ -246,41 +246,53 @@ public class StockService {
                 Stock stockEntity2b = stockDeleteDto2b.toEntity();
                 stockList.add(stockEntity2b);
                 stockRepository.saveAll(stockList);
-
-
-
-
                 break;
 
-           /* case "p23":
+            case "p23":
                 StockDeleteDto stockDeleteDto4 = new StockDeleteDto();
                 stockDeleteDto4.setId("st3");
                 stockDeleteDto4.setLocation("창고3");
                 stockDeleteDto4.setMtrId("MTR38");
                 stockDeleteDto4.setUnit("g");
                 stockDeleteDto4.setEa(stock.get(5) - oneBoxNeedProductResult[0]);  //MTR38 석류농축액
-                stockRepository.save(stockDeleteDto4.toEntity());
+                //stockRepository.save(stockDeleteDto4.toEntity());
 
-                stockDeleteDto4.setId("st5");
-                stockDeleteDto4.setLocation("창고5");
-                stockDeleteDto2.setMtrId("MTR40");
-                stockDeleteDto2.setUnit("g");
-                stockDeleteDto2.setEa(stock.get(7) - oneBoxNeedProductResult[1]);  //MTR40 콜라겐
-                stockRepository.save(stockDeleteDto2.toEntity());
+                StockDeleteDto stockDeleteDto4a = new StockDeleteDto();
+                stockDeleteDto4a.setId("st5");
+                stockDeleteDto4a.setLocation("창고5");
+                stockDeleteDto4a.setMtrId("MTR40");
+                stockDeleteDto4a.setUnit("g");
+                stockDeleteDto4a.setEa(stock.get(7) - oneBoxNeedProductResult[1]);  //MTR40 콜라겐
+                //stockRepository.save(stockDeleteDto2.toEntity());
 
-                stockDeleteDto2.setId("st7");
-                stockDeleteDto2.setLocation("창고7");
-                stockDeleteDto2.setMtrId("MTR42");
-                stockDeleteDto2.setUnit("ea");
-                stockDeleteDto2.setEa(stock.get(9) - oneBoxNeedProductResult[2]);  //MTR42 스틱파우치
-                stockRepository.save(stockDeleteDto2.toEntity());
+                StockDeleteDto stockDeleteDto4b = new StockDeleteDto();
+                stockDeleteDto4b.setId("st7");
+                stockDeleteDto4b.setLocation("창고7");
+                stockDeleteDto4b.setMtrId("MTR42");
+                stockDeleteDto4b.setUnit("ea");
+                stockDeleteDto4b.setEa(stock.get(9) - oneBoxNeedProductResult[2]);  //MTR42 스틱파우치
+                //stockRepository.save(stockDeleteDto2.toEntity());
 
-                stockDeleteDto2.setId("st8");
-                stockDeleteDto2.setLocation("창고8");
-                stockDeleteDto2.setMtrId("MTR43");
-                stockDeleteDto2.setUnit("ea");
-                stockDeleteDto2.setEa(stock.get(0) - oneBoxNeedProductResult[3]);  //MTR43 박스
-                stockRepository.save(stockDeleteDto2.toEntity());
+                StockDeleteDto stockDeleteDto4c = new StockDeleteDto();
+                stockDeleteDto4c.setId("st8");
+                stockDeleteDto4c.setLocation("창고8");
+                stockDeleteDto4c.setMtrId("MTR43");
+                stockDeleteDto4c.setUnit("ea");
+                stockDeleteDto4c.setEa(stock.get(0) - oneBoxNeedProductResult[3]);  //MTR43 박스
+                //stockRepository.save(stockDeleteDto2.toEntity());
+
+                Stock stockEntity4 = stockDeleteDto4.toEntity();
+                stockList.add(stockEntity4);
+
+                Stock stockEntity4a = stockDeleteDto4a.toEntity();
+                stockList.add(stockEntity4a);
+
+                Stock stockEntity4b = stockDeleteDto4b.toEntity();
+                stockList.add(stockEntity4b);
+
+                Stock stockEntity4c = stockDeleteDto4c.toEntity();
+                stockList.add(stockEntity4c);
+                stockRepository.saveAll(stockList);
                 break;
 
             case "p24":
@@ -312,7 +324,7 @@ public class StockService {
                 stockDeleteDto3.setUnit("ea");
                 stockDeleteDto3.setEa(stock.get(0) - oneBoxNeedProductResult[3]);  //MTR43 박스
                 stockRepository.save(stockDeleteDto3.toEntity());
-                break;*/
+                break;
             default:
 
                 System.out.printf("DEFAULT");
