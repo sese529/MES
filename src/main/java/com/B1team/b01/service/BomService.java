@@ -202,12 +202,13 @@ public class BomService {
             bdto.setId(obj[0].toString());
             bdto.setMtrId(obj[1].toString());
             bdto.setMtrName(obj[2].toString());
-            for (int i = 0; i <= 5; i++) {
-                System.out.println(i + ":" + obj[i]);
-            }
             bdto.setVolume(Long.valueOf((Long) obj[3]));
             bdto.setProductId(obj[4].toString());
             bdto.setProductName(obj[5].toString());
+
+//            for (int i = 0; i <= 5; i++) {
+//                System.out.println(i + ":" + obj[i]);
+//            }
 
             products.add(bdto);
         }

@@ -4,6 +4,8 @@ package com.B1team.b01.service;
 import com.B1team.b01.dto.PinoutDto;
 
 import com.B1team.b01.dto.PinoutOutputDto;
+import com.B1team.b01.dto.PorderDto;
+import com.B1team.b01.entity.Pinout;
 import com.B1team.b01.entity.Wplan;
 import com.B1team.b01.repository.PinoutRepository;
 import com.B1team.b01.repository.WplanRepository;
@@ -13,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -32,6 +36,9 @@ public class PinoutService {
 
     @Autowired
     private final MaterialsService materialsService;
+
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
 
 
     public Long[] productPackage = new Long[0];
@@ -146,6 +153,30 @@ public class PinoutService {
         LocalDateTime startDate = start == null || "".equals(start)? null : LocalDate.parse(start, formatter).atStartOfDay();
         LocalDateTime endDate = end == null || "".equals(end) ? null : LocalDate.parse(end, formatter).atTime(23, 59, 59);
         return pinoutRepository.findPinoutsByConditions(sort, startDate, endDate, mtrName);
+    }
+
+
+    //문자열 시퀀스 메소드
+    @Transactional
+    public String generateId(String head, String seqName) {
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT " + seqName + ".NEXTVAL FROM dual").getSingleResult();
+        String id = head + sequenceValue;
+        return id;
+    }
+
+    public void createPinout(PinoutDto pdto) {
+
+        Pinout po = new Pinout();
+        po.setId(generateId("PIN", "pinout_seq"));
+        po.setMtrId(pdto.getMtrId());
+        po.setProductCnt(pdto.getProductCnt());
+        po.setProductDate(pdto.getProductDate());
+        po.setSort(pdto.getSort());
+
+        pinoutRepository.save(po);
     }
 
 }
