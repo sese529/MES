@@ -47,6 +47,7 @@ public class WorderService {
     public String makeStringId() {
         BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT worder_seq.NEXTVAL FROM dual").getSingleResult();
         String id = "WORD" + sequenceValue;
+        System.out.println("worder id=" + id);
         return id;
     }
 
@@ -109,6 +110,7 @@ public class WorderService {
                 worderDto.setFacilityId(worderDtos.get(i).getFacilityId()); //설비정보 고유번호
 
 
+                System.out.println("worderDto.getId()=" + worderDto.getId());
                 worderRepository.save((worderDto.toEntity()));
 
 
