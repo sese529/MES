@@ -9,7 +9,9 @@ import com.B1team.b01.entity.Rorder;
 import com.B1team.b01.repository.CustomerRepository;
 import com.B1team.b01.repository.ProductRepository;
 import com.B1team.b01.repository.RorderRepository;
+import com.B1team.b01.repository.StockRepository;
 import com.B1team.b01.service.RorderService;
+import com.B1team.b01.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,7 @@ public class RorderController {
     private final RorderRepository rorderRepository;
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
+    private final StockService stockService;
 
 
     //수주 리스트 검색
@@ -135,7 +138,7 @@ public class RorderController {
             Rorder roder = optional.get();
 
 //            1 제품 재고 업데이트 - 수경님
-//            stockService.stockCheck();
+
 
 //            2 원자재 재고 업뎃 - 세윤님
 //            stockService.updateStockEa();
