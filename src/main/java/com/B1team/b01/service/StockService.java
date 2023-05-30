@@ -166,7 +166,7 @@ public class StockService {
 
     //제품 재고 업데이트(생산작업 들어갈 때 재고에서 빠지는 작업, g단위로 빠짐)
     @Transactional
-    public void deleteStockEa(String productId){
+    public void deleteStockEa(String productId, long orderCnt){
         List<Long> stock = stockRepository.findByMTRStockCnt();
         Long[] oneBoxNeedProductResult = pinoutService.oneBoxNeedProduct(productId);  //출고수량
         List<Stock> stockList = new ArrayList<>();
@@ -178,26 +178,22 @@ public class StockService {
                 stockDeleteDto.setLocation("창고1");
                 stockDeleteDto.setMtrId("MTR36");
                 stockDeleteDto.setUnit("g");
-                stockDeleteDto.setEa(stock.get(4) - oneBoxNeedProductResult[0]);  //MTR36 양배추
-                //Stock result = stockRepository.save(stockDeleteDto.toEntity());
-                //System.out.println(result);
+                stockDeleteDto.setEa((stock.get(4) - oneBoxNeedProductResult[0]) * orderCnt);  //MTR36 양배추
 
                 StockDeleteDto stockDeleteDto1a = new StockDeleteDto();
                 stockDeleteDto1a.setId("st6");
                 stockDeleteDto1a.setLocation("창고6");
                 stockDeleteDto1a.setMtrId("MTR41");
                 stockDeleteDto1a.setUnit("ea");
-                stockDeleteDto1a.setEa(stock.get(8) - oneBoxNeedProductResult[1]);  //MTR41 즙파우치
-                //Stock result2 = stockRepository.save(stockDeleteDto2.toEntity());
-                //System.out.println(result2);
+                stockDeleteDto1a.setEa((stock.get(8) - oneBoxNeedProductResult[1] * orderCnt));  //MTR41 즙파우치
 
                 StockDeleteDto stockDeleteDto1b = new StockDeleteDto();
                 stockDeleteDto1b.setId("st8");
                 stockDeleteDto1b.setLocation("창고8");
                 stockDeleteDto1b.setMtrId("MTR43");
                 stockDeleteDto1b.setUnit("ea");
-                stockDeleteDto1b.setEa(stock.get(0) - oneBoxNeedProductResult[2]);  //MTR43 박스
-                //stockRepository.save(stockDeleteDto3.toEntity());
+                stockDeleteDto1b.setEa((stock.get(0) - oneBoxNeedProductResult[2] * orderCnt));  //MTR43 박스
+
 
                 Stock stockEntity = stockDeleteDto.toEntity();
                 stockList.add(stockEntity);
@@ -218,24 +214,21 @@ public class StockService {
                 stockDeleteDto2.setLocation("창고2");
                 stockDeleteDto2.setMtrId("MTR37");
                 stockDeleteDto2.setUnit("g");
-                stockDeleteDto2.setEa(stock.get(4) - oneBoxNeedProductResult[0]);  //MTR37 흑마늘
-                //stockRepository.save(stockDeleteDto1.toEntity());
+                stockDeleteDto2.setEa((stock.get(4) - oneBoxNeedProductResult[0] * orderCnt));   //MTR37 흑마늘
 
                 StockDeleteDto stockDeleteDto2a = new StockDeleteDto();
                 stockDeleteDto2a.setId("st6");
                 stockDeleteDto2a.setLocation("창고6");
                 stockDeleteDto2a.setMtrId("MTR41");
                 stockDeleteDto2a.setUnit("ea");
-                stockDeleteDto2a.setEa(stock.get(8) - oneBoxNeedProductResult[1]);  //MTR41 즙파우치
-                //stockRepository.save(stockDeleteDto1.toEntity());
+                stockDeleteDto2a.setEa((stock.get(8) - oneBoxNeedProductResult[1] * orderCnt));  //MTR41 즙파우치
 
                 StockDeleteDto stockDeleteDto2b = new StockDeleteDto();
                 stockDeleteDto2b.setId("st8");
                 stockDeleteDto2b.setLocation("창고8");
                 stockDeleteDto2b.setMtrId("MTR43");
                 stockDeleteDto2b.setUnit("ea");
-                stockDeleteDto2b.setEa(stock.get(0) - oneBoxNeedProductResult[2]);  //MTR43 박스
-                //stockRepository.save(stockDeleteDto1.toEntity());
+                stockDeleteDto2b.setEa((stock.get(0) - oneBoxNeedProductResult[2] * orderCnt));   //MTR43 박스
 
                 Stock stockEntity2 = stockDeleteDto2.toEntity();
                 stockList.add(stockEntity2);
@@ -254,32 +247,29 @@ public class StockService {
                 stockDeleteDto4.setLocation("창고3");
                 stockDeleteDto4.setMtrId("MTR38");
                 stockDeleteDto4.setUnit("g");
-                stockDeleteDto4.setEa(stock.get(5) - oneBoxNeedProductResult[0]);  //MTR38 석류농축액
-                //stockRepository.save(stockDeleteDto4.toEntity());
+                stockDeleteDto4.setEa((stock.get(5) - oneBoxNeedProductResult[0] * orderCnt));   //MTR38 석류농축액
 
                 StockDeleteDto stockDeleteDto4a = new StockDeleteDto();
                 stockDeleteDto4a.setId("st5");
                 stockDeleteDto4a.setLocation("창고5");
                 stockDeleteDto4a.setMtrId("MTR40");
                 stockDeleteDto4a.setUnit("g");
-                stockDeleteDto4a.setEa(stock.get(7) - oneBoxNeedProductResult[1]);  //MTR40 콜라겐
-                //stockRepository.save(stockDeleteDto2.toEntity());
+                stockDeleteDto4a.setEa((stock.get(7) - oneBoxNeedProductResult[1] * orderCnt));   //MTR40 콜라겐
 
                 StockDeleteDto stockDeleteDto4b = new StockDeleteDto();
                 stockDeleteDto4b.setId("st7");
                 stockDeleteDto4b.setLocation("창고7");
                 stockDeleteDto4b.setMtrId("MTR42");
                 stockDeleteDto4b.setUnit("ea");
-                stockDeleteDto4b.setEa(stock.get(9) - oneBoxNeedProductResult[2]);  //MTR42 스틱파우치
-                //stockRepository.save(stockDeleteDto2.toEntity());
+                stockDeleteDto4b.setEa((stock.get(9) - oneBoxNeedProductResult[2] * orderCnt));  //MTR42 스틱파우치
 
                 StockDeleteDto stockDeleteDto4c = new StockDeleteDto();
                 stockDeleteDto4c.setId("st8");
                 stockDeleteDto4c.setLocation("창고8");
                 stockDeleteDto4c.setMtrId("MTR43");
                 stockDeleteDto4c.setUnit("ea");
-                stockDeleteDto4c.setEa(stock.get(0) - oneBoxNeedProductResult[3]);  //MTR43 박스
-                //stockRepository.save(stockDeleteDto2.toEntity());
+                stockDeleteDto4c.setEa((stock.get(0) - oneBoxNeedProductResult[3] * orderCnt));   //MTR43 박스
+
 
                 Stock stockEntity4 = stockDeleteDto4.toEntity();
                 stockList.add(stockEntity4);
@@ -301,33 +291,44 @@ public class StockService {
                 stockDeleteDto3.setLocation("창고4");
                 stockDeleteDto3.setMtrId("MTR39");
                 stockDeleteDto3.setUnit("g");
-                stockDeleteDto3.setEa(stock.get(3) - oneBoxNeedProductResult[0]);  //MTR39 매실농축액
-                stockRepository.save(stockDeleteDto3.toEntity());
+                stockDeleteDto3.setEa((stock.get(3) - oneBoxNeedProductResult[0] * orderCnt));  //MTR39 매실농축액
 
-                stockDeleteDto3.setId("st5");
-                stockDeleteDto3.setLocation("창고5");
-                stockDeleteDto3.setMtrId("MTR40");
-                stockDeleteDto3.setUnit("g");
-                stockDeleteDto3.setEa(stock.get(4) - oneBoxNeedProductResult[1]);  //MTR40 콜라겐
-                stockRepository.save(stockDeleteDto3.toEntity());
+                StockDeleteDto stockDeleteDto3a = new StockDeleteDto();
+                stockDeleteDto3a.setId("st5");
+                stockDeleteDto3a.setLocation("창고5");
+                stockDeleteDto3a.setMtrId("MTR40");
+                stockDeleteDto3a.setUnit("g");
+                stockDeleteDto3a.setEa((stock.get(4) - oneBoxNeedProductResult[1] * orderCnt));  //MTR40 콜라겐
 
-                stockDeleteDto3.setId("st7");
-                stockDeleteDto3.setLocation("창고7");
-                stockDeleteDto3.setMtrId("MTR42");
-                stockDeleteDto3.setUnit("ea");
-                stockDeleteDto3.setEa(stock.get(9) - oneBoxNeedProductResult[2]);  //MTR42 스틱파우치
-                stockRepository.save(stockDeleteDto3.toEntity());
+                StockDeleteDto stockDeleteDto3b = new StockDeleteDto();
+                stockDeleteDto3b.setId("st7");
+                stockDeleteDto3b.setLocation("창고7");
+                stockDeleteDto3b.setMtrId("MTR42");
+                stockDeleteDto3b.setUnit("ea");
+                stockDeleteDto3b.setEa((stock.get(9) - oneBoxNeedProductResult[2] * orderCnt));   //MTR42 스틱파우치
 
-                stockDeleteDto3.setId("st8");
-                stockDeleteDto3.setLocation("창고8");
-                stockDeleteDto3.setMtrId("MTR43");
-                stockDeleteDto3.setUnit("ea");
-                stockDeleteDto3.setEa(stock.get(0) - oneBoxNeedProductResult[3]);  //MTR43 박스
-                stockRepository.save(stockDeleteDto3.toEntity());
+                StockDeleteDto stockDeleteDto3c = new StockDeleteDto();
+                stockDeleteDto3c.setId("st8");
+                stockDeleteDto3c.setLocation("창고8");
+                stockDeleteDto3c.setMtrId("MTR43");
+                stockDeleteDto3c.setUnit("ea");
+                stockDeleteDto3c.setEa((stock.get(0) - oneBoxNeedProductResult[3] * orderCnt));   //MTR43 박스
+
+                Stock stockEntity3 = stockDeleteDto3.toEntity();
+                stockList.add(stockEntity3);
+
+                Stock stockEntity3a = stockDeleteDto3a.toEntity();
+                stockList.add(stockEntity3a);
+
+                Stock stockEntity3b = stockDeleteDto3b.toEntity();
+                stockList.add(stockEntity3b);
+
+                Stock stockEntity3c = stockDeleteDto3c.toEntity();
+                stockList.add(stockEntity3c);
+                stockRepository.saveAll(stockList);
+
                 break;
-            default:
 
-                System.out.printf("DEFAULT");
         }
     }
 

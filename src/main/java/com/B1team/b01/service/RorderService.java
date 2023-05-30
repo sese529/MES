@@ -34,6 +34,7 @@ public class RorderService {
     private final WperformService wperformService;
     private final PinoutService pinoutService;
     private final FinprodService finprodService;
+    private final StockService stockService;
 
     private final LotService lotService;
 
@@ -63,7 +64,7 @@ public class RorderService {
 
                 List<LotDto> lotDtoList = worderService.doWorder(orderId, materialReadyDate, productId, orderCnt);    //작업지시 등록메소드
 
-                 //출고
+                stockService.deleteStockEa(productId, orderCnt);//출고
                 pinoutService.createMTROut(orderId, productId);    //자재입출정보등록
 
 
