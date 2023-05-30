@@ -27,15 +27,15 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-var monthlySum;
+var monthlySum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 // Ajax 요청 보내기
-var xhr = new XMLHttpRequest();
-xhr.open('GET', '/main/monthlySum', true);
-xhr.onreadystatechange = function() {
-  if (xhr.readyState === XMLHttpRequest.DONE) {
-    if (xhr.status === 200) {
-      var response = JSON.parse(xhr.responseText);
+var monthlyXhr = new XMLHttpRequest();
+monthlyXhr.open('GET', '/main/monthlySum', true);
+monthlyXhr.onreadystatechange = function() {
+  if (monthlyXhr.readyState === XMLHttpRequest.DONE) {
+    if (monthlyXhr.status === 200) {
+      var response = JSON.parse(monthlyXhr.responseText);
       monthlySum = response.map(function(value) {
         return parseInt(value);
       });
@@ -47,11 +47,11 @@ xhr.onreadystatechange = function() {
       // 차트 업데이트
       myLineChart.update();
     } else {
-      console.log("Error:", xhr.status);
+      console.log("Error:", monthlyXhr.status);
     }
   }
 };
-xhr.send();
+monthlyXhr.send();
 
 
 

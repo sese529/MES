@@ -27,6 +27,32 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+var dailySum;
+
+// Ajax 요청 보내기
+var dailyXhr = new XMLHttpRequest();
+dailyXhr.open('GET', '/main/dailySum', true);
+dailyXhr.onreadystatechange = function() {
+  if (dailyXhr.readyState === XMLHttpRequest.DONE) {
+    if (dailyXhr.status === 200) {
+      var response = JSON.parse(dailyXhr.responseText);
+      dailySum = response.map(function(value) {
+        return parseInt(value);
+      });
+      console.log("dailySum:", dailySum);
+
+      // 차트 데이터 업데이트
+      myBarChart.data.datasets[0].data = dailySum;
+
+      // 차트 업데이트
+      myBarChart.update();
+    } else {
+      console.log("Error:", dailyXhr.status);
+    }
+  }
+};
+dailyXhr.send();
+
 // 일일 생산량
 var ctx = document.getElementById("dailyProduction");
 var myBarChart = new Chart(ctx, {
@@ -37,7 +63,7 @@ var myBarChart = new Chart(ctx, {
       label: "일일 생산량", // 그래프 제목
       backgroundColor: "rgba(78, 115, 223, 0.5)",
       borderColor: "rgba(78, 115, 223, 1)",
-      data: [100, 150, 120, 180, 200, 170, 190, 160, 210, 180, 220, 200, 250, 230, 210, 240, 200, 220, 210, 190, 170, 180, 160, 150, 140, 160, 180, 200, 190, 220, 210], // Y축 데이터 (일일 생산량)
+      data: dailySum, // Y축 데이터 (일일 생산량)
     }],
   },
   options: {

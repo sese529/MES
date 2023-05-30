@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MonthlyEaSumDTO {
-    private int month;
+public class ChartSumDTO {
+    private int category;
     private long sumEa;
 }

@@ -3,12 +3,14 @@ package com.B1team.b01.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "FINPROD")
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor
