@@ -15,6 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,15 +50,11 @@ public class StockService {
     //시뮬레이션 - 재고확인 및 자동발주
     public Long stockCheck(String productId, String orderId) {
         //제품 잔여수량 확인
-//        Optional<Stock> optional = stockRepository.findById(productId);
-//        Stock stock = optional.get();
 
         Stock stock = (Stock) stockRepository.findByProductIdNotNull();
 
         //재고 수량
-
         Long stockEa = stock.getEa();
-
 
         System.out.println("stockEa" + stockEa);
 
@@ -75,11 +72,20 @@ public class StockService {
             //재고량이 주문량보다 적으면 자동발주 계산
             System.out.println("발주계산으로 넘어감");
 
-            return stockEa;
+            Long remainingStock = orderCnt - stockEa; //주문량 - 재고량
+            stock.setEa(remainingStock);
+            stockRepository.save(stock);
+
+            return remainingStock;
 
         } else if (stockEa >= orderCnt) {
             System.out.println("출하");
-            return orderCnt - stockEa;
+
+            Long remainingStock = stockEa - orderCnt; //재고량 - 주문량
+            stock.setEa(remainingStock);
+            stockRepository.save(stock);
+
+            return remainingStock;
 
         } else {
             return null;
@@ -98,56 +104,56 @@ public class StockService {
     }
 
     //발주 등록
-    public void createPorder(StockDto dto, PorderDto pdto) {
+    public void createPorder(PorderDto pdto) {
 
-        //주문량 > 재고량, 자동 발주
+        // 새로운 발주 등록 insert
+        Porder porder = new Porder();
 
-        Optional<Stock> stock = Optional.ofNullable((Stock) stockRepository.findByProductIdNotNull());
+        porder.setId(generateId("POR", "porder_seq"));
+        porder.setOrderDate(LocalDateTime.now()); // 현재일자
 
-        if (stock.isPresent()) {
-            Stock remainStock = stock.get();
+        porder.setCustomerId(pdto.getCustomerId()); // 거래처 고유번호
+        porder.setCustomerName(pdto.getCustomerName()); // 발주처
+        porder.setArrivalDate(pdto.getArrivalDate()); // 입고일
+        porder.setCnt(pdto.getCnt());
+        porder.setMtrUnit(pdto.getUnit());
+        porder.setAmount(pdto.getAmount());
+        porder.setState(pdto.getState());
+        porder.setMtrId(pdto.getMtrId());
+        porder.setMtrPrice(pdto.getPrice());
+        porder.setMtrName(pdto.getName());
 
-            // 기존 재고 업데이트 로직 (기존 재고량에서 주문량만큼 수량 감소)
-            remainStock.setEa(dto.getStockEa());
-            stockRepository.save(remainStock);
-
-        } else {
-            // 새로운 발주 등록 insert
-            Porder porder = new Porder();
-
-            porder.setId(generateId("POR", "porder_seq"));
-            porderRepository.save(porder);
-        }
+        porderRepository.save(porder);
     }
 
-
-    public List<StockListDto> getProductStockList(String productName, String productId, String productSort) {
-
-        List<Object[]> results = stockRepository.getProductStockList(productName, productId, productSort);
-
-        List<StockListDto> stockListDtoList = new ArrayList<>();
-
-        for (Object[] row : results) {
-            StockListDto stockListDto = new StockListDto();
-
-            // stock
-            stockListDto.setName(row[0].toString());
-            stockListDto.setProductId(row[1].toString());
-//            stockListDto.setEa(Long.valueOf((Long) row[2]));
-            stockListDto.setUnit(row[2].toString());
-            stockListDto.setPrice(Long.valueOf((Long) row[3]));
-            stockListDto.setSort(row[4].toString());
-            stockListDto.setLocation(row[5].toString());
-
-            for (int i = 0; i <= 5; i++) {
-                System.out.println(i + ":" + row[i]);
-            }
-
-            stockListDtoList.add(stockListDto);
-
-        }
-        return stockListDtoList;
-    }
+//
+//    public List<StockListDto> getProductStockList(String productName, String productId, String productSort) {
+//
+//        List<Object[]> results = stockRepository.getProductStockList(productName, productId, productSort);
+//
+//        List<StockListDto> stockListDtoList = new ArrayList<>();
+//
+//        for (Object[] row : results) {
+//            StockListDto stockListDto = new StockListDto();
+//
+//            // stock
+//            stockListDto.setName(row[0].toString());
+//            stockListDto.setProductId(row[1].toString());
+////            stockListDto.setEa(Long.valueOf((Long) row[2]));
+//            stockListDto.setUnit(row[2].toString());
+//            stockListDto.setPrice(Long.valueOf((Long) row[3]));
+//            stockListDto.setSort(row[4].toString());
+//            stockListDto.setLocation(row[5].toString());
+//
+//            for (int i = 0; i <= 5; i++) {
+//                System.out.println(i + ":" + row[i]);
+//            }
+//
+//            stockListDtoList.add(stockListDto);
+//
+//        }
+//        return stockListDtoList;
+//    }
 
     // 재고 update
     public void updateStockEa(String mtrId, double stockEa) {
@@ -158,14 +164,6 @@ public class StockService {
         }
     }
 
-    // 제품 재고 업데이트
-    public void updateProStockEa(String productId, Long stockEa) {
-        Stock prStock = stockRepository.findById(productId).orElse(null);
-        if (prStock != null) {
-            prStock.setEa(stockEa);
-            stockRepository.save(prStock);
-        }
-    }
 
 
 

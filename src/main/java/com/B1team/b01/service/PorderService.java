@@ -1,7 +1,6 @@
 package com.B1team.b01.service;
 
 import com.B1team.b01.dto.PorderOutputDto;
-import com.B1team.b01.dto.StockDto;
 import com.B1team.b01.entity.Porder;
 import com.B1team.b01.entity.Stock;
 import com.B1team.b01.repository.PorderDetailRepository;
@@ -24,7 +23,7 @@ public class PorderService {
     private final StockRepository stockRepository;
 
     //발주 등록
-    public void createPorder(StockDto stockDto) {
+    public void createPorder() {
 
         //주문량 > 재고량, 자동 발주
 
