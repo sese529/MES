@@ -20,6 +20,4 @@ public interface BomRepository extends JpaRepository<BOM, String> {
     List<Object[]> getBomList(@Param("productName") String productName,
                               @Param("mtrName") String mtrName);
 
-
-    List<Object[]> getBomList(String productName, String mtrName);
 }
