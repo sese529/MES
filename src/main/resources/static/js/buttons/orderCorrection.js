@@ -7,9 +7,19 @@ editBtn.onclick = function () {
     var checkedCnt = document.querySelectorAll('input[type="checkbox"]:checked').length;
     console.log('-----------' + checkedCnt);
     if (checkedCnt == 0)
-        alert("수정할 행을 선택해주세요.");
+        Swal.fire({
+            title: "선택 필요",
+            text: "수정할 행을 선택해주세요.",
+            icon: "warning",
+            confirmButtonText: "확인"
+        });
     else if (checkedCnt > 1)
-        alert("1개의 행만 선택해주세요.");
+        Swal.fire({
+            title: "선택 오류",
+            text: "1개의 행만 선택해주세요.",
+            icon: "warning",
+            confirmButtonText: "확인"
+        });
     else {
         var selectedId = document.querySelector('input[type=checkbox][name=selectedIds]:checked').value;
         console.log("checkedId=" + selectedId);
@@ -42,6 +52,9 @@ editBtn.onclick = function () {
                     }
                 }
 
+                var editInfoCustomerName = response.editInfoCustomerName;
+                document.getElementById('hiddenEditCustomer').value = editInfoCustomerName;
+
                 //품목 설정
                 var editInfoProductId = response.editInfoProductId;
                 var productList = document.getElementById('editProductId');
@@ -53,9 +66,16 @@ editBtn.onclick = function () {
                     }
                 }
 
+                var editInfoProductName = response.editInfoProductName;
+                document.getElementById('hiddenEditProduct').value = editInfoProductName;
+
                 //수주량 설정
                 var editInfoCnt = response.editInfoCnt;
-                document.getElementById('editCnt').value = editInfoCnt;
+                document.getElementById('editOrderCnt').value = editInfoCnt;
+
+                //수주 가격 설정
+                var editInfoPrice = response.editInfoPrice;
+                document.getElementById('editPrice').value = editInfoPrice;
 
                 //납품예정일 설정
                 var editInfoDeadline = response.editInfoDeadline;
@@ -81,7 +101,7 @@ editBtn.onclick = function () {
                         } else {
                             clearInterval(interval);
                         }
-                    }, 20);
+                    }, 10);
                 }, 10); // 일정 시간 간격 뒤에 애니메이션 시작
             },
             error: function (error) {
@@ -103,11 +123,11 @@ editClose.onclick = function () {
             clearInterval(interval);
             editModal.style.display = "none";
         }
-    }, 20);
+    }, 10);
 };
 
 window.onclick = function (event) {
-    if (event.target == editModal) {
+    if (event.target == editClose) {
         // 모달 천천히 사라지게 하기
         var opacity = 1;
         var interval = setInterval(function () {
@@ -118,6 +138,6 @@ window.onclick = function (event) {
                 clearInterval(interval);
                 editModal.style.display = "none";
             }
-        }, 20);
+        }, 10);
     }
 };

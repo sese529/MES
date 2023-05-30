@@ -11,6 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!--  간트 js  -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <!--  달력  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>제1조 MES</title>
@@ -163,7 +166,6 @@
                         <option value="2023">2023</option>
                         <option value="2024">2024</option>
                         <option value="2025">2025</option>
-                        `
                     </select>
                     <label for="month">월:</label>
                     <select id="month" onchange="updateCalendar()">
@@ -188,7 +190,8 @@
             <!-- 수주별 생산 현황 -->
             <div class="mainContent2">
                 <div class="mainChartHeader">
-                    <h2><i class="fa-solid fa-chart-gantt" id="orderCurrentIcon" style="color: #6a84ab;"></i>수주별 생산 현황</h2>
+                    <h2><i class="fa-solid fa-chart-gantt" id="orderCurrentIcon" style="color: #6a84ab;"></i>수주별 생산 현황
+                    </h2>
                 </div>
                 <div class="mainCharts">
                     <div id="orderCurrent"></div>
@@ -212,8 +215,8 @@
             </div>
             <!-- 일일 생산량 끝 -->
 
+            <!-- 월간 생산량 -->
             <div class="mainContent4">
-                <!-- 월간 생산량 -->
                 <div class="mainChart">
                     <div class="mainChartHeader">
                         <h2><i class="fa-solid fa-chart-area" id="monthlyProductionIcon"
@@ -225,15 +228,11 @@
                 </div>
             </div>
             <!-- 월간 생산량 끝 -->
-
         </div>
-
     </div>
     <!-- End of Content Wrapper -->
-
 </div>
 <!-- End of Page Wrapper -->
-
 </div>
 <!-- End of Page Wrapper -->
 
@@ -255,5 +254,4 @@
 <script src="/js/sb-admin-2.min.js"></script>
 
 </body>
-
 </html>

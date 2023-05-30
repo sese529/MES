@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>자재 재고 현황</title>
@@ -158,15 +159,15 @@
             <!-- End of Topbar -->
 
             <!-- searchbar  -->
-            <form action="/search" methbod="get" class="searchbarForm">
+            <form action="/materials/material-inventory" methbod="get" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable3" cellspacing="0">
-                        <tr class="searchbarTr1">
+                        <tr class="searchbarTr3">
                             <td class="searchbarDateTd">
                                 <p>품목 상세조회</p>
                             </td>
                             <td class="searchbarContent">
-                                <input type="text">
+                                <input type="text" th:name="mtrName" th:value="${mtrName}">
                             </td>
                             <td class="searchButtonTd">
                                 <button class="searchButton">
@@ -195,45 +196,14 @@
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
-                                <td>양배추</td>
-                                <td>5</td>
-                                <td>ton</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>흑마늘</td>
-                                <td>10</td>
-                                <td>kg</td>
-                            </tr>
-                            <tr>
-                                <td>석류액기스</td>
-                                <td>5</td>
-                                <td>kg</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>매실액기스</td>
-                                <td>5</td>
-                                <td>kg</td>
-                            </tr>
-                            <tr>
-                                <td>콜라겐</td>
-                                <td>5</td>
-                                <td>kg</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>즙 파우치</td>
-                                <td>1000</td>
-                                <td>ea</td>
-                            </tr>
-                            <tr>
-                                <td>스틱 파우치</td>
-                                <td>1000</td>
-                                <td>ea</td>
-                            </tr>
-                            <tr class="tableBodyTr">
-                                <td>포장박스</td>
-                                <td>500</td>
-                                <td>ea</td>
+                            <tr th:each="inventory : ${list}">
+                                <td th:text="${inventory.name}">양배추</td>
+                                <td th:text="${inventory.unit == 'g' && inventory.ea > 1000 ? inventory.ea / 1000 : inventory.ea}">
+                                    5
+                                </td>
+                                <td th:text="${inventory.unit == 'g' && inventory.ea > 1000 ? 'kg' : inventory.unit}">
+                                    ton
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -243,23 +213,10 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
     <!-- 작성 스크립트-->
-    <script src="/js/orderRegistration.js"></script>
-    <script src="/js/orderCorrection.js"></script>
     <script src="/js/excel/material-inventoryExcel.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -277,10 +234,6 @@
     <!-- Page level plugins -->
     <script src="/js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/js/monthlyChart.js"></script>
-    <script src="/js/dailyChart.js"></script>
 </div>
 </body>
-
 </html>

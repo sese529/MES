@@ -3,7 +3,9 @@ package com.B1team.b01.service;
 import com.B1team.b01.dto.RorderDto;
 import com.B1team.b01.dto.RorderFormDto;
 import com.B1team.b01.entity.Rorder;
+import com.B1team.b01.entity.Worder;
 import com.B1team.b01.repository.RorderRepository;
+import com.B1team.b01.repository.WorderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,9 +24,66 @@ import java.util.Optional;
 @Service
 public class RorderService {
     private final RorderRepository rorderRepository;
+    private final WorderRepository worderRepository;
     private final MprocessService mprocessService;
+    private final WplanService wplanService;
+    private final WorderService worderService;
+    private final LotService lotService;
+
     private final EntityManager entityManager;
 
+
+    //수주 - 확정 시 이벤트
+    public void rorderConfirmed(String rorderId) {
+        Rorder rorder = updateConfirmed(rorderId);
+
+
+//            1 제품 재고 업데이트 - 수경님
+//            stockService.stockCheck();
+
+//            2 원자재 재고 업뎃 - 세윤님
+//            stockService.updateStockEa();
+
+//            3 자동 발주 / 발주상세 자재 ,입출 정보 in - 수경님
+
+//            4 생산 지시, 로트번호, 생산계획, 실적, 완제품 insert -다인님
+                LocalDateTime materialReadyDate = rorder.getDate();
+                String productId = rorder.getProductId();
+                long orderCnt = rorder.getCnt();
+                String orderId = rorder.getId();
+                wplanService.createWplan(materialReadyDate, productId, orderCnt, orderId);  //작성계획 등록메소드
+
+                worderService.doWorder(orderId, materialReadyDate, productId, orderCnt);    //작업지시 등록메소드
+
+                Optional<Worder> optional2 = worderRepository.findById(orderId);
+                Worder worder = optional2.get();
+                String processId = worder.getProcessId();
+                String wplanId = worder.getWplanId();
+                lotService.createLotRecode(processId, wplanId, productId);   //로트번호 등록
+
+
+
+    }
+
+    //수주 - 확정 시 : 수주일자 조정 / 시뮬레이션 돌리기 / 확정 변환
+    public Rorder updateConfirmed(String rorderId) {
+        Optional<Rorder> optional = rorderRepository.findById(rorderId);
+        Rorder rorder = optional.get();
+
+        //수주일이 현재 시간 보다 이전이면 지금 시간으로 수정
+        if(rorder.getDate().isBefore(LocalDateTime.now()))
+            rorder.setDate(LocalDateTime.now());
+
+        //시뮬레이션 돌리기
+        LocalDateTime deliveryDate = mprocessService.caluculateDeadline(rorder.getDate(), rorder.getProductId(), rorder.getCnt());
+        rorder.setDeadline(deliveryDate);
+
+        //미확정에서 확정으로 세팅
+        rorder.setState("확정");
+        return rorderRepository.save(rorder);
+    }
+
+    //수주 리스트
     public List<RorderDto> searchRorder(String start, String end, String orderId, String state, String customerName, String productName, String startLine, String endLine) {
         //날짜 관련 변환
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

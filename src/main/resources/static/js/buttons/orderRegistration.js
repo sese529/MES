@@ -21,7 +21,7 @@ btn.onclick = function () {
       opacity += 0.1; // 투명도를 0.1씩 증가시킴
       modal.style.opacity = opacity;
     }
-  }, 20); // 일정 시간 간격 (밀리초 단위, 조절 가능)
+  }, 10); // 일정 시간 간격 (밀리초 단위, 조절 가능)
 };
 
 // 취소 버튼 눌렀을 때 모달 사라짐
@@ -39,7 +39,7 @@ span.onclick = function () {
       opacity -= 0.1; // 투명도를 0.1씩 감소시킴
       modal.style.opacity = opacity;
     }
-  }, 20); // 일정 시간 간격 (밀리초 단위, 조절 가능)
+  }, 10); // 일정 시간 간격 (밀리초 단위, 조절 가능)
 };
 
 window.onclick = function (event) {
@@ -57,6 +57,6 @@ window.onclick = function (event) {
         opacity -= 0.1; // 투명도를 0.1씩 감소시킴
         modal.style.opacity = opacity;
       }
-    }, 20); // 일정 시간 간격 (밀리초 단위, 조절 가능)
+    }, 10); // 일정 시간 간격 (밀리초 단위, 조절 가능)
   }
 };

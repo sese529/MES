@@ -233,7 +233,6 @@ table {
 .tableTitle {
     background-color: #f1f3f9;
     text-align: center;
-    font-size: bold;
 }
 
 .tableBody {
@@ -1799,7 +1798,8 @@ pre code {
 
 .table {
     width: 100%;
-    color: #858796
+    color: #858796;
+    margin: 0;
 }
 
 .table td,
@@ -2704,7 +2704,8 @@ textarea.form-control.is-invalid {
     background-color: #6a84ab;
     display: flex;
     border-bottom: 2px solid #fff;
-    margin: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .searchbarTr2 {
@@ -2712,6 +2713,8 @@ textarea.form-control.is-invalid {
     color: #fff;
     background-color: #6a84ab;
     display: flex;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .searchbarTr3 {
@@ -2719,6 +2722,7 @@ textarea.form-control.is-invalid {
     color: #fff;
     background-color: #6a84ab;
     display: flex;
+    border-radius: 10px;
 }
 
 #dataTable tbody tr:nth-child(1) td:nth-child(1),
@@ -2743,6 +2747,7 @@ textarea.form-control.is-invalid {
 #orderDataTable1 tbody tr:nth-child(1) td:nth-child(3),
 #orderDataTable1 tbody tr:nth-child(1) td:nth-child(4),
 #orderDataTable1 tbody tr:nth-child(1) td:nth-child(5),
+#orderDataTable1 tbody tr:nth-child(1) td:nth-child(6),
 #orderDataTable1 tbody tr:nth-child(2) td:nth-child(1),
 #orderDataTable1 tbody tr:nth-child(2) td:nth-child(2),
 #orderDataTable1 tbody tr:nth-child(2) td:nth-child(3),
@@ -2798,8 +2803,7 @@ textarea.form-control.is-invalid {
 #itemDataTable1 tbody tr:nth-child(2) td:nth-child(1),
 #itemDataTable1 tbody tr:nth-child(2) td:nth-child(2),
 #itemDataTable1 tbody tr:nth-child(2) td:nth-child(3),
-#itemDataTable1 tbody tr:nth-child(2) td:nth-child(4),
-#itemDataTable1 tbody tr:nth-child(2) td:nth-child(5) {
+#itemDataTable1 tbody tr:nth-child(2) td:nth-child(4) {
     border-right: 2px solid #fff;
 }
 
@@ -2811,8 +2815,7 @@ textarea.form-control.is-invalid {
 #itemDataTable2 tbody tr:nth-child(2) td:nth-child(1),
 #itemDataTable2 tbody tr:nth-child(2) td:nth-child(2),
 #itemDataTable2 tbody tr:nth-child(2) td:nth-child(3),
-#itemDataTable2 tbody tr:nth-child(2) td:nth-child(4),
-#itemDataTable2 tbody tr:nth-child(2) td:nth-child(5) {
+#itemDataTable2 tbody tr:nth-child(2) td:nth-child(4) {
     border-right: 2px solid #fff;
 }
 
@@ -2820,12 +2823,7 @@ textarea.form-control.is-invalid {
 #itemDataTable3 tbody tr:nth-child(1) td:nth-child(2),
 #itemDataTable3 tbody tr:nth-child(1) td:nth-child(3),
 #itemDataTable3 tbody tr:nth-child(1) td:nth-child(4),
-#itemDataTable3 tbody tr:nth-child(1) td:nth-child(5),
-#itemDataTable3 tbody tr:nth-child(2) td:nth-child(1),
-#itemDataTable3 tbody tr:nth-child(2) td:nth-child(2),
-#itemDataTable3 tbody tr:nth-child(2) td:nth-child(3),
-#itemDataTable3 tbody tr:nth-child(2) td:nth-child(4),
-#itemDataTable3 tbody tr:nth-child(2) td:nth-child(5) {
+#itemDataTable3 tbody tr:nth-child(1) td:nth-child(5) {
     border-right: 2px solid #fff;
 }
 
@@ -2833,31 +2831,10 @@ textarea.form-control.is-invalid {
     margin: 0;
 }
 
-#itemDataTable4 tbody tr:nth-child(1) td:nth-child(1),
-#itemDataTable4 tbody tr:nth-child(1) td:nth-child(2),
-#itemDataTable4 tbody tr:nth-child(1) td:nth-child(3),
-#itemDataTable4 tbody tr:nth-child(1) td:nth-child(4),
-#itemDataTable4 tbody tr:nth-child(1) td:nth-child(5),
-#itemDataTable4 tbody tr:nth-child(2) td:nth-child(1),
-#itemDataTable4 tbody tr:nth-child(2) td:nth-child(2),
-#itemDataTable4 tbody tr:nth-child(2) td:nth-child(3),
-#itemDataTable4 tbody tr:nth-child(2) td:nth-child(4) {
-    border-right: 2px solid #fff;
-}
-
-#itemDataTable4 {
-    height: 200px;
-}
-
 #itemDataTable5 tbody tr:nth-child(1) td:nth-child(1),
 #itemDataTable5 tbody tr:nth-child(1) td:nth-child(2),
 #itemDataTable5 tbody tr:nth-child(1) td:nth-child(3),
-#itemDataTable5 tbody tr:nth-child(1) td:nth-child(4),
-#itemDataTable5 tbody tr:nth-child(1) td:nth-child(5),
-#itemDataTable5 tbody tr:nth-child(2) td:nth-child(1),
-#itemDataTable5 tbody tr:nth-child(2) td:nth-child(2),
-#itemDataTable5 tbody tr:nth-child(2) td:nth-child(3),
-#itemDataTable5 tbody tr:nth-child(2) td:nth-child(4) {
+#itemDataTable5 tbody tr:nth-child(1) td:nth-child(4) {
     border-right: 2px solid #fff;
 }
 
@@ -2943,16 +2920,6 @@ textarea.form-control.is-invalid {
     border-right: 2px solid #fff;
 }
 
-#itemDataTables1 tbody tr:nth-child(1) td:nth-child(1),
-#itemDataTables1 tbody tr:nth-child(1) td:nth-child(2),
-#itemDataTables1 tbody tr:nth-child(1) td:nth-child(3),
-#itemDataTables1 tbody tr:nth-child(1) td:nth-child(4),
-#itemDataTables1 tbody tr:nth-child(1) td:nth-child(5),
-#itemDataTables1 tbody tr:nth-child(1) td:nth-child(6),
-#itemDataTables1 tbody tr:nth-child(1) td:nth-child(7) {
-    border-right: 2px solid #fff;
-}
-
 #dataTable2 tbody tr:nth-child(1) td:nth-child(1),
 #dataTable2 tbody tr:nth-child(1) td:nth-child(2),
 #dataTable2 tbody tr:nth-child(1) td:nth-child(3),
@@ -2969,8 +2936,7 @@ textarea.form-control.is-invalid {
     margin: 0;
 }
 
-#dataTable3 tbody tr:nth-child(1) td:nth-child(1),
-#dataTable3 tbody tr:nth-child(1) td:nth-child(2) {
+#dataTable3 tbody tr:nth-child(1) td:nth-child(1) {
     border-right: 2px solid #fff;
 }
 
@@ -3040,6 +3006,9 @@ textarea.form-control.is-invalid {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .searchbarContent input {
@@ -3047,6 +3016,9 @@ textarea.form-control.is-invalid {
     height: 40px;
     border: 2px solid #6a84ab;
     border-radius: 10px;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .searchbarContent2 {
@@ -3054,6 +3026,9 @@ textarea.form-control.is-invalid {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .searchbarContent2 input {
@@ -3061,6 +3036,9 @@ textarea.form-control.is-invalid {
     height: 40px;
     border: 2px solid #6a84ab;
     border-radius: 10px;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .searchbarSelect {
@@ -3202,6 +3180,8 @@ textarea.form-control.is-invalid {
     display: flex;
     border-bottom: 2px solid #fff;
     margin: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .regSearchbarTr2 {
@@ -3211,6 +3191,8 @@ textarea.form-control.is-invalid {
     display: flex;
     border-bottom: 2px solid #fff;
     margin: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .stockRegSearchbarTr1 {
@@ -3221,6 +3203,8 @@ textarea.form-control.is-invalid {
     display: flex;
     border-bottom: 2px solid #fff;
     margin: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .stockRegSearchbarTr2 {
@@ -3231,6 +3215,8 @@ textarea.form-control.is-invalid {
     display: flex;
     border-bottom: 2px solid #fff;
     margin: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .customerRegSearchbarTr1 {
@@ -3241,6 +3227,8 @@ textarea.form-control.is-invalid {
     display: flex;
     border-bottom: 2px solid #fff;
     margin: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .customerRegSearchbarTr2 {
@@ -3260,6 +3248,8 @@ textarea.form-control.is-invalid {
     display: flex;
     border-bottom: 2px solid #fff;
     margin: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .regSearchbarDateTd {
@@ -3280,6 +3270,9 @@ textarea.form-control.is-invalid {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #929295;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .regSearchbarContent input {
@@ -3471,7 +3464,7 @@ textarea.form-control.is-invalid {
     height: 40px;
     color: #fff;
     background-color: #004476;
-    border: none;
+    border-radius: 10px;
     font-weight: bold;
 }
 
@@ -3480,7 +3473,7 @@ textarea.form-control.is-invalid {
     height: 50px;
     color: #fff;
     background-color: #004476;
-    border: none;
+    border-radius: 10px;
     font-weight: bold;
     font-size: 20px;
     margin-right: 15px;
@@ -3493,6 +3486,7 @@ textarea.form-control.is-invalid {
     border: 1px solid #000;
     font-weight: bold;
     margin-left: 10px;
+    border-radius: 10px;
 }
 
 .editClose {
@@ -3502,6 +3496,7 @@ textarea.form-control.is-invalid {
     border: 1px solid #000;
     font-weight: bold;
     margin-left: 10px;
+    border-radius: 10px;
 }
 
 .stockRegClose {
@@ -3512,6 +3507,7 @@ textarea.form-control.is-invalid {
     border: 1px solid #000;
     font-weight: bold;
     font-size: 20px;
+    border-radius: 10px;
 }
 
 .stockCorClose {
@@ -3522,6 +3518,7 @@ textarea.form-control.is-invalid {
     font-weight: bold;
     margin-left: 10px;
     font-size: 20px;
+    border-radius: 10px;
 }
 
 .customerRegClose {
@@ -3532,6 +3529,7 @@ textarea.form-control.is-invalid {
     border: 1px solid #000;
     font-weight: bold;
     font-size: 20px;
+    border-radius: 10px;
 }
 
 .regClose:hover,
@@ -3558,6 +3556,7 @@ textarea.form-control.is-invalid {
     height: 50px;
     background-color: #37b33c;
     color: #ffffff;
+    border-radius: 10px;
 }
 
 .buttonsCor {
@@ -3567,6 +3566,7 @@ textarea.form-control.is-invalid {
     height: 50px;
     background-color: #4e8ce9;
     color: #ffffff;
+    border-radius: 10px;
 }
 
 .buttonsChe {
@@ -3576,6 +3576,7 @@ textarea.form-control.is-invalid {
     height: 50px;
     background-color: #ed7c2b;
     color: #ffffff;
+    border-radius: 10px;
 }
 
 .buttonsEx {
@@ -3584,6 +3585,7 @@ textarea.form-control.is-invalid {
     height: 50px;
     background-color: #004476;
     color: #ffffff;
+    border-radius: 10px;
 }
 
 .btn {
@@ -13733,4 +13735,23 @@ body.sidebar-toggled footer.sticky-footer {
     height: 400px;
     display: flex;
     justify-content: center;
+}
+
+.calendarDay {
+    background-color: yellow;
+}
+
+.swal-text {
+    color: rgba(0,0,0,.65);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.swal-button {
+    background-color: #6a84ab;
+    font-size: 15px;
+}
+
+.swal-button:not([disabled]):hover {
+    background-color: #aeaeae;
 }

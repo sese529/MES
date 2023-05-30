@@ -50,15 +50,15 @@ public class StockController {
 //        return "/item/stock";
 //    }
 
-    @GetMapping("/stock")
-    public String stock(Model model
-            , @RequestParam(required = false) String productName
-            , @RequestParam(required = false) String productId
-            , @RequestParam(required = false) String productSort) {
-        List<StockListDto> stockList = stockService.getProductStockList(productName, productId, productSort);
-
-        model.addAttribute("stockList", stockList);
-
-        return "product";
-    }
+//    @GetMapping("/stock")
+//    public String stock(Model model
+//            , @RequestParam(required = false) String productName
+//            , @RequestParam(required = false) String productId
+//            , @RequestParam(required = false) String productSort) {
+//        List<StockListDto> stockList = stockService.getProductStockList(productName, productId, productSort);
+//
+//        model.addAttribute("stockList", stockList);
+//
+//        return "product";
+//    }
 }

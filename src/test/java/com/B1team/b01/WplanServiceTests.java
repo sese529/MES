@@ -1,5 +1,6 @@
 package com.B1team.b01;
 
+import com.B1team.b01.dto.WplanDto;
 import com.B1team.b01.repository.RorderRepository;
 import com.B1team.b01.service.WplanService;
 import org.junit.jupiter.api.Test;
@@ -8,7 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @SpringBootTest
 public class WplanServiceTests {
@@ -42,6 +49,15 @@ public class WplanServiceTests {
 
         LocalDateTime materialReadyDate = LocalDateTime.of(2023, 5, 29, 9, 0);
         wplanService.createWplan(materialReadyDate, "p21", 1, "ROD65");
+
+    }
+
+    @Test
+    public void test() {
+
+        LocalDateTime d = LocalDateTime.of(LocalDate.parse("2023-05-26"), LocalTime.parse("23:59:59"));
+
+        System.out.println(wplanService.getWplansByWorkDate(d) +"dd2하하");
 
     }
 

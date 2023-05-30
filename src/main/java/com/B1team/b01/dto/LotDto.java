@@ -18,7 +18,7 @@ public class LotDto {
     private String id;   //작업계획 고유번호
     private String orderId;    //수주 고유번호
     private String code;    //로트 코드
-    private String process; //공정 코드
+    private String processId; //공정 코드
     private String productId; //품목 고유번호
     private String worderId;  //작업지시 고유번호
 

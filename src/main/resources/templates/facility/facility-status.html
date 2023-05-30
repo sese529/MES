@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/8d5fe92c5f.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/css/css.css" rel="stylesheet">
     <title>설비 현황</title>
@@ -156,14 +157,15 @@
             <form action="/facility/facility-status" methbod="get" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="dataTable" cellspacing="0">
-                        <tr class="searchbarTr2">
+                        <tr class="searchbarTr3">
                             <td class="searchbarDateTd">
                                 <p>설비</p>
                             </td>
                             <td class="searchbarContent">
                                 <select class="searchbarSelect" name="fname">
                                     <option th:value="${null}" th:selected="${fname == '' or fname == null}">선택</option>
-                                    <option th:each="facilityName : ${nameList}" th:text="${facilityName}" th:value="${facilityName}" th:selected="${fname == facilityName}"></option>
+                                    <option th:each="facilityName : ${nameList}" th:text="${facilityName}"
+                                            th:value="${facilityName}" th:selected="${fname == facilityName}"></option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd">
@@ -214,7 +216,7 @@
                                 <td th:text="${status.state}">가동중</td>
                                 <td th:text="${status.id}">a12345</td>
                             </tr>
-<!--                            <tr class="tableBodyTr">-->
+                            <!--                            <tr class="tableBodyTr">-->
                             </tbody>
                         </table>
                     </div>
@@ -223,17 +225,6 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
@@ -256,10 +247,5 @@
 <!-- Page level plugins -->
 <script src="/js/Chart.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="/js/monthlyChart.js"></script>
-<script src="/js/dailyChart.js"></script>
-
 </body>
-
 </html>

@@ -17,6 +17,7 @@ import javax.transaction.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,11 @@ public class WplanService {
     private final StockRepository stockRepository;
 
     @Autowired
-    private MprocessService mprocessService;
+    private final MprocessService mprocessService;
+    @Autowired
+    private final ProductionService productionService;
+
+    private Wplan wplan;
 
 
     private final LocalDateTime ifNow = LocalDateTime.now();
@@ -51,12 +56,11 @@ public class WplanService {
 
         //계획 세워져 있는게 없다면, 작업계획 등록하기
         //계획 시작일자 전에는 진행대기로 표시
-        if (confirmWplan.isPresent()){
+        if (confirmWplan.isPresent()) {
             System.out.println("세워져 있는계획이 있습니다");
-        }else{
+        } else {
             WplanDto wplanDto = new WplanDto();
             List<WorderDto> worderDtos = mprocessService.calculateWorderDate(materialReadyDate, productId, orderCnt);
-
 
             wplanDto.setId(generateWplanId()); //문자열 시퀀스
             wplanDto.setCnt(productCnt(productId, orderId)); //생산 수량
@@ -67,17 +71,14 @@ public class WplanService {
 
             if (ifNow.isBefore(worderDtos.get(0).getStartDate())) {
                 wplanDto.setState("진행대기");
-            }else if(ifNow.isEqual(worderDtos.get(0).getStartDate()) || ifNow.isAfter(worderDtos.get(0).getStartDate())) {
+            } else if (ifNow.isEqual(worderDtos.get(0).getStartDate()) || ifNow.isAfter(worderDtos.get(0).getStartDate())) {
                 wplanDto.setState("진행중");
-            }else{
+            } else {
                 wplanDto.setState("완료");
             }//계획진행상태
-            System.out.println("wplanDto----------" + wplanDto.toEntity());
             wplanRepository.save(wplanDto.toEntity());
         }
     }
-
-
 
 
     //문자열 시퀀스 메소드
@@ -110,12 +111,62 @@ public class WplanService {
         Long orderCntUnit = orderCnt * unit;
 
         //수주량 - 재고량
-        Long result = orderCntUnit - stockCnt ;
+        Long result = orderCntUnit - stockCnt;
         System.out.println("생산필요량" + result);
         return result;
     }
 
+    // 공정 돌아가고 있는지 확인 (생산계획일자 기준으로 계산)
+    public LocalDateTime getWplansByWorkDate(LocalDateTime resultDate) {
 
+        //작업시간 계산 불러옴
+        List<WplanDto> getResultDate = wplanRepository.workDate(resultDate);
 
+        System.out.println(resultDate + "resultDate");
+
+        if(getResultDate.isEmpty()) { //쿼리 값이 없다면 공정 안 돌아가고있음
+//            LocalDateTime workDate = LocalDateTime.parse(getResultDate.toString(),
+//                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+            System.out.println("현재 공정 비어있음");
+
+            return resultDate;
+
+        }else{ //쿼리 값이 있다면 현재 공정 돌아가고 난 후에 돌릴 수 있음
+            WplanDto Date = getResultDate.get(0);
+            LocalDateTime endDateValue = Date.getEndDate();
+
+            long resultResultDate = ChronoUnit.NANOS.between(resultDate, endDateValue); //long
+
+            System.out.println("공정 endDate - 계산Date : " + resultResultDate + "초 resultResultDate");
+            LocalDateTime resultDateTime = endDateValue.plusNanos(resultResultDate); //dateTime
+
+            System.out.println("최종 일자 : " + resultDateTime + "resultDateTime");
+
+            return resultDateTime;
+        }
+    }
+
+    //계획상태 업데이트(*)
+    public List<LocalDateTime> updateState() {
+
+        List<LocalDateTime> startTime = wplanRepository.selectStartTime();
+        List<LocalDateTime> endTime = wplanRepository.selectEndTime();
+
+        LocalDateTime currentTime;
+        currentTime = LocalDateTime.now();
+
+        for (int i = 0; i < startTime.size(); i++) {
+            if (currentTime.isBefore(startTime.get(i))) {
+                wplanRepository.updateWaitState(startTime.get(i));
+
+            } else if (currentTime.isAfter(endTime.get(i))) {
+                wplanRepository.updateEndState(endTime.get(i));
+            } else {
+                wplanRepository.updateIngState(endTime.get(i));
+            }
+        }
+
+        return startTime;
+    }
 }
-

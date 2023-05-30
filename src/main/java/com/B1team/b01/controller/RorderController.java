@@ -5,6 +5,7 @@ import com.B1team.b01.dto.CustomerDto;
 import com.B1team.b01.dto.ProductDto;
 import com.B1team.b01.dto.RorderDto;
 import com.B1team.b01.dto.RorderFormDto;
+import com.B1team.b01.entity.Rorder;
 import com.B1team.b01.repository.CustomerRepository;
 import com.B1team.b01.repository.ProductRepository;
 import com.B1team.b01.repository.RorderRepository;
@@ -21,10 +22,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Controller
@@ -36,6 +34,7 @@ public class RorderController {
     private final RorderRepository rorderRepository;
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
+
 
     //수주 리스트 검색
     @GetMapping("/order")
@@ -93,8 +92,9 @@ public class RorderController {
                            String productId,
                            String productName,
                            String orderCnt,
+                           String orderPrice,
                            String deliveryDate) {
-        RorderFormDto dto = new RorderFormDto(orderDate, customerId, customerName, productId, productName, orderCnt, deliveryDate);
+        RorderFormDto dto = new RorderFormDto(orderDate, customerId, customerName, productId, productName, orderCnt, orderPrice, deliveryDate);
 //        System.out.println("입력 정보=" + dto);
         rorderService.addRorder(dto);
 
@@ -113,8 +113,9 @@ public class RorderController {
                                        String productId,
                                        String productName,
                                        String orderCnt,
+                                       String orderPrice,
                                        String deliveryDate) {
-        RorderFormDto dto = new RorderFormDto(rorderId, orderDate, customerId, customerName, productId, productName, orderCnt, deliveryDate);
+        RorderFormDto dto = new RorderFormDto(rorderId, orderDate, customerId, customerName, productId, productName, orderCnt, orderPrice, deliveryDate);
 //        System.out.println("입력 정보=" + dto);
         rorderService.editRorder(dto);
 
@@ -129,10 +130,10 @@ public class RorderController {
     public String updateToConfirmed(String[] selectedIds) {
         Arrays.sort(selectedIds);
         for(int i = 0; i < selectedIds.length; i++) {
-            int temp = rorderRepository.updateState(selectedIds[i]);
-            System.out.println(i + "번째=" + temp);
+//            int temp = rorderRepository.updateState(selectedIds[i]);
+//            System.out.println(i + "번째=" + temp);
+            rorderService.rorderConfirmed(selectedIds[i]);
         }
-//            System.out.println("selectedIds=" + selectedIds[i]);
         return "redirect:/rorder/order";
     }
 
@@ -146,8 +147,11 @@ public class RorderController {
         response.put("editInfoDate", editInfo.getDate());
         response.put("editInfoId", editInfo.getId());
         response.put("editInfoCustomerId", editInfo.getCustomerId());
+        response.put("editInfoCustomerName", editInfo.getCustomerName());
         response.put("editInfoProductId", editInfo.getProductId());
+        response.put("editInfoProductName", editInfo.getProductName());
         response.put("editInfoCnt", String.valueOf(editInfo.getCnt()));
+        response.put("editInfoPrice", String.valueOf(editInfo.getPrice()));
         response.put("editInfoDeadline", editInfo.getDeadline());
         response.put("redirectUrl", "/rorder/order");
         return ResponseEntity.ok(response);

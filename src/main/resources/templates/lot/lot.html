@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <!-- Custom fonts for this template-->
@@ -7,6 +7,7 @@
     <script th:inline="javascript">
         console.log([[${searchlist}]]);
     </script>
+
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
@@ -71,9 +72,9 @@
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/production/production-plan">· 작업 계획 현황</a>
-                    <a class="collapse-item" href="/production/production-order">· 작업 지시 현황</a>
-                    <a class="collapse-item" href="/production/production-performance">· 작업 실적 현황</a>
+                    <a class="collapse-item" href="/lot/production/production-plan">· 작업 계획 현황</a>
+                    <a class="collapse-item" href="/lot/production/production-order">· 작업 지시 현황</a>
+                    <a class="collapse-item" href="/lot/production/production-performance">· 작업 실적 현황</a>
                 </div>
             </div>
         </li>
@@ -110,7 +111,7 @@
             </a>
             <div id="collapseFour" class="collapse" aria-labelledby="HeadingFour" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/item/stock">· 제품 재고 현황</a>
+                    <a class="collapse-item" href="/item/product">· 제품 재고 현황</a>
                     <a class="collapse-item" href="/item/bom">· BOM 현황</a>
                 </div>
             </div>
@@ -164,7 +165,7 @@
             <!-- End of Topbar -->
 
             <!-- searchbar  -->
-            <form action="/production/plansearch" method="POST" class="searchbarForm">
+            <form action="/lot/lotsearch" method="GET" class="searchbarForm">
                 <div class="searchbar">
                     <table class="table table-borderless" id="productionDataTables1" cellspacing="0">
                         <tr class="searchbarTr3">
@@ -172,36 +173,36 @@
                                 <p>고유번호</p>
                             </td>
                             <td class="searchbarContent2">
-                                <input type="text">
+                                <input type="text" name="id">
                             </td>
                             <td class="searchbarDateTd2">
                                 <p>공정코드</p>
                             </td>
                             <td class="searchbarContent2">
-                                <select class="searchbarSelect" name="state">
-                                    <option value="" selected> </option>
-                                    <option>A101</option>
-                                    <option>A102</option>
-                                    <option>A103</option>
-                                    <option>A104</option>
-                                    <option>A105</option>
-                                    <option>A106</option>
-                                    <option>A107</option>
-                                    <option>A108</option>
-                                    <option>A109</option>
-                                    <option>A110</option>
+                                <select class="searchbarSelect" name="processId">
+                                    <option value="" selected></option>
+                                    <option value="A101">A101</option>
+                                    <option value="A102">A102</option>
+                                    <option value="A103">A103</option>
+                                    <option value="A104">A104</option>
+                                    <option value="A105">A105</option>
+                                    <option value="A106">A106</option>
+                                    <option value="A107">A107</option>
+                                    <option value="A108">A108</option>
+                                    <option value="A109">A109</option>
+                                    <option value="A110">A110</option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd2">
                                 <p>제품명</p>
                             </td>
                             <td class="searchbarContent2">
-                                <select class="searchbarSelect" name="state">
-                                    <option value="" selected> </option>
-                                    <option>양배추즙</option>
-                                    <option>흑마늘즙</option>
-                                    <option>매실젤리스틱</option>
-                                    <option>석류젤리스틱</option>
+                                <select class="searchbarSelect" name="productId">
+                                    <option value="" selected></option>
+                                    <option value="p21">양배추즙</option>
+                                    <option value="p22">흑마늘즙</option>
+                                    <option value="p23">석류젤리스틱</option>
+                                    <option value="p24">매실젤리스틱</option>
                                 </select>
                             </td>
                             <td class="searchbarDateTd2">
@@ -238,18 +239,34 @@
                             <tr>
                                 <th>완제품 고유번호</th>
                                 <th>로트 코드</th>
-                                <th>공정</th>
                                 <th>제품명</th>
-                                <th>LOT 완료일</th>
+                                <th>공정코드</th>
+                                <th>공정 완료일</th>
                                 <th>수주 고유번호</th>
                             </tr>
                             </thead>
                             <tbody class="tableBody">
-                            <tr>
-
+                            <tr th:each="lotList:${lotList}">
+                                <td th:text="${lotList.id}"></td>
+                                <td th:text="${lotList.code}"></td>
+                                <td th:if="${lotList.productId == 'p21'}"> 양배추즙
+                                <td th:if="${lotList.productId == 'p22'}"> 흑마늘즙
+                                <td th:if="${lotList.productId == 'p23'}"> 석류젤리스틱
+                                <td th:if="${lotList.productId == 'p24'}"> 매실젤리스틱</td>
+                                <td th:text="${lotList.processId}"></td>
+                                <td th:text="${#temporals.format(lotList.date, 'yyyy-MM-dd HH:mm')}"></td>
+                                <td th:text="${lotList.orderId}"></td>
                             </tr>
-                            <tr>
-
+                            <tr th:each="lotList:${searchList}">
+                                <td th:text="${lotList.id}"></td>
+                                <td th:text="${lotList.code}"></td>
+                                <td th:if="${lotList.productId == 'p21'}"> 양배추즙
+                                <td th:if="${lotList.productId == 'p22'}"> 흑마늘즙
+                                <td th:if="${lotList.productId == 'p23'}"> 석류젤리스틱
+                                <td th:if="${lotList.productId == 'p24'}"> 매실젤리스틱</td>
+                                <td th:text="${lotList.processId}"></td>
+                                <td th:text="${#temporals.format(lotList.date, 'yyyy-MM-dd HH:mm')}"></td>
+                                <td th:text="${lotList.orderId}"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -259,17 +276,6 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
@@ -291,11 +297,6 @@
 
     <!-- Page level plugins -->
     <script src="/js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/js/monthlyChart.js"></script>
-    <script src="/js/dailyChart.js"></script>
 </div>
 </body>
-
 </html>

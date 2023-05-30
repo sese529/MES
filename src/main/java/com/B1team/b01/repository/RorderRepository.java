@@ -23,7 +23,7 @@ public interface RorderRepository extends JpaRepository<Rorder, String> {
             "AND (:productName IS NULL OR r.productName = :productName) " +
             "AND (:startDeadline IS NULL OR r.deadline >= :startDeadline) " +
             "AND (:endDeadLine IS NULL OR r.deadline <= :endDeadLine) " +
-            "ORDER BY r.date DESC")
+            "ORDER BY r.id DESC")
     List<Rorder> findRordersByConditions(@Param("startDate") LocalDateTime startDate,
                                                                          @Param("endDate")LocalDateTime endDate,
                                                                          @Param("orderId")String orderId,

@@ -36,4 +36,7 @@ public class Worder {
 
     @Column(name="product_id", nullable = false, columnDefinition = "varchar2(50)")
     private String productId; //제품 고유번호
+
+    @Column(name="order_id", nullable = false, columnDefinition = "varchar2(50)")
+    private String orderId; //수주 고유번호
 }
