@@ -1,4 +1,4 @@
-package com.B1team.b01.Controller;
+package com.B1team.b01.controller;
 
 import com.B1team.b01.dto.*;
 import com.B1team.b01.repository.CustomerRepository;
