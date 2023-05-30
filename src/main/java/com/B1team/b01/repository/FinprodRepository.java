@@ -1,5 +1,6 @@
 package com.B1team.b01.repository;
 
+import com.B1team.b01.dto.MonthlyEaSumDTO;
 import com.B1team.b01.dto.ShipmentDto;
 import com.B1team.b01.entity.Finprod;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,4 +29,10 @@ public interface FinprodRepository extends JpaRepository<Finprod, String> {
                                                 @Param("endDate") LocalDateTime endDate,
                                                 @Param("currentTime") LocalDateTime currentTime);
 
+
+    //올해 월별 생산량 합
+    @Query("SELECT NEW com.B1team.b01.dto.MonthlyEaSumDTO(MONTH(f.deadline), SUM(f.ea)) " +
+            "FROM Finprod f WHERE YEAR(f.deadline) = YEAR(CURRENT_TIMESTAMP) AND f.deadline <= CURRENT_TIMESTAMP GROUP BY MONTH(f.deadline) " +
+            "ORDER BY MONTH(f.deadline)")
+    List<MonthlyEaSumDTO> getMonthlyEaSum();
 }

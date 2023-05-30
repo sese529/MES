@@ -27,6 +27,34 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+var monthlySum;
+
+// Ajax 요청 보내기
+var xhr = new XMLHttpRequest();
+xhr.open('GET', '/main/monthlySum', true);
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      monthlySum = response.map(function(value) {
+        return parseInt(value);
+      });
+      console.log("monthlySum:", monthlySum);
+
+      // 차트 데이터 업데이트
+      myLineChart.data.datasets[0].data = monthlySum;
+
+      // 차트 업데이트
+      myLineChart.update();
+    } else {
+      console.log("Error:", xhr.status);
+    }
+  }
+};
+xhr.send();
+
+
+
 // 월간 생산량
 var ctx = document.getElementById("monthlyProduction");
 var myLineChart = new Chart(ctx, {
@@ -46,7 +74,8 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+      // data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+      data: monthlySum,
     }],
   },
   options: {
@@ -116,3 +145,5 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+
+

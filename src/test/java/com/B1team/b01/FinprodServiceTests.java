@@ -10,6 +10,7 @@ import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootTest
 public class FinprodServiceTests {
@@ -26,4 +27,11 @@ public class FinprodServiceTests {
 
     }
 
+    @Test
+    public void 월별생산량테스트() {
+        List<Long> list = finprodService.getMonthlyList();
+        for(int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + "월 = " + list.get(i));
+        }
+    }
 }
