@@ -161,7 +161,7 @@ public class MprocessRepositoryTests {
     @Test
     void 작업시간계산테스트() {
         LocalDateTime materialReadyDate = LocalDateTime.of(2023, 5, 24, 10, 0);
-        List<WorderDto> list = mprocessService.calculateWorderDate(materialReadyDate, "p21", 10);
+        List<WorderDto> list = mprocessService.calculateWorderDate(materialReadyDate, "p21", 2000);
         for(int i = 0; i < list.size(); i++)
             System.out.println(list.get(i));
     }
