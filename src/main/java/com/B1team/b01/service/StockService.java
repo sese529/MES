@@ -167,7 +167,7 @@ public class StockService {
 
 
 
-    //제품 재고 업데이트(생산작업 들어갈 때 재고에서 빠지는 작업, kg단위로 빠짐(=이유: 재고현황이 kg으로 되어있어서))
+    //제품 재고 업데이트(생산작업 들어갈 때 재고에서 빠지는 작업, g단위로 빠짐)
     public void deleteStockEa(String productId){
         List<Long> stock = stockRepository.findByMTRStockCnt();
         Long[] oneBoxNeedProductResult = pinoutService.oneBoxNeedProduct(productId);  //출고수량
