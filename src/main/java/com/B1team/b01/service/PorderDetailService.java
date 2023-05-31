@@ -35,14 +35,17 @@ public class PorderDetailService {
         return id;
     }
 
-    public void addPorderDetail(DetailDto dto) {
+    public void addPorderDetail(String porderId
+                                ,String mtrId
+                                ,double cnt
+                                ,long price) {
         PorderDetail dt = new PorderDetail();
 
-        dt.setId(generateId("DET", "PROCESS_SEQ")); //////seq이름////////
-        dt.setPorderId(dto.getPorderId());
-        dt.setMtrId(dto.getMtrId());
-        dt.setDetailCnt(dto.getDetailCnt());
-        dt.setDetailPrice(dto.getDetailPrice());
+        dt.setId(generateId("DET", "DETAIL_SEQ")); //////seq이름////////
+        dt.setPorderId(porderId);
+        dt.setMtrId(mtrId);
+        dt.setDetailCnt(cnt);
+        dt.setDetailPrice(price);
 
         porderDetailRepository.save(dt);
     }

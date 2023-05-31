@@ -41,6 +41,8 @@ public class RorderService {
     private final PinoutService pinoutService;
     private final FinprodService finprodService;
     private final StockService stockService;
+    private final PorderDetailService porderDetailService;
+    private final PorderService porderService;
 
     private final LotService lotService;
 
@@ -53,14 +55,18 @@ public class RorderService {
         LocalDateTime dt = rorder.getDate();
         String pid = rorder.getProductId();
 
-
 //            1 제품 재고 업데이트 - 수경님
-                stockService.stockCheck(rorderId);
+                stockService.stockCheck(rorder.getProductId(),rorder.getId());
 //
 //            2 원자재 재고 업뎃 - 세윤님
 //            stockService.updateStockEa();
 
-//            3 자동 발주 / 발주상세 자재 ,입출 정보 in - 수경님
+//            3 자동 발주 및 발주상세 - 수경님
+                porderService.createPorder(dt,pid,rorder.getCnt());
+
+////            3-2 입출 정보
+//                pinoutService.createPinout();
+
 
 //            4 생산 지시, 로트번호, 생산계획, 실적, 완제품 insert -다인님
                 LocalDateTime materialReadyDate = rorder.getDate();
@@ -74,7 +80,6 @@ public class RorderService {
                 stockService.deleteStockEa(productId, orderCnt);//출고
                 pinoutService.createMTROut(orderId, productId);    //자재입출정보등록
 
-
                 wperformService.insertWperform(orderId);    //작업실적 등록
                 Finprod finprod = finprodService.insertFinprod(orderId);      //완제품 등록
 
@@ -82,15 +87,6 @@ public class RorderService {
                     lotDto.setFinprodId(finprod.getId());
                     lotRepository.save(lotDto.toEntity());
                 }
-
-
-
-
-
-
-
-
-
 
 
     }

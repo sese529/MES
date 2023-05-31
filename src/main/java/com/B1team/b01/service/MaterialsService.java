@@ -41,5 +41,7 @@ public class MaterialsService {
         return date;
     }
 
-
+    public Optional<Materials> getMaterialByMtrId(String id) {
+        return materialsRepository.findById(id);
+    }
 }

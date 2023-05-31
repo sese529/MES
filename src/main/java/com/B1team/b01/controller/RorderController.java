@@ -36,7 +36,6 @@ public class RorderController {
     private final RorderRepository rorderRepository;
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
-    private final StockService stockService;
 
 
     //수주 리스트 검색

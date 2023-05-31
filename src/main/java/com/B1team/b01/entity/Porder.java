@@ -41,7 +41,7 @@ public class Porder {
 
     //품목 수량
     @Column(name="porder_cnt", nullable = false, columnDefinition = "number(10)")
-    private Long cnt;
+    private double cnt;
 
     //품목 단위
     @Column(name="mtr_unit", nullable = false, columnDefinition = "varchar2(3)")
@@ -49,7 +49,7 @@ public class Porder {
 
     //발주 금액
     @Column(name="porder_amount", nullable = false, columnDefinition = "number(10)")
-    private Long amount;
+    private double amount;
 
     //입고 여부
     @Column(name="porder_state", nullable = false, columnDefinition = "varchar2(12)")

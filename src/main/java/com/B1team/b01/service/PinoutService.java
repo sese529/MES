@@ -167,16 +167,22 @@ public class PinoutService {
         return id;
     }
 
-    public void createPinout(PinoutDto pdto) {
-
-        Pinout po = new Pinout();
-        po.setId(generateId("PIN", "pinout_seq"));
-        po.setMtrId(pdto.getMtrId());
-        po.setProductCnt(pdto.getProductCnt());
-        po.setProductDate(pdto.getProductDate());
-        po.setSort(pdto.getSort());
-
-        pinoutRepository.save(po);
-    }
-
+//    public void createPinout(String mtrId, Long cnt, LocalDateTime date, String sort) {
+//
+//        if(sort){
+//            sort = "발주처";
+//        } else() {
+//            sort ="수주처";
+//        }
+//
+//        Pinout po = new Pinout();
+//
+//        po.setId(generateId("PIN", "pinout_seq"));
+//        po.setMtrId(mtrId);
+//        po.setProductCnt(cnt);
+//        po.setProductDate(date);
+//        po.setSort(sort);
+//
+//        pinoutRepository.save(po);
+//    }
 }

@@ -20,16 +20,21 @@ import java.util.*;
 @RequiredArgsConstructor
 @Service
 public class BomService {
-    @Autowired
+
     private final BomRepository bomRepository;
-    @Autowired
     private final StockRepository stockRepository;
-    @Autowired
     private final StockService stockService;
 
     private final ProductRepository productRepository;
     private final MaterialsRepository materialsRepository;
-//    List<Stock> stockList = new ArrayList<>();
+
+    public List<Product> getProduct() {
+        return productRepository.findAll();
+    }
+
+    public List<Materials> getMaterials() {
+        return materialsRepository.findAll();
+    }
 
     public List<NeedOrderDto> calcBom(String pid, double amount) {
         List<Stock> stockList = new ArrayList<>();
@@ -206,9 +211,9 @@ public class BomService {
             bdto.setProductId(obj[4].toString());
             bdto.setProductName(obj[5].toString());
 
-//            for (int i = 0; i <= 5; i++) {
-//                System.out.println(i + ":" + obj[i]);
-//            }
+            for (int i = 0; i <= 5; i++) {
+                System.out.println(i + ":" + obj[i]);
+            }
 
             products.add(bdto);
         }
@@ -239,11 +244,5 @@ public class BomService {
 //        return products;
 //    }
 
-    public List<Product> getProduct() {
-        return productRepository.findAll();
-    }
 
-    public List<Materials> getMaterials() {
-        return materialsRepository.findAll();
-    }
 }

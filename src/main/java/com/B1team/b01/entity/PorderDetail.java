@@ -15,7 +15,7 @@ public class PorderDetail {
     @Id
     @Column(name = "porder_detail_id", nullable = false, columnDefinition = "varchar2(50)")
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "process_seq_generator")
-    @SequenceGenerator(name = "process_seq_generator", sequenceName = "PROCESS_SEQ", initialValue = 10001, allocationSize = 1)
+    @SequenceGenerator(name = "detail_seq_generator", sequenceName = "DETAIL_SEQ", initialValue = 10001, allocationSize = 1)
     private String id;    //발주 품목 고유번호
 
     @Column(name="porder_id", nullable = false, columnDefinition = "varchar2(50)")
@@ -25,7 +25,7 @@ public class PorderDetail {
     private String mtrId;   //원자재 고유번호
 
     @Column(name="porder_detail_cnt", nullable = false, columnDefinition = "number(10)")
-    private Long detailCnt;   //발주 품목량
+    private double detailCnt;   //발주 품목량
 
     @Column(name="porder_detail_price", nullable = false, columnDefinition = "number(10)")
     private Long detailPrice;   //품목 금액

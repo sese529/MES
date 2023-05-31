@@ -1,9 +1,6 @@
 package com.B1team.b01.service;
 
-import com.B1team.b01.dto.PorderDto;
-import com.B1team.b01.dto.StockDeleteDto;
-import com.B1team.b01.dto.StockDto;
-import com.B1team.b01.dto.StockListDto;
+import com.B1team.b01.dto.*;
 import com.B1team.b01.entity.*;
 import com.B1team.b01.repository.PorderRepository;
 import com.B1team.b01.repository.RorderRepository;
@@ -33,9 +30,6 @@ public class StockService {
     @Autowired
     private final PinoutService pinoutService;
 
-    @Autowired
-    private EntityManagerFactory entityManagerFactory;
-
 
 
     @Autowired
@@ -47,13 +41,18 @@ public class StockService {
     //시뮬레이션 - 재고확인 및 자동발주
     public Long stockCheck(String productId, String orderId) {
         //제품 잔여수량 확인
-
-        Stock stock = (Stock) stockRepository.findByProductIdNotNull();
+        Stock stock = stockRepository.findByProductId(productId);
+        //Stock stock = (Stock) stockRepository.findByProductIdNotNull();
 
         //재고 수량
         Long stockEa = stock.getEa();
 
-        System.out.println("stockEa" + stockEa);
+        //재고 수량 확인
+        if (stock != null) {
+            System.out.println("재고 수량: " + stockEa);
+        } else {
+            System.out.println("재고 없음");
+        }
 
 //      수주 주문 수량
         Optional<Rorder> optionalOne = rorderRepository.findById(orderId);
@@ -89,68 +88,7 @@ public class StockService {
         }
     }
 
-    //문자열 시퀀스 메소드
-    @Transactional
-    public String generateId(String head, String seqName) {
 
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        BigDecimal sequenceValue = (BigDecimal) entityManager.createNativeQuery("SELECT " + seqName + ".NEXTVAL FROM dual").getSingleResult();
-        String id = head + sequenceValue;
-        return id;
-    }
-
-    //발주 등록
-    public void createPorder(PorderDto pdto) {
-
-        // 새로운 발주 등록 insert
-        Porder porder = new Porder();
-
-        porder.setId(generateId("POR", "porder_seq"));
-        porder.setOrderDate(LocalDateTime.now()); // 현재일자
-
-        porder.setCustomerId(pdto.getCustomerId()); // 거래처 고유번호
-        porder.setCustomerName(pdto.getCustomerName()); // 발주처
-        porder.setArrivalDate(pdto.getArrivalDate()); // 입고일
-        porder.setCnt(pdto.getCnt());
-        porder.setMtrUnit(pdto.getUnit());
-        porder.setAmount(pdto.getAmount());
-        porder.setState(pdto.getState());
-        porder.setMtrId(pdto.getMtrId());
-        porder.setMtrPrice(pdto.getPrice());
-        porder.setMtrName(pdto.getName());
-
-        porderRepository.save(porder);
-    }
-
-//
-//    public List<StockListDto> getProductStockList(String productName, String productId, String productSort) {
-//
-//        List<Object[]> results = stockRepository.getProductStockList(productName, productId, productSort);
-//
-//        List<StockListDto> stockListDtoList = new ArrayList<>();
-//
-//        for (Object[] row : results) {
-//            StockListDto stockListDto = new StockListDto();
-//
-//            // stock
-//            stockListDto.setName(row[0].toString());
-//            stockListDto.setProductId(row[1].toString());
-////            stockListDto.setEa(Long.valueOf((Long) row[2]));
-//            stockListDto.setUnit(row[2].toString());
-//            stockListDto.setPrice(Long.valueOf((Long) row[3]));
-//            stockListDto.setSort(row[4].toString());
-//            stockListDto.setLocation(row[5].toString());
-//
-//            for (int i = 0; i <= 5; i++) {
-//                System.out.println(i + ":" + row[i]);
-//            }
-//
-//            stockListDtoList.add(stockListDto);
-//
-//        }
-//        return stockListDtoList;
-//    }
 
     // 재고 update
     public void updateStockEa(String mtrId, double stockEa) {
@@ -160,7 +98,6 @@ public class StockService {
             stockRepository.save(stock);
         }
     }
-
 
 
 
@@ -331,7 +268,4 @@ public class StockService {
 
         }
     }
-
-
-
 }
