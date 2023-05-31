@@ -163,31 +163,31 @@
                 <div class="searchbar">
                     <table class="table table-borderless" id="productionDataTables3" cellspacing="0">
                         <tr class="searchbarTr3">
-                            <td class="searchbarDateTd2">
+                            <td class="searchbarDateTd">
                                 <p>품목</p>
                             </td>
-                            <td class="searchbarContent2">
+                            <td class="searchbarContent">
                                 <select name="id" class="searchbarSelect">
                                     <option value="" selected></option>
                                     <option th:each="plist : ${plist}" th:text="${plist.id}"
                                             th:value="${plist.id}"></option>
                                 </select>
                             </td>
-                            <td class="searchbarDateTd2">
+                            <td class="searchbarDateTd">
                                 <p>공정 코드</p>
                             </td>
-                            <td class="searchbarContent2">
+                            <td class="searchbarContent">
                                 <select class="searchbarSelect" name="pid">
                                     <option value="" selected></option>
                                     <option th:each="mlist :${mlist}" th:text="${mlist.id}"
                                             th:value="${mlist.id}"></option>
                                 </select>
                             </td>
-                            <td class="searchbarDateTd2">
+                            <td class="searchbarDateTd">
                                 <p>생산 일자</p>
                             </td>
-                            <td class="searchbarContent2">
-                                <div class="searchbarDate2">
+                            <td class="searchbarContent">
+                                <div class="searchbarDate">
                                     <input type="date" name="min">
                                     <p class="searchbarDateWater">~</p>
                                     <input type="date" name="max">
