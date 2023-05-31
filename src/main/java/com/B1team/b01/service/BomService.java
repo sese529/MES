@@ -37,7 +37,8 @@ public class BomService {
         needList.clear();
         //재고 확인
         List<BOM> bomlist = bomRepository.findPID(pid);
-        for (BOM b : bomlist) {
+        for (BOM
+                b : bomlist) {
             String id = b.getMtrId();
             Stock stock = stockRepository.findByMtrId(id);
             stockList.add(stock);
