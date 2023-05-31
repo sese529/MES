@@ -14,4 +14,9 @@ public class BomTest {
     void finaTest(){
         System.out.println(bomService.calcBom("p21",1));
     }
+
+    @Test
+    void BomListTest(){
+        System.out.println(bomService.BomList("양배추즙",null));
+    }
 }

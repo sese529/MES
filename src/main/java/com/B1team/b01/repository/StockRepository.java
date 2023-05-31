@@ -42,4 +42,7 @@ public interface StockRepository extends JpaRepository<Stock, String> {
             "AND (:mtrName IS NULL OR m.name = :mtrName)" +
             "ORDER BY s.mtrId")
     List<MaterialStockDto> findMaterialStock(@Param("mtrName") String mtrName);
+
+    Stock findByProductId(String productId);
+
 }

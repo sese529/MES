@@ -25,22 +25,33 @@ public class RorderService {
     private final MprocessService mprocessService;
     private final EntityManager entityManager;
     private final StockService stockService;
+    private final PorderDetailService porderDetailService;
+    private final PinoutService pinoutService;
+    private final PorderService porderService;
 
     //수주 - 확정 시 이벤트
     public void rorderConfirmed(String rorderId) {
         Optional<Rorder> optional = rorderRepository.findById(rorderId);
         Rorder rorder = optional.get();
 
+        LocalDateTime dt = rorder.getDate();
+        String pid = rorder.getProductId();
+
+
 //            1 제품 재고 업데이트 - 수경님
-                stockService.stockCheck(rorder.getId());
+                stockService.stockCheck(rorder.getProductId(),rorder.getId());
 //
 //            2 원자재 재고 업뎃 - 세윤님
 //            stockService.updateStockEa();
 
-//            3 자동 발주 / 발주상세 자재 ,입출 정보 in - 수경님
+//            3 자동 발주 및 발주상세 - 수경님
+                porderService.createPorder(dt,pid,rorder.getCnt());
+
+////            3-2 입출 정보
+//                pinoutService.createPinout();
+
 
 //            4 생산 지시, 로트번호, 생산계획, 실적, 완제품 insert -다인님
-
 
     }
 

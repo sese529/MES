@@ -1,16 +1,13 @@
 package com.B1team.b01.service;
 
 import com.B1team.b01.entity.Customer;
-import com.B1team.b01.entity.Wplan;
 import com.B1team.b01.repository.CustomerRepository;
 import com.B1team.b01.repository.CustomerSpecifications;
-import com.B1team.b01.repository.ProductionSpecifications;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -48,5 +45,9 @@ public class CustomerService {
 
     public Long getNextCustomerSeq(){
         return customerRepository.getNextCustomerSeq();
+    }
+
+    public Customer getPorderCustomer(String sort, String id) {
+        return customerRepository.findBySortAndIdEquals(sort, id);
     }
 }
