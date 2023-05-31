@@ -9,7 +9,9 @@ import com.B1team.b01.entity.Rorder;
 import com.B1team.b01.repository.CustomerRepository;
 import com.B1team.b01.repository.ProductRepository;
 import com.B1team.b01.repository.RorderRepository;
+import com.B1team.b01.repository.StockRepository;
 import com.B1team.b01.service.RorderService;
+import com.B1team.b01.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -131,8 +133,8 @@ public class RorderController {
         Arrays.sort(selectedIds);
         for(int i = 0; i < selectedIds.length; i++) {
 //            int temp = rorderRepository.updateState(selectedIds[i]);
-//            System.out.println(i + "번째=" + temp);
             rorderService.rorderConfirmed(selectedIds[i]);
+
         }
         return "redirect:/rorder/order";
     }

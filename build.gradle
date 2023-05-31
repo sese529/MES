@@ -36,3 +36,13 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+	manifest {
+		attributes 'Main-Class' : 'com.B1team.b01.B01Application'
+	}
+	enabled=false
+}
+bootJar {
+	duplicatesStrategy = 'exclude'
+}

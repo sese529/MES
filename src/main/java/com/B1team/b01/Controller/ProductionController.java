@@ -32,6 +32,8 @@ public class ProductionController {
     private MprocessService mprocessService;
     @Autowired
     private WorderService worderService;
+    @Autowired
+    private WplanService wplanService;
 
 
     @GetMapping("/production/production-order")
@@ -50,6 +52,9 @@ public class ProductionController {
 
     @GetMapping("/production/production-plan")
     public String getWplanList(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+
+        wplanService.updateState(); //작업계획 업데이트 메소드
+
         List<Wplan> wlist = productionService.getAllWplan();
         model.addAttribute("wlist", wlist);
 

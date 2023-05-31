@@ -15,8 +15,8 @@ public class StockServiceTest {
 
     @Autowired private StockService stockService;
 
-    @Test
-    void stTest() {
+//    @Test
+ //   void stTest() {
 //        Optional<Stock> optional = stockRepository.findById("mtr38");
 //        Stock stock = optional.get();
 
@@ -29,17 +29,24 @@ public class StockServiceTest {
 //        }
 
 //        stockService.stockCheck("p21","10");
-        System.out.println("d");
+//        System.out.println("d");
 
 //        stockService.getProductStock();
 
-    }
+//    }
 
 //재고에서 원자재 빼기(작업실행되면)
     @Test
     void testDeleteStockEa(){
-        stockService.deleteStockEa("p21");
+        stockService.deleteStockEa("p21", 2);
 
     }
 
+/*    @Test
+    void selectTestDeleteStockEa(){
+        List<Long> result = stockRepository.findByMTRStockCnt();
+        System.out.println(result);
+
+    }
+*/
 }

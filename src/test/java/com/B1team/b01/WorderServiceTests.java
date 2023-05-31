@@ -14,7 +14,7 @@ import java.util.List;
 public class WorderServiceTests {
     @Autowired private WorderService worderService;
 
-/*
+
     //작업지시 등록하기
     @Test
     public void testdoWorder(){
@@ -23,5 +23,4 @@ public class WorderServiceTests {
         worderService.doWorder("ROD29",materialReadyDate,"p21", 1);
     }
 
-*/
 }

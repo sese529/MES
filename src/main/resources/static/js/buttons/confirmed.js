@@ -18,7 +18,7 @@ document.getElementById("confirmedButton").addEventListener("click", function() 
         var currentTime = new Date();
         var msg = "";
         if (date < currentTime) {
-            msg = "수주일이 현재 시간보다 이전인 경우가 있습니다.<br> 계속 진행할 시 현재 시간보다 과거인 수주일이 현재 시간으로 모두 변동됩니다.<br> 확정하시겠습니까?";
+            msg = "수주일이 현재 시간보다 <br> 이전인 경우가 있습니다. <br>계속 진행할 시 현재 시간보다<br> 과거인 수주일이 현재 시간으로<br> 모두 변동됩니다.<br> 확정하시겠습니까?";
         } else {
             msg = "확정하시겠습니까?";
         }

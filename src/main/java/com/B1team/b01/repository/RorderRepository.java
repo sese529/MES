@@ -1,6 +1,8 @@
 package com.B1team.b01.repository;
 
 import com.B1team.b01.entity.Rorder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -47,6 +49,10 @@ public interface RorderRepository extends JpaRepository<Rorder, String> {
     @Query("UPDATE Rorder r set r.state = '확정' WHERE r.id = :id")
     int updateState(@Param("id") String id);
 
+    //수주별 진행 현황
+    List<Rorder> findByStateOrderByIdDesc(String state);
 
+    @Query("SELECT r FROM Rorder r WHERE r.state = '확정' AND r.date <= CURRENT_TIMESTAMP ORDER BY r.id desc")
+    List<Rorder> findRordersByStateByConditions(String state);
 
 }

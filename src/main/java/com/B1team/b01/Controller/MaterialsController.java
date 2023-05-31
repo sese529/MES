@@ -1,4 +1,4 @@
-package com.B1team.b01.Controller;
+package com.B1team.b01.controller;
 
 import com.B1team.b01.dto.*;
 import com.B1team.b01.repository.CustomerRepository;
@@ -56,7 +56,7 @@ public class MaterialsController {
         model.addAttribute("startArrivalDate", startArrivalDate);
         model.addAttribute("endArrivalDate", endArrivalDate);
 
-        return "/materials/porder-status";
+        return "materials/porder-status";
     }
 
     //자재 입출 현황
@@ -84,7 +84,7 @@ public class MaterialsController {
         model.addAttribute("startDate", startDate);
         model.addAttribute("endDate", endDate);
         model.addAttribute("mtrName", mtrName);
-        return "/materials/material-inoutput";
+        return "materials/material-inoutput";
     }
 
     //자재 재고 현황
@@ -93,6 +93,6 @@ public class MaterialsController {
         List<MaterialStockDto> list = stockRepository.findMaterialStock(mtrName);
         model.addAttribute("list", list);
         model.addAttribute("mtrName", mtrName);
-        return "/materials/material-inventory";
+        return "materials/material-inventory";
     }
 }

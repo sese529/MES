@@ -52,6 +52,7 @@ public class WperformService {
                 Wplan firstWplan = result.get(i);
                 wperformDto.setId(makeStringId()); //문자열 시퀀스 추가
                 wperformDto.setWplanId(firstWplan.getId());
+                wperformDto.setProductId(firstWplan.getProductId());
                 wperformDto.setOrderId(firstWplan.getOrderId());
                 wperformDto.setCnt(firstWplan.getCnt());
                 wperformDto.setStartDate(firstWplan.getStartDate());

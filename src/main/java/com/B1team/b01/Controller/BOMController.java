@@ -42,8 +42,6 @@ public class BOMController {
             , @RequestParam(required = false) String mtrName) {
 
         List<BomListDto> bomList = bomService.BomList(productName, mtrName);
-
-
         List<Product> Product = bomService.getProduct();
         List<Materials> Materials = bomService.getMaterials();
 
@@ -51,7 +49,7 @@ public class BOMController {
         model.addAttribute("Product",Product);
         model.addAttribute("Materials",Materials);
 
-        return "/item/bom";
+        return "item/bom";
     }
 
 

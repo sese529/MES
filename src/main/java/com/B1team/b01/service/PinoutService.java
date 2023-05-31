@@ -71,7 +71,7 @@ public class PinoutService {
                 Long blackgarlic = 250L;
                 pouch = 30L;
                 box = 1L;
-                productPackage = new Long[]{Long.valueOf("p22"), blackgarlic, pouch, box};
+                productPackage = new Long[]{blackgarlic, pouch, box};
                 break;
 
             case "p23":
@@ -152,7 +152,7 @@ public class PinoutService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime startDate = start == null || "".equals(start)? null : LocalDate.parse(start, formatter).atStartOfDay();
         LocalDateTime endDate = end == null || "".equals(end) ? null : LocalDate.parse(end, formatter).atTime(23, 59, 59);
-        return pinoutRepository.findPinoutsByConditions(sort, startDate, endDate, mtrName);
+        return pinoutRepository.findPinoutsByConditions(sort, startDate, endDate, mtrName, LocalDateTime.now());
     }
 
 
@@ -167,16 +167,22 @@ public class PinoutService {
         return id;
     }
 
-    public void createPinout(PinoutDto pdto) {
-
-        Pinout po = new Pinout();
-        po.setId(generateId("PIN", "pinout_seq"));
-        po.setMtrId(pdto.getMtrId());
-        po.setProductCnt(pdto.getProductCnt());
-        po.setProductDate(pdto.getProductDate());
-        po.setSort(pdto.getSort());
-
-        pinoutRepository.save(po);
-    }
-
+//    public void createPinout(String mtrId, Long cnt, LocalDateTime date, String sort) {
+//
+//        if(sort){
+//            sort = "발주처";
+//        } else() {
+//            sort ="수주처";
+//        }
+//
+//        Pinout po = new Pinout();
+//
+//        po.setId(generateId("PIN", "pinout_seq"));
+//        po.setMtrId(mtrId);
+//        po.setProductCnt(cnt);
+//        po.setProductDate(date);
+//        po.setSort(sort);
+//
+//        pinoutRepository.save(po);
+//    }
 }

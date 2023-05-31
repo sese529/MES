@@ -58,24 +58,30 @@ editBtn.onclick = function () {
                 //품목 설정
                 var editInfoProductId = response.editInfoProductId;
                 var productList = document.getElementById('editProductId');
+                document.getElementById('editTableProductCode').textContent = editInfoProductId;
 
                 for (let i = 0; i < productList.options.length; i++) {
                     if (productList.options[i].value == editInfoProductId) {
                         productList.options[i].selected = true;
+                        document.getElementById('editTableProductSort').textContent = productList.options[i].dataset.sort;
+                        document.getElementById('editTableProductPrice').textContent = productList.options[i].dataset.price;
                         break;
                     }
                 }
 
                 var editInfoProductName = response.editInfoProductName;
                 document.getElementById('hiddenEditProduct').value = editInfoProductName;
+                document.getElementById('editTableProductName').textContent = editInfoProductName;
 
                 //수주량 설정
                 var editInfoCnt = response.editInfoCnt;
                 document.getElementById('editOrderCnt').value = editInfoCnt;
+                document.getElementById('editTableCnt').textContent = editInfoCnt;
 
                 //수주 가격 설정
                 var editInfoPrice = response.editInfoPrice;
                 document.getElementById('editPrice').value = editInfoPrice;
+                document.getElementById('editTableSum').textContent = editInfoPrice;
 
                 //납품예정일 설정
                 var editInfoDeadline = response.editInfoDeadline;
@@ -88,6 +94,7 @@ editBtn.onclick = function () {
                 var formattedDate = year + '-' + month + '-' + day + ' ' + (hour < 12 ? '오전' : '오후') + ' ' + ('0' + (hour % 12 || 12)).slice(-2) + ':' + ('0' + minute).slice(-2);
 
                 document.getElementById('editDeliveryDate').value = formattedDate;
+
 
                 // 모달 천천히 나타내기
                 editModal.style.opacity = 0;

@@ -41,7 +41,7 @@ public class ProductController {
         model.addAttribute("productList",productList);
         model.addAttribute("Product",Product);
 
-        return "/item/product";
+        return "item/product";
     }
 
 

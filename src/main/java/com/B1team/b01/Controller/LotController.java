@@ -139,7 +139,7 @@ public class LotController {
     @GetMapping("/lot")
     public String lotList(Model model) {
         model.addAttribute("lotList", lotService.getLotList());
-        return "/lot/lot";
+        return "lot/lot";
     }
 
     //검색
@@ -182,7 +182,7 @@ public class LotController {
         model.addAttribute("searchList",searchList);
 
 
-        return "/lot/lot";
+        return "lot/lot";
     }
 
 

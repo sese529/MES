@@ -33,17 +33,4 @@ public class PorderRepositoryTests {
         for(PorderOutputDto porder : list)
             System.out.println(porder);
     }
-
-    @Test
-    void porderTest() {
-        DetailDto dto = new DetailDto();
-        dto.setPorderId("123"); // 필요한 porderId 값 설정
-        dto.setMtrId("456"); // 필요한 mtrId 값 설정
-        dto.setDetailCnt(2L); // 필요한 detailCnt 값 설정
-        dto.setDetailPrice(1000L); // 필요한 detailPrice 값 설정
-
-        porderDetailService.addPorderDetail(dto);
-    }
-
-
 }
