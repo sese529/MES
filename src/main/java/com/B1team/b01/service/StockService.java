@@ -66,8 +66,8 @@ public class StockService {
 
         // 재고량 & 주문량 비교
         if (stockEa < orderCnt) {
-            //재고량이 주문량보다 적으면 자동발주 계산
-            System.out.println("발주계산으로 넘어감");
+            //재고량이 주문량보다 적으면 갯수 업데이트
+            System.out.println("갯수 업데이트");
 
             Long remainingStock = orderCnt - stockEa; //주문량 - 재고량
             stock.setEa(remainingStock);

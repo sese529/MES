@@ -47,15 +47,16 @@ public class RorderService {
     private final EntityManager entityManager;
     private final LotRepository lotRepository;
 
-
     //수주 - 확정 시 이벤트
     public void rorderConfirmed(String rorderId) {
         Rorder rorder = updateConfirmed(rorderId);
+        LocalDateTime dt = rorder.getDate();
+        String pid = rorder.getProductId();
 
 
 //            1 제품 재고 업데이트 - 수경님
-//            stockService.stockCheck();
-
+                stockService.stockCheck(rorderId);
+//
 //            2 원자재 재고 업뎃 - 세윤님
 //            stockService.updateStockEa();
 
